@@ -1,0 +1,2946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mountain Diaries</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@400;600;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5efe0;
+    --warm-white: #faf6ed;
+    --brown-dark: #2c1a0e;
+    --brown-mid: #5c3317;
+    --brown-light: #8b5e3c;
+    --gold: #c9922a;
+    --gold-light: #e8b84b;
+    --forest: #2d4a2a;
+    --forest-light: #3d6b38;
+    --stone: #7a7065;
+    --snow: #e8e4d9;
+    --charcoal: #1a1410;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', serif;
+    background: var(--charcoal);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    background: rgba(26,20,16,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+    transition: all 0.3s;
+  }
+
+  nav .logo .logo-svg-nav {
+    height: 46px;
+    width: auto;
+    filter: drop-shadow(0 1px 8px rgba(201,146,42,0.3));
+    display: block;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.8;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  nav ul li a:hover {
+    opacity: 1;
+    color: var(--gold-light);
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--charcoal);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sunset_Glow_on_Mount_Everest.jpg/1600px-Sunset_Glow_on_Mount_Everest.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      rgba(8,6,4,0.65) 0%,
+      rgba(15,10,5,0.45) 30%,
+      rgba(20,28,15,0.55) 55%,
+      rgba(8,12,6,0.75) 80%,
+      rgba(5,8,4,0.92) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 24px;
+    margin-top: -80px;
+  }
+
+
+
+  .hero-tagline {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    animation: fadeInUp 1.4s ease-out 0.3s both;
+    margin-bottom: 40px;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    animation: fadeIn 2s ease-out 1s both;
+  }
+
+  .scroll-hint span {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.3); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    min-height: 100vh;
+    padding: 120px 0 80px;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 32px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* ─── REVEAL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── STORY SECTION ─── */
+  #story {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+    min-height: auto;
+    padding: 120px 0 100px;
+  }
+
+  #story .story-backdrop {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg/1600px-Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+    filter: brightness(0.28) saturate(0.8);
+    z-index: 0;
+  }
+
+  #story::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, var(--charcoal), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #story::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to top, var(--charcoal), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #story .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Story + Share two-panel layout */
+  .story-share-layout {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 72px;
+    align-items: start;
+    margin-top: 12px;
+  }
+
+  /* Story left panel */
+  .story-left {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .story-sidebar {
+    position: sticky;
+    top: 120px;
+  }
+
+  .story-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.6;
+    padding: 28px;
+    border-left: 2px solid var(--gold);
+    background: rgba(201,146,42,0.05);
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 32px;
+  }
+
+  .story-body p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(245,239,224,0.85);
+    margin-bottom: 20px;
+  }
+
+  .story-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 66px;
+    font-weight: 900;
+    color: var(--gold);
+    float: left;
+    line-height: 0.75;
+    margin: 8px 10px -4px 0;
+  }
+
+  .story-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream);
+    padding: 20px 28px;
+    background: rgba(201,146,42,0.08);
+    border-radius: 4px;
+    margin: 24px 0;
+    position: relative;
+  }
+
+  /* ─── SHARE WIDGET (in story right panel) ─── */
+  .story-share-panel {
+    position: sticky;
+    top: 90px;
+    background: rgba(10,8,6,0.6);
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+  }
+
+  .share-panel-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid rgba(201,146,42,0.12);
+  }
+
+  .share-panel-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .share-panel-header p {
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+
+  .share-panel-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(201,146,42,0.12);
+  }
+
+  .share-tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--stone);
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all 0.3s;
+  }
+
+  .share-tab.active {
+    color: var(--gold-light);
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .share-tab:hover { color: var(--cream); }
+
+  .share-tab-content { display: none; padding: 24px 28px; }
+  .share-tab-content.active { display: block; }
+
+  /* Compact form */
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: var(--cream);
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    transition: border-color 0.3s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: rgba(201,146,42,0.5);
+  }
+
+  .form-group textarea { height: 80px; resize: vertical; }
+  .form-group select option { background: #1a1410; }
+
+  #file-input { display: none; }
+
+  .upload-zone-mini {
+    border: 1px dashed rgba(201,146,42,0.3);
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 14px;
+    background: rgba(201,146,42,0.02);
+  }
+
+  .upload-zone-mini:hover {
+    border-color: var(--gold);
+    background: rgba(201,146,42,0.06);
+  }
+
+  .upload-zone-mini p {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .preview-container {
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .preview-container img {
+    max-width: 100%;
+    border-radius: 6px;
+    max-height: 140px;
+    object-fit: cover;
+  }
+
+  .success-msg {
+    display: none;
+    background: rgba(126,200,126,0.12);
+    border: 1px solid rgba(126,200,126,0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #7ec87e;
+    margin-bottom: 14px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--brown-mid), var(--gold));
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    font-weight: 600;
+  }
+
+  .btn-submit:hover { opacity: 0.9; }
+
+  /* Posts feed (compact in panel) */
+  .posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  .posts-feed::-webkit-scrollbar { width: 3px; }
+  .posts-feed::-webkit-scrollbar-track { background: transparent; }
+  .posts-feed::-webkit-scrollbar-thumb { background: rgba(201,146,42,0.3); border-radius: 2px; }
+
+  .post-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .post-card:hover { border-color: rgba(201,146,42,0.25); }
+
+  .post-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-body {
+    padding: 14px;
+  }
+
+  .post-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .post-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown-mid), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cream);
+    flex-shrink: 0;
+  }
+
+  .post-author-info { flex: 1; }
+
+  .post-author-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+
+  .post-author-trail {
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-top: 1px;
+  }
+
+  .post-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(245,239,224,0.75);
+    margin-bottom: 10px;
+  }
+
+  .comments-section { padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .comment {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .comment-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201,146,42,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .comment-text {
+    font-size: 12px;
+    color: rgba(245,239,224,0.65);
+    line-height: 1.5;
+  }
+
+  .comment-text strong {
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+  }
+
+  .comment-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .comment-input-row input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 7px 14px;
+    color: var(--cream);
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .comment-input-row input:focus { border-color: rgba(201,146,42,0.4); }
+
+  .btn-comment {
+    padding: 7px 14px;
+    background: rgba(201,146,42,0.15);
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 20px;
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .btn-comment:hover { background: var(--gold); color: var(--charcoal); }
+
+  .post-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .btn-like {
+    background: none;
+    border: none;
+    color: var(--stone);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+
+  .btn-like:hover, .btn-like.liked { color: var(--gold-light); border-color: rgba(201,146,42,0.3); }
+
+  /* ─── TRAILS SECTION ─── */
+  #trails {
+    background: linear-gradient(180deg, #050805 0%, #0a1209 30%, #0d1a0c 60%, #0a0f09 100%);
+    position: relative;
+    min-height: auto;
+    padding: 120px 0 100px;
+  }
+
+  .trails-intro {
+    max-width: 680px;
+    margin-bottom: 64px;
+  }
+
+  .trails-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(245,239,224,0.75);
+  }
+
+  .trail-region {
+    margin-bottom: 72px;
+  }
+
+  .trail-region-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .trail-region-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .trail-region-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,146,42,0.4), transparent);
+  }
+
+  .trails-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .trail-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,146,42,0.12);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.35s;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .trail-card:hover {
+    border-color: rgba(201,146,42,0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+
+  .trail-card-img {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #1a2d1a, #0d1a0d);
+    transition: transform 0.5s;
+  }
+
+  .trail-card:hover .trail-card-img {
+    transform: scale(1.04);
+  }
+
+  .trail-card-img-wrap {
+    overflow: hidden;
+    height: 175px;
+  }
+
+  .trail-card-body {
+    padding: 22px;
+  }
+
+  .trail-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+  }
+
+  .trail-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.3;
+    max-width: 62%;
+  }
+
+  .difficulty-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .diff-moderate { color: #7ec87e; border-color: rgba(126,200,126,0.35); background: rgba(126,200,126,0.08); }
+  .diff-challenging { color: #e8b84b; border-color: rgba(232,184,75,0.35); background: rgba(232,184,75,0.08); }
+  .diff-hard { color: #e07340; border-color: rgba(224,115,64,0.35); background: rgba(224,115,64,0.08); }
+  .diff-extreme { color: #d95b4b; border-color: rgba(217,91,75,0.35); background: rgba(217,91,75,0.08); }
+
+  .trail-location {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .trail-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(245,239,224,0.6);
+    margin-bottom: 14px;
+  }
+
+  .trail-stats {
+    display: flex;
+    gap: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+
+  .trail-stat { display: flex; flex-direction: column; gap: 2px; }
+
+  .stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .trail-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    transition: gap 0.3s;
+  }
+
+  .trail-card:hover .trail-card-cta { gap: 12px; }
+
+  /* ─── TRAIL MODAL ─── */
+  .trail-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(8,6,4,0.92);
+    backdrop-filter: blur(6px);
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+
+  .trail-modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+  .trail-modal-inner {
+    background: #110e0b;
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    animation: modalIn 0.35s ease-out;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .modal-close:hover { background: rgba(201,146,42,0.3); border-color: var(--gold); }
+
+  .modal-hero {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+  }
+
+  .modal-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #1a2d1a, #0d1a0d);
+  }
+
+  .modal-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(17,14,11,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  }
+
+  .modal-hero-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 32px;
+    z-index: 2;
+  }
+
+  .modal-hero-badge {
+    margin-bottom: 8px;
+  }
+
+  .modal-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .modal-hero-location {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+
+  .modal-body {
+    padding: 36px;
+  }
+
+  .modal-stats-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border: 1px solid rgba(201,146,42,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .modal-stat {
+    flex: 1;
+    padding: 16px 18px;
+    border-right: 1px solid rgba(201,146,42,0.1);
+    text-align: center;
+  }
+
+  .modal-stat:last-child { border-right: none; }
+
+  .modal-stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--stone);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .modal-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+
+  .modal-intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+  }
+
+  .modal-description {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(245,239,224,0.78);
+    margin-bottom: 32px;
+  }
+
+  .modal-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .modal-gallery-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    background: linear-gradient(135deg, #1a2d1a, #0d1a0d);
+    transition: transform 0.4s;
+    cursor: zoom-in;
+  }
+
+  .modal-gallery-img:hover { transform: scale(1.03); }
+
+  .modal-gallery-caption {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--stone);
+    text-align: center;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* ─── EXPEDITIONS ─── */
+  #expeditions {
+    background: linear-gradient(180deg, #060809 0%, #080f0d 40%, #0a1510 70%, #060809 100%);
+    position: relative;
+    min-height: auto;
+    padding: 120px 0 100px;
+  }
+
+  .expeditions-intro {
+    max-width: 600px;
+    margin-bottom: 64px;
+  }
+
+  .expeditions-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(245,239,224,0.7);
+  }
+
+  .expeditions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .expedition-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: transform 0.4s;
+  }
+
+  .expedition-card:hover { transform: translateY(-6px); }
+
+  .expedition-card.wide {
+    grid-column: span 2;
+    min-height: 440px;
+  }
+
+  .exp-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s;
+  }
+
+  .expedition-card:hover .exp-bg { transform: scale(1.04); }
+
+  .exp-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .exp-content {
+    position: relative;
+    z-index: 2;
+    padding: 28px;
+  }
+
+  .exp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .exp-region {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    color: rgba(201,146,42,0.6);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .exp-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .expedition-card.wide .exp-name { font-size: 30px; }
+
+  .exp-location {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .exp-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(245,239,224,0.7);
+    margin-bottom: 20px;
+  }
+
+  .exp-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .exp-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .exp-meta-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  .exp-meta-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .exp-cta {
+    background: rgba(201,146,42,0.15);
+    border: 1px solid rgba(201,146,42,0.4);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .exp-cta:hover {
+    background: rgba(201,146,42,0.3);
+    border-color: var(--gold-light);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0c0a08;
+    border-top: 1px solid rgba(201,146,42,0.12);
+    padding: 60px 48px 40px;
+    text-align: center;
+  }
+
+
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+
+  .footer-links li a {
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--stone);
+    transition: color 0.3s;
+  }
+
+  .footer-links li a:hover { color: var(--gold-light); }
+
+  .footer-divider {
+    width: 80px;
+    height: 1px;
+    background: rgba(201,146,42,0.3);
+    margin: 0 auto 24px;
+  }
+
+  .footer-copy {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--stone);
+    opacity: 0.6;
+  }
+
+
+  /* ─── MODAL INTEREST FOOTER ─── */
+  .modal-interest-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 36px;
+    padding: 28px 32px;
+    background: rgba(201,146,42,0.06);
+    border: 1px solid rgba(201,146,42,0.18);
+    border-radius: 10px;
+  }
+
+  .modal-interest-text {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: rgba(245,239,224,0.75);
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .modal-interest-btn {
+    background: linear-gradient(135deg, var(--brown-mid), var(--gold));
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .modal-interest-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,146,42,0.3);
+  }
+
+  /* ─── INQUIRY OVERLAY ─── */
+  .inquiry-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(5,4,3,0.93);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .inquiry-overlay.open {
+    display: flex;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .inquiry-panel {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: #0e0b08;
+    border: 1px solid rgba(201,146,42,0.22);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    animation: modalIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .inquiry-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 20;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .inquiry-close:hover {
+    background: rgba(201,146,42,0.3);
+    border-color: var(--gold);
+  }
+
+  /* Left panel */
+  .inquiry-left {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+  }
+
+  .inquiry-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-color: #0a1209;
+    filter: brightness(0.35) saturate(0.7);
+    transition: background-image 0.4s;
+  }
+
+  .inquiry-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(8,6,4,0.4) 0%, transparent 60%),
+                linear-gradient(to right, rgba(14,11,8,0.8) 0%, transparent 100%);
+  }
+
+  .inquiry-left-content {
+    position: relative;
+    z-index: 2;
+    padding: 52px 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .inquiry-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .inquiry-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .inquiry-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .inquiry-subtext {
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(245,239,224,0.65);
+    margin-bottom: 32px;
+    max-width: 300px;
+  }
+
+  .inquiry-divider {
+    width: 48px;
+    height: 1px;
+    background: rgba(201,146,42,0.4);
+    margin-bottom: 28px;
+  }
+
+  .inquiry-promise {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .inquiry-promise-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(245,239,224,0.6);
+    line-height: 1.5;
+  }
+
+  .promise-icon {
+    color: var(--gold);
+    font-size: 10px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Right panel — form */
+  .inquiry-right {
+    padding: 48px 44px;
+    overflow-y: auto;
+    background: #0e0b08;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inquiry-right::-webkit-scrollbar { width: 3px; }
+  .inquiry-right::-webkit-scrollbar-thumb { background: rgba(201,146,42,0.2); border-radius: 2px; }
+
+  .inquiry-form-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201,146,42,0.1);
+  }
+
+  .inquiry-form-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .inquiry-form-hint {
+    font-size: 12px;
+    color: var(--stone);
+    line-height: 1.5;
+  }
+
+  .inquiry-field {
+    margin-bottom: 18px;
+  }
+
+  .inquiry-field label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .inquiry-field input,
+  .inquiry-field select,
+  .inquiry-field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 8px;
+    padding: 13px 16px;
+    color: var(--cream);
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+    -webkit-appearance: none;
+  }
+
+  .inquiry-field input:focus,
+  .inquiry-field select:focus,
+  .inquiry-field textarea:focus {
+    border-color: rgba(201,146,42,0.55);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .inquiry-field textarea {
+    height: 90px;
+    resize: vertical;
+  }
+
+  .inquiry-field select option { background: #1a1410; }
+
+  .inquiry-field input::placeholder,
+  .inquiry-field textarea::placeholder {
+    color: rgba(122,112,101,0.7);
+  }
+
+  .inquiry-error {
+    min-height: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #d95b4b;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  .inquiry-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--brown-mid), var(--gold));
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-bottom: 14px;
+  }
+
+  .inquiry-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(201,146,42,0.25);
+  }
+
+  .inquiry-privacy {
+    font-size: 11px;
+    color: var(--stone);
+    opacity: 0.6;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* Success state */
+  .inquiry-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 0;
+    flex: 1;
+  }
+
+  .inquiry-success-icon {
+    font-size: 36px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+  }
+
+  .inquiry-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .inquiry-success p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,239,224,0.7);
+    max-width: 320px;
+  }
+
+  .inquiry-success strong {
+    color: var(--gold-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 760px) {
+    .inquiry-panel { grid-template-columns: 1fr; max-height: 95vh; }
+    .inquiry-left { min-height: 200px; }
+    .inquiry-left-content { padding: 32px 24px; }
+    .inquiry-right { padding: 28px 24px; }
+    .modal-interest-footer { flex-direction: column; align-items: flex-start; }
+  }
+
+
+  .logo-text-fallback {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    .story-share-layout { grid-template-columns: 1fr; gap: 48px; }
+    .story-share-panel { position: static; }
+    .expeditions-grid { grid-template-columns: 1fr 1fr; }
+    .expedition-card.wide { grid-column: span 1; }
+  }
+
+  @media (max-width: 900px) {
+    .story-left { grid-template-columns: 1fr; gap: 32px; }
+    .story-sidebar { position: static; }
+    .trails-grid { grid-template-columns: 1fr 1fr; }
+    .modal-gallery { grid-template-columns: 1fr 1fr; }
+    .modal-stats-row { flex-wrap: wrap; }
+    .modal-stat { min-width: 50%; border-bottom: 1px solid rgba(201,146,42,0.1); }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    nav ul { gap: 20px; }
+    .container { padding: 0 20px; }
+    .trails-grid { grid-template-columns: 1fr; }
+    .expeditions-grid { grid-template-columns: 1fr; }
+    .modal-gallery { grid-template-columns: 1fr; }
+    .modal-body { padding: 24px; }
+    .modal-hero { height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MODAL: Trail Detail -->
+<div id="trail-modal" class="trail-modal-overlay" onclick="handleModalClick(event)">
+  <div class="trail-modal-inner">
+    <button class="modal-close" onclick="closeTrailModal()">✕</button>
+    <div class="modal-hero">
+      <img class="modal-hero-img" id="modal-hero-img" src="" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'">
+      <div class="modal-hero-info">
+        <div class="modal-hero-badge"><span id="modal-badge" class="difficulty-badge"></span></div>
+        <h2 class="modal-hero-title" id="modal-title"></h2>
+        <div class="modal-hero-location" id="modal-location"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-stats-row" id="modal-stats"></div>
+      <p class="modal-intro" id="modal-intro"></p>
+      <p class="modal-description" id="modal-desc"></p>
+      <div class="modal-gallery" id="modal-gallery"></div>
+      <div class="modal-interest-footer">
+        <p class="modal-interest-text">Interested in this trail? Join an expedition or register your interest.</p>
+        <button class="modal-interest-btn" onclick="openInquiryFromTrail()">Register Interest →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INQUIRY OVERLAY -->
+<div id="inquiry-overlay" class="inquiry-overlay" onclick="handleInquiryClick(event)">
+  <div class="inquiry-panel">
+
+    <button class="inquiry-close" onclick="closeInquiry()">✕</button>
+
+    <div class="inquiry-left">
+      <div class="inquiry-bg" id="inquiry-bg"></div>
+      <div class="inquiry-left-content">
+        <div class="inquiry-eyebrow" id="inquiry-eyebrow">Express Interest</div>
+        <h2 class="inquiry-heading" id="inquiry-heading">Join the Journey</h2>
+        <p class="inquiry-subtext" id="inquiry-subtext">Tell us you're interested and we'll be in touch as soon as dates are confirmed.</p>
+        <div class="inquiry-divider"></div>
+        <div class="inquiry-promise">
+          <div class="inquiry-promise-item">
+            <span class="promise-icon">✦</span>
+            <span>No commitment — just an expression of interest</span>
+          </div>
+          <div class="inquiry-promise-item">
+            <span class="promise-icon">✦</span>
+            <span>We reply within 48 hours</span>
+          </div>
+          <div class="inquiry-promise-item">
+            <span class="promise-icon">✦</span>
+            <span>Small groups, personal attention</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inquiry-right">
+      <div class="inquiry-form-header">
+        <p class="inquiry-form-label">Your Details</p>
+        <p class="inquiry-form-hint">All fields required. We keep your information private.</p>
+      </div>
+
+      <div class="inquiry-success" id="inquiry-success">
+        <div class="inquiry-success-icon">✦</div>
+        <h3>Message Received</h3>
+        <p>Thank you for your interest in <strong id="inquiry-success-name"></strong>. We will be in touch within 48 hours. Keep your boots ready.</p>
+      </div>
+
+      <div id="inquiry-form-body">
+        <div class="inquiry-field">
+          <label>Full Name</label>
+          <input type="text" id="inq-name" placeholder="Your full name" autocomplete="name">
+        </div>
+
+        <div class="inquiry-field">
+          <label>Email Address</label>
+          <input type="email" id="inq-email" placeholder="your@email.com" autocomplete="email">
+        </div>
+
+        <div class="inquiry-field">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" id="inq-phone" placeholder="+1 234 567 8900" autocomplete="tel">
+        </div>
+
+        <div class="inquiry-field">
+          <label>Your Experience Level</label>
+          <select id="inq-experience">
+            <option value="">Select your background...</option>
+            <option>Beginner — new to multi-day trekking</option>
+            <option>Intermediate — several treks completed</option>
+            <option>Experienced — high-altitude trekking background</option>
+            <option>Expert — technical mountaineering experience</option>
+          </select>
+        </div>
+
+        <div class="inquiry-field">
+          <label>Message <span style="opacity:0.5;font-size:11px;">(optional)</span></label>
+          <textarea id="inq-message" placeholder="Any questions, dietary needs, preferred dates, travel companions..."></textarea>
+        </div>
+
+        <div class="inquiry-error" id="inquiry-error"></div>
+
+        <button class="inquiry-submit" onclick="submitInquiry()">
+          <span>Send My Interest</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <p class="inquiry-privacy">By submitting you agree to be contacted about this expedition. We never share your details.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="logo">
+    <svg class="logo-svg-nav" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" aria-label="The Mountain Diaries">
+  <defs>
+    <linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#f0d070"/>
+      <stop offset="45%"  stop-color="#c9922a"/>
+      <stop offset="100%" stop-color="#5a3010" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="mg2" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%"   stop-color="#2a1a08"/>
+      <stop offset="100%" stop-color="#0d0804" stop-opacity="0.9"/>
+    </linearGradient>
+    <clipPath id="mclip">
+      <!-- same outline as main peak, clips the shadow face -->
+      <path d="M0,38 L4,32 L7,34 L10,28 L13,30 L15,26 L18,22 L21,19 L22,15 L25,9 L27,6 L29,9 L31,13 L33,11 L36,16 L38,20 L41,17 L43,21 L45,25 L47,23 L49,27 L51,30 L53,28 L55,31 L57,35 L60,33 L63,38 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── distant ridge (far left, very muted) ── -->
+  <path d="M0,38 Q3,32 6,34 Q9,28 12,30 Q15,24 17,26 Q18,22 20,24 L20,38 Z"
+        fill="#c9922a" opacity="0.15"/>
+
+  <!-- ── main mountain — light (right) face ── -->
+  <path d="M0,38 L4,32 L7,34 L10,28 L13,30 L15,26 L18,22 L21,19 L22,15 L25,9 L27,6 L29,9 L31,13 L33,11 L36,16 L38,20 L41,17 L43,21 L45,25 L47,23 L49,27 L51,30 L53,28 L55,31 L57,35 L60,33 L63,38 Z"
+        fill="url(#mg1)"/>
+
+  <!-- ── shadow — left face (darker) ── -->
+  <path d="M27,6 L25,9 L22,15 L21,19 L18,22 L15,26 L13,30 L10,28 L7,34 L4,32 L0,38 L27,38 Z"
+        fill="url(#mg2)" opacity="0.55" clip-path="url(#mclip)"/>
+
+  <!-- ── snow patches — upper peak area ── -->
+  <!-- main snow cap, organic shape -->
+  <path d="M27,6 L24,11 L22,14 L24,16 L27,13 L30,16 L32,12 L30,9 Z"
+        fill="#f5efe0" opacity="0.92"/>
+  <!-- secondary snow tongue left -->
+  <path d="M21,19 L20,21 L22,20 L23,17 Z"
+        fill="#f5efe0" opacity="0.5"/>
+  <!-- secondary snow tongue right -->
+  <path d="M33,11 L32,14 L34,15 L35,12 Z"
+        fill="#f5efe0" opacity="0.45"/>
+  <!-- faint rock strata line -->
+  <path d="M18,22 Q22,20 27,21 Q32,20 36,22" stroke="#e8b84b" stroke-width="0.4" fill="none" opacity="0.3"/>
+
+  <!-- ── foothills / base silhouette ── -->
+  <path d="M55,38 Q59,35 63,38" fill="#c9922a" opacity="0.2"/>
+
+  <!-- ── vertical divider ── -->
+  <line x1="74" y1="6" x2="74" y2="42" stroke="#c9922a" stroke-width="0.6" opacity="0.22"/>
+
+  <!-- ── wordmark ── -->
+  <!-- THE -->
+  <text x="84" y="16"
+    font-family="Cinzel,serif" font-size="7" font-weight="400" letter-spacing="3.8"
+    fill="#c9922a" opacity="0.88">THE</text>
+  <!-- MOUNTAIN -->
+  <text x="83" y="31"
+    font-family="Cinzel,serif" font-size="12.5" font-weight="700" letter-spacing="1.8"
+    fill="#f5efe0">MOUNTAIN</text>
+  <!-- DIARIES -->
+  <text x="88" y="42"
+    font-family="Cinzel,serif" font-size="8.5" font-weight="400" letter-spacing="3.5"
+    fill="#e8b84b">DIARIES</text>
+</svg>
+  </div>
+  <ul>
+    <li><a href="#story">The Story</a></li>
+    <li><a href="#trails">Trails &amp; Mountains</a></li>
+    <li><a href="#expeditions">Expeditions</a></li>
+    <li><a href="#story" onclick="openShareTab()">Community</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-tagline">Where the summit reveals the soul</p>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- THE STORY + COMMUNITY SHARE -->
+<section id="story">
+  <div class="story-backdrop"></div>
+  <div class="container">
+    <div class="section-label reveal">Chapter I</div>
+    <h2 class="section-title reveal reveal-delay-1">The <em>Story</em></h2>
+
+    <div class="story-share-layout">
+
+      <!-- LEFT: Story Content -->
+      <div class="story-left reveal reveal-delay-2">
+        <div class="story-sidebar">
+          <div class="story-quote">
+            "The mountain does not care about your ambitions. It only responds to your honesty."
+          </div>
+        </div>
+        <div class="story-body">
+          <p>It started not with a grand decision but with a question that wouldn't leave. Not the kind you answer in a conversation, but the kind that waits for you in the quietest moments, the commute, the sleepless hour before dawn. What are you actually made of?</p>
+          <p>The first mountain answered nothing. It took. It took breath, certainty, and the particular kind of confidence that comes from living mostly at sea level. But somewhere between exhaustion and altitude, something else opened. A silence so complete it became a presence. And in that presence, clarity.</p>
+          <div class="story-highlight">
+            "The mountains do not lift us. They simply remove everything that is not truly us."
+          </div>
+          <p>This is a record of those journeys. Not the summits, but what surrounds them. The wrong turns, the unexpected companions, the mornings where the world revealed itself in light and ice and impossible stillness. The Mountain Diaries exists for those who have felt the pull, and for those who haven't yet, but will.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Community Share Widget -->
+      <div class="story-share-panel reveal reveal-delay-3" id="share">
+        <div class="share-panel-header">
+          <h3>Community</h3>
+          <p>Share your journey. Read others. Every trail has a story waiting to be told.</p>
+        </div>
+        <div class="share-panel-tabs">
+          <button class="share-tab active" id="tab-share" onclick="switchTab('share')">Share a Story</button>
+          <button class="share-tab" id="tab-feed" onclick="switchTab('feed')">From the Community</button>
+        </div>
+
+        <!-- Share Form Tab -->
+        <div class="share-tab-content active" id="content-share">
+          <div class="success-msg" id="success-msg">✦ Your story has been shared.</div>
+          <div class="upload-zone-mini" id="upload-zone">
+            <p>📷 Drop photo or tap to upload</p>
+            <input type="file" id="file-input" accept="image/*">
+          </div>
+          <div class="preview-container" id="preview-container">
+            <img id="preview-img" src="" alt="Preview">
+          </div>
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="author-name" placeholder="Name · Trail alias">
+          </div>
+          <div class="form-group">
+            <label>Mountain / Trail</label>
+            <select id="trail-select">
+              <option value="">Select trail...</option>
+              <option>Everest Base Camp</option>
+              <option>Annapurna Circuit</option>
+              <option>Manaslu Circuit</option>
+              <option>Everest Three Passes</option>
+              <option>Mera Peak</option>
+              <option>Tour du Mont Blanc</option>
+              <option>Haute Route Alps</option>
+              <option>Torres del Paine</option>
+              <option>Huayhuash Circuit</option>
+              <option>Kilimanjaro</option>
+              <option>Ladakh High Passes</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Your Story</label>
+            <textarea id="story-text" placeholder="What did the mountain teach you?"></textarea>
+          </div>
+          <button class="btn-submit" onclick="submitPost()">Share Your Story →</button>
+        </div>
+
+        <!-- Community Feed Tab -->
+        <div class="share-tab-content" id="content-feed">
+          <div class="posts-feed" id="posts-feed">
+
+            <div class="post-card">
+              <div class="post-body">
+                <div class="post-author">
+                  <div class="post-avatar">SR</div>
+                  <div class="post-author-info">
+                    <div class="post-author-name">Sara Rousseau</div>
+                    <div class="post-author-trail">☛ Everest Base Camp, Nepal</div>
+                  </div>
+                </div>
+                <p class="post-text">Day 12 and I thought I had nothing left. My guide Dawa sat beside me in silence at Gorak Shep while the clouds parted. Neither of us said a word for twenty minutes. I think that silence was the summit for me.</p>
+                <div class="post-actions">
+                  <button class="btn-like" onclick="toggleLike(this)">♥ <span class="like-count">24</span></button>
+                </div>
+                <div class="comments-section">
+                  <div id="comments-0">
+                    <div class="comment">
+                      <div class="comment-avatar">MK</div>
+                      <div class="comment-text"><strong>Marcus K.</strong> That silence — I felt exactly that at Cho La.</div>
+                    </div>
+                  </div>
+                  <div class="comment-input-row">
+                    <input type="text" placeholder="Reply..." id="comment-input-0">
+                    <button class="btn-comment" onclick="addComment(0)">Post</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post-card">
+              <div class="post-body">
+                <div class="post-author">
+                  <div class="post-avatar">AT</div>
+                  <div class="post-author-info">
+                    <div class="post-author-name">Amir Tahir</div>
+                    <div class="post-author-trail">☛ Annapurna Circuit, Nepal</div>
+                  </div>
+                </div>
+                <p class="post-text">Thorong La in a whiteout. Wind so strong you leaned into it at 45 degrees. I turned to a stranger from Slovenia. We looked at each other: "We are idiots. Let's keep going." She's now one of my closest friends.</p>
+                <div class="post-actions">
+                  <button class="btn-like" onclick="toggleLike(this)">♥ <span class="like-count">38</span></button>
+                </div>
+                <div class="comments-section">
+                  <div id="comments-1">
+                    <div class="comment">
+                      <div class="comment-avatar">LC</div>
+                      <div class="comment-text"><strong>Lucia C.</strong> Bonds forged in bad weather, unbreakable.</div>
+                    </div>
+                  </div>
+                  <div class="comment-input-row">
+                    <input type="text" placeholder="Reply..." id="comment-input-1">
+                    <button class="btn-comment" onclick="addComment(1)">Post</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post-card">
+              <div class="post-body">
+                <div class="post-author">
+                  <div class="post-avatar">CM</div>
+                  <div class="post-author-info">
+                    <div class="post-author-name">Céline Morin</div>
+                    <div class="post-author-trail">☛ Tour du Mont Blanc, Alps</div>
+                  </div>
+                </div>
+                <p class="post-text">11 days, three countries, one continuous ridge. On day 7 above the Col de la Croix du Bonhomme, clouds rolled in from Italy below us like a tide. We stood above the weather and watched lightning in silence. I have never felt more calm.</p>
+                <div class="post-actions">
+                  <button class="btn-like" onclick="toggleLike(this)">♥ <span class="like-count">47</span></button>
+                </div>
+                <div class="comments-section">
+                  <div id="comments-2">
+                    <div class="comment">
+                      <div class="comment-avatar">PV</div>
+                      <div class="comment-text"><strong>Priya V.</strong> That col is magic. The TMB changed how I see mountains entirely.</div>
+                    </div>
+                  </div>
+                  <div class="comment-input-row">
+                    <input type="text" placeholder="Reply..." id="comment-input-2">
+                    <button class="btn-comment" onclick="addComment(2)">Post</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRAILS & MOUNTAINS -->
+<section id="trails">
+  <div class="container">
+    <div class="section-label reveal">Chapter II</div>
+    <h2 class="section-title reveal reveal-delay-1">Trails &amp; <em>Mountains</em></h2>
+
+    <div class="trails-intro reveal reveal-delay-2">
+      <p>Ten of the world's most extraordinary high-altitude trails, spanning five continents. Click any trail to explore the route, see photographs, and understand what awaits you on the path.</p>
+    </div>
+
+    <!-- Asia: Himalaya -->
+    <div class="trail-region">
+      <div class="trail-region-header reveal">
+        <span class="trail-region-label">Asia · Himalaya &amp; Karakoram</span>
+        <div class="trail-region-line"></div>
+      </div>
+      <div class="trails-grid">
+
+        <div class="trail-card reveal" onclick="openTrailModal('ebc')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg" alt="Everest Base Camp" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Everest Base Camp</div>
+              <span class="difficulty-badge diff-challenging">Challenging</span>
+            </div>
+            <div class="trail-location">Khumbu, Nepal</div>
+            <p class="trail-desc">The most iconic high-altitude trek on earth, through Sherpa heartland to the foot of the world's highest peak.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">5,364m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">12–16 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Mar–May, Oct–Nov</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('annapurna')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg" alt="Annapurna Circuit" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Annapurna Circuit</div>
+              <span class="difficulty-badge diff-challenging">Challenging</span>
+            </div>
+            <div class="trail-location">Gandaki, Nepal</div>
+            <p class="trail-desc">A masterclass in landscape diversity, from subtropical valleys to the bone-dry Mustang plateau and the legendary Thorong La crossing.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">5,416m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">15–20 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Mar–May, Oct–Nov</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-2" onclick="openTrailModal('manaslu')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers,Bridge,_Hills_and_Mountain.jpg/800px-Trekkers,Bridge,_Hills_and_Mountain.jpg" alt="Manaslu Circuit" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Manaslu Circuit</div>
+              <span class="difficulty-badge diff-challenging">Challenging</span>
+            </div>
+            <div class="trail-location">Gorkha, Nepal</div>
+            <p class="trail-desc">A restricted-access circuit around the world's eighth highest peak. Raw, authentic, and deeply Tibetan in character.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">5,106m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">14–18 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Mar–May, Sep–Nov</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-3" onclick="openTrailModal('threepasses')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg" alt="Everest Three Passes" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Everest Three Passes</div>
+              <span class="difficulty-badge diff-hard">Hard</span>
+            </div>
+            <div class="trail-location">Khumbu, Nepal</div>
+            <p class="trail-desc">The ultimate Khumbu circuit, crossing Renjo La, Cho La, and Kongma La with constantly shifting panoramas of the Himalayan giants.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">5,535m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">18–21 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Apr–May, Oct</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-2" onclick="openTrailModal('ladakh')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg" alt="Ladakh High Passes" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Ladakh High Passes</div>
+              <span class="difficulty-badge diff-extreme">Extreme</span>
+            </div>
+            <div class="trail-location">Zanskar, India</div>
+            <p class="trail-desc">Ancient trade routes across the moonscape of Ladakh, pushing above 6,000m with panoramic Karakoram views and complete wilderness.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">6,400m+</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">10–14 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Jul–Sep</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Europe: Alps -->
+    <div class="trail-region">
+      <div class="trail-region-header reveal">
+        <span class="trail-region-label">Europe · The Alps</span>
+        <div class="trail-region-line"></div>
+      </div>
+      <div class="trails-grid">
+
+        <div class="trail-card reveal" onclick="openTrailModal('tmb')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg" alt="Tour du Mont Blanc" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Tour du Mont Blanc</div>
+              <span class="difficulty-badge diff-moderate">Moderate</span>
+            </div>
+            <div class="trail-location">France · Italy · Switzerland</div>
+            <p class="trail-desc">A 170km circumnavigation of the Mont Blanc massif through three countries. Europe's most celebrated long-distance trail.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">2,665m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">10–12 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Jun–Sep</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('hauteroute')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG" alt="Haute Route Alps" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Haute Route</div>
+              <span class="difficulty-badge diff-hard">Hard</span>
+            </div>
+            <div class="trail-location">Chamonix to Zermatt</div>
+            <p class="trail-desc">The classic Alpine traverse from Chamonix to Zermatt, crossing glaciers and high cols under the shadow of the Matterhorn.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">3,650m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">12–14 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Jul–Aug</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- South America -->
+    <div class="trail-region">
+      <div class="trail-region-header reveal">
+        <span class="trail-region-label">South America · Andes &amp; Patagonia</span>
+        <div class="trail-region-line"></div>
+      </div>
+      <div class="trails-grid">
+
+        <div class="trail-card reveal" onclick="openTrailModal('torres')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg" alt="Torres del Paine" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Torres del Paine W Circuit</div>
+              <span class="difficulty-badge diff-moderate">Moderate</span>
+            </div>
+            <div class="trail-location">Patagonia, Chile</div>
+            <p class="trail-desc">Granite towers, turquoise glacial lakes, and the raw wind of Patagonia. The W Trek is one of the world's most visually dramatic mountain routes.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">1,200m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">5–8 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Oct–Apr</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+        <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('huayhuash')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg" alt="Huayhuash Circuit" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Huayhuash Circuit</div>
+              <span class="difficulty-badge diff-hard">Hard</span>
+            </div>
+            <div class="trail-location">Andes, Peru</div>
+            <p class="trail-desc">A remote loop around one of the most spectacular mountain ranges on earth, passing glacial lakes and 6,000m peaks in raw Andean solitude.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Max Altitude</span><span class="stat-value">5,050m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">10–14 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">May–Sep</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Africa -->
+    <div class="trail-region">
+      <div class="trail-region-header reveal">
+        <span class="trail-region-label">Africa · Roof of the Continent</span>
+        <div class="trail-region-line"></div>
+      </div>
+      <div class="trails-grid">
+
+        <div class="trail-card reveal" onclick="openTrailModal('kili')">
+          <div class="trail-card-img-wrap">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG" alt="Kilimanjaro" onerror="this.style.display='none'">
+          </div>
+          <div class="trail-card-body">
+            <div class="trail-card-top">
+              <div class="trail-name">Kilimanjaro Machame Route</div>
+              <span class="difficulty-badge diff-challenging">Challenging</span>
+            </div>
+            <div class="trail-location">Tanzania, Africa</div>
+            <p class="trail-desc">Africa's highest summit via the scenic Machame Route. A journey through five distinct climate zones to Uhuru Peak, 5,895m above the Savanna.</p>
+            <div class="trail-stats">
+              <div class="trail-stat"><span class="stat-label">Summit</span><span class="stat-value">5,895m</span></div>
+              <div class="trail-stat"><span class="stat-label">Duration</span><span class="stat-value">7–8 days</span></div>
+              <div class="trail-stat"><span class="stat-label">Season</span><span class="stat-value">Jan–Mar, Jun–Oct</span></div>
+            </div>
+            <div class="trail-card-cta">Explore Trail →</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPEDITIONS -->
+<section id="expeditions">
+  <div class="container">
+    <div class="section-label reveal">Chapter III</div>
+    <h2 class="section-title reveal reveal-delay-1"><em>Expeditions</em> 2026</h2>
+
+    <div class="expeditions-intro reveal reveal-delay-2">
+      <p>Five curated expeditions across the world's most awe-inspiring ranges. Each journey is led by experienced mountaineers, limited to small groups, and designed to take you beyond the trail — and beyond yourself.</p>
+    </div>
+
+    <div class="expeditions-grid">
+
+      <!-- Expedition 1: EBC (wide) -->
+      <div class="expedition-card wide reveal">
+        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg');"></div>
+        <div class="exp-overlay"></div>
+        <div class="exp-content">
+          <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
+          <div class="exp-region">Himalaya · Nepal</div>
+          <div class="exp-name">Everest Base Camp</div>
+          <div class="exp-location">Khumbu Valley · 5,364m</div>
+          <p class="exp-desc">The pilgrimage of a lifetime. Trek through Sherpa heartland, past ancient gompas and towering seracs, to stand beneath the world's highest peak.</p>
+          <div class="exp-meta">
+            <div class="exp-meta-item"><span class="exp-meta-label">Date</span><span class="exp-meta-value">TBC 2026</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Duration</span><span class="exp-meta-value">14 Days</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Group</span><span class="exp-meta-value">Max 10</span></div>
+          </div>
+          <button class="exp-cta" onclick="openInquiry('Everest Base Camp', 'Everest Base Camp 2026', 'Himalaya · Nepal', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg')">Express Interest →</button>
+        </div>
+      </div>
+
+      <!-- Expedition 2: Mera Peak -->
+      <div class="expedition-card reveal reveal-delay-1">
+        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Mera_Peak_view.jpg/800px-Mera_Peak_view.jpg');"></div>
+        <div class="exp-overlay"></div>
+        <div class="exp-content">
+          <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
+          <div class="exp-region">Himalaya · Nepal</div>
+          <div class="exp-name">Mera Peak Summit</div>
+          <div class="exp-location">Hinku Valley · 6,476m</div>
+          <p class="exp-desc">Nepal's highest trekking peak. Learn glacier travel and fixed rope technique, then summit a 6,476m giant with 360° views of five eight-thousanders.</p>
+          <div class="exp-meta">
+            <div class="exp-meta-item"><span class="exp-meta-label">Date</span><span class="exp-meta-value">TBC 2026</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Duration</span><span class="exp-meta-value">18 Days</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Group</span><span class="exp-meta-value">Max 8</span></div>
+          </div>
+          <button class="exp-cta" onclick="openInquiry('Mera Peak Summit', 'Mera Peak Summit 2026', 'Himalaya · Nepal', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Mera_Peak_view.jpg/800px-Mera_Peak_view.jpg')">Express Interest →</button>
+        </div>
+      </div>
+
+      <!-- Expedition 3: Torres del Paine O Circuit -->
+      <div class="expedition-card reveal reveal-delay-2">
+        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg');"></div>
+        <div class="exp-overlay"></div>
+        <div class="exp-content">
+          <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
+          <div class="exp-region">Patagonia · Chile</div>
+          <div class="exp-name">Torres del Paine</div>
+          <div class="exp-location">O Circuit · 1,200m</div>
+          <p class="exp-desc">The full circuit around the Paine massif. Ten days of jaw-dropping granite, ice, and wind-sculpted wilderness at the edge of the world.</p>
+          <div class="exp-meta">
+            <div class="exp-meta-item"><span class="exp-meta-label">Date</span><span class="exp-meta-value">TBC 2026</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Duration</span><span class="exp-meta-value">10 Days</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Group</span><span class="exp-meta-value">Max 10</span></div>
+          </div>
+          <button class="exp-cta" onclick="openInquiry('Torres del Paine', 'Torres del Paine O Circuit 2026', 'Patagonia · Chile', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg')">Express Interest →</button>
+        </div>
+      </div>
+
+      <!-- Expedition 4: Haute Route Alps -->
+      <div class="expedition-card reveal reveal-delay-1">
+        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG');"></div>
+        <div class="exp-overlay"></div>
+        <div class="exp-content">
+          <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
+          <div class="exp-region">Alps · France &amp; Switzerland</div>
+          <div class="exp-name">Haute Route</div>
+          <div class="exp-location">Chamonix to Zermatt · 3,650m</div>
+          <p class="exp-desc">The definitive Alpine traverse, crossing glaciers and high passes from the shadow of Mont Blanc to the foot of the Matterhorn.</p>
+          <div class="exp-meta">
+            <div class="exp-meta-item"><span class="exp-meta-label">Date</span><span class="exp-meta-value">TBC 2026</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Duration</span><span class="exp-meta-value">14 Days</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Group</span><span class="exp-meta-value">Max 12</span></div>
+          </div>
+          <button class="exp-cta" onclick="openInquiry('Haute Route Alps', 'Haute Route Alps 2026', 'Alps · France & Switzerland', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG')">Express Interest →</button>
+        </div>
+      </div>
+
+      <!-- Expedition 5: Kilimanjaro -->
+      <div class="expedition-card reveal reveal-delay-2">
+        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG');"></div>
+        <div class="exp-overlay"></div>
+        <div class="exp-content">
+          <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
+          <div class="exp-region">Africa · Tanzania</div>
+          <div class="exp-name">Kilimanjaro Summit</div>
+          <div class="exp-location">Uhuru Peak · 5,895m</div>
+          <p class="exp-desc">Stand on the roof of Africa. The Machame Route offers the richest scenic experience on the continent's highest and most iconic peak.</p>
+          <div class="exp-meta">
+            <div class="exp-meta-item"><span class="exp-meta-label">Date</span><span class="exp-meta-value">TBC 2026</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Duration</span><span class="exp-meta-value">8 Days</span></div>
+            <div class="exp-meta-item"><span class="exp-meta-label">Group</span><span class="exp-meta-value">Max 10</span></div>
+          </div>
+          <button class="exp-cta" onclick="openInquiry('Kilimanjaro Summit', 'Kilimanjaro Summit 2026', 'Africa · Tanzania', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG')">Express Interest →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <ul class="footer-links">
+    <li><a href="#story">The Story</a></li>
+    <li><a href="#trails">Trails</a></li>
+    <li><a href="#expeditions">Expeditions</a></li>
+    <li><a href="#share">Community</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">www.themountaindiaries.com &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; The mountains are calling</p>
+</footer>
+
+<script>
+// ─── TRAIL DATA ───
+const TRAILS = {
+  ebc: {
+    name: 'Everest Base Camp',
+    location: 'Khumbu Valley · Nepal · 5,364m',
+    region: 'Himalaya, Asia',
+    difficulty: 'Challenging', diffClass: 'diff-challenging',
+    stats: [
+      {l:'Max Altitude', v:'5,364m'}, {l:'Duration', v:'12–16 days'},
+      {l:'Start Point', v:'Lukla (2,840m)'}, {l:'Season', v:'Mar–May, Oct–Nov'}
+    ],
+    intro: 'The world\'s most iconic high-altitude trek, drawing mountaineers and adventurers from every corner of the earth to stand in the shadow of the world\'s highest peak.',
+    desc: 'The trail begins with a legendary mountain flight into Lukla airstrip and climbs steadily through the Dudh Koshi valley past rhododendron forests, ancient mani stones, and the vibrant trading hub of Namche Bazaar. Acclimatisation days allow you to explore side valleys and adjust to altitude before pushing onwards to Tengboche Monastery with its jaw-dropping Everest–Ama Dablam panorama. The upper Khumbu, stark and glaciated, carries you past Lobuche to Gorak Shep, where a predawn start for Kala Patthar delivers perhaps the finest Everest viewpoint on earth. Base Camp itself is a humbling place — a city of coloured tents at the foot of the Khumbu Icefall, where the world\'s greatest climbers prepare for the impossible.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg', cap:'Trail to Gorak Shep'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg', cap:'Everest Base Camp 5,364m'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg', cap:'Renjo La — Gokyo Lake'}
+    ]
+  },
+  annapurna: {
+    name: 'Annapurna Circuit',
+    location: 'Gandaki Zone · Nepal · 5,416m',
+    region: 'Himalaya, Asia',
+    difficulty: 'Challenging', diffClass: 'diff-challenging',
+    stats: [
+      {l:'Max Altitude', v:'5,416m'}, {l:'Duration', v:'15–20 days'},
+      {l:'Highest Pass', v:'Thorong La'}, {l:'Season', v:'Mar–May, Oct–Nov'}
+    ],
+    intro: 'Once voted the greatest long-distance trek in the world, the Annapurna Circuit offers an unrivalled diversity of landscape and culture within a single journey.',
+    desc: 'The circuit begins in the subtropical lowlands of the Marsyangdi valley, climbing through terraced rice fields and dense rhododendron forests before the landscape shifts dramatically into the arid high desert of Manang. The crown of the route is the Thorong La crossing at 5,416m, a gruelling but unforgettable predawn push over one of the highest trekking passes in the world. The descent drops into the ancient kingdom of Mustang and the dramatic Kali Gandaki gorge — the world\'s deepest valley — flanked by Dhaulagiri and Annapurna. The final stretch includes the sacred pilgrimage town of Muktinath and the lakeside city of Pokhara. Climate zones range from jungle to Arctic tundra within a single trip.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg', cap:'Thorong La Pass — 5,416m'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Annapurna_Circuit_Mountains.jpg/800px-Annapurna_Circuit_Mountains.jpg', cap:'Annapurna Massif'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Mont_Blanc_massif_(5).jpg/800px-Mont_Blanc_massif_(5).jpg', cap:'High altitude terrain'}
+    ]
+  },
+  manaslu: {
+    name: 'Manaslu Circuit',
+    location: 'Gorkha District · Nepal · 5,106m',
+    region: 'Himalaya, Asia',
+    difficulty: 'Challenging', diffClass: 'diff-challenging',
+    stats: [
+      {l:'Max Altitude', v:'5,106m'}, {l:'Duration', v:'14–18 days'},
+      {l:'Highest Pass', v:'Larkya La'}, {l:'Season', v:'Mar–May, Sep–Nov'}
+    ],
+    intro: 'The Manaslu Circuit is the great alternative to the Annapurna — quieter, wilder, and perhaps even more spectacular, encircling the world\'s eighth highest peak through restricted Himalayan terrain.',
+    desc: 'Requiring a special permit that controls visitor numbers, the Manaslu Circuit has preserved an authenticity lost to many more popular routes. The trail follows the Buri Gandaki gorge through subtropical jungle and bamboo thickets, climbing steadily past ancient Buddhist monasteries and mani walls into the high-altitude world of Nubri and Tsum. The Larkya La pass at 5,106m delivers one of the most dramatic panoramas in the Himalayas — a sweeping arc of giants including Manaslu itself, Himalchuli, and Cheo Himal. Traditional Tibetan culture, horse caravans, and the deep-carved river gorge give this circuit a sense of stepping back centuries.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers,Bridge,_Hills_and_Mountain.jpg/800px-Trekkers,Bridge,_Hills_and_Mountain.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers,Bridge,_Hills_and_Mountain.jpg/800px-Trekkers,Bridge,_Hills_and_Mountain.jpg', cap:'Mount Manaslu — 8,163m'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg', cap:'High valley approach'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Manaslu,_Ngadi_Chuli,_Himalchuli_-_Nepal_-_panoramio.jpg/800px-Manaslu,_Ngadi_Chuli,_Himalchuli_-_Nepal_-_panoramio.jpg', cap:'Manaslu panorama'}
+    ]
+  },
+  threepasses: {
+    name: 'Everest Three Passes',
+    location: 'Khumbu · Nepal · 5,535m',
+    region: 'Himalaya, Asia',
+    difficulty: 'Hard', diffClass: 'diff-hard',
+    stats: [
+      {l:'Max Altitude', v:'5,535m'}, {l:'Duration', v:'18–21 days'},
+      {l:'Passes Crossed', v:'Renjo, Cho, Kongma'}, {l:'Season', v:'Apr–May, Oct'}
+    ],
+    intro: 'The most demanding and complete Khumbu circuit, crossing three high glacial passes for an unrelenting panorama of the world\'s greatest mountain concentration.',
+    desc: 'Where the EBC trek follows a single valley, the Three Passes circuit weaves across the entire Khumbu region via Renjo La (5,360m), Cho La (5,420m), and Kongma La (5,535m). Each pass demands a genuine effort and delivers an extraordinary reward. The route visits the Gokyo Lakes — a chain of glacial turquoise jewels above the Ngozumba Glacier — as well as the classic Everest Base Camp approach. The combination creates a comprehensive Himalayan education: glaciers, moraines, prayer flags snapping in the thin air, and a horizon that seems to hold every major summit in Nepal.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg', cap:'Renjo La — Gokyo Lake below'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg/800px-Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg', cap:'Kongma La trail — Ama Dablam'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg', cap:'3rd Gokyo Lake'}
+    ]
+  },
+  ladakh: {
+    name: 'Ladakh High Passes',
+    location: 'Zanskar · Ladakh, India · 6,400m+',
+    region: 'Karakoram, India',
+    difficulty: 'Extreme', diffClass: 'diff-extreme',
+    stats: [
+      {l:'Max Altitude', v:'6,400m+'}, {l:'Duration', v:'10–14 days'},
+      {l:'Key Summit', v:'Kang Yatse 2'}, {l:'Season', v:'Jul–Sep'}
+    ],
+    intro: 'The high-altitude moonscape of Ladakh is one of the most visually stunning environments on earth — a world of colour-banded mountains, ancient Buddhist monasteries, and sky so blue it looks artificial.',
+    desc: 'The Ladakh High Passes route follows ancient Zanskar trade paths across a stark, arid landscape unlike anywhere else on the planet. Red and ochre mountains rise from valley floors dusted with mani stones, while remote villages have maintained their Tibetan cultural identity for centuries. The objective for serious trekkers is Kang Yatse 2 (6,400m), a non-technical but high-commitment summit above Nimaling Plateau with views across the entire Karakoram range. The Markha Valley approach combines cultural richness with extraordinary terrain variety — river crossings, high meadows with grazing yaks, and the deep silence of a landscape not yet changed by modernity.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg', cap:'Wild valleys of Ladakh'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Zanskar_range_and_Stok_Kangri_from_Leh,_Ladakh_NW_India.JPG/800px-Zanskar_range_and_Stok_Kangri_from_Leh,_Ladakh_NW_India.JPG', cap:'Zanskar Range — Stok Kangri'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/India_-_Ladakh_-_Trekking_-_080_-_climbing_Kyamuri_La_(3905771271).jpg/800px-India_-_Ladakh_-_Trekking_-_080_-_climbing_Kyamuri_La_(3905771271).jpg', cap:'Climbing Kyamuri La'}
+    ]
+  },
+  tmb: {
+    name: 'Tour du Mont Blanc',
+    location: 'France · Italy · Switzerland · 2,665m',
+    region: 'Alps, Europe',
+    difficulty: 'Moderate', diffClass: 'diff-moderate',
+    stats: [
+      {l:'Distance', v:'~170km'}, {l:'Duration', v:'10–12 days'},
+      {l:'Max Altitude', v:'2,665m (Col G.F.)'}, {l:'Season', v:'Jun–Sep'}
+    ],
+    intro: 'Europe\'s most celebrated long-distance trail, circumnavigating the Mont Blanc massif through three countries with over 10,000m of accumulated ascent and one of the continent\'s greatest mountain panoramas.',
+    desc: 'The Tour du Mont Blanc is a loop of approximately 170km that passes through France, Italy, and Switzerland in a single continuous journey. Beginning in Chamonix, the route immediately climbs through forests and emerges into the high alpine world of Col de Voza, then descends into the Italian Val Veny beneath the vast south face of Mont Blanc. The Italian section passes through the meadows and farmhouses of Val Ferret before crossing into Switzerland via the Grand Col Ferret. The Swiss leg traverses some of the tour\'s most dramatic terrain, with the Fenêtre d\'Arpette offering a glacier crossing for those seeking the high variant. The return to Chamonix crosses the Col de Balme with a final sweeping view of the Aiguilles Rouges and the entire Chamonix valley. Staffed mountain huts along the way make this accessible to those new to multi-day Alpine trekking.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg', cap:'Tour du Mont Blanc trail'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Passerelle_Tour_du_Mont-Blanc_@_Col_des_Montets.jpg/800px-Passerelle_Tour_du_Mont-Blanc_@_Col_des_Montets.jpg', cap:'Walking above Chamonix'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Vall%C3%A9e_des_Glaciers_Pointe_de_la_Terrasse_Aiguille_de_la_Nova.jpg/800px-Vall%C3%A9e_des_Glaciers_Pointe_de_la_Terrasse_Aiguille_de_la_Nova.jpg', cap:'Mont Blanc massif'}
+    ]
+  },
+  hauteroute: {
+    name: 'Haute Route',
+    location: 'Chamonix to Zermatt · 3,650m',
+    region: 'Alps, France & Switzerland',
+    difficulty: 'Hard', diffClass: 'diff-hard',
+    stats: [
+      {l:'Distance', v:'~180km'}, {l:'Duration', v:'12–14 days'},
+      {l:'Max Altitude', v:'3,650m'}, {l:'Season', v:'Jul–Aug'}
+    ],
+    intro: 'The classic Alpine high traverse from Chamonix to Zermatt: two of Europe\'s greatest mountain towns connected by two weeks of glaciers, high passes, and increasingly dramatic scenery.',
+    desc: 'The Haute Route (High Route) is widely considered the finest multi-day Alpine trek in Europe. Beginning in the shadow of Mont Blanc and ending beneath the Matterhorn, it crosses the heart of the Swiss and French Alps via a series of high cols, many requiring crampons or ice axe on early-season ascents. The route passes through wild and remote terrain above 3,000m, with overnight stops in staffed mountain huts ranging from basic stone shelters to alpine comfort. The highlights include the glacial crossing of the Col du Tour, the vast Verbier ski bowl seen on foot in summer silence, and the final approach into Zermatt — the Matterhorn growing day by day until it fills the entire sky. Technical but not requiring mountaineering skills, this is an ideal next step for those who have outgrown the TMB.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG', cap:'Matterhorn from Riffelberg'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Matterhorn_view_on_the_5-Seenweg_hiking_trail_near_Zermatt,_Switzerland.jpg/800px-Matterhorn_view_on_the_5-Seenweg_hiking_trail_near_Zermatt,_Switzerland.jpg', cap:'5-Seenweg trail near Zermatt'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Hiking_trail_between_Zermatt_and_Gornergrat,_Wallis,_Switzerland,_2012_August.jpg/800px-Hiking_trail_between_Zermatt_and_Gornergrat,_Wallis,_Switzerland,_2012_August.jpg', cap:'Zermatt–Gornergrat trail'}
+    ]
+  },
+  torres: {
+    name: 'Torres del Paine W Circuit',
+    location: 'Patagonia · Chile · 1,200m',
+    region: 'Andes, South America',
+    difficulty: 'Moderate', diffClass: 'diff-moderate',
+    stats: [
+      {l:'Distance', v:'~80km'}, {l:'Duration', v:'5–8 days'},
+      {l:'Max Altitude', v:'1,200m'}, {l:'Season', v:'Oct–Apr'}
+    ],
+    intro: 'The granite towers of Torres del Paine rise from the Patagonian steppe like something from another world. This is wild trekking in a landscape so dramatic it feels almost theatrical.',
+    desc: 'Torres del Paine National Park is widely considered one of the most scenically spectacular places on earth, and the W Trek is the route that showcases it best. The itinerary traces the shape of a W across the park, beginning with the iconic ascent to the Mirador Las Torres — a glacial lake cradled beneath the three granite spires that give the park its name. The trail then traverses the Valle del Francés, a hanging valley flanked by glaciers and rock walls that groans with falling ice. The western arm ends at Grey Glacier, a vast ice sheet calving directly into a steely lake. The Patagonian weather is famously extreme and unpredictable — wind can knock you sideways, and four seasons in a single day is entirely normal. That too is part of the adventure.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg', cap:'Las Torres — granite towers'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Hike_to_Torres_del_Paine_(5484203185).jpg/800px-Hike_to_Torres_del_Paine_(5484203185).jpg', cap:'Mirador Las Torres'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lago_Nordenskj%C3%B6ld,_Torres_del_Paine.jpg/800px-Lago_Nordenskj%C3%B6ld,_Torres_del_Paine.jpg', cap:'Paine Grande — Nordenskjold Lake'}
+    ]
+  },
+  huayhuash: {
+    name: 'Huayhuash Circuit',
+    location: 'Andes · Peru · 5,050m',
+    region: 'Andes, South America',
+    difficulty: 'Hard', diffClass: 'diff-hard',
+    stats: [
+      {l:'Distance', v:'~165km'}, {l:'Duration', v:'10–14 days'},
+      {l:'Max Altitude', v:'5,050m'}, {l:'Season', v:'May–Sep'}
+    ],
+    intro: 'The Cordillera Huayhuash is one of the most spectacular mountain ranges in the Andes — a compact, jagged crown of ice-capped peaks surrounding glacial lakes of impossible blue, accessible only to those willing to earn it.',
+    desc: 'The Huayhuash Circuit loops around a mountain range that contains more 6,000m peaks per kilometre than almost anywhere else on earth. The route crosses numerous passes above 4,600m, with the Punta Cuyoc at 5,050m being the highest. The lakes along the way — Laguna Carhuacocha, Laguna Jahuacocha, Laguna Viconga — are among the most beautiful on the continent, reflecting walls of ice and rock in perfect stillness on clear mornings. The circuit remains genuinely remote; no roads cross it, and the villages along the route are small and traditional. This is the Andes as they have always been — vast, silent, and sovereign.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg', cap:'Cordillera Huayhuash'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Cordillera_Huayuash_02552.JPG/800px-Cordillera_Huayuash_02552.JPG', cap:'Laguna Carhuacocha'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Cordillera_Huayhuash_02394.JPG/800px-Cordillera_Huayhuash_02394.JPG', cap:'Siula Grande — 6,344m'}
+    ]
+  },
+  kili: {
+    name: 'Kilimanjaro Machame Route',
+    location: 'Tanzania · Africa · 5,895m',
+    region: 'Africa',
+    difficulty: 'Challenging', diffClass: 'diff-challenging',
+    stats: [
+      {l:'Summit'  , v:'5,895m'}, {l:'Duration', v:'7–8 days'},
+      {l:'Route', v:'Machame (Whiskey)'}, {l:'Season', v:'Jan–Mar, Jun–Oct'}
+    ],
+    intro: 'Kilimanjaro is the highest free-standing mountain on earth and the roof of Africa. The Machame Route is the most scenic and widely favoured ascent — a journey from equatorial forest to glaciated summit in a single week.',
+    desc: 'The Machame Route begins in dense rainforest filled with the sounds of birds and colobus monkeys, climbing steadily through heather moorland and then into the alien, giant-lobelia-studded Senecio Zone above 3,500m. The landscape at altitude is unlike anything else in Africa — volcanic rock, ice, and a horizon that on clear days reveals the curve of the earth. The acclimatisation pattern of Machame — "climb high, sleep low" on the southern circuit — gives it a higher summit success rate than the more direct routes. Summit night begins around midnight from Barafu Camp, a headlamp procession of climbers ascending by starlight to Stella Point and then along the crater rim to Uhuru Peak at 5,895m, as dawn breaks across the African plains 4,000m below.',
+    cardImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG',
+    gallery: [
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG', cap:'Kilimanjaro — Uhuru Peak 5,895m'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Lascar_Trekking_routes_up_Kilimanjaro_-_Machame_Route_(4463890875).jpg/800px-Lascar_Trekking_routes_up_Kilimanjaro_-_Machame_Route_(4463890875).jpg', cap:'Kili from Amboseli'},
+      {url:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Kibo_summit_of_Mt_Kilimanjaro_001.JPG/800px-Kibo_summit_of_Mt_Kilimanjaro_001.JPG', cap:'Machame Route'}
+    ]
+  }
+};
+
+// ─── MODAL LOGIC ───
+function openTrailModal(id) {
+  const t = TRAILS[id];
+  if (!t) return;
+
+  document.getElementById('modal-hero-img').src = t.cardImg;
+  document.getElementById('modal-title').textContent = t.name;
+  document.getElementById('modal-location').textContent = t.location;
+
+  const badge = document.getElementById('modal-badge');
+  badge.className = 'difficulty-badge ' + t.diffClass;
+  badge.textContent = t.difficulty;
+
+  const stats = document.getElementById('modal-stats');
+  stats.innerHTML = t.stats.map(s => `
+    <div class="modal-stat">
+      <div class="modal-stat-label">${s.l}</div>
+      <div class="modal-stat-value">${s.v}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('modal-intro').textContent = t.intro;
+  document.getElementById('modal-desc').textContent = t.desc;
+
+  const gallery = document.getElementById('modal-gallery');
+  gallery.innerHTML = t.gallery.map(g => `
+    <div>
+      <img class="modal-gallery-img" src="${g.url}" alt="${g.cap}" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'">
+      <p class="modal-gallery-caption">${g.cap}</p>
+    </div>
+  `).join('');
+
+  const overlay = document.getElementById('trail-modal');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTrailModal() {
+  document.getElementById('trail-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalClick(e) {
+  if (e.target === document.getElementById('trail-modal')) closeTrailModal();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeTrailModal();
+});
+
+// ─── SHARE TAB SWITCHING ───
+function switchTab(tab) {
+  document.querySelectorAll('.share-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.share-tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('content-' + tab).classList.add('active');
+}
+
+function openShareTab() {
+  setTimeout(() => {
+    const share = document.getElementById('share');
+    if (share) share.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    switchTab('share');
+  }, 100);
+}
+
+// ─── SCROLL REVEAL ───
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.06 });
+reveals.forEach(r => observer.observe(r));
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.padding = window.scrollY > 60 ? '10px 48px' : '16px 48px';
+});
+
+// ─── FILE UPLOAD ───
+const uploadZone = document.getElementById('upload-zone');
+const fileInput = document.getElementById('file-input');
+const previewContainer = document.getElementById('preview-container');
+const previewImg = document.getElementById('preview-img');
+
+uploadZone.addEventListener('click', () => fileInput.click());
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.style.borderColor = 'var(--gold)'; });
+uploadZone.addEventListener('dragleave', () => uploadZone.style.borderColor = '');
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadZone.style.borderColor = '';
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) showPreview(file);
+});
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) showPreview(fileInput.files[0]); });
+
+function showPreview(file) {
+  const reader = new FileReader();
+  reader.onload = e => { previewImg.src = e.target.result; previewContainer.style.display = 'block'; };
+  reader.readAsDataURL(file);
+}
+
+// ─── POST SUBMIT ───
+let postCount = 3;
+
+function submitPost() {
+  const name = document.getElementById('author-name').value.trim();
+  const trail = document.getElementById('trail-select').value;
+  const text = document.getElementById('story-text').value.trim();
+
+  if (!name || !text) { alert('Please add your name and story.'); return; }
+
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const imgSrc = previewImg.src && previewImg.src !== window.location.href ? previewImg.src : null;
+  const idx = postCount++;
+
+  const card = document.createElement('div');
+  card.className = 'post-card';
+  card.innerHTML = `
+    ${imgSrc ? `<img src="${imgSrc}" class="post-image" alt="Post photo">` : ''}
+    <div class="post-body">
+      <div class="post-author">
+        <div class="post-avatar">${initials}</div>
+        <div class="post-author-info">
+          <div class="post-author-name">${escHtml(name)}</div>
+          ${trail ? `<div class="post-author-trail">☛ ${escHtml(trail)}</div>` : ''}
+        </div>
+      </div>
+      <p class="post-text">${escHtml(text)}</p>
+      <div class="post-actions">
+        <button class="btn-like" onclick="toggleLike(this)">♥ <span class="like-count">0</span></button>
+      </div>
+      <div class="comments-section">
+        <div id="comments-${idx}"></div>
+        <div class="comment-input-row">
+          <input type="text" placeholder="Reply..." id="comment-input-${idx}">
+          <button class="btn-comment" onclick="addComment(${idx})">Post</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const feed = document.getElementById('posts-feed');
+  feed.insertBefore(card, feed.firstChild);
+
+  document.getElementById('success-msg').style.display = 'block';
+  setTimeout(() => document.getElementById('success-msg').style.display = 'none', 4000);
+
+  document.getElementById('author-name').value = '';
+  document.getElementById('trail-select').value = '';
+  document.getElementById('story-text').value = '';
+  fileInput.value = '';
+  previewContainer.style.display = 'none';
+  previewImg.src = '';
+
+  // Switch to feed to see the new post
+  switchTab('feed');
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;').replace(/\n/g,'<br>');
+}
+
+// ─── COMMENTS ───
+function addComment(idx) {
+  const input = document.getElementById(`comment-input-${idx}`);
+  const text = input.value.trim();
+  if (!text) return;
+  const container = document.getElementById(`comments-${idx}`);
+  const comment = document.createElement('div');
+  comment.className = 'comment';
+  comment.innerHTML = `
+    <div class="comment-avatar">★</div>
+    <div class="comment-text"><strong>You</strong> ${escHtml(text)}</div>
+  `;
+  container.appendChild(comment);
+  input.value = '';
+}
+
+// ─── LIKES ───
+function toggleLike(btn) {
+  const count = btn.querySelector('.like-count');
+  const liked = btn.classList.contains('liked');
+  count.textContent = parseInt(count.textContent) + (liked ? -1 : 1);
+  btn.classList.toggle('liked');
+}
+
+// ─── INQUIRY PANEL ───
+let _currentInquiry = '';
+
+function expressInterest(name) {
+  openInquiry(name, name, '', '');
+}
+
+function openInquiryFromTrail() {
+  const title = document.getElementById('modal-title').textContent;
+  const trailImg = document.getElementById('modal-hero-img').src || '';
+  closeTrailModal();
+  openInquiry(title, title + ' — Trail Inquiry', 'Trail Interest', trailImg);
+}
+
+function openInquiry(heading, subjectName, eyebrow, bgUrl) {
+  _currentInquiry = subjectName;
+  document.getElementById('inquiry-eyebrow').textContent = eyebrow || 'Express Interest';
+  document.getElementById('inquiry-heading').textContent = heading || 'Register Your Interest';
+  document.getElementById('inquiry-subtext').textContent =
+    'Tell us about yourself and we\'ll reach out as soon as details are confirmed for ' + subjectName + '.';
+  const bg = document.getElementById('inquiry-bg');
+  bg.style.backgroundImage = bgUrl ? `url('${bgUrl}')` : '';
+  // Reset form state
+  document.getElementById('inquiry-form-body').style.display = 'block';
+  document.getElementById('inquiry-success').style.display = 'none';
+  document.getElementById('inquiry-error').textContent = '';
+  document.getElementById('inq-name').value = '';
+  document.getElementById('inq-email').value = '';
+  document.getElementById('inq-phone').value = '';
+  document.getElementById('inq-experience').value = '';
+  document.getElementById('inq-message').value = '';
+  document.getElementById('inquiry-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInquiry() {
+  document.getElementById('inquiry-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleInquiryClick(e) {
+  if (e.target === document.getElementById('inquiry-overlay')) closeInquiry();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeInquiry(); closeTrailModal(); }
+});
+
+// ─── YOUR FORMSPREE ENDPOINT ───────────────────────────────────────
+// 1. Go to https://formspree.io  →  sign up (free)
+// 2. Click "New Form"  →  name it "TMD Inquiries"  →  copy your form ID
+// 3. Replace YOUR_FORM_ID below with it  (e.g. "xpwzgkla")
+const FORMSPREE_ID = 'mvzbykpk';
+// ───────────────────────────────────────────────────────────────────
+
+async function submitInquiry() {
+  const name    = document.getElementById('inq-name').value.trim();
+  const email   = document.getElementById('inq-email').value.trim();
+  const phone   = document.getElementById('inq-phone').value.trim();
+  const exp     = document.getElementById('inq-experience').value;
+  const message = document.getElementById('inq-message').value.trim();
+  const errEl   = document.getElementById('inquiry-error');
+  const btn     = document.querySelector('.inquiry-submit');
+
+  // ── Validation ──
+  if (!name || !email || !phone || !exp) {
+    errEl.textContent = 'Please complete all required fields before submitting.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    return;
+  }
+
+  errEl.textContent = '';
+
+  // ── If Formspree not yet configured, show success locally ──
+  if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+    showSuccess();
+    return;
+  }
+
+  // ── Submit to Formspree → forwards to mohammed@nyle.me ──
+  btn.disabled = true;
+  btn.innerHTML = '<span>Sending…</span>';
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _replyto:   email,
+        _subject:   `TMD Interest — ${_currentInquiry}`,
+        Name:        name,
+        Email:       email,
+        Phone:       phone,
+        Experience:  exp,
+        Expedition:  _currentInquiry,
+        Message:     message || '—'
+      })
+    });
+
+    if (res.ok) {
+      showSuccess();
+    } else {
+      const data = await res.json();
+      errEl.textContent = data?.errors?.[0]?.message || 'Something went wrong. Please try again.';
+      btn.disabled = false;
+      btn.innerHTML = '<span>Send My Interest</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+  } catch (err) {
+    errEl.textContent = 'Network error — please check your connection and try again.';
+    btn.disabled = false;
+    btn.innerHTML = '<span>Send My Interest</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+}
+
+function showSuccess() {
+  document.getElementById('inquiry-success-name').textContent = _currentInquiry;
+  document.getElementById('inquiry-form-body').style.display = 'none';
+  document.getElementById('inquiry-success').style.display = 'flex';
+}
+</script>
+</body>
+</html>
