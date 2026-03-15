@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Referrer-Policy" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Mountain Diaries</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cinzel:wght@400;600;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
@@ -89,7 +91,7 @@
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sunset_Glow_on_Mount_Everest.jpg/1600px-Sunset_Glow_on_Mount_Everest.jpg');
+    
     background-size: cover;
     background-position: center 30%;
     background-repeat: no-repeat;
@@ -252,7 +254,7 @@
   #story .story-backdrop {
     position: absolute;
     inset: 0;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg/1600px-Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg');
+    
     background-size: cover;
     background-position: center 40%;
     background-repeat: no-repeat;
@@ -1699,7 +1701,7 @@
   <div class="trail-modal-inner">
     <button class="modal-close" onclick="closeTrailModal()">✕</button>
     <div class="modal-hero">
-      <img class="modal-hero-img" id="modal-hero-img" src="" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'">
+      <img class="modal-hero-img" id="modal-hero-img" src="" alt="" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'" referrerpolicy="no-referrer">
       <div class="modal-hero-info">
         <div class="modal-hero-badge"><span id="modal-badge" class="difficulty-badge"></span></div>
         <h2 class="modal-hero-title" id="modal-title"></h2>
@@ -1822,52 +1824,37 @@
       <stop offset="100%" stop-color="#0d0804" stop-opacity="0.9"/>
     </linearGradient>
     <clipPath id="mclip">
-      <!-- same outline as main peak, clips the shadow face -->
       <path d="M0,38 L4,32 L7,34 L10,28 L13,30 L15,26 L18,22 L21,19 L22,15 L25,9 L27,6 L29,9 L31,13 L33,11 L36,16 L38,20 L41,17 L43,21 L45,25 L47,23 L49,27 L51,30 L53,28 L55,31 L57,35 L60,33 L63,38 Z"/>
     </clipPath>
   </defs>
 
-  <!-- ── distant ridge (far left, very muted) ── -->
   <path d="M0,38 Q3,32 6,34 Q9,28 12,30 Q15,24 17,26 Q18,22 20,24 L20,38 Z"
         fill="#c9922a" opacity="0.15"/>
 
-  <!-- ── main mountain — light (right) face ── -->
   <path d="M0,38 L4,32 L7,34 L10,28 L13,30 L15,26 L18,22 L21,19 L22,15 L25,9 L27,6 L29,9 L31,13 L33,11 L36,16 L38,20 L41,17 L43,21 L45,25 L47,23 L49,27 L51,30 L53,28 L55,31 L57,35 L60,33 L63,38 Z"
         fill="url(#mg1)"/>
 
-  <!-- ── shadow — left face (darker) ── -->
   <path d="M27,6 L25,9 L22,15 L21,19 L18,22 L15,26 L13,30 L10,28 L7,34 L4,32 L0,38 L27,38 Z"
         fill="url(#mg2)" opacity="0.55" clip-path="url(#mclip)"/>
 
-  <!-- ── snow patches — upper peak area ── -->
-  <!-- main snow cap, organic shape -->
   <path d="M27,6 L24,11 L22,14 L24,16 L27,13 L30,16 L32,12 L30,9 Z"
         fill="#f5efe0" opacity="0.92"/>
-  <!-- secondary snow tongue left -->
   <path d="M21,19 L20,21 L22,20 L23,17 Z"
         fill="#f5efe0" opacity="0.5"/>
-  <!-- secondary snow tongue right -->
   <path d="M33,11 L32,14 L34,15 L35,12 Z"
         fill="#f5efe0" opacity="0.45"/>
-  <!-- faint rock strata line -->
   <path d="M18,22 Q22,20 27,21 Q32,20 36,22" stroke="#e8b84b" stroke-width="0.4" fill="none" opacity="0.3"/>
 
-  <!-- ── foothills / base silhouette ── -->
   <path d="M55,38 Q59,35 63,38" fill="#c9922a" opacity="0.2"/>
 
-  <!-- ── vertical divider ── -->
   <line x1="74" y1="6" x2="74" y2="42" stroke="#c9922a" stroke-width="0.6" opacity="0.22"/>
 
-  <!-- ── wordmark ── -->
-  <!-- THE -->
   <text x="84" y="16"
     font-family="Cinzel,serif" font-size="7" font-weight="400" letter-spacing="3.8"
     fill="#c9922a" opacity="0.88">THE</text>
-  <!-- MOUNTAIN -->
   <text x="83" y="31"
     font-family="Cinzel,serif" font-size="12.5" font-weight="700" letter-spacing="1.8"
     fill="#f5efe0">MOUNTAIN</text>
-  <!-- DIARIES -->
   <text x="88" y="42"
     font-family="Cinzel,serif" font-size="8.5" font-weight="400" letter-spacing="3.5"
     fill="#e8b84b">DIARIES</text>
@@ -1883,7 +1870,7 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sunset_Glow_on_Mount_Everest.jpg/1600px-Sunset_Glow_on_Mount_Everest.jpg"></div>
   <div class="hero-content">
     <p class="hero-tagline">Where the summit reveals the soul</p>
   </div>
@@ -1895,7 +1882,7 @@
 
 <!-- THE STORY + COMMUNITY SHARE -->
 <section id="story">
-  <div class="story-backdrop"></div>
+  <div class="story-backdrop" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg/1600px-Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg"></div>
   <div class="container">
     <div class="section-label reveal">Chapter I</div>
     <h2 class="section-title reveal reveal-delay-1">The <em>Story</em></h2>
@@ -1938,7 +1925,7 @@
             <input type="file" id="file-input" accept="image/*">
           </div>
           <div class="preview-container" id="preview-container">
-            <img id="preview-img" src="" alt="Preview">
+            <img id="preview-img" src="" alt="Preview" referrerpolicy="no-referrer">
           </div>
           <div class="form-group">
             <label>Your Name</label>
@@ -2085,7 +2072,7 @@
 
         <div class="trail-card reveal" onclick="openTrailModal('ebc')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg" alt="Everest Base Camp" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg" alt="Everest Base Camp" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2105,7 +2092,7 @@
 
         <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('annapurna')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg" alt="Annapurna Circuit" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg" alt="Annapurna Circuit" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2125,7 +2112,7 @@
 
         <div class="trail-card reveal reveal-delay-2" onclick="openTrailModal('manaslu')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers,Bridge,_Hills_and_Mountain.jpg/800px-Trekkers,Bridge,_Hills_and_Mountain.jpg" alt="Manaslu Circuit" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers,Bridge,_Hills_and_Mountain.jpg/800px-Trekkers,Bridge,_Hills_and_Mountain.jpg" alt="Manaslu Circuit" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2145,7 +2132,7 @@
 
         <div class="trail-card reveal reveal-delay-3" onclick="openTrailModal('threepasses')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg" alt="Everest Three Passes" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_(4434698287).jpg" alt="Everest Three Passes" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2165,7 +2152,7 @@
 
         <div class="trail-card reveal reveal-delay-2" onclick="openTrailModal('ladakh')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg" alt="Ladakh High Passes" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Waterfall_on_a_trip_to_mt._Manaslu.jpg/800px-Waterfall_on_a_trip_to_mt._Manaslu.jpg" alt="Ladakh High Passes" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2196,7 +2183,7 @@
 
         <div class="trail-card reveal" onclick="openTrailModal('tmb')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg" alt="Tour du Mont Blanc" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_(15239956008).jpg" alt="Tour du Mont Blanc" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2216,7 +2203,7 @@
 
         <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('hauteroute')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG" alt="Haute Route Alps" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG" alt="Haute Route Alps" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2247,7 +2234,7 @@
 
         <div class="trail-card reveal" onclick="openTrailModal('torres')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg" alt="Torres del Paine" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg" alt="Torres del Paine" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2267,7 +2254,7 @@
 
         <div class="trail-card reveal reveal-delay-1" onclick="openTrailModal('huayhuash')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg" alt="Huayhuash Circuit" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg" alt="Huayhuash Circuit" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2298,7 +2285,7 @@
 
         <div class="trail-card reveal" onclick="openTrailModal('kili')">
           <div class="trail-card-img-wrap">
-            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG" alt="Kilimanjaro" onerror="this.style.display='none'">
+            <img class="trail-card-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG" alt="Kilimanjaro" onerror="this.style.display='none'" referrerpolicy="no-referrer">
           </div>
           <div class="trail-card-body">
             <div class="trail-card-top">
@@ -2336,7 +2323,7 @@
 
       <!-- Expedition 1: EBC (wide) -->
       <div class="expedition-card wide reveal">
-        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg');"></div>
+        <div class="exp-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg"></div>
         <div class="exp-overlay"></div>
         <div class="exp-content">
           <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
@@ -2355,7 +2342,7 @@
 
       <!-- Expedition 2: Mera Peak -->
       <div class="expedition-card reveal reveal-delay-1">
-        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Mera_Peak_view.jpg/800px-Mera_Peak_view.jpg');"></div>
+        <div class="exp-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Mera_Peak_view.jpg/800px-Mera_Peak_view.jpg"></div>
         <div class="exp-overlay"></div>
         <div class="exp-content">
           <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
@@ -2374,7 +2361,7 @@
 
       <!-- Expedition 3: Torres del Paine O Circuit -->
       <div class="expedition-card reveal reveal-delay-2">
-        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg');"></div>
+        <div class="exp-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg"></div>
         <div class="exp-overlay"></div>
         <div class="exp-content">
           <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
@@ -2393,7 +2380,7 @@
 
       <!-- Expedition 4: Haute Route Alps -->
       <div class="expedition-card reveal reveal-delay-1">
-        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG');"></div>
+        <div class="exp-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG"></div>
         <div class="exp-overlay"></div>
         <div class="exp-content">
           <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
@@ -2412,7 +2399,7 @@
 
       <!-- Expedition 5: Kilimanjaro -->
       <div class="expedition-card reveal reveal-delay-2">
-        <div class="exp-bg" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG');"></div>
+        <div class="exp-bg" data-bg="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG"></div>
         <div class="exp-overlay"></div>
         <div class="exp-content">
           <div class="exp-badge"><span class="dot"></span> Slots Limited</div>
@@ -2657,7 +2644,7 @@ function openTrailModal(id) {
   const gallery = document.getElementById('modal-gallery');
   gallery.innerHTML = t.gallery.map(g => `
     <div>
-      <img class="modal-gallery-img" src="${g.url}" alt="${g.cap}" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'">
+      <img class="modal-gallery-img" src="${g.url}" alt="${g.cap}" onerror="this.style.background='linear-gradient(135deg,#1a2d1a,#0d1a0d)'" referrerpolicy="no-referrer">
       <p class="modal-gallery-caption">${g.cap}</p>
     </div>
   `).join('');
@@ -2751,7 +2738,7 @@ function submitPost() {
   const card = document.createElement('div');
   card.className = 'post-card';
   card.innerHTML = `
-    ${imgSrc ? `<img src="${imgSrc}" class="post-image" alt="Post photo">` : ''}
+    ${imgSrc ? `<img src="${imgSrc}" class="post-image" alt="Post photo" referrerpolicy="no-referrer">` : ''}
     <div class="post-body">
       <div class="post-author">
         <div class="post-avatar">${initials}</div>
@@ -2787,7 +2774,6 @@ function submitPost() {
   previewContainer.style.display = 'none';
   previewImg.src = '';
 
-  // Switch to feed to see the new post
   switchTab('feed');
 }
 
@@ -2841,7 +2827,6 @@ function openInquiry(heading, subjectName, eyebrow, bgUrl) {
     'Tell us about yourself and we\'ll reach out as soon as details are confirmed for ' + subjectName + '.';
   const bg = document.getElementById('inquiry-bg');
   bg.style.backgroundImage = bgUrl ? `url('${bgUrl}')` : '';
-  // Reset form state
   document.getElementById('inquiry-form-body').style.display = 'block';
   document.getElementById('inquiry-success').style.display = 'none';
   document.getElementById('inquiry-error').textContent = '';
@@ -2867,12 +2852,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeInquiry(); closeTrailModal(); }
 });
 
-// ─── YOUR FORMSPREE ENDPOINT ───────────────────────────────────────
-// 1. Go to https://formspree.io  →  sign up (free)
-// 2. Click "New Form"  →  name it "TMD Inquiries"  →  copy your form ID
-// 3. Replace YOUR_FORM_ID below with it  (e.g. "xpwzgkla")
 const FORMSPREE_ID = 'mvzbykpk';
-// ───────────────────────────────────────────────────────────────────
 
 async function submitInquiry() {
   const name    = document.getElementById('inq-name').value.trim();
@@ -2883,7 +2863,6 @@ async function submitInquiry() {
   const errEl   = document.getElementById('inquiry-error');
   const btn     = document.querySelector('.inquiry-submit');
 
-  // ── Validation ──
   if (!name || !email || !phone || !exp) {
     errEl.textContent = 'Please complete all required fields before submitting.';
     return;
@@ -2895,13 +2874,11 @@ async function submitInquiry() {
 
   errEl.textContent = '';
 
-  // ── If Formspree not yet configured, show success locally ──
   if (FORMSPREE_ID === 'YOUR_FORM_ID') {
     showSuccess();
     return;
   }
 
-  // ── Submit to Formspree → forwards to mohammed@nyle.me ──
   btn.disabled = true;
   btn.innerHTML = '<span>Sending…</span>';
 
@@ -2941,6 +2918,13 @@ function showSuccess() {
   document.getElementById('inquiry-form-body').style.display = 'none';
   document.getElementById('inquiry-success').style.display = 'flex';
 }
+</script>
+
+<script>
+// Apply background images via JS so referrer policy is guaranteed active
+document.querySelectorAll('[data-bg]').forEach(el => {
+  el.style.backgroundImage = "url('" + el.getAttribute('data-bg') + "')";
+});
 </script>
 </body>
 </html>
