@@ -1,0 +1,98 @@
+name: Download and self-host trail images
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  download-images:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create images folder
+        run: mkdir -p assets/images
+
+      - name: Download all trail images
+        run: |
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+          REF="https://commons.wikimedia.org/"
+
+          download() {
+            local name="$1"
+            local url="$2"
+            local dest="assets/images/$name"
+            if [ -f "$dest" ] && [ $(wc -c < "$dest") -gt 10000 ]; then
+              echo "✓ $name already exists, skipping"
+              return
+            fi
+            echo "↓ Downloading $name..."
+            curl -L -s --retry 3 \
+              -A "$UA" \
+              -H "Referer: $REF" \
+              -o "$dest" "$url"
+            local size=$(wc -c < "$dest" 2>/dev/null || echo 0)
+            echo "  → ${size} bytes"
+          }
+
+          download "hero-everest.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Sunset_Glow_on_Mount_Everest.jpg/1600px-Sunset_Glow_on_Mount_Everest.jpg"
+
+          download "story-ama-dablam.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg/1200px-Mount-ama-dablam-and-a-glacial-lake-on-kongma-la-pass-trail.jpg"
+
+          download "everest-base-camp.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg/800px-Sagarmatha_National_Park-Lobuche_to_Gorak_Shep_2013-05-05_12-13-49.jpg"
+
+          download "ebc-trekkers.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Trekkers_posing_in_Everest_Base_Camp.jpg/800px-Trekkers_posing_in_Everest_Base_Camp.jpg"
+
+          download "annapurna-circuit.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Thorong_La.jpg/800px-Thorong_La.jpg"
+
+          download "manaslu-circuit.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Trekkers%2CBridge%2C_Hills_and_Mountain.jpg/800px-Trekkers%2CBridge%2C_Hills_and_Mountain.jpg"
+
+          download "everest-three-passes.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_%284434698287%29.jpg/800px-Nepal_-_Sagamartha_Trek_-_073_-_Apline_Landscape_and_3rd_Gokyo_Lake_%284434698287%29.jpg"
+
+          download "ladakh-high-passes.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Zanskar_range_and_Stok_Kangri_from_Leh%2C_Ladakh_NW_India.JPG/800px-Zanskar_range_and_Stok_Kangri_from_Leh%2C_Ladakh_NW_India.JPG"
+
+          download "tour-du-mont-blanc.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_%2815239956008%29.jpg/800px-Hike_from_Plan_de_la_Lai_to_Col_des_Fours_and_Ville_des_Glaciers_%2815239956008%29.jpg"
+
+          download "haute-route-matterhorn.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG/800px-3818_-_Riffelberg_-_Matterhorn_viewed_from_Gornergratbahn.JPG"
+
+          download "torres-del-paine.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Towers_of_Paine.jpg/800px-Towers_of_Paine.jpg"
+
+          download "huayhuash-circuit.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Cordillera_Huayhuash_Alpine_Circuit.jpg/800px-Cordillera_Huayhuash_Alpine_Circuit.jpg"
+
+          download "kilimanjaro.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Furtwanler_Glacier_Mt._Kilimanjaro.JPG/800px-Furtwanler_Glacier_Mt._Kilimanjaro.JPG"
+
+          download "mera-peak.jpg" \
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Mera_Peak_view.jpg/800px-Mera_Peak_view.jpg"
+
+          echo "--- Final image sizes ---"
+          ls -lh assets/images/
+
+      - name: Commit images to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/images/
+          if git diff --staged --quiet; then
+            echo "No new images to commit."
+          else
+            git commit -m "feat: self-host trail images [skip ci]"
+            git push
+          fi
