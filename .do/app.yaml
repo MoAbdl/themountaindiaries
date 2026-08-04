@@ -1,7 +1,0 @@
-name: themountaindiaries
-static_sites:
-- name: themountaindiaries
-  github:
-    repo: MoAbdl/themountaindiaries
-    branch: main
-  output_dir: /
