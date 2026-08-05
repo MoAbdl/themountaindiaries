@@ -2252,23 +2252,36 @@ function showPreview(file) {
 }
 
 // ═══ SHARE A STORY ═══
-// NOTE: this still posts nowhere. Nothing leaves the browser and the feed
-// entry is local to this page load. Wiring a backend is Phase 3.
-let postCount = 3;
+// ─── BACKEND ──────────────────────────────────────────────────────────────
+// All three forms post to one Google Apps Script endpoint, which appends a
+// row to the sheet and emails a notification.
+//
+// The content type MUST stay text/plain. Apps Script cannot answer a CORS
+// preflight, and application/json would trigger one, so the request has to
+// stay a "simple" request. The body is still JSON.
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwiFM4_UqnszYUvT4ygUIEr6vm9_3hWwiReikL9OcPfKXLEUALDvtMSnxGnRBjxOHMR/exec';
+const FORM_ERROR = 'Something went wrong \u2014 please try again or email hello@themountaindiaries.com';
 
-// ─── SWAP POINT ───────────────────────────────────────────────────────────
-// Replace STORY_FORM_ID with the Formspree form id for story submissions.
-// Until then the form refuses honestly instead of pretending to send.
-const STORY_FORM_ID = 'STORY_FORM_ID';
-// ──────────────────────────────────────────────────────────────────────────
-const isPlaceholderId = (id) => /^[A-Z0-9_]+$/.test(id);
+async function postForm(payload) {
+  const res = await fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json();
+  if (!data || data.ok !== true) throw new Error((data && data.error) || 'rejected');
+  return data;
+}
+
+// ─── SHARE A STORY ───
+// The photo stays UI-only for now: the note under the form tells the reader we
+// will ask for their best shots by reply.
+let postCount = 3;
 
 document.getElementById('share-form').addEventListener('submit', async function (e) {
   e.preventDefault();
   const err = document.getElementById('share-error');
   const btn = this.querySelector('button[type="submit"]');
-
-  if (document.getElementById('share-hp').value) return;   // honeypot
 
   const name  = document.getElementById('author-name').value.trim();
   const trail = document.getElementById('trail-select').value;
@@ -2276,28 +2289,21 @@ document.getElementById('share-form').addEventListener('submit', async function 
   if (!name || !text) { err.textContent = 'Please add your name and your story.'; return; }
   err.textContent = '';
 
-  if (isPlaceholderId(STORY_FORM_ID)) {
-    err.textContent = 'Story sharing is not connected yet. Please try again shortly.';
-    return;
-  }
-
-  btn.disabled = true;
   const label = btn.innerHTML;
+  btn.disabled = true;
   btn.textContent = 'Sending';
 
   try {
-    const res = await fetch(`https://formspree.io/f/${STORY_FORM_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: `TMD story: ${name}`,
-        Name: name, Trail: trail || 'NA', Story: text
-      })
+    await postForm({
+      formType: 'story',
+      name: name,
+      trail: trail,
+      story: text,
+      _gotcha: document.getElementById('share-hp').value
     });
-    if (!res.ok) throw new Error('bad response');
 
-    // The story is queued for review, so it is deliberately NOT added to the
-    // public feed here. Nothing appears until a human approves it.
+    // Queued for review, so deliberately NOT added to the public feed here.
+    // Nothing appears until a human approves it.
     const notice = document.getElementById('success-msg');
     notice.classList.add('is-visible');
     clearTimeout(notice._t);
@@ -2307,7 +2313,7 @@ document.getElementById('share-form').addEventListener('submit', async function 
     previewContainer.style.display = 'none';
     previewImg.removeAttribute('src');
   } catch (_) {
-    err.textContent = 'Could not send your story. Please check your connection and try again.';
+    err.textContent = FORM_ERROR;
   }
   btn.disabled = false;
   btn.innerHTML = label;
@@ -2373,7 +2379,6 @@ function handleInquiryClick(e) {
   if (e.target === document.getElementById('inquiry-overlay')) closeInquiry();
 }
 
-const FORMSPREE_ID = 'mvzbykpk';
 const SUBMIT_LABEL = 'Send my interest →';
 
 document.getElementById('inquiry-form').addEventListener('submit', async function (e) {
@@ -2381,42 +2386,24 @@ document.getElementById('inquiry-form').addEventListener('submit', async functio
   const errEl = document.getElementById('inquiry-error');
   const btn = this.querySelector('.inquiry-submit');
 
-  const name    = document.getElementById('inq-name').value.trim();
-  const email   = document.getElementById('inq-email').value.trim();
-  const phone   = document.getElementById('inq-phone').value.trim();
-  const exp     = document.getElementById('inq-experience').value;
-  const message = document.getElementById('inq-message').value.trim();
-
-  if (document.getElementById('inq-hp').value) return;   // honeypot
-
   errEl.textContent = '';
   btn.disabled = true;
   btn.textContent = 'Sending';
 
   try {
-    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _replyto: email,
-        _subject: `TMD interest: ${_currentInquiry}`,
-        Name: name, Email: email, Phone: phone,
-        Experience: exp, Expedition: _currentInquiry,
-        Message: message || 'NA'
-      })
+    await postForm({
+      formType: 'interest',
+      name:       document.getElementById('inq-name').value.trim(),
+      email:      document.getElementById('inq-email').value.trim(),
+      phone:      document.getElementById('inq-phone').value.trim(),
+      experience: document.getElementById('inq-experience').value,
+      expedition: _currentInquiry,
+      message:    document.getElementById('inq-message').value.trim(),
+      _gotcha:    document.getElementById('inq-hp').value
     });
-
-    if (res.ok) {
-      showSuccess();
-    } else {
-      const data = await res.json().catch(() => null);
-      errEl.textContent = (data && data.errors && data.errors[0] && data.errors[0].message)
-        || 'Something went wrong. Please try again.';
-      btn.disabled = false;
-      btn.textContent = SUBMIT_LABEL;
-    }
-  } catch (err) {
-    errEl.textContent = 'Network error. Please check your connection and try again.';
+    showSuccess();
+  } catch (_) {
+    errEl.textContent = FORM_ERROR;
     btn.disabled = false;
     btn.textContent = SUBMIT_LABEL;
   }

@@ -1046,11 +1046,31 @@
 </footer>
 
 <script>
-// ─── SWAP POINTS ──────────────────────────────────────────────────────────
-// 1. JOIN_FORM_ID  -> the Formspree form id for community sign-ups.
-// 2. WHATSAPP_INVITE_URL -> the real https://chat.whatsapp.com/... invite.
-// Until both are real the form refuses honestly rather than faking success.
-const JOIN_FORM_ID = 'JOIN_FORM_ID';
+// ─── BACKEND ──────────────────────────────────────────────────────────────
+// All three forms post to one Google Apps Script endpoint, which appends a
+// row to the sheet and emails a notification.
+//
+// The content type MUST stay text/plain. Apps Script cannot answer a CORS
+// preflight, and application/json would trigger one, so the request has to
+// stay a "simple" request. The body is still JSON.
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwiFM4_UqnszYUvT4ygUIEr6vm9_3hWwiReikL9OcPfKXLEUALDvtMSnxGnRBjxOHMR/exec';
+const FORM_ERROR = 'Something went wrong — please try again or email hello@themountaindiaries.com';
+
+async function postForm(payload) {
+  const res = await fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json();
+  if (!data || data.ok !== true) throw new Error((data && data.error) || 'rejected');
+  return data;
+}
+
+// ─── SWAP POINT ───────────────────────────────────────────────────────────
+// WHATSAPP_INVITE_URL -> the real https://chat.whatsapp.com/... invite.
+// Until it is real the success screen says the invite is coming rather than
+// offering a dead link.
 const WHATSAPP_INVITE_URL = 'WHATSAPP_INVITE_URL';
 // ──────────────────────────────────────────────────────────────────────────
 const isPlaceholderId = (v) => /^[A-Z0-9_]+$/.test(v);
@@ -1060,34 +1080,21 @@ document.getElementById('join-form').addEventListener('submit', async function (
   const err = document.getElementById('join-error');
   const btn = this.querySelector('button[type="submit"]');
 
-  if (document.getElementById('join-hp').value) return;   // honeypot
-
   err.textContent = '';
-
-  if (isPlaceholderId(JOIN_FORM_ID)) {
-    err.textContent = 'Sign-up is not connected yet. Please try again shortly.';
-    return;
-  }
-
   const label = btn.innerHTML;
   btn.disabled = true;
   btn.textContent = 'Sending';
 
   try {
-    const res = await fetch(`https://formspree.io/f/${JOIN_FORM_ID}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _replyto: document.getElementById('join-email').value.trim(),
-        _subject: 'TMD community sign-up',
-        Name: document.getElementById('join-name').value.trim(),
-        Email: document.getElementById('join-email').value.trim(),
-        Mobile: document.getElementById('join-mobile').value.trim(),
-        Experience: document.getElementById('join-experience').value,
-        LocalHikes: document.getElementById('join-local').checked ? 'yes' : 'no'
-      })
+    await postForm({
+      formType: 'join',
+      name:       document.getElementById('join-name').value.trim(),
+      email:      document.getElementById('join-email').value.trim(),
+      mobile:     document.getElementById('join-mobile').value.trim(),
+      experience: document.getElementById('join-experience').value,
+      localHikes: document.getElementById('join-local').checked,
+      _gotcha:    document.getElementById('join-hp').value
     });
-    if (!res.ok) throw new Error('bad response');
 
     const wa = document.getElementById('whatsapp-link');
     if (isPlaceholderId(WHATSAPP_INVITE_URL)) {
@@ -1100,7 +1107,7 @@ document.getElementById('join-form').addEventListener('submit', async function (
     this.style.display = 'none';
     document.getElementById('join-success').classList.add('is-visible');
   } catch (_) {
-    err.textContent = 'Could not send that. Please check your connection and try again.';
+    err.textContent = FORM_ERROR;
     btn.disabled = false;
     btn.innerHTML = label;
   }
