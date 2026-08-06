@@ -699,6 +699,71 @@
   /* In Memoriam stays deliberately quiet: no fill, no colour. */
   .badge-memoriam   { color: var(--ink-3);       background: transparent;         border-color: var(--rule-firm); font-weight: 600; }
 
+  /* ─── LIGHTBOX ───
+     A light backdrop rather than a black theatre: the photography is bright
+     daylight work and reads better against the same snow surface as the site.
+     Built only for JS users; without JS every photo is still on the page. */
+  .photo-slot[data-lb] { cursor: zoom-in; }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2800;
+    display: none;
+    background: rgba(250,250,247,0.975);
+  }
+  .lightbox.open { display: grid; grid-template-rows: 1fr auto; animation: fadeIn 0.18s ease-out; }
+
+  .lb-stage {
+    position: relative; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-8) var(--s-9) var(--s-4);
+  }
+  .lb-img {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain; display: block;
+    border-radius: var(--radius);
+    background: var(--placeholder);
+    box-shadow: 0 18px 60px rgba(46,52,56,0.22);
+  }
+  .lb-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: var(--s-4); flex-wrap: wrap;
+    padding: 0 var(--s-5) var(--s-6);
+  }
+  .lb-counter {
+    font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-caption {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    box-shadow: var(--shadow-card);
+    font-size: 17px; color: var(--ink); cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .lb-btn:hover { background: var(--surface-alt); border-color: var(--ink); }
+  .lb-prev { left: var(--s-4); }
+  .lb-next { right: var(--s-4); }
+  .lb-close {
+    position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    font-size: 15px; color: var(--ink); cursor: pointer;
+  }
+  .lb-close:hover { background: var(--surface-alt); border-color: var(--ink); }
+  @media (max-width: 640px) {
+    .lb-stage { padding: var(--s-8) var(--s-3) var(--s-3); }
+    .lb-btn { width: 40px; height: 40px; font-size: 15px; }
+    .lb-prev { left: 6px; } .lb-next { right: 6px; }
+  }
+
   /* ─── DETAIL VIEW (its own page, driven by the URL hash) ─── */
   .detail {
     position: fixed; inset: 0; z-index: 2500;
@@ -872,6 +937,20 @@
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <button class="lb-close" id="lb-close" type="button" aria-label="Close viewer">&#10005;</button>
+  <div class="lb-stage">
+    <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photograph">&#8592;</button>
+    <img class="lb-img" id="lb-img" alt="">
+    <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photograph">&#8594;</button>
+  </div>
+  <div class="lb-bar">
+    <span class="lb-counter" id="lb-counter"></span>
+    <span class="lb-caption" id="lb-caption"></span>
+  </div>
+</div>
 
 <!-- DETAIL VIEW (trail / expedition) - populated from the URL hash -->
 <div id="detail-view" class="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
@@ -1128,7 +1207,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="trail/annapurna-circuit">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/annapurna-circuit.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/annapurna-circuit.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1151,7 +1230,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="trail/manaslu-circuit">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/manaslu-circuit.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/manaslu-circuit.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1197,7 +1276,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="trail/ladakh-high-passes">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/ladakh-high-passes.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/ladakh-high-passes.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1221,7 +1300,7 @@
       </article>
         <div class="region-marker" aria-hidden="true"><span>Europe &middot; Alps</span></div>
       <article class="tcard" data-detail="trail/tour-du-mont-blanc">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/tour-du-mont-blanc.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/tour-du-mont-blanc.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1244,7 +1323,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="trail/haute-route">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/haute-route-matterhorn.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/haute-route-matterhorn.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1268,7 +1347,7 @@
       </article>
         <div class="region-marker" aria-hidden="true"><span>South America &middot; Andes</span></div>
       <article class="tcard" data-detail="trail/torres-del-paine">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/torres-del-paine.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/torres-del-paine.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1291,7 +1370,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="trail/huayhuash-circuit">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/huayhuash-circuit.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/huayhuash-circuit.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1315,7 +1394,7 @@
       </article>
         <div class="region-marker" aria-hidden="true"><span>Africa</span></div>
       <article class="tcard" data-detail="trail/kilimanjaro-machame">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/kilimanjaro.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/kilimanjaro.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1387,7 +1466,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="expedition/mera-peak">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/expedition-mera-peak.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/expedition-mera-peak.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1409,7 +1488,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="expedition/torres-del-paine">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/expedition-torres.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/expedition-torres.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1431,7 +1510,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="expedition/haute-route">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/expedition-haute-route.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/expedition-haute-route.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1453,7 +1532,7 @@
         </div>
       </article>
       <article class="tcard" data-detail="expedition/kilimanjaro">
-        <div class="tcard-media"><div class="photo-slot" data-photo="assets/images/expedition-kilimanjaro.jpg"></div></div>
+        <div class="tcard-media"><div class="photo-slot" style="--photo:url('assets/images/expedition-kilimanjaro.jpg')"></div></div>
         <div class="tcard-body">
           <div class="tcard-head">
             <div>
@@ -1714,7 +1793,31 @@ const AVAILABLE_PHOTOS = new Set([
   'assets/images/ebc-tengboche-sign.jpg',
   'assets/images/ebc-thukla-sign.jpg',
   'assets/images/ebc-khumbu-glacier.jpg',
-  'assets/images/ebc-gorakshep.jpg'
+  'assets/images/ebc-gorakshep.jpg',
+  'assets/images/annapurna-circuit.jpg',
+  'assets/images/manaslu-circuit.jpg',
+  'assets/images/ladakh-high-passes.jpg',
+  'assets/images/tour-du-mont-blanc.jpg',
+  'assets/images/haute-route-matterhorn.jpg',
+  'assets/images/torres-del-paine.jpg',
+  'assets/images/huayhuash-circuit.jpg',
+  'assets/images/kilimanjaro.jpg',
+  'assets/images/expedition-mera-peak.jpg',
+  'assets/images/expedition-torres.jpg',
+  'assets/images/expedition-kilimanjaro.jpg',
+  'assets/images/expedition-haute-route.jpg',
+  'assets/images/annapurna-valley.jpg',
+  'assets/images/annapurna-thorong-la.jpg',
+  'assets/images/annapurna-poon-hill.jpg',
+  'assets/images/annapurna-mustang.jpg',
+  'assets/images/manaslu-pung-gyen.jpg',
+  'assets/images/manaslu-trail.jpg',
+  'assets/images/ladakh-lamayuru.jpg',
+  'assets/images/ladakh-nubra.jpg',
+  'assets/images/tmb-chamonix.jpg',
+  'assets/images/tmb-trail-runners.jpg',
+  'assets/images/huayhuash-lake.jpg',
+  'assets/images/mera-peak-view.jpg'
 ]);
 
 const IMG = 'assets/images/';
@@ -1725,8 +1828,12 @@ function photoSlot(file, opts) {
   opts = opts || {};
   const cls = 'photo-slot' + (opts.cls ? ' ' + opts.cls : '');
   const pos = opts.pos ? `;--pos:${opts.pos}` : '';
+  // data-lb marks a real photograph as openable in the lightbox. Placeholders
+  // never get one, so an empty slot is not clickable.
+  const lb = (opts.lb !== undefined && has(file))
+    ? ` data-lb="${opts.lb}" role="button" tabindex="0" aria-label="Open photograph"` : '';
   return has(file)
-    ? `<div class="${cls}" style="--photo:url('${file}')${pos}"></div>`
+    ? `<div class="${cls}"${lb} style="--photo:url('${file}')${pos}"></div>`
     : `<div class="${cls}" data-photo="${file}"></div>`;
 }
 
@@ -1762,11 +1869,12 @@ const TRAILS = {
     stats: [['Max Altitude','5,416m'],['Duration','15–20 days'],['Highest Pass','Thorong La'],['Season','Mar–May, Oct–Nov']],
     intro: 'Once voted the greatest long-distance trek in the world, and still the most varied.',
     desc: 'The circuit starts in the terraced lowlands of the Marsyangdi valley and climbs into the arid high desert of Manang. Its crown is the Thorong La crossing at 5,416m, a hard predawn push over one of the highest trekking passes anywhere. The descent drops into Mustang and the Kali Gandaki, the deepest valley on earth.',
-    photo: IMG + 'annapurna-circuit.jpg',
+    photo: IMG + 'annapurna-circuit.jpg', heroPos: 'center 45%',
     gallery: [
-      { file: IMG + 'annapurna-thorong-la.jpg' },
-      { file: IMG + 'annapurna-manang.jpg' },
-      { file: IMG + 'annapurna-muktinath.jpg' }
+      { file: IMG + 'annapurna-thorong-la.jpg', cap: 'Approach to Thorong La' },
+      { file: IMG + 'annapurna-valley.jpg',     cap: 'Annapurna Circuit, Nepal' },
+      { file: IMG + 'annapurna-mustang.jpg',    cap: 'Mustang, Nepal' },
+      { file: IMG + 'annapurna-poon-hill.jpg',  cap: 'Annapurna range from Poon Hill' }
     ]
   },
   manaslu: {
@@ -1778,10 +1886,10 @@ const TRAILS = {
     stats: [['Max Altitude','5,106m'],['Duration','14–18 days'],['Highest Pass','Larkya La'],['Season','Mar–May, Sep–Nov']],
     intro: 'The great alternative to the Annapurna: quieter, wilder, and arguably more spectacular.',
     desc: 'A special permit keeps visitor numbers low, and the route has kept an authenticity many busier trails have lost. The trail follows the Buri Gandaki gorge past Buddhist monasteries and mani walls into the high country of Nubri. Larkya La at 5,106m opens onto one of the finest panoramas in the Himalaya.',
-    photo: IMG + 'manaslu-circuit.jpg',
+    photo: IMG + 'manaslu-circuit.jpg', heroPos: 'center 40%',
     gallery: [
-      { file: IMG + 'manaslu-larkya-la.jpg' },
-      { file: IMG + 'manaslu-buri-gandaki.jpg' }
+      { file: IMG + 'manaslu-pung-gyen.jpg', cap: 'Pung Gyen Gompa' },
+      { file: IMG + 'manaslu-trail.jpg',     cap: 'Manaslu Circuit' }
     ]
   },
   threepasses: {
@@ -1809,10 +1917,10 @@ const TRAILS = {
     stats: [['Max Altitude','6,400m+'],['Duration','10–14 days'],['Key Summit','Kang Yatse 2'],['Season','Jul–Sep']],
     intro: 'One of the most visually extraordinary environments anywhere on earth.',
     desc: 'The route follows ancient Zanskar trade paths across stark, arid country unlike anywhere else. Red and ochre mountains rise above valley floors dusted with mani stones, and the villages have held their Tibetan identity for centuries. For strong trekkers the objective is Kang Yatse 2 at 6,400m above the Nimaling Plateau.',
-    photo: IMG + 'ladakh-high-passes.jpg',
+    photo: IMG + 'ladakh-high-passes.jpg', heroPos: 'center 50%',
     gallery: [
-      { file: IMG + 'ladakh-markha-valley.jpg' },
-      { file: IMG + 'ladakh-kang-yatse.jpg' }
+      { file: IMG + 'ladakh-lamayuru.jpg', cap: 'Lamayuru, Ladakh' },
+      { file: IMG + 'ladakh-nubra.jpg',    cap: 'Nubra Valley, Ladakh' }
     ]
   },
   tmb: {
@@ -1824,10 +1932,10 @@ const TRAILS = {
     stats: [['Distance','~170km'],['Duration','10–12 days'],['Max Altitude','2,665m'],['Season','Jun–Sep']],
     intro: 'Europe’s most celebrated long-distance trail, and the friendliest way into multi-day Alpine walking.',
     desc: 'From Chamonix the route climbs through forest into the high alpine world of Col de Voza, then drops into the Italian Val Veny beneath the south face of Mont Blanc. Switzerland arrives over the Grand Col Ferret, and the loop closes across the Col de Balme. Staffed huts the whole way make it accessible without camping.',
-    photo: IMG + 'tour-du-mont-blanc.jpg',
+    photo: IMG + 'tour-du-mont-blanc.jpg', heroPos: 'center 45%',
     gallery: [
-      { file: IMG + 'tmb-col-de-balme.jpg' },
-      { file: IMG + 'tmb-val-ferret.jpg' }
+      { file: IMG + 'tmb-chamonix.jpg',      cap: 'Chamonix-Mont-Blanc' },
+      { file: IMG + 'tmb-trail-runners.jpg', cap: 'Chamonix, France' }
     ]
   },
   hauteroute: {
@@ -1839,10 +1947,9 @@ const TRAILS = {
     stats: [['Distance','~180km'],['Duration','12–14 days'],['Max Altitude','3,650m'],['Season','Jul–Aug']],
     intro: 'Widely considered the finest multi-day Alpine trek in Europe.',
     desc: 'Beginning under Mont Blanc and ending beneath the Matterhorn, the route crosses the heart of the Alps by a series of high cols, some needing crampons early in the season. Nights are spent in mountain huts, from basic stone shelters to genuine alpine comfort. The Matterhorn grows day by day until it fills the sky.',
-    photo: IMG + 'haute-route-matterhorn.jpg',
+    photo: IMG + 'haute-route-matterhorn.jpg', heroPos: 'center 40%',
     gallery: [
-      { file: IMG + 'haute-route-col-du-tour.jpg' },
-      { file: IMG + 'haute-route-zermatt.jpg' }
+      { file: IMG + 'expedition-haute-route.jpg', cap: 'Zermatt, Switzerland' }
     ]
   },
   torres: {
@@ -1854,10 +1961,9 @@ const TRAILS = {
     stats: [['Distance','~80km'],['Duration','5–8 days'],['Max Altitude','1,200m'],['Season','Oct–Apr']],
     intro: 'Wild trekking in a landscape so dramatic it feels almost staged.',
     desc: 'The W traces its shape across the park, opening with the climb to Mirador Las Torres and its glacial lake beneath three granite spires. It then crosses the Valle del Francés, a hanging valley that groans with falling ice, and ends at Grey Glacier. Patagonian weather is famously extreme, and four seasons in a day is normal.',
-    photo: IMG + 'torres-del-paine.jpg',
+    photo: IMG + 'torres-del-paine.jpg', heroPos: 'center 50%',
     gallery: [
-      { file: IMG + 'torres-mirador.jpg' },
-      { file: IMG + 'torres-grey-glacier.jpg' }
+      { file: IMG + 'expedition-torres.jpg', cap: 'Torres del Paine, Chile' }
     ]
   },
   huayhuash: {
@@ -1869,10 +1975,9 @@ const TRAILS = {
     stats: [['Distance','~165km'],['Duration','10–14 days'],['Max Altitude','5,050m'],['Season','May–Sep']],
     intro: 'One of the most spectacular mountain ranges in the Andes, and one of the least visited.',
     desc: 'The circuit loops a range holding more 6,000m peaks per kilometre than almost anywhere on earth, crossing passes above 4,600m. The lakes along the way are among the most beautiful on the continent, holding walls of ice and rock in perfect stillness on clear mornings. No roads cross it, and the villages remain small and traditional.',
-    photo: IMG + 'huayhuash-circuit.jpg',
+    photo: IMG + 'huayhuash-circuit.jpg', heroPos: 'center 50%',
     gallery: [
-      { file: IMG + 'huayhuash-carhuacocha.jpg' },
-      { file: IMG + 'huayhuash-punta-cuyoc.jpg' }
+      { file: IMG + 'huayhuash-lake.jpg', cap: 'Huayhuash, Peru' }
     ]
   },
   kili: {
@@ -1884,10 +1989,9 @@ const TRAILS = {
     stats: [['Summit','5,895m'],['Duration','7–8 days'],['Route','Machame'],['Season','Jan–Mar, Jun–Oct']],
     intro: 'The highest free-standing mountain on earth, by its most scenic route.',
     desc: 'Machame begins in dense rainforest loud with birds and colobus monkeys, then climbs through heather moorland into the giant-lobelia country above 3,500m. Its climb-high-sleep-low pattern gives it a better summit rate than the direct routes. Summit night starts around midnight from Barafu, a headlamp procession to Uhuru Peak at dawn.',
-    photo: IMG + 'kilimanjaro.jpg',
+    photo: IMG + 'kilimanjaro.jpg', heroPos: 'center 50%',
     gallery: [
-      { file: IMG + 'kili-barafu.jpg' },
-      { file: IMG + 'kili-uhuru.jpg' }
+      { file: IMG + 'expedition-kilimanjaro.jpg', cap: 'Kilimanjaro, Tanzania' }
     ]
   }
 };
@@ -1910,8 +2014,8 @@ const EXPEDITIONS = [
     desc: 'Nepal’s highest trekking peak. Learn glacier travel, then summit.',
     intro: 'Nepal’s highest trekking peak, approached through the quiet Hinku valley.',
     body: 'The way into the Hinku is deliberately slow, crossing the Zatrwa La into a valley that sees a fraction of the Khumbu traffic. Days are spent on rope work, crampon technique and glacier travel before the summit push. From the top, five eight-thousanders stand in a single line.',
-    photo: IMG + 'expedition-mera-peak.jpg',
-    gallery: [ { file: IMG + 'expedition-mera-glacier.jpg' }, { file: IMG + 'expedition-mera-summit.jpg' } ] },
+    photo: IMG + 'expedition-mera-peak.jpg', heroPos: 'center 45%',
+    gallery: [ { file: IMG + 'mera-peak-view.jpg', cap: 'Mera Peak, Nepal' } ] },
 
   { key: 'torres-2026', slug: 'torres-del-paine', name: 'Torres del Paine',
     region: 'Patagonia &middot; Chile', loc: 'O Circuit &middot; 1,200m',
@@ -1919,8 +2023,8 @@ const EXPEDITIONS = [
     desc: 'The full circuit of the Paine massif. Granite, ice and Patagonian wind.',
     intro: 'The full O Circuit of the Paine massif, walked in the right direction.',
     body: 'Ten days around the back of the massif, starting on the quiet eastern side and finishing on the classic W. The John Gardner pass opens onto Grey Glacier in one of the great reveals in trekking. Patagonian weather does as it likes, and this group is built for people who find that funny rather than frightening.',
-    photo: IMG + 'expedition-torres.jpg',
-    gallery: [ { file: IMG + 'expedition-torres-pass.jpg' }, { file: IMG + 'expedition-torres-grey.jpg' } ] },
+    photo: IMG + 'expedition-torres.jpg', heroPos: 'center 62%',
+    gallery: [ { file: IMG + 'torres-del-paine.jpg', cap: 'Torres del Paine, Chile' } ] },
 
   { key: 'haute-2026', slug: 'haute-route', name: 'Haute Route',
     region: 'Alps &middot; France &amp; Switzerland', loc: 'Chamonix to Zermatt &middot; 3,650m',
@@ -1928,8 +2032,8 @@ const EXPEDITIONS = [
     desc: 'The definitive Alpine traverse, from Mont Blanc to the Matterhorn.',
     intro: 'Chamonix to Zermatt on foot, from Mont Blanc to the Matterhorn.',
     body: 'Fourteen days of high cols, glacier crossings and mountain huts along the classic line between two great Alpine towns. Some passes need crampons early in the season and we carry them. The Matterhorn appears days before you reach it, and grows until it fills the whole sky.',
-    photo: IMG + 'expedition-haute-route.jpg',
-    gallery: [ { file: IMG + 'expedition-haute-col.jpg' }, { file: IMG + 'expedition-haute-zermatt.jpg' } ] },
+    photo: IMG + 'expedition-haute-route.jpg', heroPos: 'center 55%',
+    gallery: [ { file: IMG + 'haute-route-matterhorn.jpg', cap: 'Matterhorn' } ] },
 
   { key: 'kili-2026', slug: 'kilimanjaro', name: 'Kilimanjaro Summit',
     region: 'Africa &middot; Tanzania', loc: 'Uhuru Peak &middot; 5,895m',
@@ -1937,8 +2041,8 @@ const EXPEDITIONS = [
     desc: 'The roof of Africa by the Machame Route, its richest scenic line.',
     intro: 'The roof of Africa by the Machame Route, the most scenic line on the mountain.',
     body: 'Eight days from rainforest to glacier, using the climb-high-sleep-low profile of the southern circuit to give the body its best chance. The Barranco Wall is the day everyone remembers, hands on rock with the summit above. Summit night starts near midnight and ends at Uhuru Peak with the plains four kilometres below.',
-    photo: IMG + 'expedition-kilimanjaro.jpg',
-    gallery: [ { file: IMG + 'expedition-kili-barranco.jpg' }, { file: IMG + 'expedition-kili-uhuru.jpg' } ] }
+    photo: IMG + 'expedition-kilimanjaro.jpg', heroPos: 'center 50%',
+    gallery: [ { file: IMG + 'kilimanjaro.jpg', cap: 'Kilimanjaro, Tanzania' } ] }
 ];
 
 // Cards are static markup in the document above, so Trails and Expeditions
@@ -1974,17 +2078,31 @@ function specPanelRows(rows) {
         </div>`).join('');
 }
 
-function galleryStrip(gallery) {
+// Every real photograph for this trail, header first. Drives the lightbox.
+function detailImages(d) {
+  const out = [];
+  if (has(d.photo)) out.push({ file: d.photo, cap: '' });
+  (d.gallery || []).forEach(g => {
+    if (has(g.file)) out.push({ file: g.file, cap: g.cap || '' });
+  });
+  return out;
+}
+
+function galleryStrip(gallery, startIndex) {
   if (!gallery || !gallery.length) return '';
+  let i = startIndex;
+  const figs = gallery.map(g => {
+    const idx = has(g.file) ? i++ : undefined;
+    return `
+          <figure class="gallery-figure">
+            <div class="gallery-slot">${photoSlot(g.file, { lb: idx })}</div>
+            ${has(g.file) && g.cap ? `<figcaption class="gallery-caption">${g.cap}</figcaption>` : ''}
+          </figure>`;
+  }).join('');
   return `
       <div class="detail-gallery">
         <p class="detail-gallery-title">Gallery</p>
-        <div class="gallery-strip">
-          ${gallery.map(g => `
-          <figure class="gallery-figure">
-            <div class="gallery-slot">${photoSlot(g.file)}</div>
-            ${has(g.file) && g.cap ? `<figcaption class="gallery-caption">${g.cap}</figcaption>` : ''}
-          </figure>`).join('')}
+        <div class="gallery-strip">${figs}
         </div>
       </div>`;
 }
@@ -2004,7 +2122,7 @@ function detailHTML(kind, d) {
 
   return `
   <div class="detail-hero">
-    ${photoSlot(d.photo, { pos: d.heroPos })}
+    ${photoSlot(d.photo, { pos: d.heroPos, lb: 0 })}
     <div class="detail-hero-info">
       <div class="detail-hero-inner">
         <p class="detail-region">${isTrail ? d.fullLoc : d.region + ' &middot; ' + d.loc}</p>
@@ -2032,7 +2150,7 @@ function detailHTML(kind, d) {
       </aside>
     </div>
 
-    ${galleryStrip(d.gallery)}
+    ${galleryStrip(d.gallery, has(d.photo) ? 1 : 0)}
 
     <div class="detail-foot">
       <button class="btn btn-outline" type="button" onclick="closeDetail()">
@@ -2046,6 +2164,7 @@ function showDetail(kind, slug) {
   const d = kind === 'trail' ? TRAILS[SLUG_TO_TRAIL[slug]] : SLUG_TO_EXP[slug];
   if (!d) { hideDetail(); return false; }
   detailBackLabel.textContent = kind === 'trail' ? 'All trails' : 'All expeditions';
+  _detailImages = detailImages(d);
   detailContent.innerHTML = detailHTML(kind, d);
   detailEl.classList.add('open');
   detailEl.scrollTop = 0;
@@ -2097,6 +2216,92 @@ document.addEventListener('click', (e) => {
   if (e.target.closest('a[href^="#trail/"], a[href^="#expedition/"]')) return;
   const card = e.target.closest('[data-detail]');
   if (card) location.hash = card.getAttribute('data-detail');
+});
+
+// ═══ LIGHTBOX ═══
+// Opens over the detail view. It never touches location.hash, so the
+// #trail/ routing and the browser back button are unaffected.
+let _detailImages = [];
+let _lbList = [];
+let _lbIndex = 0;
+
+const lbEl = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbCounter = document.getElementById('lb-counter');
+const lbCaption = document.getElementById('lb-caption');
+const lbPrev = document.getElementById('lb-prev');
+const lbNext = document.getElementById('lb-next');
+
+const isLightboxOpen = () => lbEl.classList.contains('open');
+
+function renderLb() {
+  const it = _lbList[_lbIndex];
+  if (!it) return;
+  lbImg.src = it.file;
+  lbImg.alt = it.cap || '';
+  lbCounter.textContent = `${_lbIndex + 1} / ${_lbList.length}`;
+  lbCaption.textContent = it.cap || '';
+  const multi = _lbList.length > 1;
+  lbPrev.hidden = !multi;
+  lbNext.hidden = !multi;
+}
+
+function openLightbox(list, index) {
+  if (!list || !list.length) return;
+  _lbList = list;
+  _lbIndex = Math.max(0, Math.min(index || 0, list.length - 1));
+  renderLb();
+  lbEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lb-close').focus();
+}
+
+function closeLightbox() {
+  lbEl.classList.remove('open');
+  lbImg.removeAttribute('src');
+  // a detail view or the inquiry panel may still be open underneath
+  if (!detailEl.classList.contains('open') && !isInquiryOpen()) {
+    document.body.style.overflow = '';
+  }
+}
+
+function lbStep(delta) {
+  if (_lbList.length < 2) return;
+  _lbIndex = (_lbIndex + delta + _lbList.length) % _lbList.length;
+  renderLb();
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lbStep(-1); });
+lbNext.addEventListener('click', (e) => { e.stopPropagation(); lbStep(1); });
+lbEl.addEventListener('click', (e) => { if (e.target === lbEl || e.target.closest('.lb-stage') === e.target) closeLightbox(); });
+
+document.addEventListener('keydown', (e) => {
+  if (!isLightboxOpen()) return;
+  if (e.key === 'ArrowLeft') { e.preventDefault(); lbStep(-1); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); lbStep(1); }
+});
+
+// swipe
+let _tx = 0, _ty = 0;
+lbEl.addEventListener('touchstart', (e) => {
+  _tx = e.changedTouches[0].clientX; _ty = e.changedTouches[0].clientY;
+}, { passive: true });
+lbEl.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - _tx;
+  const dy = e.changedTouches[0].clientY - _ty;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbStep(dx < 0 ? 1 : -1);
+}, { passive: true });
+
+// open from the detail header or any gallery photograph
+detailContent.addEventListener('click', (e) => {
+  const slot = e.target.closest('[data-lb]');
+  if (slot) openLightbox(_detailImages, Number(slot.getAttribute('data-lb')));
+});
+detailContent.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const slot = e.target.closest('[data-lb]');
+  if (slot) { e.preventDefault(); openLightbox(_detailImages, Number(slot.getAttribute('data-lb'))); }
 });
 
 // ═══ CAROUSEL ARROWS (enhancement) ═══
@@ -2224,6 +2429,7 @@ let closeNavMenu = () => {};
 // One listener, most-nested surface first.
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
+  if (isLightboxOpen()) { closeLightbox(); return; }
   if (closeNavMenu()) return;
   if (isInquiryOpen()) { closeInquiry(); return; }
   if (detailEl.classList.contains('open')) closeDetail();
