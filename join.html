@@ -75,6 +75,10 @@
   html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
 
   body {
+    /* The nav is fixed, so reserve its strip here. That lets the hero be
+       exactly (viewport - nav) and makes the first view fill the screen
+       with nothing of the next section showing. */
+    padding-top: var(--nav-h);
     font-family: var(--font-body);
     font-size: var(--t-base);
     line-height: 1.65;
@@ -124,6 +128,17 @@
     background-position: var(--pos, center);
     background-repeat: no-repeat;
   }
+  /* A real <img> inside the slot, so the browser can lazy-load it. The warm
+     grey block stays behind it as the loading placeholder. Crop window comes
+     from the same --pos custom property the background version uses. */
+  .photo-slot > .photo-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: var(--pos, center);
+  }
+
   .photo-slot[data-photo]::after {
     content: attr(data-photo);
     font-family: var(--font-mono);
@@ -268,46 +283,71 @@
   /* ─── HERO ─── */
   .hero {
     position: relative;
-    min-height: min(88vh, 760px);
-    display: flex; align-items: flex-end;
-    padding: calc(var(--nav-h) + var(--s-7)) 0 var(--s-8);
+    /* min-height, not height: the first view fills the screen exactly whenever
+       the content fits (the clamps below guarantee that), but on a freak-short
+       viewport the hero grows rather than clipping the headline. */
+    min-height: calc(100vh - var(--nav-h));   /* fallback */
+    min-height: calc(100dvh - var(--nav-h));  /* tracks mobile browser chrome */
+    display: flex; align-items: center;
+    /* bottom pad leaves the scroll cue its own air, so centred content
+       never collides with it */
+    padding: var(--s-6) 0 clamp(56px, 9vh, 88px);
     overflow: hidden;
     background: var(--placeholder);
   }
   .hero-media { position: absolute; inset: 0; z-index: 0; }
   .hero-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(28,34,38,0.30); }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
-  .hero-eyebrow {
-    font-family: var(--font-head);
-    font-size: var(--t-xs); font-weight: 600;
-    letter-spacing: 0.24em; text-transform: uppercase;
-    color: #fff; margin-bottom: var(--s-4);
-    text-shadow: 0 1px 12px rgba(20,24,27,0.4);
-    animation: riseIn 0.6s ease-out both;
-  }
   .hero-title {
     font-family: var(--font-head); font-weight: 700;
-    font-size: clamp(38px, 7vw, 66px); line-height: 1.03;
+    /* the vh term is what keeps the stack inside a 625px-tall laptop */
+    font-size: clamp(34px, min(7.2vw, 9.2vh), 76px); line-height: 1.03;
     letter-spacing: -0.015em; color: #fff; max-width: 15ch;
     text-shadow: 0 2px 20px rgba(20,24,27,0.35);
     animation: riseIn 0.6s ease-out 0.07s both;
   }
   .hero-tagline {
-    font-size: clamp(17px, 2.2vw, 21px); line-height: 1.5;
-    color: #fff; max-width: 44ch; margin-top: var(--s-4);
+    font-size: clamp(16px, min(2.3vw, 2.6vh), 22px); line-height: 1.5;
+    color: #fff; max-width: 44ch; margin-top: clamp(10px, 1.6vh, 18px);
     text-shadow: 0 1px 14px rgba(20,24,27,0.4);
     animation: riseIn 0.6s ease-out 0.14s both;
   }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); animation: riseIn 0.6s ease-out 0.21s both; }
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: var(--s-4);
+    margin-top: clamp(20px, 3.4vh, 40px);
+    animation: riseIn 0.6s ease-out 0.21s both;
+  }
+  /* Both buttons carry the same 1.5px border so their heights match exactly,
+     whatever the fill. */
+  .hero-actions .btn {
+    font-size: clamp(12px, 0.95vw, 14px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: clamp(14px, 1.7vh, 18px) clamp(28px, 3.1vw, 44px);
+    border-width: 1.5px;
+    border-style: solid;
+  }
+  .hero-actions .btn-primary {
+    background: var(--sienna); border-color: var(--sienna); color: #fff;
+  }
+  .hero-actions .btn-primary:hover {
+    background: var(--sienna-dark); border-color: var(--sienna-dark);
+  }
+  .hero-actions .btn-ghost {
+    background: transparent; border-color: var(--surface); color: #fff;
+  }
+  .hero-actions .btn-ghost:hover {
+    background: var(--surface); border-color: var(--surface); color: var(--ink);
+  }
   .hero-scroll {
-    position: absolute; left: 50%; bottom: var(--s-5);
+    position: absolute; left: 50%; bottom: clamp(14px, 2.4vh, 26px);
     transform: translateX(-50%); z-index: 2;
     display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
     font-family: var(--font-head); font-size: 10px; font-weight: 600;
     letter-spacing: 0.24em; text-transform: uppercase;
     color: #fff; text-decoration: none; opacity: 0.9;
   }
-  .hero-scroll::after { content: ''; width: 1px; height: 28px; background: currentColor; opacity: 0.65; }
+  .hero-scroll::after { content: ''; width: 1px; height: clamp(18px, 3.2vh, 30px); background: currentColor; opacity: 0.65; }
 
   /* ─── SECTION SHELL ─── */
   .section { padding: var(--s-9) 0; }
@@ -700,6 +740,71 @@
   /* In Memoriam stays deliberately quiet: no fill, no colour. */
   .badge-memoriam   { color: var(--ink-3);       background: transparent;         border-color: var(--rule-firm); font-weight: 600; }
 
+  /* ─── LIGHTBOX ───
+     A light backdrop rather than a black theatre: the photography is bright
+     daylight work and reads better against the same snow surface as the site.
+     Built only for JS users; without JS every photo is still on the page. */
+  .photo-slot[data-lb] { cursor: zoom-in; }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2800;
+    display: none;
+    background: rgba(250,250,247,0.975);
+  }
+  .lightbox.open { display: grid; grid-template-rows: 1fr auto; animation: fadeIn 0.18s ease-out; }
+
+  .lb-stage {
+    position: relative; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-8) var(--s-9) var(--s-4);
+  }
+  .lb-img {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain; display: block;
+    border-radius: var(--radius);
+    background: var(--placeholder);
+    box-shadow: 0 18px 60px rgba(46,52,56,0.22);
+  }
+  .lb-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: var(--s-4); flex-wrap: wrap;
+    padding: 0 var(--s-5) var(--s-6);
+  }
+  .lb-counter {
+    font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-caption {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    box-shadow: var(--shadow-card);
+    font-size: 17px; color: var(--ink); cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .lb-btn:hover { background: var(--surface-alt); border-color: var(--ink); }
+  .lb-prev { left: var(--s-4); }
+  .lb-next { right: var(--s-4); }
+  .lb-close {
+    position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    font-size: 15px; color: var(--ink); cursor: pointer;
+  }
+  .lb-close:hover { background: var(--surface-alt); border-color: var(--ink); }
+  @media (max-width: 640px) {
+    .lb-stage { padding: var(--s-8) var(--s-3) var(--s-3); }
+    .lb-btn { width: 40px; height: 40px; font-size: 15px; }
+    .lb-prev { left: 6px; } .lb-next { right: 6px; }
+  }
+
   /* ─── DETAIL VIEW (its own page, driven by the URL hash) ─── */
   .detail {
     position: fixed; inset: 0; z-index: 2500;
@@ -858,8 +963,10 @@
   }
   @media (max-width: 640px) {
     :root { --s-9: 48px; --s-8: 40px; }
-    .hero { min-height: 78vh; padding-bottom: var(--s-8); }
-    .hero-scroll { display: none; }
+    .hero { padding-bottom: clamp(52px, 8vh, 72px); }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .hero-scroll { font-size: 9px; letter-spacing: 0.2em; }
     /* keep the placeholder label clear of the hero CTAs on small screens */
     .photo-slot--corner { align-items: flex-start; }
     .card-grid, .dispatch-grid { grid-template-columns: 1fr; }
@@ -885,7 +992,8 @@
     .nav-back-long { display: none; }
     .wordmark-main { font-size: 15px; }
   }
-  .join-main { padding-top: var(--nav-h); }
+  /* body already reserves the fixed nav's strip, so no offset needed here */
+  .join-main { padding-top: 0; }
   .join-hero { position: relative; height: min(32vh, 280px); }
   .join-grid {
     display: grid; grid-template-columns: 0.95fr 1.05fr;
