@@ -50,6 +50,8 @@
     --font-head: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
     --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    /* hero only, for now */
+    --font-hero: 'Lato', 'Archivo', sans-serif;
 
     --t-xs:  12px;
     --t-sm:  14px;
@@ -288,10 +290,15 @@
        viewport the hero grows rather than clipping the headline. */
     min-height: calc(100vh - var(--nav-h));   /* fallback */
     min-height: calc(100dvh - var(--nav-h));  /* tracks mobile browser chrome */
-    display: flex; align-items: center;
-    /* bottom pad leaves the scroll cue its own air, so centred content
-       never collides with it */
-    padding: var(--s-6) 0 clamp(56px, 9vh, 88px);
+    /* Height of the signpost that stands in the lower left; its width follows
+       from the viewBox. The content block reserves this much below itself so
+       the two never collide. The vw term matters: on a tall narrow viewport
+       (iPad portrait) a height-only scale grew the boards far enough right to
+       cover the trekker in the photograph. */
+    --sign-h: clamp(176px, min(25vh, 25vw), 258px);
+    display: flex; align-items: flex-end;
+    /* bottom pad leaves the scroll cue its own air */
+    padding: var(--s-6) 0 clamp(48px, 7vh, 72px);
     overflow: hidden;
     background: var(--placeholder);
   }
@@ -299,15 +306,18 @@
   .hero-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(28,34,38,0.30); }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
   .hero-title {
-    font-family: var(--font-head); font-weight: 700;
-    /* the vh term is what keeps the stack inside a 625px-tall laptop */
-    font-size: clamp(34px, min(7.2vw, 9.2vh), 76px); line-height: 1.03;
-    letter-spacing: -0.015em; color: #fff; max-width: 15ch;
+    font-family: var(--font-hero); font-weight: 900;
+    /* the vh term is what keeps the stack inside a 625px-tall laptop.
+       Nudged up slightly from the Archivo values: Lato runs a touch
+       narrower and shorter in the eye at the same px. */
+    font-size: clamp(35px, min(7.5vw, 9.4vh), 79px); line-height: 1.02;
+    letter-spacing: -0.02em; color: #fff; max-width: 15ch;
     text-shadow: 0 2px 20px rgba(20,24,27,0.35);
     animation: riseIn 0.6s ease-out 0.07s both;
   }
   .hero-tagline {
-    font-size: clamp(16px, min(2.3vw, 2.6vh), 22px); line-height: 1.5;
+    font-family: var(--font-hero); font-weight: 400;
+    font-size: clamp(16px, min(2.35vw, 2.65vh), 22px); line-height: 1.5;
     color: #fff; max-width: 44ch; margin-top: clamp(10px, 1.6vh, 18px);
     text-shadow: 0 1px 14px rgba(20,24,27,0.4);
     animation: riseIn 0.6s ease-out 0.14s both;
@@ -339,6 +349,59 @@
   .hero-actions .btn-ghost:hover {
     background: var(--surface); border-color: var(--surface); color: var(--ink);
   }
+
+  /* ─── HERO SIGNPOST (>=768px) ───
+     Flat trail-sign language: plain plank shapes, flat timber and sienna,
+     one darker stroke per plank for depth. No gradients, no texture, no 3D.
+     Each board is a real <a>, so it works and is focusable without JS. */
+  .hero-signwrap {
+    display: none;
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5);
+    pointer-events: none;              /* only the boards take clicks */
+  }
+  .hero-signpost { display: block; height: var(--sign-h); width: auto; overflow: visible; }
+
+  .sign-post      { fill: #7A6550; }
+  .sign-post-edge { fill: #5B4A39; }
+  .plank          { stroke-width: 2; }
+  .plank-primary  { fill: var(--sienna); stroke: #8C4526; }
+  .plank-wood     { fill: #8A7358; stroke: #6B5844; }
+  .sign-text {
+    font-family: var(--font-head); font-weight: 800;
+    font-size: 21px; letter-spacing: 2.2px;
+    fill: var(--surface); text-anchor: middle; dominant-baseline: central;
+  }
+
+  .sign-board {
+    pointer-events: auto; cursor: pointer;
+    transform-box: fill-box; transform-origin: 0% 50%;
+    transform: rotate(var(--tilt));
+    transition: transform 0.18s ease;
+  }
+  .sign-board:hover { transform: rotate(calc(var(--tilt) - 2.5deg)) translateY(-2px); }
+  .sign-board:focus { outline: none; }
+  .sign-board:focus-visible .plank { stroke: var(--surface); stroke-width: 4; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sign-board { transition: none; }
+    .sign-board:hover { transform: rotate(var(--tilt)); }
+  }
+
+  @media (min-width: 768px) {
+    .hero-actions  { display: none; }          /* signpost replaces the buttons */
+    .hero-signwrap { display: block; }
+    .hero-inner    { padding-bottom: calc(var(--sign-h) + var(--s-5)); }
+  }
+  /* keep the stacked buttons across the whole phone range */
+  @media (max-width: 767px) {
+    .hero-actions { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    /* bottom-aligned content plus two stacked buttons would otherwise sit on
+       top of the scroll cue, so buy the cue more room on phones */
+    .hero { padding-bottom: clamp(78px, 11vh, 104px); }
+  }
+
   .hero-scroll {
     position: absolute; left: 50%; bottom: clamp(14px, 2.4vh, 26px);
     transform: translateX(-50%); z-index: 2;
@@ -963,7 +1026,6 @@
   }
   @media (max-width: 640px) {
     :root { --s-9: 48px; --s-8: 40px; }
-    .hero { padding-bottom: clamp(52px, 8vh, 72px); }
     .hero-actions { flex-direction: column; align-items: stretch; gap: var(--s-3); }
     .hero-actions .btn { width: 100%; justify-content: center; }
     .hero-scroll { font-size: 9px; letter-spacing: 0.2em; }
