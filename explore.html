@@ -1,0 +1,3250 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore &middot; The Mountain Diaries</title>
+<meta name="description" content="Every expedition and trekking journey run by The Mountain Diaries, from a first 6,000 metre summit to the eight thousanders.">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Lato:wght@400;700;900&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.replace("no-js","js");</script>
+<style>
+
+  /* ═══════════════════════════════════════════════════════════════
+     THE MOUNTAIN DIARIES  ·  bright alpine design system
+     Phase 2: applies to the whole site. No legacy dark theme remains.
+     ═══════════════════════════════════════════════════════════════ */
+  :root {
+    /* ── surfaces ── */
+    --surface:        #FAFAF7;
+    --surface-alt:    #F2F1EA;
+    --card:           #FFFFFF;
+    --placeholder:    #DAD5CB;
+    --placeholder-ink:#8A8375;
+
+    /* ── ink ── */
+    --ink:    #2E3438;
+    --ink-2:  #556066;
+    --ink-3:  #7E8890;
+
+    /* ── accents ── */
+    --glacier:      #7A93A7;
+    --glacier-soft: #E8EEF2;
+    --glacier-line: #C6D4DE;
+    /* footer only: brand sienna is 2.4:1 on the ink footer, which fails for
+       11px headings and for a 1px outline. Same hue, lifted to clear 4.5:1. */
+    --sienna-lift: #EEA67C;
+    --footer-text: #D9DDE0;
+    --sienna-0: rgba(184,92,56,0);
+    --sienna:       #B85C38;
+    --sienna-dark:  #9A4A2B;
+    --sienna-soft:  #F7EBE5;
+    --sienna-line:  #E3C5B6;
+    --pine:         #3E5C4B;
+    --pine-soft:    #E8EEEA;
+    --pine-line:    #C7D5CC;
+    --umber:        #6B4A2F;
+    --umber-soft:   #F3EBE1;
+    --umber-line:   #DFCDB8;
+
+    /* ── rules ── */
+    --rule:      #E5E1D8;
+    --rule-firm: #CFC9BC;
+
+    /* ── type ── */
+    --font-head: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+    /* hero only, for now */
+    --font-hero: 'Lato', 'Archivo', sans-serif;
+
+    --t-xs:  12px;
+    --t-sm:  14px;
+    --t-base:17px;
+    --t-lg:  19px;
+    --t-xl:  24px;
+    --t-2xl: 32px;
+
+    /* ── spacing (4pt) ── */
+    --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+    --s-6: 32px; --s-7: 40px; --s-8: 48px; --s-9: 64px;
+
+    --radius:    3px;
+    --radius-lg: 5px;
+    --shadow-card:       0 1px 2px rgba(46,52,56,0.05), 0 8px 24px rgba(46,52,56,0.07);
+    --shadow-card-hover: 0 2px 4px rgba(46,52,56,0.07), 0 16px 40px rgba(46,52,56,0.12);
+    --shadow-overlay:    0 24px 80px rgba(46,52,56,0.28);
+    --nav-h: 68px;
+    --wrap:  1240px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+
+  body {
+    /* The nav is fixed, so reserve its strip here. That lets the hero be
+       exactly (viewport - nav) and makes the first view fill the screen
+       with nothing of the next section showing. */
+    padding-top: var(--nav-h);
+    font-family: var(--font-body);
+    font-size: var(--t-base);
+    line-height: 1.65;
+    background: var(--surface);
+    color: var(--ink);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible { outline: 2px solid var(--sienna); outline-offset: 3px; border-radius: 2px; }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(18px) scale(0.99); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  /* ─── PHOTO SLOT ───
+     A real photograph is supplied through the --photo custom property.
+     Until the file exists the block stays flat warm grey and names the
+     file it is waiting for. Delete data-photo once the photo is committed. */
+  .photo-slot {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--placeholder);
+    background-image: var(--photo, none);
+    background-size: cover;
+    background-position: var(--pos, center);
+    background-repeat: no-repeat;
+  }
+  /* A real <img> inside the slot, so the browser can lazy-load it. The warm
+     grey block stays behind it as the loading placeholder. Crop window comes
+     from the same --pos custom property the background version uses. */
+  .photo-slot > .photo-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: var(--pos, center);
+  }
+
+  .photo-slot[data-photo]::after {
+    content: attr(data-photo);
+    font-family: var(--font-mono);
+    font-size: var(--t-xs);
+    line-height: 1.4;
+    color: var(--placeholder-ink);
+    background: rgba(255,255,255,0.5);
+    border: 1px dashed var(--placeholder-ink);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    max-width: 88%;
+    text-align: center;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    font-family: var(--font-head);
+    font-size: var(--t-sm);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 13px 26px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  }
+  .btn-primary { background: var(--sienna); color: #fff; }
+  .btn-primary:hover { background: var(--sienna-dark); }
+  .btn-primary:disabled { background: var(--rule-firm); color: #fff; cursor: default; }
+  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.15); border-color: #fff; }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--rule-firm); }
+  .btn-outline:hover { border-color: var(--ink); }
+
+  .link-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-head);
+    font-size: var(--t-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sienna);
+    text-decoration: none;
+    transition: color 0.15s ease, gap 0.15s ease;
+  }
+  .link-action:hover { color: var(--sienna-dark); gap: var(--s-3); }
+
+  /* ─── NAVIGATION ─── */
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+    transition: box-shadow 0.2s ease;
+  }
+  .site-nav.is-scrolled { box-shadow: 0 1px 14px rgba(46,52,56,0.09); }
+
+  .nav-inner {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    height: var(--nav-h);
+    padding: 0 var(--s-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-5);
+  }
+
+  /* The wordmark is outlined paths, so it carries no webfont dependency and
+     cannot reflow while Archivo loads. currentColor gives us the inverted
+     footer version for free. */
+  .wordmark { display: block; line-height: 0; text-decoration: none; flex-shrink: 0; color: var(--ink); }
+  .wordmark-svg { display: block; height: 34px; width: auto; fill: currentColor; }
+  .wordmark-inverse { color: var(--surface); }
+
+  .nav-menu { list-style: none; display: flex; align-items: center; gap: var(--s-6); }
+  .nav-menu a {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 15px; font-weight: 500;
+    color: var(--ink-2); text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 2px solid var(--sienna-0);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-menu a:hover { color: var(--sienna); }
+  /* set by the scroll spy, and by the click fallback when JS is running */
+  .nav-menu a.is-active { color: var(--ink); border-bottom-color: var(--sienna); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 10px;
+    background: none; border: 1px solid var(--rule-firm);
+    border-radius: var(--radius); cursor: pointer;
+  }
+  .nav-toggle-bar { display: block; width: 100%; height: 2px; background: var(--ink); transition: transform 0.2s ease, opacity 0.2s ease; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 860px) {
+    .nav-toggle { display: flex; }
+    .js .nav-menu {
+      display: none;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding: var(--s-2) var(--s-5) var(--s-4);
+      background: var(--surface);
+      border-bottom: 1px solid var(--rule);
+      box-shadow: 0 12px 24px rgba(46,52,56,0.09);
+    }
+    .js .nav-menu.is-open { display: flex; }
+    .js .nav-menu li { border-bottom: 1px solid var(--rule); }
+    .js .nav-menu li:last-child { border-bottom: none; }
+    .js .nav-menu a { display: block; padding: 15px 0; font-size: 14px; border-bottom: none; }
+    .no-js .nav-toggle { display: none; }
+    .no-js .nav-inner { height: auto; flex-wrap: wrap; padding-top: var(--s-3); padding-bottom: var(--s-3); }
+    .no-js .nav-menu { width: 100%; flex-wrap: wrap; gap: var(--s-4); }
+    .wordmark-svg { height: 28px; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    /* min-height, not height: the first view fills the screen exactly whenever
+       the content fits (the clamps below guarantee that), but on a freak-short
+       viewport the hero grows rather than clipping the headline. */
+    min-height: calc(100vh - var(--nav-h));   /* fallback */
+    min-height: calc(100dvh - var(--nav-h));  /* tracks mobile browser chrome */
+    /* Height of the signpost that stands in the lower left; its width follows
+       from the viewBox. The content block reserves this much below itself so
+       the two never collide. The vw term matters: on a tall narrow viewport
+       (iPad portrait) a height-only scale grew the boards far enough right to
+       cover the trekker in the photograph. */
+    --sign-h: clamp(176px, min(25vh, 25vw), 258px);
+    display: flex; align-items: flex-end;
+    /* bottom pad leaves the scroll cue its own air */
+    padding: var(--s-6) 0 clamp(48px, 7vh, 72px);
+    overflow: hidden;
+    background: var(--placeholder);
+  }
+  .hero-media { position: absolute; inset: 0; z-index: 0; }
+  .hero-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(28,34,38,0.30); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
+  .hero-title {
+    font-family: var(--font-hero); font-weight: 900;
+    /* the vh term is what keeps the stack inside a 625px-tall laptop.
+       Nudged up slightly from the Archivo values: Lato runs a touch
+       narrower and shorter in the eye at the same px. */
+    font-size: clamp(35px, min(7.5vw, 9.4vh), 79px); line-height: 1.02;
+    letter-spacing: -0.02em; color: #fff; max-width: 15ch;
+    text-shadow: 0 2px 20px rgba(20,24,27,0.35);
+    animation: riseIn 0.6s ease-out 0.07s both;
+  }
+  .hero-tagline {
+    font-family: var(--font-hero); font-weight: 400;
+    font-size: clamp(16px, min(2.35vw, 2.65vh), 22px); line-height: 1.5;
+    color: #fff; max-width: 44ch; margin-top: clamp(10px, 1.6vh, 18px);
+    text-shadow: 0 1px 14px rgba(20,24,27,0.4);
+    animation: riseIn 0.6s ease-out 0.14s both;
+  }
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: var(--s-4);
+    margin-top: clamp(20px, 3.4vh, 40px);
+    animation: riseIn 0.6s ease-out 0.21s both;
+  }
+  /* Both buttons carry the same 1.5px border so their heights match exactly,
+     whatever the fill. */
+  .hero-actions .btn {
+    font-size: clamp(12px, 0.95vw, 14px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: clamp(14px, 1.7vh, 18px) clamp(28px, 3.1vw, 44px);
+    border-width: 1.5px;
+    border-style: solid;
+  }
+  .hero-actions .btn-primary {
+    background: var(--sienna); border-color: var(--sienna); color: #fff;
+  }
+  .hero-actions .btn-primary:hover {
+    background: var(--sienna-dark); border-color: var(--sienna-dark);
+  }
+  .hero-actions .btn-ghost {
+    background: transparent; border-color: var(--surface); color: #fff;
+  }
+  .hero-actions .btn-ghost:hover {
+    background: var(--surface); border-color: var(--surface); color: var(--ink);
+  }
+
+  /* ─── HERO SIGNPOST (>=768px) ───
+     Flat trail-sign language: plain plank shapes, flat timber and sienna,
+     one darker stroke per plank for depth. No gradients, no texture, no 3D.
+     Each board is a real <a>, so it works and is focusable without JS. */
+  .hero-signwrap {
+    display: none;
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5);
+    pointer-events: none;              /* only the boards take clicks */
+  }
+  .hero-signpost { display: block; height: var(--sign-h); width: auto; overflow: visible; }
+
+  .sign-post      { fill: #7A6550; }
+  .sign-post-edge { fill: #5B4A39; }
+  .plank          { stroke-width: 2; }
+  .plank-primary  { fill: var(--sienna); stroke: #8C4526; }
+  .plank-wood     { fill: #8A7358; stroke: #6B5844; }
+  .sign-text {
+    font-family: var(--font-head); font-weight: 800;
+    font-size: 21px; letter-spacing: 2.2px;
+    fill: var(--surface); text-anchor: middle; dominant-baseline: central;
+  }
+
+  .sign-board {
+    pointer-events: auto; cursor: pointer;
+    transform-box: fill-box; transform-origin: 0% 50%;
+    transform: rotate(var(--tilt));
+    transition: transform 0.18s ease;
+  }
+  .sign-board:hover { transform: rotate(calc(var(--tilt) - 2.5deg)) translateY(-2px); }
+  .sign-board:focus { outline: none; }
+  .sign-board:focus-visible .plank { stroke: var(--surface); stroke-width: 4; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sign-board { transition: none; }
+    .sign-board:hover { transform: rotate(var(--tilt)); }
+  }
+
+  @media (min-width: 768px) {
+    .hero-actions  { display: none; }          /* signpost replaces the buttons */
+    .hero-signwrap { display: block; }
+    .hero-inner    { padding-bottom: calc(var(--sign-h) + var(--s-5)); }
+  }
+  /* keep the stacked buttons across the whole phone range */
+  @media (max-width: 767px) {
+    .hero-actions { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    /* bottom-aligned content plus two stacked buttons would otherwise sit on
+       top of the scroll cue, so buy the cue more room on phones */
+    .hero { padding-bottom: clamp(78px, 11vh, 104px); }
+  }
+
+  .hero-scroll {
+    position: absolute; left: 50%; bottom: clamp(14px, 2.4vh, 26px);
+    transform: translateX(-50%); z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
+    font-family: var(--font-head); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: #fff; text-decoration: none; opacity: 0.9;
+  }
+  .hero-scroll::after { content: ''; width: 1px; height: clamp(18px, 3.2vh, 30px); background: currentColor; opacity: 0.65; }
+
+  /* ─── SECTION SHELL ─── */
+  .section { padding: var(--s-9) 0; }
+  .section--alt { background: var(--surface-alt); }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
+
+  .section-head { max-width: 68ch; margin-bottom: var(--s-6); animation: riseIn 0.5s ease-out both; }
+  .section-kicker {
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--glacier); margin-bottom: var(--s-3);
+  }
+  .section-title {
+    font-family: var(--font-head); font-weight: 700;
+    font-size: clamp(30px, 4.2vw, 44px); line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--ink);
+  }
+  .section-lede { font-size: var(--t-lg); line-height: 1.6; color: var(--ink-2); margin-top: var(--s-4); max-width: 62ch; }
+
+  /* ─── STORY ─── */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--s-7);
+    align-items: start;
+  }
+  .story-prose p { margin-bottom: var(--s-5); color: var(--ink-2); font-size: var(--t-lg); line-height: 1.7; }
+  .story-prose p:last-child { margin-bottom: 0; }
+  .story-quote {
+    margin: var(--s-6) 0;
+    padding: var(--s-5) 0 var(--s-5) var(--s-5);
+    border-left: 3px solid var(--sienna);
+    font-family: var(--font-head);
+    font-size: clamp(19px, 2.3vw, 23px);
+    font-weight: 600; line-height: 1.4;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .story-photo { position: relative; aspect-ratio: 7 / 5; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+  .story-caption {
+    margin-top: var(--s-3);
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  /* ─── CARD GRID (trails + expeditions) ─── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }
+
+  .badge {
+    flex-shrink: 0;
+    align-self: flex-start;
+    font-family: var(--font-head);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 6px 10px; border: 1px solid; border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* gear-spec rows with dot leaders */
+
+  /* ─── COMMUNITY ─── */
+  .community-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--s-7); align-items: start; }
+  .community-photo { position: relative; aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+  .panel-tabs { display: flex; border-bottom: 1px solid var(--rule); }
+  .share-tab {
+    flex: 1;
+    padding: var(--s-4) var(--s-3);
+    background: var(--surface-alt);
+    border: none; border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: var(--font-head);
+    font-size: var(--t-xs); font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-3);
+    transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .share-tab:hover { color: var(--ink); }
+  .share-tab.active { background: var(--card); color: var(--sienna); border-bottom-color: var(--sienna); }
+
+  .panel-body { padding: var(--s-5); }
+  .share-tab-content { display: none; }
+  .share-tab-content.active { display: block; }
+
+  .notice {
+    display: none;
+    margin-bottom: var(--s-4);
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--radius);
+    background: var(--pine-soft);
+    border: 1px solid var(--pine-line);
+    color: var(--pine);
+    font-size: var(--t-sm);
+    animation: fadeIn 0.25s ease-out;
+  }
+  .notice.is-visible { display: block; }
+
+  /* forms */
+  .field { margin-bottom: var(--s-4); }
+  .field label {
+    display: block;
+    margin-bottom: var(--s-2);
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .field .optional { color: var(--ink-3); font-weight: 500; letter-spacing: 0.06em; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    padding: 11px 13px;
+    font-family: var(--font-body);
+    font-size: var(--t-base);
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule-firm);
+    border-radius: var(--radius);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { background: var(--card); border-color: var(--glacier); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--ink-3); }
+
+  .upload-zone {
+    display: block; width: 100%;
+    padding: var(--s-5);
+    margin-bottom: var(--s-4);
+    text-align: center;
+    background: var(--surface);
+    border: 1px dashed var(--rule-firm);
+    border-radius: var(--radius);
+    color: var(--ink-3);
+    font-size: var(--t-sm);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .upload-zone:hover, .upload-zone.is-dragging { border-color: var(--sienna); color: var(--sienna); }
+  .upload-zone input[type="file"] { display: none; }
+  .preview-container { display: none; margin-bottom: var(--s-4); }
+  .preview-container img { width: 100%; max-height: 220px; object-fit: cover; border-radius: var(--radius); display: block; }
+
+  .form-error { min-height: 20px; margin-bottom: var(--s-3); color: var(--sienna-dark); font-size: var(--t-sm); }
+  .form-note { margin-top: var(--s-3); font-size: var(--t-xs); line-height: 1.5; color: var(--ink-3); }
+
+  /* feed */
+  .posts-feed { display: flex; flex-direction: column; gap: var(--s-4); max-height: 640px; overflow-y: auto; }
+  .post-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
+  .post-body { padding: var(--s-4); }
+  .post-author { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-3); }
+  .post-avatar {
+    flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line);
+    color: var(--pine);
+    font-family: var(--font-head); font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.04em;
+  }
+  .post-author-name { font-family: var(--font-head); font-size: var(--t-sm); font-weight: 700; color: var(--ink); }
+  .post-author-trail {
+    font-family: var(--font-head); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--glacier); margin-top: 3px;
+  }
+  .post-text { font-size: var(--t-base); line-height: 1.6; color: var(--ink-2); }
+  .post-actions { margin-top: var(--s-3); }
+  .btn-like {
+    background: none; border: 1px solid var(--rule-firm); border-radius: var(--radius);
+    padding: 5px 11px; cursor: pointer;
+    font-family: var(--font-head); font-size: var(--t-xs); font-weight: 600;
+    color: var(--ink-3);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-like:hover { color: var(--sienna); border-color: var(--sienna-line); }
+  .btn-like.liked { color: var(--sienna); border-color: var(--sienna); background: var(--sienna-soft); }
+
+  .comments-section { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--rule); }
+  .comment { display: flex; gap: var(--s-3); margin-bottom: var(--s-3); }
+  .comment-avatar {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface-alt); border: 1px solid var(--rule);
+    font-family: var(--font-head); font-size: 10px; font-weight: 700; color: var(--ink-3);
+  }
+  .comment-text { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .comment-text strong { color: var(--ink); font-family: var(--font-head); font-weight: 700; }
+  .comment-input-row { display: flex; gap: var(--s-2); }
+  .comment-input-row input {
+    flex: 1; padding: 8px 11px;
+    font-family: var(--font-body); font-size: var(--t-sm); color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule-firm); border-radius: var(--radius);
+  }
+  .comment-input-row input:focus { border-color: var(--glacier); }
+  .btn-comment {
+    padding: 8px 14px; cursor: pointer;
+    background: var(--surface-alt); border: 1px solid var(--rule-firm); border-radius: var(--radius);
+    font-family: var(--font-head); font-size: var(--t-xs); font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2);
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-comment:hover { color: var(--sienna); border-color: var(--sienna-line); }
+
+  /* ─── OVERLAY BASE (inquiry panel) ─── */
+  .inquiry-overlay {
+    position: fixed; inset: 0; z-index: 2600;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: var(--s-5);
+    background: rgba(30,36,40,0.55);
+  }
+  .inquiry-overlay.open { display: flex; animation: fadeIn 0.2s ease-out; }
+  .inquiry-close {
+    position: absolute; top: var(--s-4); right: var(--s-4); z-index: 5;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    border-radius: 50%; cursor: pointer;
+    font-size: 15px; line-height: 1; color: var(--ink);
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .inquiry-close:hover { background: var(--surface-alt); border-color: var(--ink); }
+
+  /* ─── CAROUSEL ───
+     Scroll-snap does the work, so a swipe or a trackpad drag scrolls the row
+     with JavaScript disabled. The arrow buttons are an enhancement and are
+     only revealed once the js class is present. */
+  /* ─── JOURNEY CARD ───
+     Used by the Explore teaser here and by every catalogue grid on
+     explore.html. The whole card is one link. */
+  .jcard {
+    display: flex; flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow: hidden; text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .jcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--rule-firm); }
+  .jcard:focus-visible { outline: 2px solid var(--sienna); outline-offset: 2px; }
+  .jcard-media { position: relative; aspect-ratio: 4 / 3; }
+  .jcard-body { display: flex; flex-direction: column; gap: 6px; padding: var(--s-4) var(--s-5) var(--s-5); }
+  .jcard-name {
+    font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.01em; color: var(--ink);
+  }
+  .jcard-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  .jcard-elev {
+    font-family: var(--font-head); font-size: var(--t-sm); font-weight: 700;
+    color: var(--sienna); font-variant-numeric: tabular-nums;
+  }
+  .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
+  .teaser-more { margin-top: var(--s-6); }
+
+  /* ─── DISPATCHES ─── */
+  .dispatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }
+  .dispatch {
+    display: flex; flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    text-decoration: none; color: var(--ink);
+    animation: riseIn 0.5s ease-out both;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .dispatch:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--rule-firm); }
+  .dispatch[hidden] { display: none; }
+  .dispatch-media { position: relative; aspect-ratio: 16 / 9; }
+  .dispatch-body { flex: 1; display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); }
+  .dispatch-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700; line-height: 1.28; letter-spacing: -0.01em; }
+  .dispatch:hover .dispatch-title { color: var(--sienna-dark); }
+  .dispatch-meta {
+    margin-top: auto; padding-top: var(--s-3);
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap;
+    font-family: var(--font-head); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .dispatch-more { margin-top: var(--s-5); display: flex; justify-content: center; }
+  .dispatch-more[hidden] { display: none; }
+
+  .badge-summit     { color: var(--sienna-dark); background: var(--sienna-soft);  border-color: var(--sienna-line); }
+  .badge-expedition { color: var(--pine);        background: var(--pine-soft);    border-color: var(--pine-line); }
+  .badge-event      { color: #4A6376;            background: var(--glacier-soft); border-color: var(--glacier-line); }
+  /* In Memoriam stays deliberately quiet: no fill, no colour. */
+  .badge-memoriam   { color: var(--ink-3);       background: transparent;         border-color: var(--rule-firm); font-weight: 600; }
+
+  /* ─── LIGHTBOX ───
+     A light backdrop rather than a black theatre: the photography is bright
+     daylight work and reads better against the same snow surface as the site.
+     Built only for JS users; without JS every photo is still on the page. */
+  .photo-slot[data-lb] { cursor: zoom-in; }
+
+  .lightbox {
+    position: fixed; inset: 0; z-index: 2800;
+    display: none;
+    background: rgba(250,250,247,0.975);
+  }
+  .lightbox.open { display: grid; grid-template-rows: 1fr auto; animation: fadeIn 0.18s ease-out; }
+
+  .lb-stage {
+    position: relative; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-8) var(--s-9) var(--s-4);
+  }
+  .lb-img {
+    max-width: 100%; max-height: 100%;
+    object-fit: contain; display: block;
+    border-radius: var(--radius);
+    background: var(--placeholder);
+    box-shadow: 0 18px 60px rgba(46,52,56,0.22);
+  }
+  .lb-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: var(--s-4); flex-wrap: wrap;
+    padding: 0 var(--s-5) var(--s-6);
+  }
+  .lb-counter {
+    font-family: var(--font-head); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .lb-caption {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    box-shadow: var(--shadow-card);
+    font-size: 17px; color: var(--ink); cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .lb-btn:hover { background: var(--surface-alt); border-color: var(--ink); }
+  .lb-prev { left: var(--s-4); }
+  .lb-next { right: var(--s-4); }
+  .lb-close {
+    position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--rule-firm);
+    font-size: 15px; color: var(--ink); cursor: pointer;
+  }
+  .lb-close:hover { background: var(--surface-alt); border-color: var(--ink); }
+  @media (max-width: 640px) {
+    .lb-stage { padding: var(--s-8) var(--s-3) var(--s-3); }
+    .lb-btn { width: 40px; height: 40px; font-size: 15px; }
+    .lb-prev { left: 6px; } .lb-next { right: 6px; }
+  }
+
+  /* ─── DETAIL VIEW (its own page, driven by the URL hash) ─── */
+  .detail {
+    position: fixed; inset: 0; z-index: 2500;
+    display: none;
+    overflow-y: auto;
+    background: var(--surface);
+  }
+  .detail.open { display: block; animation: fadeIn 0.2s ease-out; }
+  .detail-bar {
+    position: sticky; top: 0; z-index: 3;
+    height: var(--nav-h);
+    display: flex; align-items: center;
+    padding: 0 var(--s-5);
+    background: var(--surface);
+    border-bottom: 1px solid var(--rule);
+  }
+  .detail-back {
+    display: inline-flex; align-items: center; gap: var(--s-2);
+    background: none; border: none; padding: 0; cursor: pointer;
+    font-family: var(--font-head); font-size: var(--t-xs); font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2);
+    transition: color 0.15s ease;
+  }
+  .detail-back:hover { color: var(--sienna); }
+
+  .detail-hero { position: relative; height: min(40vh, 360px); }
+  /* keep the placeholder filename clear of the title band */
+  .detail-hero .photo-slot { align-items: flex-start; justify-content: flex-end; padding: var(--s-5); }
+  .detail-hero-info {
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+    padding: var(--s-6) var(--s-5);
+    background: rgba(28,34,38,0.44);
+  }
+  .detail-hero-inner { max-width: var(--wrap); margin: 0 auto; }
+  .detail-region {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.88);
+  }
+  .detail-title {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 4.6vw, 48px);
+    font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
+    color: #fff; margin: var(--s-2) 0 var(--s-3);
+  }
+  .detail-lede { font-size: var(--t-lg); line-height: 1.6; color: var(--ink); margin-bottom: var(--s-4); }
+  .spec-panel .spec:last-of-type { border-bottom: none; }
+  .spec-panel .btn { width: 100%; margin-top: var(--s-5); }
+
+  .detail-gallery-title {
+    font-family: var(--font-head); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: var(--s-4);
+  }
+  .gallery-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-4); }
+  .gallery-figure { margin: 0; }
+  .gallery-slot { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
+  .gallery-caption {
+    margin-top: var(--s-2);
+    font-family: var(--font-head); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .detail-foot { padding: var(--s-6) 0 var(--s-7); border-top: 1px solid var(--rule); margin-top: var(--s-6); }
+
+  /* honeypot: off-screen, never focusable, never announced */
+  .hp-field {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px; height: 1px; overflow: hidden;
+  }
+
+  /* ─── INQUIRY PANEL ─── */
+  .inquiry-panel {
+    position: relative;
+    width: 100%; max-width: 940px; max-height: 92vh;
+    display: grid; grid-template-columns: 0.85fr 1.15fr;
+    overflow: hidden;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-overlay);
+    animation: panelIn 0.3s ease-out;
+  }
+  .inquiry-left { position: relative; min-height: 100%; padding: var(--s-7) var(--s-6); display: flex; align-items: flex-end; overflow: hidden; background: var(--placeholder); }
+  .inquiry-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; }
+  .inquiry-left::after { content: ''; position: absolute; inset: 0; z-index: 1; background: rgba(28,34,38,0.42); }
+  .inquiry-left-content { position: relative; z-index: 2; }
+  .inquiry-eyebrow {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #fff; opacity: 0.9;
+  }
+  .inquiry-heading { font-family: var(--font-head); font-size: clamp(24px, 3vw, 32px); font-weight: 700; line-height: 1.12; color: #fff; margin-top: var(--s-3); }
+  .inquiry-subtext { font-size: var(--t-base); line-height: 1.55; color: rgba(255,255,255,0.92); margin-top: var(--s-3); }
+  .inquiry-promise { list-style: none; margin-top: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); }
+  .inquiry-promise li { display: flex; gap: var(--s-2); font-size: var(--t-sm); color: rgba(255,255,255,0.92); }
+  .inquiry-promise li::before { content: '\2726'; color: #fff; opacity: 0.8; }
+
+  .inquiry-right { padding: var(--s-6); overflow-y: auto; }
+  .inquiry-form-label { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700; color: var(--ink); }
+  .inquiry-form-hint { font-size: var(--t-sm); color: var(--ink-3); margin: var(--s-2) 0 var(--s-5); }
+  .inquiry-success { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--s-8) 0; }
+  .inquiry-success.is-visible { display: flex; animation: fadeIn 0.25s ease-out; }
+  .inquiry-success-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--pine-soft); border: 1px solid var(--pine-line);
+    color: var(--pine); font-size: 20px; margin-bottom: var(--s-4);
+  }
+  .inquiry-success h3 { font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700; color: var(--ink); }
+  .inquiry-success p { font-size: var(--t-base); line-height: 1.6; color: var(--ink-2); margin-top: var(--s-3); max-width: 42ch; }
+
+  /* ─── FOOTER ─── */
+  /* ─── FOOTER ───
+     Deep ink with a ridgeline photograph ghosted behind it. The photograph is
+     a background layer, not an <img>: it carries no information, so it should
+     not appear in the accessibility tree or take an alt text. The veil above
+     it is a separate element rather than a ::after, because ::after would
+     inherit the photograph layer's opacity and stop holding the type. */
+  .site-footer {
+    position: relative;
+    background: var(--ink);
+    color: var(--footer-text);
+    overflow: hidden;
+    /* generous top so the ridgeline has a band of its own to read in,
+       above where any type sits */
+    padding: clamp(76px, 8vw, 132px) 0 0;
+  }
+  .footer-ridge {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('assets/images/footer-ridge.jpg') center 26% / cover no-repeat;
+    opacity: 0.34;
+  }
+  .footer-veil {
+    position: absolute; inset: 0; z-index: 1;
+    /* Light at the very top where the silhouette lives, then dense from the
+       point the columns start, so every line of type sits on near solid ink. */
+    background: linear-gradient(180deg, rgba(46,52,56,0.22) 0%, rgba(46,52,56,0.55) 20%,
+                rgba(46,52,56,0.93) 40%, #2E3438 72%);
+  }
+  .site-footer > .wrap { position: relative; z-index: 2; }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--s-6) var(--s-5);
+    align-items: start;
+  }
+  .footer-mission {
+    font-size: var(--t-sm); line-height: 1.6;
+    color: var(--footer-text); opacity: 0.86;
+    max-width: 30ch; margin-top: var(--s-4);
+  }
+  .footer-col-title {
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    /* Not brand sienna: #B85C38 on the ink footer is 2.4:1, which fails at
+       11px. This is the same hue lifted until it clears 4.5:1. */
+    color: var(--sienna-lift);
+    margin-bottom: var(--s-4);
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: var(--s-3); }
+  .footer-links a {
+    font-size: var(--t-sm); color: var(--footer-text);
+    text-decoration: none; transition: color 0.15s ease;
+  }
+  .footer-links a:hover { color: #fff; }
+
+  .footer-primary { display: flex; gap: var(--s-3); }
+  .footer-social  { display: flex; gap: var(--s-3); margin-top: var(--s-4); flex-wrap: wrap; }
+  .fcircle {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .fcircle svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .fcircle svg .glyph-fill { fill: currentColor; stroke: none; }
+  /* pure white, not --surface: snow on sienna is 4.34:1 and white is 4.55:1,
+     which clears the text threshold as well as the graphics one */
+  .fcircle-solid { background: var(--sienna); color: #fff; border: 1px solid var(--sienna); }
+  .fcircle-solid:hover { background: var(--sienna-dark); border-color: var(--sienna-dark); }
+  .fcircle-outline { background: transparent; color: var(--sienna-lift); border: 1px solid var(--sienna-lift); }
+  .fcircle-outline:hover { background: var(--sienna-lift); color: var(--ink); }
+  .fcircle:focus-visible { outline: 2px solid var(--surface); outline-offset: 2px; }
+
+  .footer-bottom {
+    position: relative; z-index: 2;
+    margin-top: var(--s-7);
+    padding: var(--s-4) 0 var(--s-5);
+    border-top: 1px solid rgba(217,221,224,0.16);
+    display: flex; flex-wrap: wrap; gap: var(--s-3);
+    justify-content: space-between;
+    font-size: var(--t-xs); color: var(--footer-text); opacity: 0.78;
+  }
+  .footer-bottom a { color: inherit; text-decoration: none; }
+  .footer-bottom a:hover { color: #fff; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .story-grid, .community-grid { grid-template-columns: 1fr; gap: var(--s-7); }
+    .story-photo, .community-photo { aspect-ratio: 16 / 10; }
+    .inquiry-panel { grid-template-columns: 1fr; max-height: 94vh; overflow-y: auto; }
+    .inquiry-left { min-height: 190px; padding: var(--s-6) var(--s-5); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-4); }
+  }
+  @media (max-width: 640px) {
+    :root { --s-9: 48px; --s-8: 40px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: var(--s-2); }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+    .hero-scroll { font-size: 9px; letter-spacing: 0.2em; }
+    /* keep the placeholder label clear of the hero CTAs on small screens */
+    .card-grid, .dispatch-grid { grid-template-columns: 1fr; }
+    .band { height: 34vh; min-height: 220px; }
+    .detail-hero { height: 34vh; min-height: 220px; }
+    .detail-hero-info { padding: var(--s-5) var(--s-4); }
+    .inquiry-right, .panel-body { padding: var(--s-5) var(--s-4); }
+    .inquiry-overlay { padding: var(--s-3); }
+  }
+  /* ─── EXPLORE PAGE ─── */
+  .explore-main { padding-top: 0; }
+  .xhead { position: relative; overflow: hidden; background: var(--placeholder); }
+  .xhead-media { position: absolute; inset: 0; }
+  /* the placeholder label sits top left rather than dead centre, where it
+     would print straight through the title and lede on a narrow screen */
+  .xhead-media .photo-slot { height: 100%; align-items: flex-start; justify-content: flex-start; padding: var(--s-4); }
+  .xhead-scrim { position: absolute; inset: 0; background: rgba(28,34,38,0.42); }
+  .xhead-inner {
+    position: relative; z-index: 2;
+    max-width: var(--wrap); margin: 0 auto;
+    padding: clamp(56px, 9vw, 104px) var(--s-5);
+  }
+  .xhead-title {
+    font-family: var(--font-hero); font-weight: 900;
+    font-size: clamp(38px, 6vw, 68px); line-height: 1.04;
+    letter-spacing: -0.02em; color: #fff;
+    text-shadow: 0 2px 20px rgba(20,24,27,0.35);
+  }
+  .xhead-lede {
+    font-family: var(--font-hero); font-weight: 400;
+    font-size: clamp(16px, 2vw, 20px); line-height: 1.5;
+    color: #fff; max-width: 52ch; margin-top: var(--s-3);
+    text-shadow: 0 1px 14px rgba(20,24,27,0.4);
+  }
+
+  /* the two rails */
+  .rail-toggle {
+    display: flex; gap: 0; margin: var(--s-7) 0 var(--s-5);
+    border-bottom: 1px solid var(--rule-firm);
+  }
+  .rail-btn {
+    appearance: none; background: none; border: none; cursor: pointer;
+    font-family: var(--font-head); font-size: clamp(15px, 2.1vw, 20px);
+    font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); padding: 0 var(--s-5) var(--s-4);
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .rail-btn:first-child { padding-left: 0; }
+  .rail-btn:hover { color: var(--ink-2); }
+  .rail-btn[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--sienna); }
+
+  /* category tabs. They scroll sideways on a phone rather than wrapping into
+     a block that pushes the grid off the first screen. */
+  .cat-tabs {
+    display: flex; gap: var(--s-2);
+    overflow-x: auto; scrollbar-width: none;
+    padding-bottom: var(--s-3); margin-bottom: var(--s-6);
+    -webkit-overflow-scrolling: touch;
+  }
+  .cat-tabs::-webkit-scrollbar { display: none; }
+  .cat-btn {
+    appearance: none; cursor: pointer; white-space: nowrap;
+    font-family: var(--font-head); font-size: var(--t-sm); font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink-2); background: var(--card);
+    border: 1px solid var(--rule-firm); border-radius: 999px;
+    padding: 9px var(--s-4);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .cat-btn:hover { border-color: var(--ink-3); color: var(--ink); }
+  .cat-btn[aria-selected="true"] { background: var(--sienna); border-color: var(--sienna); color: #fff; }
+  .cat-count { opacity: 0.65; font-variant-numeric: tabular-nums; }
+
+  .rail[hidden], .catpanel[hidden] { display: none; }
+  .panel-heading {
+    font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700;
+    color: var(--ink); margin: var(--s-6) 0 var(--s-4);
+  }
+  .js .panel-heading { display: none; }
+
+  /* With JavaScript off nothing can switch, so every rail and every category
+     is shown at once, each under its own heading, and the controls that would
+     do nothing are hidden. */
+  .no-js .rail-toggle, .no-js .cat-tabs { display: none; }
+  .no-js .rail[hidden], .no-js .catpanel[hidden] { display: block; }
+  .rail-heading {
+    font-family: var(--font-head); font-size: var(--t-2xl); font-weight: 800;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink); margin: var(--s-7) 0 var(--s-4);
+  }
+  .js .rail-heading { display: none; }
+
+  /* The static catalogue entry behind every card. It is what a crawler and a
+     reader without JavaScript get; the router hides it and renders the same
+     facts into the overlay instead. */
+  .journey-static { display: none; }
+  .journey-static:target { display: block; }
+  .js .journey-static, .js .journey-static:target { display: none; }
+  .jstatic-inner {
+    max-width: 62ch; margin: var(--s-7) auto;
+    padding: var(--s-6); background: var(--card);
+    border: 1px solid var(--rule); border-radius: var(--radius-lg);
+  }
+  .jstatic-inner h2 { font-family: var(--font-head); font-size: var(--t-2xl); font-weight: 700; color: var(--ink); }
+
+  /* catalogue state inside the detail overlay */
+  .cat-note {
+    margin-top: var(--s-5); padding: var(--s-5);
+    background: var(--surface-alt); border: 1px solid var(--rule);
+    border-radius: var(--radius); color: var(--ink-2);
+    font-size: var(--t-base); line-height: 1.6;
+  }
+  .fact-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--s-4); margin-top: var(--s-5);
+    padding: var(--s-5) 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  }
+  .fact-label {
+    font-family: var(--font-head); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .fact-value { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700; color: var(--ink); margin-top: 3px; }
+
+  .detail-section { margin-top: var(--s-7); }
+  .detail-section-title {
+    font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
+    color: var(--ink); margin-bottom: var(--s-4);
+  }
+  .hl-list, .cov-list { list-style: none; display: flex; flex-direction: column; gap: var(--s-3); }
+  .hl-list li, .cov-list li { position: relative; padding-left: var(--s-5); color: var(--ink-2); line-height: 1.6; }
+  .hl-list li::before, .cov-list li::before { content: '\2726'; position: absolute; left: 0; color: var(--sienna); }
+  .day { border-bottom: 1px solid var(--rule); }
+  .day summary {
+    cursor: pointer; padding: var(--s-4) 0; list-style: none;
+    font-family: var(--font-head); font-weight: 600; color: var(--ink);
+    display: flex; gap: var(--s-4);
+  }
+  .day summary::-webkit-details-marker { display: none; }
+  .day-n { color: var(--sienna); font-variant-numeric: tabular-nums; }
+  .day p { padding: 0 0 var(--s-4); color: var(--ink-2); line-height: 1.6; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer">
+  <button class="lb-close" id="lb-close" type="button" aria-label="Close viewer">&#10005;</button>
+  <div class="lb-stage">
+    <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photograph">&#8592;</button>
+    <img class="lb-img" id="lb-img" alt="">
+    <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photograph">&#8594;</button>
+  </div>
+  <div class="lb-bar">
+    <span class="lb-counter" id="lb-counter"></span>
+    <span class="lb-caption" id="lb-caption"></span>
+  </div>
+</div>
+
+<!-- DETAIL VIEW (trail / expedition) - populated from the URL hash -->
+<div id="detail-view" class="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+  <div class="detail-bar">
+    <button class="detail-back" type="button" id="detail-back">
+      <span aria-hidden="true">&larr;</span> <span id="detail-back-label">All journeys</span>
+    </button>
+  </div>
+  <div id="detail-content"></div>
+</div>
+
+<!-- INQUIRY OVERLAY -->
+<div id="inquiry-overlay" class="inquiry-overlay" onclick="handleInquiryClick(event)">
+  <div class="inquiry-panel" role="dialog" aria-modal="true" aria-labelledby="inquiry-heading">
+    <button class="inquiry-close" type="button" onclick="closeInquiry()" aria-label="Close">&#10005;</button>
+
+    <div class="inquiry-left">
+      <div class="inquiry-bg" id="inquiry-bg"></div>
+      <div class="inquiry-left-content">
+        <div class="inquiry-eyebrow" id="inquiry-eyebrow">Express Interest</div>
+        <h2 class="inquiry-heading" id="inquiry-heading">Join the Journey</h2>
+        <p class="inquiry-subtext" id="inquiry-subtext">Tell us you are interested. We will be in touch as soon as dates are set.</p>
+        <ul class="inquiry-promise">
+          <li>No commitment, just an expression of interest</li>
+          <li>We reply within 48 hours</li>
+          <li>Small groups, personal attention</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="inquiry-right">
+      <div class="inquiry-success" id="inquiry-success">
+        <div class="inquiry-success-icon">&#10022;</div>
+        <h3>Message received</h3>
+        <p>Thanks for your interest in <strong id="inquiry-success-name"></strong>. We will be in touch within 48 hours. Keep your boots ready.</p>
+      </div>
+
+      <form id="inquiry-form">
+        <p class="inquiry-form-label">Your details</p>
+        <p class="inquiry-form-hint">All fields required except the message. We keep your information private.</p>
+
+        <div class="field">
+          <label for="inq-name">Full name</label>
+          <input type="text" id="inq-name" name="name" placeholder="Your full name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="inq-email">Email address</label>
+          <input type="email" id="inq-email" name="email" placeholder="you@email.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="inq-phone">Phone / WhatsApp</label>
+          <input type="tel" id="inq-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="inq-journey">Which journey</label>
+          <select id="inq-journey" name="expedition" required>
+            <option value="">Select a journey</option>
+            <optgroup label="8000ers">
+              <option>Everest</option>
+              <option>K2</option>
+              <option>Kangchenjunga</option>
+              <option>Lhotse</option>
+              <option>Makalu</option>
+              <option>Cho Oyu</option>
+              <option>Dhaulagiri I</option>
+              <option>Manaslu</option>
+              <option>Nanga Parbat</option>
+              <option>Annapurna I</option>
+              <option>Gasherbrum I</option>
+              <option>Broad Peak</option>
+              <option>Gasherbrum II</option>
+              <option>Shisha Pangma</option>
+            </optgroup>
+            <optgroup label="7000ers">
+              <option>Himlung Himal</option>
+              <option>Baruntse</option>
+              <option>Baruntse and Mera Peak</option>
+              <option>Putha Hiunchuli</option>
+              <option>Pumori</option>
+              <option>Nuptse</option>
+              <option>Annapurna IV</option>
+            </optgroup>
+            <optgroup label="6000ers">
+              <option>Ama Dablam</option>
+              <option>Ama Dablam and Lobuche East</option>
+              <option>Ama Dablam and Island Peak</option>
+              <option>Three Peaks and Everest Base Camp</option>
+              <option>Lobuche East, Island Peak and Everest Base Camp</option>
+              <option>Lobuche East and Everest Base Camp</option>
+              <option>Lobuche East</option>
+              <option>Island Peak and Everest Base Camp</option>
+              <option>Island Peak</option>
+              <option>Mera Peak</option>
+              <option>Mera Peak and Island Peak</option>
+              <option>Cholatse</option>
+              <option>Chulu West</option>
+              <option>Pharchamo via Tashi Lapcha</option>
+              <option>Dhampus Peak</option>
+            </optgroup>
+            <optgroup label="Global Summits">
+              <option>Kilimanjaro</option>
+              <option>Torres del Paine</option>
+              <option>Haute Route</option>
+            </optgroup>
+            <optgroup label="Trekking">
+              <option>Everest Base Camp Trek</option>
+              <option>Everest Three Passes</option>
+              <option>Gokyo Lakes</option>
+              <option>Annapurna Circuit</option>
+              <option>Annapurna Base Camp</option>
+              <option>Mardi Himal</option>
+              <option>Upper Mustang</option>
+              <option>Manaslu Circuit</option>
+              <option>Manaslu Base Camp</option>
+              <option>Langtang Valley</option>
+              <option>Ladakh High Passes</option>
+              <option>Tour du Mont Blanc</option>
+              <option>Haute Route, Chamonix to Zermatt</option>
+              <option>Torres del Paine Circuit</option>
+              <option>Huayhuash Circuit</option>
+              <option>Kilimanjaro Trek</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label for="inq-experience">Your experience level</label>
+          <select id="inq-experience" name="experience" required>
+            <option value="">Select your background</option>
+            <option>Beginner, new to multi-day trekking</option>
+            <option>Intermediate, several treks completed</option>
+            <option>Experienced, high-altitude background</option>
+            <option>Expert, technical mountaineering</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="inq-message">Message <span class="optional">(optional)</span></label>
+          <textarea id="inq-message" name="message" placeholder="Questions, dietary needs, preferred dates, travel companions"></textarea>
+        </div>
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="inq-hp">Leave this field empty</label>
+          <input type="text" id="inq-hp" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+        <p class="form-error" id="inquiry-error" role="alert"></p>
+        <button class="btn btn-primary inquiry-submit" type="submit" style="width:100%">Send my interest &rarr;</button>
+        <p class="form-note">By submitting you agree to be contacted about this expedition. We never share your details.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<nav class="site-nav" id="navbar">
+  <div class="nav-inner">
+    <a class="wordmark" href="index.html#hero"><svg class="wordmark-svg" viewBox="0 0 492.44 202.48" role="img" aria-label="The Mountain Diaries"><path d="M8.12 31.6V5.46H0.0V0.0H22.6V5.46H14.5V31.6Z M232.96 31.6V0.0H239.34V12.8H248.92V0.0H255.27V31.6H248.92V18.25H239.34V31.6Z M467.58 31.6V0.0H488.0V5.38H473.96V12.83H486.21V18.19H473.96V26.22H488.24V31.6Z M4.21 132.03V45.34H35.96L40.62 75.96Q41.0 78.48 41.5 82.14Q42.01 85.79 42.57 89.51Q43.14 93.22 43.52 96.12H44.78Q45.16 93.73 45.66 90.2Q46.16 86.67 46.67 82.96Q47.17 79.24 47.55 76.09L51.96 45.34H82.96V132.03H61.16V107.08Q61.16 100.28 61.41 94.61Q61.66 88.94 61.91 84.85Q62.17 80.75 62.17 78.99H61.03Q60.78 80.5 60.4 82.58Q60.02 84.66 59.71 86.55Q59.39 88.44 59.14 89.7L52.34 132.03H34.82L28.02 89.7Q27.89 88.44 27.52 86.55Q27.14 84.66 26.82 82.58Q26.51 80.5 26.26 78.99H25.12Q25.37 82.14 25.56 86.86Q25.75 91.59 25.88 96.88Q26.0 102.17 26.0 107.08V132.03Z M120.9 133.54Q110.31 133.54 103.45 129.01Q96.58 124.47 93.18 114.58Q89.78 104.69 89.78 88.69Q89.78 72.69 93.18 62.8Q96.58 52.9 103.45 48.37Q110.31 43.83 120.9 43.83Q131.48 43.83 138.41 48.37Q145.34 52.9 148.68 62.8Q152.02 72.69 152.02 88.69Q152.02 104.69 148.68 114.58Q145.34 124.47 138.41 129.01Q131.48 133.54 120.9 133.54ZM120.9 113.76Q123.54 113.76 125.06 112.63Q126.57 111.49 127.32 109.42Q128.08 107.34 128.33 104.38Q128.58 101.41 128.58 97.76V79.62Q128.58 75.96 128.33 73.06Q128.08 70.17 127.32 68.02Q126.57 65.88 125.06 64.75Q123.54 63.61 120.9 63.61Q118.25 63.61 116.74 64.75Q115.23 65.88 114.47 68.02Q113.72 70.17 113.46 73.06Q113.21 75.96 113.21 79.62V97.76Q113.21 101.41 113.46 104.38Q113.72 107.34 114.47 109.42Q115.23 111.49 116.74 112.63Q118.25 113.76 120.9 113.76Z M185.55 133.54Q177.11 133.54 170.94 130.71Q164.76 127.87 161.49 121.2Q158.21 114.52 158.21 103.05V45.34H181.27V104.31Q181.27 108.72 181.9 111.31Q182.53 113.89 185.3 113.89Q188.2 113.89 188.95 111.31Q189.71 108.72 189.71 104.31V45.34H212.77V103.05Q212.77 114.52 209.49 121.2Q206.22 127.87 200.17 130.71Q194.12 133.54 185.55 133.54Z M220.22 132.03V45.34H242.39L250.08 71.43Q250.46 72.81 250.9 74.2Q251.34 75.58 251.78 77.16Q252.22 78.73 252.6 80.5H253.23Q253.23 78.23 253.23 75.96Q253.23 73.69 253.23 71.43V45.34H275.41V132.03H253.1L245.54 105.82Q244.79 103.3 244.16 100.66Q243.53 98.01 242.9 95.49H242.27Q242.27 98.01 242.27 100.66Q242.27 103.3 242.27 105.82V132.03Z M296.97 132.03V65.25H280.34V45.34H336.41V65.25H320.03V132.03Z M336.3 132.03 353.56 45.34H385.81L403.08 132.03H378.76L376.99 119.31H361.62L359.98 132.03ZM364.27 100.15H374.47L371.83 80.75Q371.7 79.62 371.51 77.73Q371.32 75.84 371.07 73.51Q370.82 71.17 370.51 68.84Q370.19 66.51 369.94 64.62H368.8Q368.55 67.02 368.24 69.98Q367.92 72.94 367.61 75.77Q367.29 78.61 366.91 80.75Z M406.12 132.03V45.34H429.17V132.03Z M437.25 132.03V45.34H459.43L467.12 71.43Q467.49 72.81 467.94 74.2Q468.38 75.58 468.82 77.16Q469.26 78.73 469.64 80.5H470.27Q470.27 78.23 470.27 75.96Q470.27 73.69 470.27 71.43V45.34H492.44V132.03H470.14L462.58 105.82Q461.82 103.3 461.19 100.66Q460.56 98.01 459.93 95.49H459.3Q459.3 98.01 459.3 100.66Q459.3 103.3 459.3 105.82V132.03Z M2.71 201.54V147.91H19.06Q25.47 147.91 29.15 150.72Q32.82 153.54 34.37 159.4Q35.92 165.27 35.92 174.55Q35.92 183.74 34.31 189.73Q32.7 195.72 28.97 198.63Q25.23 201.54 18.78 201.54ZM14.6 191.28H17.89Q19.56 191.28 20.71 190.69Q21.85 190.09 22.54 188.69Q23.22 187.29 23.53 184.93Q23.84 182.57 23.84 179.09V171.39Q23.84 167.87 23.53 165.37Q23.22 162.87 22.55 161.27Q21.89 159.68 20.72 158.93Q19.56 158.17 17.89 158.17H14.6Z M86.53 201.54V147.91H98.42V201.54Z M146.53 201.54 157.89 147.91H174.12L185.52 201.54H173.03L171.19 191.6H160.42L158.66 201.54ZM161.88 181.66H169.77L167.35 167.34Q167.27 166.74 167.14 165.72Q167.0 164.69 166.83 163.42Q166.65 162.16 166.48 160.89Q166.3 159.63 166.14 158.56H165.55Q165.39 159.87 165.18 161.51Q164.97 163.14 164.75 164.7Q164.54 166.26 164.34 167.34Z M233.66 201.54V147.91H251.62Q257.56 147.91 260.84 150.04Q264.12 152.17 265.45 155.79Q266.78 159.41 266.78 163.87Q266.78 168.55 265.66 172.36Q264.53 176.17 261.7 178.51L268.59 201.54H256.27L251.14 182.53H245.55V201.54ZM245.55 172.82H250.0Q252.8 172.82 253.83 170.62Q254.86 168.41 254.86 165.03Q254.86 162.74 254.41 161.14Q253.96 159.55 252.89 158.69Q251.82 157.83 249.79 157.83H245.55Z M317.09 201.54V147.91H328.98V201.54Z M380.63 201.54V147.91H410.23V158.17H392.52V169.15H407.53V179.45H392.52V191.28H410.59V201.54Z M475.02 202.48Q471.62 202.48 468.7 201.77Q465.78 201.07 463.58 199.26Q461.39 197.44 460.15 194.22Q458.91 191.0 458.91 185.91Q458.91 185.65 458.91 185.15Q458.91 184.66 458.95 184.35H470.32Q470.32 184.74 470.32 185.15Q470.32 185.56 470.32 185.95Q470.32 188.48 470.82 189.86Q471.31 191.25 472.27 191.8Q473.24 192.35 474.66 192.35Q475.52 192.35 476.18 192.14Q476.84 191.93 477.36 191.47Q477.89 191.02 478.23 190.35Q478.56 189.69 478.71 188.78Q478.86 187.87 478.86 186.74Q478.86 184.94 478.05 183.69Q477.23 182.45 475.86 181.54Q474.48 180.64 472.77 179.85Q471.06 179.05 469.22 178.18Q467.37 177.3 465.66 176.11Q463.96 174.92 462.58 173.18Q461.2 171.44 460.39 168.99Q459.57 166.55 459.57 163.12Q459.57 158.72 460.83 155.65Q462.08 152.57 464.28 150.65Q466.48 148.73 469.26 147.83Q472.04 146.93 475.1 146.93Q478.3 146.93 481.01 147.71Q483.73 148.49 485.73 150.21Q487.73 151.93 488.85 154.78Q489.97 157.63 489.97 161.77V163.74H478.76V162.67Q478.76 160.88 478.47 159.66Q478.17 158.44 477.43 157.8Q476.68 157.15 475.21 157.15Q474.07 157.15 473.25 157.65Q472.43 158.14 472.02 159.15Q471.62 160.15 471.62 161.72Q471.62 163.65 472.43 164.98Q473.25 166.31 474.64 167.23Q476.04 168.16 477.75 168.95Q479.46 169.75 481.28 170.61Q483.11 171.46 484.81 172.63Q486.52 173.8 487.92 175.5Q489.32 177.2 490.13 179.62Q490.95 182.04 490.95 185.43Q490.95 191.24 489.01 195.02Q487.08 198.79 483.52 200.63Q479.96 202.48 475.02 202.48Z"/></svg></a>
+    <button class="nav-toggle" type="button" id="nav-toggle"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="explore.html" class="is-active" aria-current="page">Explore</a></li>
+      <li><a href="index.html#community" data-spy="community">Community</a></li>
+      <!-- re-target to the Know the Mountain section once it exists; it points at
+           the community hub meanwhile, and carries no spy so it cannot fight the
+           Community link for the active state -->
+      <li><a href="index.html#community">Know the Mountain</a></li>
+      <!-- re-target to the About Us section once it is written; #story is a stand in -->
+      <li><a href="index.html#story" data-spy="story">About Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="explore-main">
+
+  <!-- PAGE HEADER -->
+  <section class="xhead">
+    <div class="xhead-media"><div class="photo-slot" data-photo="explore-header.jpg"></div></div>
+    <div class="xhead-scrim" aria-hidden="true"></div>
+    <div class="xhead-inner">
+      <h1 class="xhead-title">Explore</h1>
+      <p class="xhead-lede">Every journey we run or plan to run, from a first 6,000 metre summit
+      to the eight thousanders, and the trekking routes that lead to them.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="rail-toggle" role="tablist" aria-label="Expeditions or trekking">
+        <button class="rail-btn" type="button" role="tab" id="rail-btn-exp"
+                aria-controls="rail-exp" aria-selected="true" data-rail-target="exp">Expeditions</button>
+        <button class="rail-btn" type="button" role="tab" id="rail-btn-trk"
+                aria-controls="rail-trk" aria-selected="false" data-rail-target="trk">Trekking</button>
+      </div>
+
+      <!-- EXPEDITIONS RAIL -->
+      <div class="rail" id="rail-exp" role="tabpanel" aria-labelledby="rail-btn-exp">
+        <h2 class="rail-heading">Expeditions</h2>
+        <div class="cat-tabs" role="tablist" aria-label="Expedition categories">
+          <button class="cat-btn" type="button" role="tab" id="tab-exp-0"
+                  aria-controls="panel-exp-0" aria-selected="true" data-rail="exp" data-tab="0">8000ers <span class="cat-count">14</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-exp-1"
+                  aria-controls="panel-exp-1" aria-selected="false" data-rail="exp" data-tab="1">7000ers <span class="cat-count">7</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-exp-2"
+                  aria-controls="panel-exp-2" aria-selected="false" data-rail="exp" data-tab="2">6000ers <span class="cat-count">15</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-exp-3"
+                  aria-controls="panel-exp-3" aria-selected="false" data-rail="exp" data-tab="3">Global Summits <span class="cat-count">3</span></button>
+        </div>
+        <div class="catpanel" id="panel-exp-0" role="tabpanel"
+             aria-labelledby="tab-exp-0">
+          <h2 class="panel-heading">8000ers</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/everest-8848">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-everest-8848.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Everest</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,848 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/k2-8611">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-k2-8611.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">K2</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,611 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/kangchenjunga-8586">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-kangchenjunga-8586.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Kangchenjunga</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,586 m</span><span class="jcard-where">Kangchenjunga &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/lhotse-8516">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-lhotse-8516.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Lhotse</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,516 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/makalu-8485">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-makalu-8485.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Makalu</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,485 m</span><span class="jcard-where">Makalu Barun &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/cho-oyu-8188">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-cho-oyu-8188.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Cho Oyu</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,188 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/dhaulagiri-8167">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-dhaulagiri-8167.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Dhaulagiri I</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,167 m</span><span class="jcard-where">Dhaulagiri &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/manaslu-8163">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-manaslu-8163.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Manaslu</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,163 m</span><span class="jcard-where">Manaslu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/nanga-parbat-8125">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-nanga-parbat-8125.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Nanga Parbat</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,125 m</span><span class="jcard-where">Himalaya &middot; Pakistan</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/annapurna-i-8091">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-annapurna-i-8091.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Annapurna I</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,091 m</span><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/gasherbrum-i-8080">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-gasherbrum-i-8080.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Gasherbrum I</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,080 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/broad-peak-8051">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-broad-peak-8051.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Broad Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,051 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/gasherbrum-ii-8034">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-gasherbrum-ii-8034.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Gasherbrum II</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,034 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/shisha-pangma-8027">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-shisha-pangma-8027.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Shisha Pangma</h3>
+            <p class="jcard-meta"><span class="jcard-elev">8,027 m</span><span class="jcard-where">Tibet &middot; China</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-exp-1" role="tabpanel"
+             aria-labelledby="tab-exp-1" hidden>
+          <h2 class="panel-heading">7000ers</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/himlung-7126">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-himlung-7126.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Himlung Himal</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,126 m</span><span class="jcard-where">Manaslu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/baruntse-7129">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-baruntse-7129.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Baruntse</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,129 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/baruntse-mera">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-baruntse-mera.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Baruntse and Mera Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,129 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/putha-hiunchuli-7246">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-putha-hiunchuli-7246.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Putha Hiunchuli</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,246 m</span><span class="jcard-where">Dhaulagiri &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/pumori-7145">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-pumori-7145.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Pumori</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,145 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/nuptse-7864">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-nuptse-7864.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Nuptse</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,864 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/annapurna-iv-7525">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-annapurna-iv-7525.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Annapurna IV</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,525 m</span><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-exp-2" role="tabpanel"
+             aria-labelledby="tab-exp-2" hidden>
+          <h2 class="panel-heading">6000ers</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/ama-dablam-6812">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ama-dablam-6812.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Ama Dablam</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,812 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/ama-dablam-lobuche">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ama-dablam-lobuche.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Ama Dablam and Lobuche East</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,812 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/ama-dablam-island">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ama-dablam-island.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Ama Dablam and Island Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,812 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/three-peaks-ebc">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-three-peaks-ebc.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Three Peaks and Everest Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/two-peaks-lobuche-island-ebc">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-two-peaks-lobuche-island-ebc.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Lobuche East, Island Peak and Everest Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,189 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/lobuche-ebc">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-lobuche-ebc.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Lobuche East and Everest Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,119 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/lobuche-6119">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-lobuche-6119.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Lobuche East</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,119 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/island-peak-ebc">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-island-peak-ebc.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Island Peak and Everest Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,189 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/island-peak-6189">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-island-peak-6189.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Island Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,189 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/mera-peak-6476">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-mera-peak-6476.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Mera Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,476 m</span><span class="jcard-where">Hinku &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/two-peaks-mera-island">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-two-peaks-mera-island.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Mera Peak and Island Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,476 m</span><span class="jcard-where">Hinku &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/cholatse-6440">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-cholatse-6440.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Cholatse</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,440 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/chulu-west-6419">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-chulu-west-6419.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Chulu West</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,419 m</span><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/pharchamo-tashi-lapcha">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-pharchamo-tashi-lapcha.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Pharchamo via Tashi Lapcha</h3>
+            <p class="jcard-meta"><span class="jcard-where">Rolwaling &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/dhampus-6012">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-dhampus-6012.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Dhampus Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,012 m</span><span class="jcard-where">Dhaulagiri &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-exp-3" role="tabpanel"
+             aria-labelledby="tab-exp-3" hidden>
+          <h2 class="panel-heading">Global Summits</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/kilimanjaro-5895">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-kilimanjaro-5895.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Kilimanjaro</h3>
+            <p class="jcard-meta"><span class="jcard-elev">5,895 m</span><span class="jcard-where">Kilimanjaro &middot; Tanzania</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/torres-del-paine">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-torres-del-paine.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Torres del Paine</h3>
+            <p class="jcard-meta"><span class="jcard-where">Patagonia &middot; Chile</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/haute-route">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-haute-route.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Haute Route</h3>
+            <p class="jcard-meta"><span class="jcard-where">Pennine Alps &middot; Switzerland and France</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TREKKING RAIL -->
+      <div class="rail" id="rail-trk" role="tabpanel" aria-labelledby="rail-btn-trk" hidden>
+        <h2 class="rail-heading">Trekking</h2>
+        <div class="cat-tabs" role="tablist" aria-label="Trekking regions">
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-0"
+                  aria-controls="panel-trk-0" aria-selected="true" data-rail="trk" data-tab="0">Everest <span class="cat-count">3</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-1"
+                  aria-controls="panel-trk-1" aria-selected="false" data-rail="trk" data-tab="1">Annapurna <span class="cat-count">4</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-2"
+                  aria-controls="panel-trk-2" aria-selected="false" data-rail="trk" data-tab="2">Manaslu <span class="cat-count">2</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-3"
+                  aria-controls="panel-trk-3" aria-selected="false" data-rail="trk" data-tab="3">Langtang <span class="cat-count">1</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-4"
+                  aria-controls="panel-trk-4" aria-selected="false" data-rail="trk" data-tab="4">Ladakh <span class="cat-count">1</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-5"
+                  aria-controls="panel-trk-5" aria-selected="false" data-rail="trk" data-tab="5">The Alps <span class="cat-count">2</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-6"
+                  aria-controls="panel-trk-6" aria-selected="false" data-rail="trk" data-tab="6">South America <span class="cat-count">2</span></button>
+          <button class="cat-btn" type="button" role="tab" id="tab-trk-7"
+                  aria-controls="panel-trk-7" aria-selected="false" data-rail="trk" data-tab="7">Africa <span class="cat-count">1</span></button>
+        </div>
+        <div class="catpanel" id="panel-trk-0" role="tabpanel"
+             aria-labelledby="tab-trk-0">
+          <h2 class="panel-heading">Everest</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/ebc-trek">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ebc-trek.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Everest Base Camp Trek</h3>
+            <p class="jcard-meta"><span class="jcard-where">Everest &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/three-passes">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-three-passes.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Everest Three Passes</h3>
+            <p class="jcard-meta"><span class="jcard-where">Everest &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/gokyo-lakes">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-gokyo-lakes.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Gokyo Lakes</h3>
+            <p class="jcard-meta"><span class="jcard-where">Everest &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-1" role="tabpanel"
+             aria-labelledby="tab-trk-1" hidden>
+          <h2 class="panel-heading">Annapurna</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/annapurna-circuit">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-annapurna-circuit.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Annapurna Circuit</h3>
+            <p class="jcard-meta"><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/annapurna-base-camp">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-annapurna-base-camp.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Annapurna Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/mardi-himal">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-mardi-himal.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Mardi Himal</h3>
+            <p class="jcard-meta"><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/upper-mustang">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-upper-mustang.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Upper Mustang</h3>
+            <p class="jcard-meta"><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-2" role="tabpanel"
+             aria-labelledby="tab-trk-2" hidden>
+          <h2 class="panel-heading">Manaslu</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/manaslu-circuit">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-manaslu-circuit.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Manaslu Circuit</h3>
+            <p class="jcard-meta"><span class="jcard-where">Manaslu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/manaslu-base-camp">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-manaslu-base-camp.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Manaslu Base Camp</h3>
+            <p class="jcard-meta"><span class="jcard-where">Manaslu &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-3" role="tabpanel"
+             aria-labelledby="tab-trk-3" hidden>
+          <h2 class="panel-heading">Langtang</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/langtang-valley">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-langtang-valley.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Langtang Valley</h3>
+            <p class="jcard-meta"><span class="jcard-where">Langtang &middot; Nepal</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-4" role="tabpanel"
+             aria-labelledby="tab-trk-4" hidden>
+          <h2 class="panel-heading">Ladakh</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/ladakh-high-passes">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ladakh-high-passes.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Ladakh High Passes</h3>
+            <p class="jcard-meta"><span class="jcard-where">Ladakh &middot; India</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-5" role="tabpanel"
+             aria-labelledby="tab-trk-5" hidden>
+          <h2 class="panel-heading">The Alps</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/tour-du-mont-blanc">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-tour-du-mont-blanc.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Tour du Mont Blanc</h3>
+            <p class="jcard-meta"><span class="jcard-where">The Alps &middot; France, Italy and Switzerland</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/haute-route-trek">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-haute-route-trek.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Haute Route, Chamonix to Zermatt</h3>
+            <p class="jcard-meta"><span class="jcard-where">The Alps &middot; France and Switzerland</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-6" role="tabpanel"
+             aria-labelledby="tab-trk-6" hidden>
+          <h2 class="panel-heading">South America</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/torres-del-paine-trek">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-torres-del-paine-trek.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Torres del Paine Circuit</h3>
+            <p class="jcard-meta"><span class="jcard-where">South America &middot; Chile</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/huayhuash-circuit">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-huayhuash-circuit.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Huayhuash Circuit</h3>
+            <p class="jcard-meta"><span class="jcard-where">South America &middot; Peru</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+        <div class="catpanel" id="panel-trk-7" role="tabpanel"
+             aria-labelledby="tab-trk-7" hidden>
+          <h2 class="panel-heading">Africa</h2>
+          <div class="card-grid">
+        <a class="jcard" href="#journey/kilimanjaro-trek">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-kilimanjaro-trek.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Kilimanjaro Trek</h3>
+            <p class="jcard-meta"><span class="jcard-where">Africa &middot; Tanzania</span></p>
+          </div>
+        </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Static catalogue entries. Hidden while JavaScript runs; revealed by
+       :target when it does not, so every #journey/<slug> resolves to real
+       content and a crawler sees all 55 journeys. -->
+    <section class="journey-static" id="journey/everest-8848">
+      <div class="jstatic-inner">
+        <h2>Everest</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,848 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/k2-8611">
+      <div class="jstatic-inner">
+        <h2>K2</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,611 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20K2">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/kangchenjunga-8586">
+      <div class="jstatic-inner">
+        <h2>Kangchenjunga</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,586 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Kangchenjunga</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Kangchenjunga">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/lhotse-8516">
+      <div class="jstatic-inner">
+        <h2>Lhotse</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,516 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lhotse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/makalu-8485">
+      <div class="jstatic-inner">
+        <h2>Makalu</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,485 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Makalu Barun</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Makalu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/cho-oyu-8188">
+      <div class="jstatic-inner">
+        <h2>Cho Oyu</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,188 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Cho%20Oyu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/dhaulagiri-8167">
+      <div class="jstatic-inner">
+        <h2>Dhaulagiri I</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,167 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Dhaulagiri%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/manaslu-8163">
+      <div class="jstatic-inner">
+        <h2>Manaslu</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,163 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/nanga-parbat-8125">
+      <div class="jstatic-inner">
+        <h2>Nanga Parbat</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,125 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Himalaya</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Nanga%20Parbat">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/annapurna-i-8091">
+      <div class="jstatic-inner">
+        <h2>Annapurna I</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,091 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/gasherbrum-i-8080">
+      <div class="jstatic-inner">
+        <h2>Gasherbrum I</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,080 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gasherbrum%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/broad-peak-8051">
+      <div class="jstatic-inner">
+        <h2>Broad Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,051 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Broad%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/gasherbrum-ii-8034">
+      <div class="jstatic-inner">
+        <h2>Gasherbrum II</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,034 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gasherbrum%20II">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/shisha-pangma-8027">
+      <div class="jstatic-inner">
+        <h2>Shisha Pangma</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">8,027 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Tibet</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">China</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Shisha%20Pangma">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/himlung-7126">
+      <div class="jstatic-inner">
+        <h2>Himlung Himal</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,126 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Himlung%20Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/baruntse-7129">
+      <div class="jstatic-inner">
+        <h2>Baruntse</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Baruntse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/baruntse-mera">
+      <div class="jstatic-inner">
+        <h2>Baruntse and Mera Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Baruntse%20and%20Mera%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/putha-hiunchuli-7246">
+      <div class="jstatic-inner">
+        <h2>Putha Hiunchuli</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,246 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Putha%20Hiunchuli">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/pumori-7145">
+      <div class="jstatic-inner">
+        <h2>Pumori</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,145 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Pumori">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/nuptse-7864">
+      <div class="jstatic-inner">
+        <h2>Nuptse</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,864 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Nuptse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/annapurna-iv-7525">
+      <div class="jstatic-inner">
+        <h2>Annapurna IV</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">7,525 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20IV">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/ama-dablam-6812">
+      <div class="jstatic-inner">
+        <h2>Ama Dablam</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/ama-dablam-lobuche">
+      <div class="jstatic-inner">
+        <h2>Ama Dablam and Lobuche East</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam%20and%20Lobuche%20East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/ama-dablam-island">
+      <div class="jstatic-inner">
+        <h2>Ama Dablam and Island Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam%20and%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/three-peaks-ebc">
+      <div class="jstatic-inner">
+        <h2>Three Peaks and Everest Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Three%20Peaks%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/two-peaks-lobuche-island-ebc">
+      <div class="jstatic-inner">
+        <h2>Lobuche East, Island Peak and Everest Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East,%20Island%20Peak%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/lobuche-ebc">
+      <div class="jstatic-inner">
+        <h2>Lobuche East and Everest Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/lobuche-6119">
+      <div class="jstatic-inner">
+        <h2>Lobuche East</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/island-peak-ebc">
+      <div class="jstatic-inner">
+        <h2>Island Peak and Everest Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Island%20Peak%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/island-peak-6189">
+      <div class="jstatic-inner">
+        <h2>Island Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/mera-peak-6476">
+      <div class="jstatic-inner">
+        <h2>Mera Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mera%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/two-peaks-mera-island">
+      <div class="jstatic-inner">
+        <h2>Mera Peak and Island Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mera%20Peak%20and%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/cholatse-6440">
+      <div class="jstatic-inner">
+        <h2>Cholatse</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,440 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Cholatse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/chulu-west-6419">
+      <div class="jstatic-inner">
+        <h2>Chulu West</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,419 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Chulu%20West">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/pharchamo-tashi-lapcha">
+      <div class="jstatic-inner">
+        <h2>Pharchamo via Tashi Lapcha</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Rolwaling</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Pharchamo%20via%20Tashi%20Lapcha">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/dhampus-6012">
+      <div class="jstatic-inner">
+        <h2>Dhampus Peak</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">6,012 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Dhampus%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/kilimanjaro-5895">
+      <div class="jstatic-inner">
+        <h2>Kilimanjaro</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Elevation</p><p class="fact-value">5,895 m</p></div>
+        <div><p class="fact-label">Region</p><p class="fact-value">Kilimanjaro</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Tanzania</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Kilimanjaro">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/torres-del-paine">
+      <div class="jstatic-inner">
+        <h2>Torres del Paine</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Patagonia</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Chile</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Torres%20del%20Paine">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/haute-route">
+      <div class="jstatic-inner">
+        <h2>Haute Route</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Pennine Alps</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Switzerland and France</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Haute%20Route">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/ebc-trek">
+      <div class="jstatic-inner">
+        <h2>Everest Base Camp Trek</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest%20Base%20Camp%20Trek">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/three-passes">
+      <div class="jstatic-inner">
+        <h2>Everest Three Passes</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest%20Three%20Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/gokyo-lakes">
+      <div class="jstatic-inner">
+        <h2>Gokyo Lakes</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gokyo%20Lakes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/annapurna-circuit">
+      <div class="jstatic-inner">
+        <h2>Annapurna Circuit</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/annapurna-base-camp">
+      <div class="jstatic-inner">
+        <h2>Annapurna Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/mardi-himal">
+      <div class="jstatic-inner">
+        <h2>Mardi Himal</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mardi%20Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/upper-mustang">
+      <div class="jstatic-inner">
+        <h2>Upper Mustang</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Upper%20Mustang">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/manaslu-circuit">
+      <div class="jstatic-inner">
+        <h2>Manaslu Circuit</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/manaslu-base-camp">
+      <div class="jstatic-inner">
+        <h2>Manaslu Base Camp</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/langtang-valley">
+      <div class="jstatic-inner">
+        <h2>Langtang Valley</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Langtang</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Langtang%20Valley">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/ladakh-high-passes">
+      <div class="jstatic-inner">
+        <h2>Ladakh High Passes</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Ladakh</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">India</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ladakh%20High%20Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/tour-du-mont-blanc">
+      <div class="jstatic-inner">
+        <h2>Tour du Mont Blanc</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">France, Italy and Switzerland</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Tour%20du%20Mont%20Blanc">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/haute-route-trek">
+      <div class="jstatic-inner">
+        <h2>Haute Route, Chamonix to Zermatt</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">France and Switzerland</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Haute%20Route,%20Chamonix%20to%20Zermatt">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/torres-del-paine-trek">
+      <div class="jstatic-inner">
+        <h2>Torres del Paine Circuit</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Chile</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Torres%20del%20Paine%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/huayhuash-circuit">
+      <div class="jstatic-inner">
+        <h2>Huayhuash Circuit</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Peru</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Huayhuash%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/kilimanjaro-trek">
+      <div class="jstatic-inner">
+        <h2>Kilimanjaro Trek</h2>
+        <div class="fact-strip">
+        <div><p class="fact-label">Region</p><p class="fact-value">Africa</p></div>
+        <div><p class="fact-label">Country</p><p class="fact-value">Tanzania</p></div>
+        </div>
+        <p class="cat-note">Full route notes are being written. Groups form when demand and
+        partnerships align, so join the interest list and you will hear first.</p>
+        <p style="margin-top:var(--s-5)">
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Kilimanjaro%20Trek">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </p>
+      </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-ridge" aria-hidden="true"></div>
+  <div class="footer-veil" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="wordmark wordmark-inverse" href="index.html#hero"><svg class="wordmark-svg" viewBox="0 0 492.44 202.48" role="img" aria-label="The Mountain Diaries"><path d="M8.12 31.6V5.46H0.0V0.0H22.6V5.46H14.5V31.6Z M232.96 31.6V0.0H239.34V12.8H248.92V0.0H255.27V31.6H248.92V18.25H239.34V31.6Z M467.58 31.6V0.0H488.0V5.38H473.96V12.83H486.21V18.19H473.96V26.22H488.24V31.6Z M4.21 132.03V45.34H35.96L40.62 75.96Q41.0 78.48 41.5 82.14Q42.01 85.79 42.57 89.51Q43.14 93.22 43.52 96.12H44.78Q45.16 93.73 45.66 90.2Q46.16 86.67 46.67 82.96Q47.17 79.24 47.55 76.09L51.96 45.34H82.96V132.03H61.16V107.08Q61.16 100.28 61.41 94.61Q61.66 88.94 61.91 84.85Q62.17 80.75 62.17 78.99H61.03Q60.78 80.5 60.4 82.58Q60.02 84.66 59.71 86.55Q59.39 88.44 59.14 89.7L52.34 132.03H34.82L28.02 89.7Q27.89 88.44 27.52 86.55Q27.14 84.66 26.82 82.58Q26.51 80.5 26.26 78.99H25.12Q25.37 82.14 25.56 86.86Q25.75 91.59 25.88 96.88Q26.0 102.17 26.0 107.08V132.03Z M120.9 133.54Q110.31 133.54 103.45 129.01Q96.58 124.47 93.18 114.58Q89.78 104.69 89.78 88.69Q89.78 72.69 93.18 62.8Q96.58 52.9 103.45 48.37Q110.31 43.83 120.9 43.83Q131.48 43.83 138.41 48.37Q145.34 52.9 148.68 62.8Q152.02 72.69 152.02 88.69Q152.02 104.69 148.68 114.58Q145.34 124.47 138.41 129.01Q131.48 133.54 120.9 133.54ZM120.9 113.76Q123.54 113.76 125.06 112.63Q126.57 111.49 127.32 109.42Q128.08 107.34 128.33 104.38Q128.58 101.41 128.58 97.76V79.62Q128.58 75.96 128.33 73.06Q128.08 70.17 127.32 68.02Q126.57 65.88 125.06 64.75Q123.54 63.61 120.9 63.61Q118.25 63.61 116.74 64.75Q115.23 65.88 114.47 68.02Q113.72 70.17 113.46 73.06Q113.21 75.96 113.21 79.62V97.76Q113.21 101.41 113.46 104.38Q113.72 107.34 114.47 109.42Q115.23 111.49 116.74 112.63Q118.25 113.76 120.9 113.76Z M185.55 133.54Q177.11 133.54 170.94 130.71Q164.76 127.87 161.49 121.2Q158.21 114.52 158.21 103.05V45.34H181.27V104.31Q181.27 108.72 181.9 111.31Q182.53 113.89 185.3 113.89Q188.2 113.89 188.95 111.31Q189.71 108.72 189.71 104.31V45.34H212.77V103.05Q212.77 114.52 209.49 121.2Q206.22 127.87 200.17 130.71Q194.12 133.54 185.55 133.54Z M220.22 132.03V45.34H242.39L250.08 71.43Q250.46 72.81 250.9 74.2Q251.34 75.58 251.78 77.16Q252.22 78.73 252.6 80.5H253.23Q253.23 78.23 253.23 75.96Q253.23 73.69 253.23 71.43V45.34H275.41V132.03H253.1L245.54 105.82Q244.79 103.3 244.16 100.66Q243.53 98.01 242.9 95.49H242.27Q242.27 98.01 242.27 100.66Q242.27 103.3 242.27 105.82V132.03Z M296.97 132.03V65.25H280.34V45.34H336.41V65.25H320.03V132.03Z M336.3 132.03 353.56 45.34H385.81L403.08 132.03H378.76L376.99 119.31H361.62L359.98 132.03ZM364.27 100.15H374.47L371.83 80.75Q371.7 79.62 371.51 77.73Q371.32 75.84 371.07 73.51Q370.82 71.17 370.51 68.84Q370.19 66.51 369.94 64.62H368.8Q368.55 67.02 368.24 69.98Q367.92 72.94 367.61 75.77Q367.29 78.61 366.91 80.75Z M406.12 132.03V45.34H429.17V132.03Z M437.25 132.03V45.34H459.43L467.12 71.43Q467.49 72.81 467.94 74.2Q468.38 75.58 468.82 77.16Q469.26 78.73 469.64 80.5H470.27Q470.27 78.23 470.27 75.96Q470.27 73.69 470.27 71.43V45.34H492.44V132.03H470.14L462.58 105.82Q461.82 103.3 461.19 100.66Q460.56 98.01 459.93 95.49H459.3Q459.3 98.01 459.3 100.66Q459.3 103.3 459.3 105.82V132.03Z M2.71 201.54V147.91H19.06Q25.47 147.91 29.15 150.72Q32.82 153.54 34.37 159.4Q35.92 165.27 35.92 174.55Q35.92 183.74 34.31 189.73Q32.7 195.72 28.97 198.63Q25.23 201.54 18.78 201.54ZM14.6 191.28H17.89Q19.56 191.28 20.71 190.69Q21.85 190.09 22.54 188.69Q23.22 187.29 23.53 184.93Q23.84 182.57 23.84 179.09V171.39Q23.84 167.87 23.53 165.37Q23.22 162.87 22.55 161.27Q21.89 159.68 20.72 158.93Q19.56 158.17 17.89 158.17H14.6Z M86.53 201.54V147.91H98.42V201.54Z M146.53 201.54 157.89 147.91H174.12L185.52 201.54H173.03L171.19 191.6H160.42L158.66 201.54ZM161.88 181.66H169.77L167.35 167.34Q167.27 166.74 167.14 165.72Q167.0 164.69 166.83 163.42Q166.65 162.16 166.48 160.89Q166.3 159.63 166.14 158.56H165.55Q165.39 159.87 165.18 161.51Q164.97 163.14 164.75 164.7Q164.54 166.26 164.34 167.34Z M233.66 201.54V147.91H251.62Q257.56 147.91 260.84 150.04Q264.12 152.17 265.45 155.79Q266.78 159.41 266.78 163.87Q266.78 168.55 265.66 172.36Q264.53 176.17 261.7 178.51L268.59 201.54H256.27L251.14 182.53H245.55V201.54ZM245.55 172.82H250.0Q252.8 172.82 253.83 170.62Q254.86 168.41 254.86 165.03Q254.86 162.74 254.41 161.14Q253.96 159.55 252.89 158.69Q251.82 157.83 249.79 157.83H245.55Z M317.09 201.54V147.91H328.98V201.54Z M380.63 201.54V147.91H410.23V158.17H392.52V169.15H407.53V179.45H392.52V191.28H410.59V201.54Z M475.02 202.48Q471.62 202.48 468.7 201.77Q465.78 201.07 463.58 199.26Q461.39 197.44 460.15 194.22Q458.91 191.0 458.91 185.91Q458.91 185.65 458.91 185.15Q458.91 184.66 458.95 184.35H470.32Q470.32 184.74 470.32 185.15Q470.32 185.56 470.32 185.95Q470.32 188.48 470.82 189.86Q471.31 191.25 472.27 191.8Q473.24 192.35 474.66 192.35Q475.52 192.35 476.18 192.14Q476.84 191.93 477.36 191.47Q477.89 191.02 478.23 190.35Q478.56 189.69 478.71 188.78Q478.86 187.87 478.86 186.74Q478.86 184.94 478.05 183.69Q477.23 182.45 475.86 181.54Q474.48 180.64 472.77 179.85Q471.06 179.05 469.22 178.18Q467.37 177.3 465.66 176.11Q463.96 174.92 462.58 173.18Q461.2 171.44 460.39 168.99Q459.57 166.55 459.57 163.12Q459.57 158.72 460.83 155.65Q462.08 152.57 464.28 150.65Q466.48 148.73 469.26 147.83Q472.04 146.93 475.1 146.93Q478.3 146.93 481.01 147.71Q483.73 148.49 485.73 150.21Q487.73 151.93 488.85 154.78Q489.97 157.63 489.97 161.77V163.74H478.76V162.67Q478.76 160.88 478.47 159.66Q478.17 158.44 477.43 157.8Q476.68 157.15 475.21 157.15Q474.07 157.15 473.25 157.65Q472.43 158.14 472.02 159.15Q471.62 160.15 471.62 161.72Q471.62 163.65 472.43 164.98Q473.25 166.31 474.64 167.23Q476.04 168.16 477.75 168.95Q479.46 169.75 481.28 170.61Q483.11 171.46 484.81 172.63Q486.52 173.8 487.92 175.5Q489.32 177.2 490.13 179.62Q490.95 182.04 490.95 185.43Q490.95 191.24 489.01 195.02Q487.08 198.79 483.52 200.63Q479.96 202.48 475.02 202.48Z"/></svg></a>
+        <p class="footer-mission">A community that answers the mountains &mdash; and treks them together.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Explore</p>
+        <ul class="footer-links">
+          <li><a href="explore.html">Expeditions &amp; Trekking</a></li>
+          <li><a href="index.html#community">Community</a></li>
+          <!-- re-target to the About Us section once it is written; #story is a stand in -->
+          <li><a href="index.html#story">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Community</p>
+        <ul class="footer-links">
+          <li><a href="join.html">Join the community</a></li>
+          <li><a href="index.html#community">Share your story</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Let&rsquo;s connect</p>
+        <div class="footer-primary">
+        <a class="fcircle fcircle-solid" href="mailto:hello@themountaindiaries.com" aria-label="Email us"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18v11H3z"/><path d="M3 7l9 6.5L21 7"/></svg></a>
+        <a class="fcircle fcircle-solid" href="https://chat.whatsapp.com/LuY03kcNWuf0dvSUTZ9Vq2" aria-label="Join our WhatsApp group" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.15A8.8 8.8 0 1 0 12 3.2Z"/><path d="M9.1 8.1c.3-.05.5.05.7.45l.6 1.3c.1.25.06.45-.1.65l-.4.5c-.15.2-.15.35 0 .6a6.3 6.3 0 0 0 2.6 2.35c.25.1.4.05.55-.15l.5-.6c.2-.2.4-.25.65-.15l1.35.6c.35.15.45.35.4.7-.15.9-.95 1.5-1.95 1.5-2.9 0-6.05-3.2-6.05-6.1 0-1 .6-1.6 1.15-1.65Z"/></svg></a>
+        </div>
+        <div class="footer-social">
+        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="glyph-fill" d="M10.08 19.5V11.16H8.55V8.73H10.08V7.86Q10.08 6.74 10.46 5.99Q10.84 5.24 11.59 4.87Q12.35 4.5 13.47 4.5Q13.77 4.5 14.14 4.55Q14.51 4.59 14.86 4.67Q15.21 4.75 15.45 4.84V6.93H14.47Q13.9 6.93 13.66 7.18Q13.43 7.42 13.43 7.94V8.73H15.45V11.16H13.43V19.5Z"/></svg></a>
+        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1.15"/></svg></a>
+        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.8 3.2v10.6a3.4 3.4 0 1 1-2.6-3.3"/><path d="M13.8 5.4c.7 1.7 2.2 2.8 4.2 3"/></svg></a>
+        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="3.4"/><path class="glyph-fill" d="M5.96 8.42V6.5H8.45V8.42ZM5.96 17.5V9.49H8.45V17.5Z M10.34 17.5V9.49H12.39L12.57 10.64H12.67Q12.97 10.22 13.37 9.92Q13.77 9.62 14.27 9.47Q14.77 9.31 15.33 9.31Q16.2 9.31 16.8 9.63Q17.4 9.95 17.72 10.59Q18.04 11.23 18.04 12.21V17.5H15.54V12.57Q15.54 12.23 15.46 11.99Q15.38 11.75 15.22 11.59Q15.07 11.43 14.84 11.35Q14.62 11.27 14.32 11.27Q13.89 11.27 13.55 11.47Q13.21 11.68 13.02 12.02Q12.83 12.37 12.83 12.82V17.5Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 The Mountain Diaries. We never share your details.</span>
+      <!-- re-target once the policy pages exist -->
+      <span><a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═══ PHOTO AVAILABILITY ═══
+// Only files listed here actually exist in the repo. Everything else renders
+// as a flat warm-grey block naming the file it is waiting for. Add a filename
+// here the moment the real photograph is committed.
+const AVAILABLE_PHOTOS = new Set([
+  'assets/images/story-ama-dablam.jpg',
+  'assets/images/hero-ebc.jpg',
+  'assets/images/band-khumbu.jpg',
+  'assets/images/band-ridgeline.jpg',
+  'assets/images/band-high-valley.jpg',
+  'assets/images/join-hero.jpg',
+  'assets/images/community-chorten.jpg',
+  'assets/images/ebc-trekkers.jpg',
+  'assets/images/everest-three-passes.jpg',
+  'assets/images/expedition-ebc.jpg',
+  'assets/images/ebc-valley.jpg',
+  'assets/images/ebc-tengboche-sign.jpg',
+  'assets/images/ebc-thukla-sign.jpg',
+  'assets/images/ebc-khumbu-glacier.jpg',
+  'assets/images/ebc-gorakshep.jpg',
+  'assets/images/annapurna-circuit.jpg',
+  'assets/images/manaslu-circuit.jpg',
+  'assets/images/ladakh-high-passes.jpg',
+  'assets/images/tour-du-mont-blanc.jpg',
+  'assets/images/haute-route-matterhorn.jpg',
+  'assets/images/torres-del-paine.jpg',
+  'assets/images/huayhuash-circuit.jpg',
+  'assets/images/kilimanjaro.jpg',
+  'assets/images/expedition-mera-peak.jpg',
+  'assets/images/expedition-torres.jpg',
+  'assets/images/expedition-kilimanjaro.jpg',
+  'assets/images/expedition-haute-route.jpg',
+  'assets/images/annapurna-valley.jpg',
+  'assets/images/annapurna-thorong-la.jpg',
+  'assets/images/annapurna-poon-hill.jpg',
+  'assets/images/annapurna-mustang.jpg',
+  'assets/images/manaslu-pung-gyen.jpg',
+  'assets/images/manaslu-trail.jpg',
+  'assets/images/ladakh-lamayuru.jpg',
+  'assets/images/ladakh-nubra.jpg',
+  'assets/images/tmb-chamonix.jpg',
+  'assets/images/tmb-trail-runners.jpg',
+  'assets/images/huayhuash-lake.jpg',
+  'assets/images/mera-peak-view.jpg'
+]);
+
+const IMG = 'assets/images/';
+const has = (f) => AVAILABLE_PHOTOS.has(f);
+
+// A photo slot: real background when the file exists, labelled placeholder when it does not.
+function photoSlot(file, opts) {
+  opts = opts || {};
+  const cls = 'photo-slot' + (opts.cls ? ' ' + opts.cls : '');
+  const pos = opts.pos ? `;--pos:${opts.pos}` : '';
+  // data-lb marks a real photograph as openable in the lightbox. Placeholders
+  // never get one, so an empty slot is not clickable.
+  const lb = (opts.lb !== undefined && has(file))
+    ? ` data-lb="${opts.lb}" role="button" tabindex="0" aria-label="Open photograph"` : '';
+  if (!has(file)) return `<div class="${cls}" data-photo="${file}"></div>`;
+  // opts.img renders a real <img> so it can be lazy-loaded. Used for gallery
+  // photographs, which sit inside the detail view and are never needed until
+  // that view opens.
+  if (opts.img) {
+    return `<div class="${cls}"${lb} style="--pos:${opts.pos || 'center'}">`
+         + `<img class="photo-img" src="${file}" alt="" loading="lazy" decoding="async"></div>`;
+  }
+  return `<div class="${cls}"${lb} style="--photo:url('${file}')${pos}"></div>`;
+}
+
+// ═══ JOURNEYS ═══
+// Single source of truth for the catalogue. One entry per journey.
+//   status 'catalogue' renders the honest short state
+//   status 'detailed'  renders the full template further down
+// Elevations are the ones carried in each journey's own name. Combinations
+// take the high point of the peaks they name; where no height is stated
+// anywhere the field is null and every view simply omits the line.
+const JOURNEYS = [
+  { slug: 'everest-8848', name: 'Everest', elevation_m: 8848, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'k2-8611', name: 'K2', elevation_m: 8611, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
+  { slug: 'kangchenjunga-8586', name: 'Kangchenjunga', elevation_m: 8586, category: '8000ers', region: 'Kangchenjunga', country: 'Nepal', status: 'catalogue' },
+  { slug: 'lhotse-8516', name: 'Lhotse', elevation_m: 8516, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'makalu-8485', name: 'Makalu', elevation_m: 8485, category: '8000ers', region: 'Makalu Barun', country: 'Nepal', status: 'catalogue' },
+  { slug: 'cho-oyu-8188', name: 'Cho Oyu', elevation_m: 8188, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'dhaulagiri-8167', name: 'Dhaulagiri I', elevation_m: 8167, category: '8000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
+  { slug: 'manaslu-8163', name: 'Manaslu', elevation_m: 8163, category: '8000ers', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'nanga-parbat-8125', name: 'Nanga Parbat', elevation_m: 8125, category: '8000ers', region: 'Himalaya', country: 'Pakistan', status: 'catalogue' },
+  { slug: 'annapurna-i-8091', name: 'Annapurna I', elevation_m: 8091, category: '8000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'gasherbrum-i-8080', name: 'Gasherbrum I', elevation_m: 8080, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
+  { slug: 'broad-peak-8051', name: 'Broad Peak', elevation_m: 8051, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
+  { slug: 'gasherbrum-ii-8034', name: 'Gasherbrum II', elevation_m: 8034, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
+  { slug: 'shisha-pangma-8027', name: 'Shisha Pangma', elevation_m: 8027, category: '8000ers', region: 'Tibet', country: 'China', status: 'catalogue' },
+  { slug: 'himlung-7126', name: 'Himlung Himal', elevation_m: 7126, category: '7000ers', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'baruntse-7129', name: 'Baruntse', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'baruntse-mera', name: 'Baruntse and Mera Peak', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'putha-hiunchuli-7246', name: 'Putha Hiunchuli', elevation_m: 7246, category: '7000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
+  { slug: 'pumori-7145', name: 'Pumori', elevation_m: 7145, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'nuptse-7864', name: 'Nuptse', elevation_m: 7864, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'annapurna-iv-7525', name: 'Annapurna IV', elevation_m: 7525, category: '7000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'ama-dablam-6812', name: 'Ama Dablam', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'ama-dablam-lobuche', name: 'Ama Dablam and Lobuche East', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'ama-dablam-island', name: 'Ama Dablam and Island Peak', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'three-peaks-ebc', name: 'Three Peaks and Everest Base Camp', elevation_m: null, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'two-peaks-lobuche-island-ebc', name: 'Lobuche East, Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'lobuche-ebc', name: 'Lobuche East and Everest Base Camp', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'lobuche-6119', name: 'Lobuche East', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'island-peak-ebc', name: 'Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'island-peak-6189', name: 'Island Peak', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'mera-peak-6476', name: 'Mera Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', status: 'catalogue' },
+  { slug: 'two-peaks-mera-island', name: 'Mera Peak and Island Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', status: 'catalogue' },
+  { slug: 'cholatse-6440', name: 'Cholatse', elevation_m: 6440, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'chulu-west-6419', name: 'Chulu West', elevation_m: 6419, category: '6000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'pharchamo-tashi-lapcha', name: 'Pharchamo via Tashi Lapcha', elevation_m: null, category: '6000ers', region: 'Rolwaling', country: 'Nepal', status: 'catalogue' },
+  { slug: 'dhampus-6012', name: 'Dhampus Peak', elevation_m: 6012, category: '6000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
+  { slug: 'kilimanjaro-5895', name: 'Kilimanjaro', elevation_m: 5895, category: 'global', region: 'Kilimanjaro', country: 'Tanzania', status: 'catalogue' },
+  { slug: 'torres-del-paine', name: 'Torres del Paine', elevation_m: null, category: 'global', region: 'Patagonia', country: 'Chile', status: 'catalogue' },
+  { slug: 'haute-route', name: 'Haute Route', elevation_m: null, category: 'global', region: 'Pennine Alps', country: 'Switzerland and France', status: 'catalogue' },
+  { slug: 'ebc-trek', name: 'Everest Base Camp Trek', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
+  { slug: 'three-passes', name: 'Everest Three Passes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
+  { slug: 'gokyo-lakes', name: 'Gokyo Lakes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
+  { slug: 'annapurna-circuit', name: 'Annapurna Circuit', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'annapurna-base-camp', name: 'Annapurna Base Camp', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'mardi-himal', name: 'Mardi Himal', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'upper-mustang', name: 'Upper Mustang', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
+  { slug: 'manaslu-circuit', name: 'Manaslu Circuit', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'manaslu-base-camp', name: 'Manaslu Base Camp', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
+  { slug: 'langtang-valley', name: 'Langtang Valley', elevation_m: null, category: 'trek', region: 'Langtang', country: 'Nepal', status: 'catalogue' },
+  { slug: 'ladakh-high-passes', name: 'Ladakh High Passes', elevation_m: null, category: 'trek', region: 'Ladakh', country: 'India', status: 'catalogue' },
+  { slug: 'tour-du-mont-blanc', name: 'Tour du Mont Blanc', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France, Italy and Switzerland', status: 'catalogue' },
+  { slug: 'haute-route-trek', name: 'Haute Route, Chamonix to Zermatt', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France and Switzerland', status: 'catalogue' },
+  { slug: 'torres-del-paine-trek', name: 'Torres del Paine Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Chile', status: 'catalogue' },
+  { slug: 'huayhuash-circuit', name: 'Huayhuash Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Peru', status: 'catalogue' },
+  { slug: 'kilimanjaro-trek', name: 'Kilimanjaro Trek', elevation_m: null, category: 'trek', region: 'Africa', country: 'Tanzania', status: 'catalogue' },
+];
+
+const BY_SLUG = {};
+JOURNEYS.forEach(j => { BY_SLUG[j.slug] = j; });
+
+const CATEGORY_LABEL = {
+  '8000ers': '8000ers', '7000ers': '7000ers', '6000ers': '6000ers',
+  global: 'Global Summits', trek: 'Trekking'
+};
+
+const journeyPhoto = (j) => IMG + 'journey-' + j.slug + '.jpg';
+const metres = (n) => n ? n.toLocaleString('en-US') + ' m' : null;
+
+// ═══ DETAIL VIEW ═══
+// A journey gets its own screen at #journey/<slug>. The hash is the single
+// source of truth, so the back button and a pasted URL both behave.
+const detailEl = document.getElementById('detail-view');
+const detailContent = document.getElementById('detail-content');
+
+function factStrip(pairs) {
+  const live = pairs.filter(([, v]) => v);
+  if (!live.length) return '';
+  return `<div class="fact-strip">` + live.map(([l, v]) =>
+    `<div><p class="fact-label">${l}</p><p class="fact-value">${v}</p></div>`).join('') + `</div>`;
+}
+
+function catalogueBody(j) {
+  return `
+    ${factStrip([['Elevation', metres(j.elevation_m)], ['Region', j.region], ['Country', j.country],
+                 ['Category', CATEGORY_LABEL[j.category]]])}
+    <p class="cat-note">Full route notes are being written. Groups form when demand and
+    partnerships align, so join the interest list and you will hear first.</p>`;
+}
+
+function list(cls, items) {
+  return `<ul class="${cls}">` + items.map(i => `<li>${i}</li>`).join('') + `</ul>`;
+}
+
+function detailedBody(j) {
+  const d = j.detail || {};
+  const sec = (title, inner) => inner ? `
+    <div class="detail-section">
+      <h2 class="detail-section-title">${title}</h2>
+      ${inner}
+    </div>` : '';
+  return `
+    ${factStrip([['Duration', d.duration], ['Max altitude', metres(j.elevation_m)],
+                 ['Difficulty', d.difficulty], ['Best season', d.season],
+                 ['Group size', d.groupSize], ['Region', j.region]])}
+    ${d.overview ? `<p class="detail-lede" style="margin-top:var(--s-5)">${d.overview}</p>` : ''}
+    ${sec('Highlights', d.highlights && list('hl-list', d.highlights))}
+    ${sec('Day by day', d.days && d.days.map((t, i) => `
+      <details class="day"><summary><span class="day-n">Day ${i + 1}</span> ${t.title}</summary>
+      <p>${t.body}</p></details>`).join(''))}
+    ${(d.covered || d.arrange) ? `
+    <div class="detail-section">
+      <div class="two-col">
+        <div><h2 class="detail-section-title">What is covered</h2>${d.covered ? list('cov-list', d.covered) : ''}</div>
+        <div><h2 class="detail-section-title">What you arrange</h2>${d.arrange ? list('cov-list', d.arrange) : ''}</div>
+      </div>
+    </div>` : ''}
+    ${sec('Good to know', d.goodToKnow && list('hl-list', d.goodToKnow))}
+    ${sec('Questions', d.faq && d.faq.map(q => `
+      <details class="day"><summary>${q.q}</summary><p>${q.a}</p></details>`).join(''))}`;
+}
+
+function detailHTML(j) {
+  const cta = `openInquiry('${j.name.replace(/'/g, "\\'")}', '${j.name.replace(/'/g, "\\'")}', '${CATEGORY_LABEL[j.category]}', '${journeyPhoto(j)}')`;
+  return `
+  <div class="detail-hero">
+    ${photoSlot(journeyPhoto(j), { lb: 0 })}
+    <div class="detail-hero-info">
+      <div class="detail-hero-inner">
+        <p class="detail-region">${j.region} &middot; ${j.country}</p>
+        <h1 class="detail-title" id="detail-title">${j.name}</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    ${j.status === 'detailed' ? detailedBody(j) : catalogueBody(j)}
+
+    <p style="margin-top:var(--s-6)">
+      <button class="btn btn-primary" type="button" onclick="${cta}">
+        Join the Group <span aria-hidden="true">&rarr;</span>
+      </button>
+    </p>
+
+    <div class="detail-foot">
+      <button class="btn btn-outline" type="button" onclick="closeDetail()">
+        <span aria-hidden="true">&larr;</span> All journeys
+      </button>
+    </div>
+  </div>`;
+}
+
+function showDetail(slug) {
+  const j = BY_SLUG[slug];
+  if (!j) { hideDetail(); return false; }
+  _detailImages = has(journeyPhoto(j)) ? [{ file: journeyPhoto(j), cap: '' }] : [];
+  detailContent.innerHTML = detailHTML(j);
+  detailEl.classList.add('open');
+  detailEl.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  return true;
+}
+
+function hideDetail() {
+  detailEl.classList.remove('open');
+  detailContent.innerHTML = '';
+  if (!isInquiryOpen()) document.body.style.overflow = '';
+}
+
+function parseHash() {
+  const m = /^#journey\/([a-z0-9-]+)$/.exec(location.hash);
+  return m ? m[1] : null;
+}
+
+let _routeInit = false;
+let _openedFromWithinPage = false;
+
+function applyRoute() {
+  const slug = parseHash();
+  if (slug) {
+    _openedFromWithinPage = _routeInit;
+    if (!showDetail(slug)) _openedFromWithinPage = false;
+  } else {
+    hideDetail();
+  }
+  _routeInit = true;
+}
+
+function closeDetail() {
+  if (!parseHash()) { hideDetail(); return; }
+  if (_openedFromWithinPage) {
+    history.back();                       // keeps the back button honest
+  } else {
+    // Arrived straight on the detail URL, so there is nothing to go back to.
+    history.replaceState(null, '', location.pathname + location.search);
+    applyRoute();
+  }
+}
+
+window.addEventListener('hashchange', applyRoute);
+document.getElementById('detail-back').addEventListener('click', closeDetail);
+
+// ═══ RAILS AND CATEGORY TABS ═══
+(function () {
+  const railBtns = [...document.querySelectorAll('.rail-btn')];
+  const rails = { exp: document.getElementById('rail-exp'), trk: document.getElementById('rail-trk') };
+  railBtns.forEach(b => b.addEventListener('click', () => {
+    const target = b.getAttribute('data-rail-target');
+    railBtns.forEach(x => x.setAttribute('aria-selected', String(x === b)));
+    Object.keys(rails).forEach(k => { rails[k].hidden = (k !== target); });
+  }));
+
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const rail = btn.getAttribute('data-rail');
+      const peers = [...document.querySelectorAll(`.cat-btn[data-rail="${rail}"]`)];
+      peers.forEach(p => {
+        const on = p === btn;
+        p.setAttribute('aria-selected', String(on));
+        document.getElementById(p.getAttribute('aria-controls')).hidden = !on;
+      });
+    });
+  });
+})();
+
+// ═══ LIGHTBOX ═══
+// Opens over the detail view. It never touches location.hash, so the
+// #journey/ routing and the browser back button are unaffected.
+let _detailImages = [];
+let _lbList = [];
+let _lbIndex = 0;
+
+const lbEl = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbCounter = document.getElementById('lb-counter');
+const lbCaption = document.getElementById('lb-caption');
+const lbPrev = document.getElementById('lb-prev');
+const lbNext = document.getElementById('lb-next');
+
+const isLightboxOpen = () => lbEl.classList.contains('open');
+
+function renderLb() {
+  const it = _lbList[_lbIndex];
+  if (!it) return;
+  lbImg.src = it.file;
+  lbImg.alt = it.cap || '';
+  lbCounter.textContent = `${_lbIndex + 1} / ${_lbList.length}`;
+  lbCaption.textContent = it.cap || '';
+  const multi = _lbList.length > 1;
+  lbPrev.hidden = !multi;
+  lbNext.hidden = !multi;
+}
+
+function openLightbox(list, index) {
+  if (!list || !list.length) return;
+  _lbList = list;
+  _lbIndex = Math.max(0, Math.min(index || 0, list.length - 1));
+  renderLb();
+  lbEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lb-close').focus();
+}
+
+function closeLightbox() {
+  lbEl.classList.remove('open');
+  lbImg.removeAttribute('src');
+  // a detail view or the inquiry panel may still be open underneath
+  if (!detailEl.classList.contains('open') && !isInquiryOpen()) {
+    document.body.style.overflow = '';
+  }
+}
+
+function lbStep(delta) {
+  if (_lbList.length < 2) return;
+  _lbIndex = (_lbIndex + delta + _lbList.length) % _lbList.length;
+  renderLb();
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lbStep(-1); });
+lbNext.addEventListener('click', (e) => { e.stopPropagation(); lbStep(1); });
+lbEl.addEventListener('click', (e) => { if (e.target === lbEl || e.target.closest('.lb-stage') === e.target) closeLightbox(); });
+
+document.addEventListener('keydown', (e) => {
+  if (!isLightboxOpen()) return;
+  if (e.key === 'ArrowLeft') { e.preventDefault(); lbStep(-1); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); lbStep(1); }
+});
+
+// swipe
+let _tx = 0, _ty = 0;
+lbEl.addEventListener('touchstart', (e) => {
+  _tx = e.changedTouches[0].clientX; _ty = e.changedTouches[0].clientY;
+}, { passive: true });
+lbEl.addEventListener('touchend', (e) => {
+  const dx = e.changedTouches[0].clientX - _tx;
+  const dy = e.changedTouches[0].clientY - _ty;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbStep(dx < 0 ? 1 : -1);
+}, { passive: true });
+
+// open from the detail header or any gallery photograph
+detailContent.addEventListener('click', (e) => {
+  const slot = e.target.closest('[data-lb]');
+  if (slot) openLightbox(_detailImages, Number(slot.getAttribute('data-lb')));
+});
+detailContent.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  const slot = e.target.closest('[data-lb]');
+  if (slot) { e.preventDefault(); openLightbox(_detailImages, Number(slot.getAttribute('data-lb'))); }
+});
+
+// ═══ NAV ═══
+// Scrolled state is a class only. Never write inline padding here: an inline
+// style beats the mobile media query and breaks the nav on phones.
+let closeNavMenu = () => {};
+(function () {
+  const nav = document.getElementById('navbar');
+  const syncScrolled = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', syncScrolled, { passive: true });
+  syncScrolled();
+
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  const setOpen = (open) => {
+    menu.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  closeNavMenu = () => {
+    if (!menu.classList.contains('is-open')) return false;
+    setOpen(false); toggle.focus(); return true;
+  };
+  toggle.addEventListener('click', () => setOpen(!menu.classList.contains('is-open')));
+  menu.addEventListener('click', (e) => { if (e.target.tagName === 'A') setOpen(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 860) setOpen(false); });
+
+  // ═══ NAV SCROLL SPY ═══
+  // Sections are sorted by their real position rather than by link order, so a
+  // link may point anywhere in the page without breaking the sweep.
+  const spyPairs = [...menu.querySelectorAll('a[data-spy]')]
+    .map(a => ({ a, s: document.getElementById(a.dataset.spy) }))
+    .filter(p => p.s)
+    .sort((x, y) => x.s.offsetTop - y.s.offsetTop);
+  if (spyPairs.length) {
+    const syncSpy = () => {
+      const line = window.scrollY + nav.offsetHeight + 24;
+      let on = null;
+      for (const p of spyPairs) if (p.s.offsetTop <= line) on = p.a;
+      // near the bottom nothing else can come into view, so pin the last one
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+        on = spyPairs[spyPairs.length - 1].a;
+      }
+      spyPairs.forEach(p => p.a.classList.toggle('is-active', p.a === on));
+    };
+    window.addEventListener('scroll', syncSpy, { passive: true });
+    window.addEventListener('resize', syncSpy);
+    syncSpy();
+  }
+
+})();
+
+// ═══ SINGLE ESCAPE HANDLER ═══
+// One listener, most-nested surface first.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (isLightboxOpen()) { closeLightbox(); return; }
+  if (closeNavMenu()) return;
+  if (isInquiryOpen()) { closeInquiry(); return; }
+  if (detailEl.classList.contains('open')) closeDetail();
+});
+
+// ─── BACKEND ──────────────────────────────────────────────────────────────
+// All three forms post to one Google Apps Script endpoint, which appends a
+// row to the sheet and emails a notification.
+//
+// The content type MUST stay text/plain. Apps Script cannot answer a CORS
+// preflight, and application/json would trigger one, so the request has to
+// stay a "simple" request. The body is still JSON.
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwiFM4_UqnszYUvT4ygUIEr6vm9_3hWwiReikL9OcPfKXLEUALDvtMSnxGnRBjxOHMR/exec';
+const FORM_ERROR = 'Something went wrong \u2014 please try again or email hello@themountaindiaries.com';
+
+async function postForm(payload) {
+  const res = await fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
+  });
+  const data = await res.json();
+  if (!data || data.ok !== true) throw new Error((data && data.error) || 'rejected');
+  return data;
+}
+
+// ─── SHARE A STORY ───
+// The photo stays UI-only for now: the note under the form tells the reader we
+// will ask for their best shots by reply.
+let postCount = 3;
+
+// ═══ INQUIRY PANEL ═══
+let _currentInquiry = '';
+const isInquiryOpen = () => document.getElementById('inquiry-overlay').classList.contains('open');
+
+function openInquiry(heading, subjectName, eyebrow, photo) {
+  _currentInquiry = subjectName;
+  document.getElementById('inquiry-eyebrow').textContent = eyebrow || 'Express interest';
+  document.getElementById('inquiry-heading').textContent = heading || 'Register your interest';
+  document.getElementById('inquiry-subtext').textContent =
+    'Tell us about yourself and we will reach out as soon as details are set for ' + subjectName + '.';
+
+  const bg = document.getElementById('inquiry-bg');
+  bg.style.backgroundImage = (photo && has(photo)) ? `url('${photo}')` : '';
+
+  document.getElementById('inquiry-form').style.display = 'block';
+  document.getElementById('inquiry-success').classList.remove('is-visible');
+  document.getElementById('inquiry-error').textContent = '';
+  document.getElementById('inquiry-form').reset();
+  // preselect the journey the panel was opened from, if it is in the list
+  const sel = document.getElementById('inq-journey');
+  const match = [...sel.options].find(o => o.value === subjectName || o.text === subjectName);
+  sel.value = match ? match.value || match.text : '';
+
+  document.getElementById('inquiry-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInquiry() {
+  document.getElementById('inquiry-overlay').classList.remove('open');
+  // a detail view may still be open underneath
+  if (!detailEl.classList.contains('open')) document.body.style.overflow = '';
+}
+
+function handleInquiryClick(e) {
+  if (e.target === document.getElementById('inquiry-overlay')) closeInquiry();
+}
+
+const SUBMIT_LABEL = 'Send my interest →';
+
+document.getElementById('inquiry-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const errEl = document.getElementById('inquiry-error');
+  const btn = this.querySelector('.inquiry-submit');
+
+  errEl.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Sending';
+
+  try {
+    await postForm({
+      formType: 'interest',
+      name:       document.getElementById('inq-name').value.trim(),
+      email:      document.getElementById('inq-email').value.trim(),
+      phone:      document.getElementById('inq-phone').value.trim(),
+      experience: document.getElementById('inq-experience').value,
+      expedition: document.getElementById('inq-journey').value || _currentInquiry,
+      message:    document.getElementById('inq-message').value.trim(),
+      _gotcha:    document.getElementById('inq-hp').value
+    });
+    showSuccess();
+  } catch (_) {
+    errEl.textContent = FORM_ERROR;
+    btn.disabled = false;
+    btn.textContent = SUBMIT_LABEL;
+  }
+});
+
+function showSuccess() {
+  document.getElementById('inquiry-success-name').textContent =
+    document.getElementById('inq-journey').value || _currentInquiry;
+  document.getElementById('inquiry-form').style.display = 'none';
+  document.getElementById('inquiry-success').classList.add('is-visible');
+}
+
+// Resolve the URL on first paint (direct links to a journey).
+applyRoute();
+</script>
+</body>
+</html>

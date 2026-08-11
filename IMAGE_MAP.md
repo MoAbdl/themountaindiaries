@@ -14,61 +14,166 @@ a file that is declared available but missing.
 
 | File | Slot | Page | 800px derivative | Refs |
 | --- | --- | --- | --- | --- |
-| `annapurna-circuit.jpg` | Annapurna Circuit | index.html | yes | 2 |
-| `annapurna-mustang.jpg` | Annapurna Circuit | index.html | no | 1 |
-| `annapurna-poon-hill.jpg` | Annapurna Circuit | index.html | no | 1 |
-| `annapurna-thorong-la.jpg` | Annapurna Circuit | index.html | no | 1 |
-| `annapurna-valley.jpg` | Annapurna Circuit | index.html | no | 1 |
 | `band-high-valley.jpg` | Photo band | index.html | no | 1 |
 | `band-khumbu.jpg` | Photo band | index.html | no | 1 |
 | `band-ridgeline.jpg` | Photo band | index.html | no | 1 |
 | `community-chorten.jpg` | Community | index.html | no | 1 |
-| `ebc-gorakshep.jpg` | Everest Base Camp | index.html | no | 1 |
-| `ebc-khumbu-glacier.jpg` | Everest Base Camp | index.html | no | 1 |
-| `ebc-tengboche-sign.jpg` | Everest Base Camp | index.html | no | 1 |
-| `ebc-thukla-sign.jpg` | Everest Base Camp | index.html | no | 1 |
-| `ebc-trekkers.jpg` | Everest Base Camp | index.html | yes | 2 |
-| `ebc-valley.jpg` | Everest Base Camp | index.html | no | 1 |
-| `everest-three-passes.jpg` | Everest Three Passes | index.html | yes | 2 |
-| `expedition-ebc-basecamp.jpg` | Everest Base Camp | index.html | no | 1 |
-| `expedition-ebc-village.jpg` | Everest Base Camp | index.html | no | 1 |
-| `expedition-ebc.jpg` | Everest Base Camp | index.html | yes | 2 |
-| `expedition-haute-route.jpg` | Haute Route | index.html | yes | 3 |
-| `expedition-kilimanjaro.jpg` | Kilimanjaro | index.html | yes | 3 |
-| `expedition-mera-peak.jpg` | Mera Peak Summit | index.html | yes | 2 |
-| `expedition-torres.jpg` | Torres del Paine | index.html | yes | 3 |
-| `footer-ridge.jpg` | Footer | index.html, join.html | no | 2 |
-| `haute-route-matterhorn.jpg` | Haute Route | index.html | yes | 3 |
+| `explore-header.jpg` | Explore header | explore.html | no | 1 |
+| `footer-ridge.jpg` | Footer | explore.html, index.html, join.html | no | 3 |
 | `hero-ebc.jpg` | Hero | index.html | no | 1 |
-| `huayhuash-circuit.jpg` | Huayhuash Circuit | index.html | yes | 2 |
-| `huayhuash-lake.jpg` | Huayhuash Circuit | index.html | no | 1 |
 | `join-hero.jpg` | Join page | join.html | no | 1 |
-| `kilimanjaro.jpg` | Kilimanjaro | index.html | yes | 3 |
-| `ladakh-high-passes.jpg` | Ladakh High Passes | index.html | yes | 2 |
-| `ladakh-lamayuru.jpg` | Ladakh High Passes | index.html | no | 1 |
-| `ladakh-nubra.jpg` | Ladakh High Passes | index.html | no | 1 |
-| `manaslu-circuit.jpg` | Manaslu Circuit | index.html | yes | 2 |
-| `manaslu-pung-gyen.jpg` | Manaslu Circuit | index.html | no | 1 |
-| `manaslu-trail.jpg` | Manaslu Circuit | index.html | no | 1 |
-| `mera-peak-view.jpg` | Mera Peak Summit | index.html | no | 1 |
+| `journey-ama-dablam-6812.jpg` | Ama Dablam | explore.html, index.html | no | 2 |
+| `journey-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | no | 1 |
+| `journey-ama-dablam-lobuche.jpg` | Ama Dablam and Lobuche East | explore.html | no | 1 |
+| `journey-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | no | 1 |
+| `journey-annapurna-circuit.jpg` | Annapurna Circuit | explore.html | no | 1 |
+| `journey-annapurna-i-8091.jpg` | Annapurna I | explore.html | no | 1 |
+| `journey-annapurna-iv-7525.jpg` | Annapurna IV | explore.html | no | 1 |
+| `journey-baruntse-7129.jpg` | Baruntse | explore.html | no | 1 |
+| `journey-baruntse-mera.jpg` | Baruntse and Mera Peak | explore.html | no | 1 |
+| `journey-broad-peak-8051.jpg` | Broad Peak | explore.html | no | 1 |
+| `journey-cho-oyu-8188.jpg` | Cho Oyu | explore.html | no | 1 |
+| `journey-cholatse-6440.jpg` | Cholatse | explore.html | no | 1 |
+| `journey-chulu-west-6419.jpg` | Chulu West | explore.html | no | 1 |
+| `journey-dhampus-6012.jpg` | Dhampus Peak | explore.html | no | 1 |
+| `journey-dhaulagiri-8167.jpg` | Dhaulagiri I | explore.html | no | 1 |
+| `journey-ebc-trek.jpg` | Everest Base Camp Trek | explore.html, index.html | no | 2 |
+| `journey-everest-8848.jpg` | Everest | explore.html | no | 1 |
+| `journey-gasherbrum-i-8080.jpg` | Gasherbrum I | explore.html | no | 1 |
+| `journey-gasherbrum-ii-8034.jpg` | Gasherbrum II | explore.html | no | 1 |
+| `journey-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
+| `journey-haute-route-trek.jpg` | Haute Route, Chamonix to Zermatt | explore.html | no | 1 |
+| `journey-haute-route.jpg` | Haute Route | explore.html | no | 1 |
+| `journey-himlung-7126.jpg` | Himlung Himal | explore.html | no | 1 |
+| `journey-huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | no | 1 |
+| `journey-island-peak-6189.jpg` | Island Peak | explore.html | no | 1 |
+| `journey-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | no | 1 |
+| `journey-k2-8611.jpg` | K2 | explore.html | no | 1 |
+| `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | no | 1 |
+| `journey-kilimanjaro-5895.jpg` | Kilimanjaro | explore.html | no | 1 |
+| `journey-kilimanjaro-trek.jpg` | Kilimanjaro Trek | explore.html | no | 1 |
+| `journey-ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | no | 1 |
+| `journey-langtang-valley.jpg` | Langtang Valley | explore.html | no | 1 |
+| `journey-lhotse-8516.jpg` | Lhotse | explore.html | no | 1 |
+| `journey-lobuche-6119.jpg` | Lobuche East | explore.html | no | 1 |
+| `journey-lobuche-ebc.jpg` | Lobuche East and Everest Base Camp | explore.html | no | 1 |
+| `journey-makalu-8485.jpg` | Makalu | explore.html | no | 1 |
+| `journey-manaslu-8163.jpg` | Manaslu | explore.html | no | 1 |
+| `journey-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | no | 1 |
+| `journey-manaslu-circuit.jpg` | Manaslu Circuit | explore.html | no | 1 |
+| `journey-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
+| `journey-mera-peak-6476.jpg` | Mera Peak | explore.html, index.html | no | 2 |
+| `journey-nanga-parbat-8125.jpg` | Nanga Parbat | explore.html | no | 1 |
+| `journey-nuptse-7864.jpg` | Nuptse | explore.html | no | 1 |
+| `journey-pharchamo-tashi-lapcha.jpg` | Pharchamo via Tashi Lapcha | explore.html | no | 1 |
+| `journey-pumori-7145.jpg` | Pumori | explore.html | no | 1 |
+| `journey-putha-hiunchuli-7246.jpg` | Putha Hiunchuli | explore.html | no | 1 |
+| `journey-shisha-pangma-8027.jpg` | Shisha Pangma | explore.html | no | 1 |
+| `journey-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
+| `journey-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | no | 1 |
+| `journey-torres-del-paine-trek.jpg` | Torres del Paine Circuit | explore.html | no | 1 |
+| `journey-torres-del-paine.jpg` | Torres del Paine | explore.html | no | 1 |
+| `journey-tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | no | 1 |
+| `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | no | 1 |
+| `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
+| `journey-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
-| `threepasses-cho-la.jpg` | Everest Three Passes | index.html | no | 1 |
-| `threepasses-gokyo.jpg` | Everest Three Passes | index.html | no | 1 |
-| `threepasses-renjo-la.jpg` | Everest Three Passes | index.html | no | 1 |
-| `tmb-chamonix.jpg` | Tour du Mont Blanc | index.html | no | 1 |
-| `tmb-trail-runners.jpg` | Tour du Mont Blanc | index.html | no | 1 |
-| `torres-del-paine.jpg` | Torres del Paine | index.html | yes | 3 |
-| `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | index.html | yes | 2 |
 
-45 photographs.
+64 photographs.
 
 ## Honest placeholders
 
 Referenced by name and deliberately absent. Each renders as a flat grey block
 naming the file it is waiting for, and claims nothing.
 
-- `expedition-ebc-basecamp.jpg`
-- `expedition-ebc-village.jpg`
-- `threepasses-cho-la.jpg`
-- `threepasses-gokyo.jpg`
-- `threepasses-renjo-la.jpg`
+- `explore-header.jpg`
+- `journey-ama-dablam-6812.jpg`
+- `journey-ama-dablam-island.jpg`
+- `journey-ama-dablam-lobuche.jpg`
+- `journey-annapurna-base-camp.jpg`
+- `journey-annapurna-circuit.jpg`
+- `journey-annapurna-i-8091.jpg`
+- `journey-annapurna-iv-7525.jpg`
+- `journey-baruntse-7129.jpg`
+- `journey-baruntse-mera.jpg`
+- `journey-broad-peak-8051.jpg`
+- `journey-cho-oyu-8188.jpg`
+- `journey-cholatse-6440.jpg`
+- `journey-chulu-west-6419.jpg`
+- `journey-dhampus-6012.jpg`
+- `journey-dhaulagiri-8167.jpg`
+- `journey-ebc-trek.jpg`
+- `journey-everest-8848.jpg`
+- `journey-gasherbrum-i-8080.jpg`
+- `journey-gasherbrum-ii-8034.jpg`
+- `journey-gokyo-lakes.jpg`
+- `journey-haute-route-trek.jpg`
+- `journey-haute-route.jpg`
+- `journey-himlung-7126.jpg`
+- `journey-huayhuash-circuit.jpg`
+- `journey-island-peak-6189.jpg`
+- `journey-island-peak-ebc.jpg`
+- `journey-k2-8611.jpg`
+- `journey-kangchenjunga-8586.jpg`
+- `journey-kilimanjaro-5895.jpg`
+- `journey-kilimanjaro-trek.jpg`
+- `journey-ladakh-high-passes.jpg`
+- `journey-langtang-valley.jpg`
+- `journey-lhotse-8516.jpg`
+- `journey-lobuche-6119.jpg`
+- `journey-lobuche-ebc.jpg`
+- `journey-makalu-8485.jpg`
+- `journey-manaslu-8163.jpg`
+- `journey-manaslu-base-camp.jpg`
+- `journey-manaslu-circuit.jpg`
+- `journey-mardi-himal.jpg`
+- `journey-mera-peak-6476.jpg`
+- `journey-nanga-parbat-8125.jpg`
+- `journey-nuptse-7864.jpg`
+- `journey-pharchamo-tashi-lapcha.jpg`
+- `journey-pumori-7145.jpg`
+- `journey-putha-hiunchuli-7246.jpg`
+- `journey-shisha-pangma-8027.jpg`
+- `journey-three-passes.jpg`
+- `journey-three-peaks-ebc.jpg`
+- `journey-torres-del-paine-trek.jpg`
+- `journey-torres-del-paine.jpg`
+- `journey-tour-du-mont-blanc.jpg`
+- `journey-two-peaks-lobuche-island-ebc.jpg`
+- `journey-two-peaks-mera-island.jpg`
+- `journey-upper-mustang.jpg`
+
+## On disk, not placed
+
+- `annapurna-circuit.jpg`
+- `annapurna-mustang.jpg`
+- `annapurna-poon-hill.jpg`
+- `annapurna-thorong-la.jpg`
+- `annapurna-valley.jpg`
+- `ebc-gorakshep.jpg`
+- `ebc-khumbu-glacier.jpg`
+- `ebc-tengboche-sign.jpg`
+- `ebc-thukla-sign.jpg`
+- `ebc-trekkers.jpg`
+- `ebc-valley.jpg`
+- `everest-three-passes.jpg`
+- `expedition-ebc.jpg`
+- `expedition-haute-route.jpg`
+- `expedition-kilimanjaro.jpg`
+- `expedition-mera-peak.jpg`
+- `expedition-torres.jpg`
+- `haute-route-matterhorn.jpg`
+- `huayhuash-circuit.jpg`
+- `huayhuash-lake.jpg`
+- `kilimanjaro.jpg`
+- `ladakh-high-passes.jpg`
+- `ladakh-lamayuru.jpg`
+- `ladakh-nubra.jpg`
+- `manaslu-circuit.jpg`
+- `manaslu-pung-gyen.jpg`
+- `manaslu-trail.jpg`
+- `mera-peak-view.jpg`
+- `tmb-chamonix.jpg`
+- `tmb-trail-runners.jpg`
+- `torres-del-paine.jpg`
+- `tour-du-mont-blanc.jpg`

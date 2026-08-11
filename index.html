@@ -161,7 +161,6 @@
     max-width: 88%;
     text-align: center;
   }
-  .photo-slot--corner { align-items: flex-end; justify-content: flex-end; padding: var(--s-5); }
 
   /* ─── BUTTONS ─── */
   .btn {
@@ -461,43 +460,7 @@
   }
 
   /* ─── CARD GRID (trails + expeditions) ─── */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--s-5); }
-
-  .region-head { display: flex; align-items: center; gap: var(--s-4); margin: var(--s-7) 0 var(--s-5); }
-  .region-head:first-of-type { margin-top: 0; }
-  .region-label {
-    font-family: var(--font-head);
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-3); white-space: nowrap;
-  }
-  .region-line { flex: 1; height: 1px; background: var(--rule); }
-
-  .tcard {
-    display: flex; flex-direction: column;
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
-    color: var(--ink);
-    cursor: pointer;
-    animation: riseIn 0.5s ease-out both;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  }
-  .tcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--rule-firm); }
-  .tcard-media { position: relative; aspect-ratio: 4 / 3; }
-  .tcard-body { flex: 1; display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); }
-  .tcard-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-4); }
-  .tcard-name { font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
-  .tcard-loc {
-    font-family: var(--font-head);
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--glacier); margin-top: 6px;
-  }
-  .tcard-desc { font-size: var(--t-base); line-height: 1.55; color: var(--ink-2); }
-  .tcard-foot { margin-top: auto; padding-top: var(--s-4); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }
 
   .badge {
     flex-shrink: 0;
@@ -508,27 +471,8 @@
     padding: 6px 10px; border: 1px solid; border-radius: 2px;
     white-space: nowrap;
   }
-  .badge-moderate    { color: var(--pine);        background: var(--pine-soft);   border-color: var(--pine-line); }
-  .badge-challenging { color: var(--sienna-dark); background: var(--sienna-soft); border-color: var(--sienna-line); }
-  .badge-hard        { color: var(--umber);       background: var(--umber-soft);  border-color: var(--umber-line); }
-  .badge-extreme     { color: #fff;               background: var(--ink);         border-color: var(--ink); }
 
   /* gear-spec rows with dot leaders */
-  .tcard-specs { margin-top: var(--s-1); border-top: 1px solid var(--rule); }
-  .spec { display: flex; align-items: baseline; gap: var(--s-3); padding: 10px 0; border-bottom: 1px solid var(--rule); }
-  .spec:last-child { border-bottom: none; }
-  .spec-label {
-    font-family: var(--font-head);
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-3); white-space: nowrap;
-  }
-  .spec-dots { flex: 1; align-self: center; border-bottom: 1px dotted var(--rule-firm); }
-  .spec-value {
-    font-family: var(--font-head); font-size: var(--t-sm); font-weight: 600;
-    color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap;
-  }
-  .spec-value--soft { color: var(--ink-2); font-weight: 500; text-transform: none; letter-spacing: 0; white-space: normal; text-align: right; }
 
   /* ─── COMMUNITY ─── */
   .community-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--s-7); align-items: start; }
@@ -624,7 +568,6 @@
   /* feed */
   .posts-feed { display: flex; flex-direction: column; gap: var(--s-4); max-height: 640px; overflow-y: auto; }
   .post-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius-lg); overflow: hidden; }
-  .post-image { width: 100%; max-height: 240px; object-fit: cover; display: block; }
   .post-body { padding: var(--s-4); }
   .post-author { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-3); }
   .post-avatar {
@@ -701,74 +644,32 @@
      Scroll-snap does the work, so a swipe or a trackpad drag scrolls the row
      with JavaScript disabled. The arrow buttons are an enhancement and are
      only revealed once the js class is present. */
-  .carousel { position: relative; }
-  .carousel-track {
-    display: flex;
-    gap: var(--s-5);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: var(--s-5);
-    padding: var(--s-1) var(--s-5) var(--s-4);
-    margin-inline: calc(var(--s-5) * -1);
-    scrollbar-width: thin;
-    scrollbar-color: var(--rule-firm) transparent;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
+  /* ─── JOURNEY CARD ───
+     Used by the Explore teaser here and by every catalogue grid on
+     explore.html. The whole card is one link. */
+  .jcard {
+    display: flex; flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+    overflow: hidden; text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
   }
-  .carousel-track::-webkit-scrollbar { height: 8px; }
-  .carousel-track::-webkit-scrollbar-track { background: transparent; }
-  .carousel-track::-webkit-scrollbar-thumb { background: var(--rule-firm); border-radius: 4px; }
-  /* Cards are fixed width so the next one always peeks in from the edge. */
-  .carousel-track > .tcard { flex: 0 0 clamp(268px, 78vw, 320px); scroll-snap-align: start; }
-
-  .region-marker {
-    flex: 0 0 auto;
-    align-self: stretch;
-    display: flex; align-items: center; gap: var(--s-3);
-    padding-inline: var(--s-1);
-    scroll-snap-align: start;
+  .jcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); border-color: var(--rule-firm); }
+  .jcard:focus-visible { outline: 2px solid var(--sienna); outline-offset: 2px; }
+  .jcard-media { position: relative; aspect-ratio: 4 / 3; }
+  .jcard-body { display: flex; flex-direction: column; gap: 6px; padding: var(--s-4) var(--s-5) var(--s-5); }
+  .jcard-name {
+    font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700;
+    line-height: 1.2; letter-spacing: -0.01em; color: var(--ink);
   }
-  .region-marker::before { content: ''; width: 1px; align-self: stretch; background: var(--rule-firm); }
-  .region-marker span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    font-family: var(--font-head);
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--ink-3); white-space: nowrap;
+  .jcard-meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+  .jcard-elev {
+    font-family: var(--font-head); font-size: var(--t-sm); font-weight: 700;
+    color: var(--sienna); font-variant-numeric: tabular-nums;
   }
-
-  .section-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-5); }
-  .carousel-nav { display: none; gap: var(--s-2); flex-shrink: 0; padding-bottom: var(--s-2); }
-  .js .carousel-nav { display: flex; }
-  .carousel-btn {
-    width: 42px; height: 42px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--card); border: 1px solid var(--rule-firm);
-    border-radius: 50%; cursor: pointer;
-    font-size: 16px; line-height: 1; color: var(--ink);
-    transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
-  }
-  .carousel-btn:hover:not(:disabled) { background: var(--surface-alt); border-color: var(--ink); }
-  .carousel-btn:disabled { opacity: 0.32; cursor: default; }
-
-  /* ─── FULL-BLEED PHOTO BANDS ─── */
-  .band { position: relative; height: 40vh; min-height: 260px; overflow: hidden; }
-  .band-overlay {
-    position: absolute; inset: 0; z-index: 2;
-    display: flex; align-items: center; justify-content: center;
-    padding: var(--s-5);
-    background: rgba(28,34,38,0.28);
-  }
-  .band-line {
-    font-family: var(--font-head);
-    font-size: clamp(20px, 3vw, 32px);
-    font-weight: 600; line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: #fff; text-align: center; max-width: 24ch;
-    text-shadow: 0 2px 18px rgba(20,24,27,0.35);
-  }
+  .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
+  .teaser-more { margin-top: var(--s-6); }
 
   /* ─── DISPATCHES ─── */
   .dispatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }
@@ -914,28 +815,7 @@
     font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
     color: #fff; margin: var(--s-2) 0 var(--s-3);
   }
-
-  .detail-grid {
-    display: grid; grid-template-columns: 1.3fr 0.7fr;
-    gap: var(--s-7);
-    padding: var(--s-6) 0;
-  }
   .detail-lede { font-size: var(--t-lg); line-height: 1.6; color: var(--ink); margin-bottom: var(--s-4); }
-  .detail-body { font-size: var(--t-base); line-height: 1.75; color: var(--ink-2); }
-
-  .spec-panel {
-    position: sticky; top: calc(var(--nav-h) + var(--s-5));
-    background: var(--card);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: var(--s-5);
-  }
-  .spec-panel-title {
-    font-family: var(--font-head); font-size: 10px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3);
-    padding-bottom: var(--s-3); border-bottom: 1px solid var(--rule);
-  }
   .spec-panel .spec:last-of-type { border-bottom: none; }
   .spec-panel .btn { width: 100%; margin-top: var(--s-5); }
 
@@ -1090,8 +970,6 @@
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1000px) {
     .story-grid, .community-grid { grid-template-columns: 1fr; gap: var(--s-7); }
-    .detail-grid { grid-template-columns: 1fr; gap: var(--s-6); }
-    .spec-panel { position: static; }
     .story-photo, .community-photo { aspect-ratio: 16 / 10; }
     .inquiry-panel { grid-template-columns: 1fr; max-height: 94vh; overflow-y: auto; }
     .inquiry-left { min-height: 190px; padding: var(--s-6) var(--s-5); }
@@ -1105,7 +983,6 @@
     .hero-actions .btn { width: 100%; justify-content: center; }
     .hero-scroll { font-size: 9px; letter-spacing: 0.2em; }
     /* keep the placeholder label clear of the hero CTAs on small screens */
-    .photo-slot--corner { align-items: flex-start; }
     .card-grid, .dispatch-grid { grid-template-columns: 1fr; }
     .band { height: 34vh; min-height: 220px; }
     .detail-hero { height: 34vh; min-height: 220px; }
@@ -1117,98 +994,9 @@
 </head>
 <body>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer">
-  <button class="lb-close" id="lb-close" type="button" aria-label="Close viewer">&#10005;</button>
-  <div class="lb-stage">
-    <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photograph">&#8592;</button>
-    <img class="lb-img" id="lb-img" alt="">
-    <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photograph">&#8594;</button>
-  </div>
-  <div class="lb-bar">
-    <span class="lb-counter" id="lb-counter"></span>
-    <span class="lb-caption" id="lb-caption"></span>
-  </div>
-</div>
 
-<!-- DETAIL VIEW (trail / expedition) - populated from the URL hash -->
-<div id="detail-view" class="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
-  <div class="detail-bar">
-    <button class="detail-back" type="button" id="detail-back">
-      <span aria-hidden="true">&larr;</span> <span id="detail-back-label">All trails</span>
-    </button>
-  </div>
-  <div id="detail-content"></div>
-</div>
 
-<!-- INQUIRY OVERLAY -->
-<div id="inquiry-overlay" class="inquiry-overlay" onclick="handleInquiryClick(event)">
-  <div class="inquiry-panel" role="dialog" aria-modal="true" aria-labelledby="inquiry-heading">
-    <button class="inquiry-close" type="button" onclick="closeInquiry()" aria-label="Close">&#10005;</button>
 
-    <div class="inquiry-left">
-      <div class="inquiry-bg" id="inquiry-bg"></div>
-      <div class="inquiry-left-content">
-        <div class="inquiry-eyebrow" id="inquiry-eyebrow">Express Interest</div>
-        <h2 class="inquiry-heading" id="inquiry-heading">Join the Journey</h2>
-        <p class="inquiry-subtext" id="inquiry-subtext">Tell us you are interested. We will be in touch as soon as dates are set.</p>
-        <ul class="inquiry-promise">
-          <li>No commitment, just an expression of interest</li>
-          <li>We reply within 48 hours</li>
-          <li>Small groups, personal attention</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="inquiry-right">
-      <div class="inquiry-success" id="inquiry-success">
-        <div class="inquiry-success-icon">&#10022;</div>
-        <h3>Message received</h3>
-        <p>Thanks for your interest in <strong id="inquiry-success-name"></strong>. We will be in touch within 48 hours. Keep your boots ready.</p>
-      </div>
-
-      <form id="inquiry-form">
-        <p class="inquiry-form-label">Your details</p>
-        <p class="inquiry-form-hint">All fields required except the message. We keep your information private.</p>
-
-        <div class="field">
-          <label for="inq-name">Full name</label>
-          <input type="text" id="inq-name" name="name" placeholder="Your full name" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="inq-email">Email address</label>
-          <input type="email" id="inq-email" name="email" placeholder="you@email.com" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="inq-phone">Phone / WhatsApp</label>
-          <input type="tel" id="inq-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" required>
-        </div>
-        <div class="field">
-          <label for="inq-experience">Your experience level</label>
-          <select id="inq-experience" name="experience" required>
-            <option value="">Select your background</option>
-            <option>Beginner, new to multi-day trekking</option>
-            <option>Intermediate, several treks completed</option>
-            <option>Experienced, high-altitude background</option>
-            <option>Expert, technical mountaineering</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="inq-message">Message <span class="optional">(optional)</span></label>
-          <textarea id="inq-message" name="message" placeholder="Questions, dietary needs, preferred dates, travel companions"></textarea>
-        </div>
-
-        <div class="hp-field" aria-hidden="true">
-          <label for="inq-hp">Leave this field empty</label>
-          <input type="text" id="inq-hp" name="_gotcha" tabindex="-1" autocomplete="off">
-        </div>
-        <p class="form-error" id="inquiry-error" role="alert"></p>
-        <button class="btn btn-primary inquiry-submit" type="submit" style="width:100%">Send my interest &rarr;</button>
-        <p class="form-note">By submitting you agree to be contacted about this expedition. We never share your details.</p>
-      </form>
-    </div>
-  </div>
-</div>
 
 <!-- NAVIGATION -->
 <nav class="site-nav" id="navbar">
@@ -1221,7 +1009,7 @@
       <span class="nav-toggle-bar"></span>
     </button>
     <ul class="nav-menu" id="nav-menu">
-      <li><a href="#trails" data-spy="trails">Explore</a></li>
+      <li><a href="explore.html">Explore</a></li>
       <li><a href="#community" data-spy="community" onclick="switchTab('share')">Community</a></li>
       <!-- re-target to the Know the Mountain section once it exists; it points at
            the community hub meanwhile, and carries no spy so it cannot fight the
@@ -1266,9 +1054,8 @@
         <text class="sign-text" x="139" y="88">LET&#8217;S CONNECT</text>
       </a>
 
-      <!-- re-target to the Explore section once it exists -->
-      <a class="sign-board" href="#trails" style="--tilt:1.2deg"
-         aria-label="Explore the trails">
+      <a class="sign-board" href="explore.html" style="--tilt:1.2deg"
+         aria-label="Explore the journeys">
         <path class="plank plank-wood" d="M6 150 L236 150 L264 180 L236 210 L6 210 Z"/>
         <text class="sign-text" x="121" y="180">EXPLORE</text>
       </a>
@@ -1369,396 +1156,50 @@
   </div>
 </section>
 
-<!-- TRAILS -->
-<section class="section section--alt" id="trails">
+<!-- EXPLORE TEASER -->
+<section class="section section--alt" id="explore-teaser">
   <div class="wrap">
     <div class="section-bar">
       <div class="section-head" style="margin-bottom:var(--s-5)">
-        <p class="section-kicker">Ten routes, five continents</p>
-        <h2 class="section-title">Trails &amp; Mountains</h2>
-        <p class="section-lede">Open any trail for the route, the numbers, and what waits on the path.</p>
-      </div>
-      <div class="carousel-nav" data-track="track-trails">
-        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous trails">&#8592;</button>
-        <button class="carousel-btn" type="button" data-dir="1" aria-label="Next trails">&#8594;</button>
+        <p class="section-kicker">Expeditions and trekking</p>
+        <h2 class="section-title">Explore</h2>
+        <p class="section-lede">Fifty five journeys, from a first 6,000er to the eight thousand metre peaks.</p>
       </div>
     </div>
 
-    <div class="carousel">
-      <div class="carousel-track" id="track-trails" tabindex="0" role="group" aria-label="Trails, scroll horizontally">
-        <div class="region-marker" aria-hidden="true"><span>Asia &middot; Himalaya</span></div>
-      <article class="tcard" data-detail="trail/everest-base-camp">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/ebc-trekkers-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Everest Base Camp</h3>
-              <div class="tcard-loc">Khumbu, Nepal</div>
-            </div>
-            <span class="badge badge-challenging">Challenging</span>
+    <div class="card-grid">
+        <a class="jcard" href="explore.html#journey/ama-dablam-6812">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ama-dablam-6812.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Ama Dablam</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,812 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
           </div>
-          <p class="tcard-desc">The most iconic high-altitude trek on earth, ending at the foot of Everest.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Max Altitude</dt><span class="spec-dots"></span><dd class="spec-value">5,364 m</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">12–16 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Mar–May, Oct–Nov</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/everest-base-camp">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
+        </a>
+        <a class="jcard" href="explore.html#journey/ebc-trek">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-ebc-trek.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Everest Base Camp Trek</h3>
+            <p class="jcard-meta"><span class="jcard-where">Everest &middot; Nepal</span></p>
           </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/annapurna-circuit">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/annapurna-circuit-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Annapurna Circuit</h3>
-              <div class="tcard-loc">Gandaki, Nepal</div>
-            </div>
-            <span class="badge badge-challenging">Challenging</span>
+        </a>
+        <a class="jcard" href="explore.html#journey/mera-peak-6476">
+          <div class="jcard-media"><div class="photo-slot" data-photo="journey-mera-peak-6476.jpg"></div></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Mera Peak</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,476 m</span><span class="jcard-where">Hinku &middot; Nepal</span></p>
           </div>
-          <p class="tcard-desc">Subtropical valleys to high desert in one walk, crowned by the Thorong La pass.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Max Altitude</dt><span class="spec-dots"></span><dd class="spec-value">5,416 m</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">15–20 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Mar–May, Oct–Nov</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/annapurna-circuit">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/manaslu-circuit">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/manaslu-circuit-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Manaslu Circuit</h3>
-              <div class="tcard-loc">Gorkha, Nepal</div>
-            </div>
-            <span class="badge badge-challenging">Challenging</span>
-          </div>
-          <p class="tcard-desc">Quieter and wilder than Annapurna, circling the eighth highest peak on earth.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Max Altitude</dt><span class="spec-dots"></span><dd class="spec-value">5,106 m</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">14–18 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Mar–May, Sep–Nov</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/manaslu-circuit">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/everest-three-passes">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/everest-three-passes-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Everest Three Passes</h3>
-              <div class="tcard-loc">Khumbu, Nepal</div>
-            </div>
-            <span class="badge badge-hard">Hard</span>
-          </div>
-          <p class="tcard-desc">The complete Khumbu circuit, crossing three high passes instead of one valley.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Max Altitude</dt><span class="spec-dots"></span><dd class="spec-value">5,535 m</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">18–21 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Apr–May, Oct</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/everest-three-passes">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/ladakh-high-passes">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/ladakh-high-passes-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Ladakh High Passes</h3>
-              <div class="tcard-loc">Zanskar, India</div>
-            </div>
-            <span class="badge badge-extreme">Extreme</span>
-          </div>
-          <p class="tcard-desc">A high-altitude moonscape of colour-banded mountains and Buddhist monasteries.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Max Altitude</dt><span class="spec-dots"></span><dd class="spec-value">6,400 m+</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">10–14 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Jul–Sep</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/ladakh-high-passes">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-        <div class="region-marker" aria-hidden="true"><span>Europe &middot; Alps</span></div>
-      <article class="tcard" data-detail="trail/tour-du-mont-blanc">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/tour-du-mont-blanc-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Tour du Mont Blanc</h3>
-              <div class="tcard-loc">France, Italy, Switzerland</div>
-            </div>
-            <span class="badge badge-moderate">Moderate</span>
-          </div>
-          <p class="tcard-desc">A 170km loop of the Mont Blanc massif through three countries.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Distance</dt><span class="spec-dots"></span><dd class="spec-value">~170 km</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">10–12 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Jun–Sep</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/tour-du-mont-blanc">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/haute-route">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/haute-route-matterhorn-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Haute Route</h3>
-              <div class="tcard-loc">Chamonix to Zermatt</div>
-            </div>
-            <span class="badge badge-hard">Hard</span>
-          </div>
-          <p class="tcard-desc">Two weeks of glaciers and high cols, from Mont Blanc to the Matterhorn.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Distance</dt><span class="spec-dots"></span><dd class="spec-value">~180 km</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">12–14 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Jul–Aug</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/haute-route">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-        <div class="region-marker" aria-hidden="true"><span>South America &middot; Andes</span></div>
-      <article class="tcard" data-detail="trail/torres-del-paine">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/torres-del-paine-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Torres del Paine W</h3>
-              <div class="tcard-loc">Patagonia, Chile</div>
-            </div>
-            <span class="badge badge-moderate">Moderate</span>
-          </div>
-          <p class="tcard-desc">Granite towers rising straight out of the Patagonian steppe.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Distance</dt><span class="spec-dots"></span><dd class="spec-value">~80 km</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">5–8 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Oct–Apr</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/torres-del-paine">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="trail/huayhuash-circuit">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/huayhuash-circuit-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Huayhuash Circuit</h3>
-              <div class="tcard-loc">Andes, Peru</div>
-            </div>
-            <span class="badge badge-hard">Hard</span>
-          </div>
-          <p class="tcard-desc">A compact crown of ice-capped peaks and impossibly blue glacial lakes.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Distance</dt><span class="spec-dots"></span><dd class="spec-value">~165 km</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">10–14 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">May–Sep</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/huayhuash-circuit">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-        <div class="region-marker" aria-hidden="true"><span>Africa</span></div>
-      <article class="tcard" data-detail="trail/kilimanjaro-machame">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/kilimanjaro-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Kilimanjaro Machame</h3>
-              <div class="tcard-loc">Tanzania</div>
-            </div>
-            <span class="badge badge-challenging">Challenging</span>
-          </div>
-          <p class="tcard-desc">Equatorial forest to glaciated summit in a single week, on the roof of Africa.</p>
-          <dl class="tcard-specs">
-        <div class="spec"><dt class="spec-label">Summit</dt><span class="spec-dots"></span><dd class="spec-value">5,895 m</dd></div>
-        <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">7–8 days</dd></div>
-        <div class="spec"><dt class="spec-label">Season</dt><span class="spec-dots"></span><dd class="spec-value">Jan–Mar, Jun–Oct</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#trail/kilimanjaro-machame">
-              Explore trail <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      </div>
+        </a>
     </div>
+
+    <p class="teaser-more">
+      <a class="link-action" href="explore.html">View all journeys <span aria-hidden="true">&rarr;</span></a>
+    </p>
   </div>
 </section>
 
 <!-- BAND 2 -->
 <section class="band" aria-hidden="true">
   <div class="photo-slot" style="--pos:center 14%"><img class="photo-img" src="assets/images/band-ridgeline.jpg" alt="" loading="lazy" decoding="async"></div>
-</section>
-
-<!-- EXPEDITIONS -->
-<section class="section" id="expeditions">
-  <div class="wrap">
-    <div class="section-bar">
-      <div class="section-head" style="margin-bottom:var(--s-5)">
-        <p class="section-kicker">Walk with us</p>
-        <h2 class="section-title">Expeditions 2026</h2>
-        <p class="section-lede">Five small groups, led by people who have walked these routes. Dates go to the interest list before anywhere else.</p>
-      </div>
-      <div class="carousel-nav" data-track="track-expeditions">
-        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous expeditions">&#8592;</button>
-        <button class="carousel-btn" type="button" data-dir="1" aria-label="Next expeditions">&#8594;</button>
-      </div>
-    </div>
-    <div class="carousel">
-      <div class="carousel-track" id="track-expeditions" tabindex="0" role="group" aria-label="Expeditions, scroll horizontally">
-      <article class="tcard" data-detail="expedition/everest-base-camp">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/expedition-ebc-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Everest Base Camp</h3>
-              <div class="tcard-loc">Himalaya · Nepal</div>
-            </div>
-          </div>
-          <p class="tcard-desc">Sherpa heartland and towering seracs, beneath the highest peak on earth.</p>
-          <dl class="tcard-specs">
-            <div class="spec"><dt class="spec-label">Dates</dt><span class="spec-dots"></span><dd class="spec-value spec-value--soft">Announced to the interest list first</dd></div>
-            <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">14 days</dd></div>
-            <div class="spec"><dt class="spec-label">Group</dt><span class="spec-dots"></span><dd class="spec-value">Max 10</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#expedition/everest-base-camp">
-              View expedition <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="expedition/mera-peak">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/expedition-mera-peak-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Mera Peak Summit</h3>
-              <div class="tcard-loc">Himalaya · Nepal</div>
-            </div>
-          </div>
-          <p class="tcard-desc">Nepal’s highest trekking peak. Learn glacier travel, then summit.</p>
-          <dl class="tcard-specs">
-            <div class="spec"><dt class="spec-label">Dates</dt><span class="spec-dots"></span><dd class="spec-value spec-value--soft">Announced to the interest list first</dd></div>
-            <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">18 days</dd></div>
-            <div class="spec"><dt class="spec-label">Group</dt><span class="spec-dots"></span><dd class="spec-value">Max 8</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#expedition/mera-peak">
-              View expedition <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="expedition/torres-del-paine">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/expedition-torres-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Torres del Paine</h3>
-              <div class="tcard-loc">Patagonia · Chile</div>
-            </div>
-          </div>
-          <p class="tcard-desc">The full circuit of the Paine massif. Granite, ice and Patagonian wind.</p>
-          <dl class="tcard-specs">
-            <div class="spec"><dt class="spec-label">Dates</dt><span class="spec-dots"></span><dd class="spec-value spec-value--soft">Announced to the interest list first</dd></div>
-            <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">10 days</dd></div>
-            <div class="spec"><dt class="spec-label">Group</dt><span class="spec-dots"></span><dd class="spec-value">Max 10</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#expedition/torres-del-paine">
-              View expedition <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="expedition/haute-route">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/expedition-haute-route-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Haute Route</h3>
-              <div class="tcard-loc">Alps · France &amp; Switzerland</div>
-            </div>
-          </div>
-          <p class="tcard-desc">The definitive Alpine traverse, from Mont Blanc to the Matterhorn.</p>
-          <dl class="tcard-specs">
-            <div class="spec"><dt class="spec-label">Dates</dt><span class="spec-dots"></span><dd class="spec-value spec-value--soft">Announced to the interest list first</dd></div>
-            <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">14 days</dd></div>
-            <div class="spec"><dt class="spec-label">Group</dt><span class="spec-dots"></span><dd class="spec-value">Max 12</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#expedition/haute-route">
-              View expedition <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      <article class="tcard" data-detail="expedition/kilimanjaro">
-        <div class="tcard-media"><div class="photo-slot"><img class="photo-img" src="assets/images/expedition-kilimanjaro-800.jpg" alt="" loading="lazy" decoding="async"></div></div>
-        <div class="tcard-body">
-          <div class="tcard-head">
-            <div>
-              <h3 class="tcard-name">Kilimanjaro Summit</h3>
-              <div class="tcard-loc">Africa · Tanzania</div>
-            </div>
-          </div>
-          <p class="tcard-desc">The roof of Africa by the Machame Route, its richest scenic line.</p>
-          <dl class="tcard-specs">
-            <div class="spec"><dt class="spec-label">Dates</dt><span class="spec-dots"></span><dd class="spec-value spec-value--soft">Announced to the interest list first</dd></div>
-            <div class="spec"><dt class="spec-label">Duration</dt><span class="spec-dots"></span><dd class="spec-value">8 days</dd></div>
-            <div class="spec"><dt class="spec-label">Group</dt><span class="spec-dots"></span><dd class="spec-value">Max 10</dd></div>
-          </dl>
-          <div class="tcard-foot">
-            <a class="link-action" href="#expedition/kilimanjaro">
-              View expedition <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </div>
-      </article>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- COMMUNITY -->
@@ -1951,7 +1392,7 @@
       <div>
         <p class="footer-col-title">Explore</p>
         <ul class="footer-links">
-          <li><a href="#trails">Expeditions &amp; Trekking</a></li>
+          <li><a href="explore.html">Expeditions &amp; Trekking</a></li>
           <li><a href="#community">Community</a></li>
           <!-- re-target to the About Us section once it is written; #story is a stand in -->
           <li><a href="#story">About Us</a></li>
@@ -2041,514 +1482,10 @@ function photoSlot(file, opts) {
   opts = opts || {};
   const cls = 'photo-slot' + (opts.cls ? ' ' + opts.cls : '');
   const pos = opts.pos ? `;--pos:${opts.pos}` : '';
-  // data-lb marks a real photograph as openable in the lightbox. Placeholders
-  // never get one, so an empty slot is not clickable.
-  const lb = (opts.lb !== undefined && has(file))
-    ? ` data-lb="${opts.lb}" role="button" tabindex="0" aria-label="Open photograph"` : '';
-  if (!has(file)) return `<div class="${cls}" data-photo="${file}"></div>`;
-  // opts.img renders a real <img> so it can be lazy-loaded. Used for gallery
-  // photographs, which sit inside the detail view and are never needed until
-  // that view opens.
-  if (opts.img) {
-    return `<div class="${cls}"${lb} style="--pos:${opts.pos || 'center'}">`
-         + `<img class="photo-img" src="${file}" alt="" loading="lazy" decoding="async"></div>`;
-  }
-  return `<div class="${cls}"${lb} style="--photo:url('${file}')${pos}"></div>`;
+  return has(file)
+    ? `<div class="${cls}" style="--photo:url('${file}')${pos}"></div>`
+    : `<div class="${cls}" data-photo="${file}"></div>`;
 }
-
-// ═══ TRAIL DATA ═══
-// Galleries list only genuine images plus honestly-labelled empty slots.
-// A caption is attached only to a photograph that exists; a placeholder
-// shows its filename and claims nothing.
-const TRAILS = {
-  ebc: {
-    name: 'Everest Base Camp', group: 'asia',
-    loc: 'Khumbu, Nepal', fullLoc: 'Khumbu Valley · Nepal · 5,364m',
-    difficulty: 'Challenging', badge: 'badge-challenging',
-    cardDesc: 'The most iconic high-altitude trek on earth, ending at the foot of Everest.',
-    specs: [['Max Altitude','5,364 m'],['Duration','12–16 days'],['Season','Mar–May, Oct–Nov']],
-    stats: [['Max Altitude','5,364m'],['Duration','12–16 days'],['Start Point','Lukla (2,840m)'],['Season','Mar–May, Oct–Nov']],
-    intro: 'The world’s most iconic high-altitude trek, ending in the shadow of the highest peak on earth.',
-    desc: 'A mountain flight into Lukla, then a steady climb through the Dudh Koshi valley past rhododendron forest and the trading hub of Namche Bazaar. Acclimatisation days open up side valleys before the stark upper Khumbu carries you to Gorak Shep. A predawn start for Kala Patthar delivers the finest Everest viewpoint there is.',
-    photo: IMG + 'ebc-trekkers.jpg', heroPos: 'center 34%',
-    gallery: [
-      { file: IMG + 'ebc-valley.jpg',         cap: 'Imja Khola gorge below Ama Dablam' },
-      { file: IMG + 'ebc-tengboche-sign.jpg', cap: 'Tengboche, 3,875m' },
-      { file: IMG + 'ebc-thukla-sign.jpg',    cap: 'Thukla, 4,620m' },
-      { file: IMG + 'ebc-khumbu-glacier.jpg', cap: 'Khumbu Glacier' },
-      { file: IMG + 'ebc-gorakshep.jpg',      cap: 'Gorakshep, 5,190m' }
-    ]
-  },
-  annapurna: {
-    name: 'Annapurna Circuit', group: 'asia',
-    loc: 'Gandaki, Nepal', fullLoc: 'Gandaki Zone · Nepal · 5,416m',
-    difficulty: 'Challenging', badge: 'badge-challenging',
-    cardDesc: 'Subtropical valleys to high desert in one walk, crowned by the Thorong La pass.',
-    specs: [['Max Altitude','5,416 m'],['Duration','15–20 days'],['Season','Mar–May, Oct–Nov']],
-    stats: [['Max Altitude','5,416m'],['Duration','15–20 days'],['Highest Pass','Thorong La'],['Season','Mar–May, Oct–Nov']],
-    intro: 'Once voted the greatest long-distance trek in the world, and still the most varied.',
-    desc: 'The circuit starts in the terraced lowlands of the Marsyangdi valley and climbs into the arid high desert of Manang. Its crown is the Thorong La crossing at 5,416m, a hard predawn push over one of the highest trekking passes anywhere. The descent drops into Mustang and the Kali Gandaki, the deepest valley on earth.',
-    photo: IMG + 'annapurna-circuit.jpg', heroPos: 'center 45%',
-    gallery: [
-      { file: IMG + 'annapurna-thorong-la.jpg', cap: 'Approach to Thorong La' },
-      { file: IMG + 'annapurna-valley.jpg',     cap: 'Annapurna Circuit, Nepal' },
-      { file: IMG + 'annapurna-mustang.jpg',    cap: 'Mustang, Nepal' },
-      { file: IMG + 'annapurna-poon-hill.jpg',  cap: 'Annapurna range from Poon Hill' }
-    ]
-  },
-  manaslu: {
-    name: 'Manaslu Circuit', group: 'asia',
-    loc: 'Gorkha, Nepal', fullLoc: 'Gorkha District · Nepal · 5,106m',
-    difficulty: 'Challenging', badge: 'badge-challenging',
-    cardDesc: 'Quieter and wilder than Annapurna, circling the eighth highest peak on earth.',
-    specs: [['Max Altitude','5,106 m'],['Duration','14–18 days'],['Season','Mar–May, Sep–Nov']],
-    stats: [['Max Altitude','5,106m'],['Duration','14–18 days'],['Highest Pass','Larkya La'],['Season','Mar–May, Sep–Nov']],
-    intro: 'The great alternative to the Annapurna: quieter, wilder, and arguably more spectacular.',
-    desc: 'A special permit keeps visitor numbers low, and the route has kept an authenticity many busier trails have lost. The trail follows the Buri Gandaki gorge past Buddhist monasteries and mani walls into the high country of Nubri. Larkya La at 5,106m opens onto one of the finest panoramas in the Himalaya.',
-    photo: IMG + 'manaslu-circuit.jpg', heroPos: 'center 40%',
-    gallery: [
-      { file: IMG + 'manaslu-pung-gyen.jpg', cap: 'Pung Gyen Gompa' },
-      { file: IMG + 'manaslu-trail.jpg',     cap: 'Manaslu Circuit' }
-    ]
-  },
-  threepasses: {
-    name: 'Everest Three Passes', group: 'asia',
-    loc: 'Khumbu, Nepal', fullLoc: 'Khumbu · Nepal · 5,535m',
-    difficulty: 'Hard', badge: 'badge-hard',
-    cardDesc: 'The complete Khumbu circuit, crossing three high passes instead of one valley.',
-    specs: [['Max Altitude','5,535 m'],['Duration','18–21 days'],['Season','Apr–May, Oct']],
-    stats: [['Max Altitude','5,535m'],['Duration','18–21 days'],['Passes','Renjo, Cho, Kongma'],['Season','Apr–May, Oct']],
-    intro: 'The most demanding and most complete way to see the Khumbu.',
-    desc: 'Where the Base Camp trek follows a single valley, this route weaves across the whole region via Renjo La, Cho La and Kongma La. Each pass asks for real effort and returns an extraordinary reward. Along the way it takes in the Gokyo Lakes and the classic Base Camp approach.',
-    photo: IMG + 'everest-three-passes.jpg', heroPos: 'center 30%',
-    gallery: [
-      // Was story-ama-dablam.jpg, captioned as a Kongma La shot. That file is
-      // The Story's photograph, and it was taken on the Base Camp trek, not on
-      // this route. One photograph, one slot: it stays with The Story, and all
-      // three passes wait for their own frames.
-      { file: IMG + 'threepasses-renjo-la.jpg' },
-      { file: IMG + 'threepasses-gokyo.jpg' },
-      { file: IMG + 'threepasses-cho-la.jpg' }
-    ]
-  },
-  ladakh: {
-    name: 'Ladakh High Passes', group: 'asia',
-    loc: 'Zanskar, India', fullLoc: 'Zanskar · Ladakh, India · 6,400m+',
-    difficulty: 'Extreme', badge: 'badge-extreme',
-    cardDesc: 'A high-altitude moonscape of colour-banded mountains and Buddhist monasteries.',
-    specs: [['Max Altitude','6,400 m+'],['Duration','10–14 days'],['Season','Jul–Sep']],
-    stats: [['Max Altitude','6,400m+'],['Duration','10–14 days'],['Key Summit','Kang Yatse 2'],['Season','Jul–Sep']],
-    intro: 'One of the most visually extraordinary environments anywhere on earth.',
-    desc: 'The route follows ancient Zanskar trade paths across stark, arid country unlike anywhere else. Red and ochre mountains rise above valley floors dusted with mani stones, and the villages have held their Tibetan identity for centuries. For strong trekkers the objective is Kang Yatse 2 at 6,400m above the Nimaling Plateau.',
-    photo: IMG + 'ladakh-high-passes.jpg', heroPos: 'center 50%',
-    gallery: [
-      { file: IMG + 'ladakh-lamayuru.jpg', cap: 'Lamayuru, Ladakh' },
-      { file: IMG + 'ladakh-nubra.jpg',    cap: 'Nubra Valley, Ladakh' }
-    ]
-  },
-  tmb: {
-    name: 'Tour du Mont Blanc', group: 'alps',
-    loc: 'France, Italy, Switzerland', fullLoc: 'France · Italy · Switzerland · 2,665m',
-    difficulty: 'Moderate', badge: 'badge-moderate',
-    cardDesc: 'A 170km loop of the Mont Blanc massif through three countries.',
-    specs: [['Distance','~170 km'],['Duration','10–12 days'],['Season','Jun–Sep']],
-    stats: [['Distance','~170km'],['Duration','10–12 days'],['Max Altitude','2,665m'],['Season','Jun–Sep']],
-    intro: 'Europe’s most celebrated long-distance trail, and the friendliest way into multi-day Alpine walking.',
-    desc: 'From Chamonix the route climbs through forest into the high alpine world of Col de Voza, then drops into the Italian Val Veny beneath the south face of Mont Blanc. Switzerland arrives over the Grand Col Ferret, and the loop closes across the Col de Balme. Staffed huts the whole way make it accessible without camping.',
-    photo: IMG + 'tour-du-mont-blanc.jpg', heroPos: 'center 45%',
-    gallery: [
-      { file: IMG + 'tmb-chamonix.jpg',      cap: 'Chamonix-Mont-Blanc' },
-      { file: IMG + 'tmb-trail-runners.jpg', cap: 'Chamonix, France' }
-    ]
-  },
-  hauteroute: {
-    name: 'Haute Route', group: 'alps',
-    loc: 'Chamonix to Zermatt', fullLoc: 'Chamonix to Zermatt · 3,650m',
-    difficulty: 'Hard', badge: 'badge-hard',
-    cardDesc: 'Two weeks of glaciers and high cols, from Mont Blanc to the Matterhorn.',
-    specs: [['Distance','~180 km'],['Duration','12–14 days'],['Season','Jul–Aug']],
-    stats: [['Distance','~180km'],['Duration','12–14 days'],['Max Altitude','3,650m'],['Season','Jul–Aug']],
-    intro: 'Widely considered the finest multi-day Alpine trek in Europe.',
-    desc: 'Beginning under Mont Blanc and ending beneath the Matterhorn, the route crosses the heart of the Alps by a series of high cols, some needing crampons early in the season. Nights are spent in mountain huts, from basic stone shelters to genuine alpine comfort. The Matterhorn grows day by day until it fills the sky.',
-    photo: IMG + 'haute-route-matterhorn.jpg', heroPos: 'center 40%',
-    gallery: [
-      { file: IMG + 'expedition-haute-route.jpg', cap: 'Zermatt, Switzerland' }
-    ]
-  },
-  torres: {
-    name: 'Torres del Paine W', group: 'andes',
-    loc: 'Patagonia, Chile', fullLoc: 'Patagonia · Chile · 1,200m',
-    difficulty: 'Moderate', badge: 'badge-moderate',
-    cardDesc: 'Granite towers rising straight out of the Patagonian steppe.',
-    specs: [['Distance','~80 km'],['Duration','5–8 days'],['Season','Oct–Apr']],
-    stats: [['Distance','~80km'],['Duration','5–8 days'],['Max Altitude','1,200m'],['Season','Oct–Apr']],
-    intro: 'Wild trekking in a landscape so dramatic it feels almost staged.',
-    desc: 'The W traces its shape across the park, opening with the climb to Mirador Las Torres and its glacial lake beneath three granite spires. It then crosses the Valle del Francés, a hanging valley that groans with falling ice, and ends at Grey Glacier. Patagonian weather is famously extreme, and four seasons in a day is normal.',
-    photo: IMG + 'torres-del-paine.jpg', heroPos: 'center 50%',
-    gallery: [
-      { file: IMG + 'expedition-torres.jpg', cap: 'Torres del Paine, Chile' }
-    ]
-  },
-  huayhuash: {
-    name: 'Huayhuash Circuit', group: 'andes',
-    loc: 'Andes, Peru', fullLoc: 'Andes · Peru · 5,050m',
-    difficulty: 'Hard', badge: 'badge-hard',
-    cardDesc: 'A compact crown of ice-capped peaks and impossibly blue glacial lakes.',
-    specs: [['Distance','~165 km'],['Duration','10–14 days'],['Season','May–Sep']],
-    stats: [['Distance','~165km'],['Duration','10–14 days'],['Max Altitude','5,050m'],['Season','May–Sep']],
-    intro: 'One of the most spectacular mountain ranges in the Andes, and one of the least visited.',
-    desc: 'The circuit loops a range holding more 6,000m peaks per kilometre than almost anywhere on earth, crossing passes above 4,600m. The lakes along the way are among the most beautiful on the continent, holding walls of ice and rock in perfect stillness on clear mornings. No roads cross it, and the villages remain small and traditional.',
-    photo: IMG + 'huayhuash-circuit.jpg', heroPos: 'center 50%',
-    gallery: [
-      { file: IMG + 'huayhuash-lake.jpg', cap: 'Huayhuash, Peru' }
-    ]
-  },
-  kili: {
-    name: 'Kilimanjaro Machame', group: 'africa',
-    loc: 'Tanzania', fullLoc: 'Tanzania · Africa · 5,895m',
-    difficulty: 'Challenging', badge: 'badge-challenging',
-    cardDesc: 'Equatorial forest to glaciated summit in a single week, on the roof of Africa.',
-    specs: [['Summit','5,895 m'],['Duration','7–8 days'],['Season','Jan–Mar, Jun–Oct']],
-    stats: [['Summit','5,895m'],['Duration','7–8 days'],['Route','Machame'],['Season','Jan–Mar, Jun–Oct']],
-    intro: 'The highest free-standing mountain on earth, by its most scenic route.',
-    desc: 'Machame begins in dense rainforest loud with birds and colobus monkeys, then climbs through heather moorland into the giant-lobelia country above 3,500m. Its climb-high-sleep-low pattern gives it a better summit rate than the direct routes. Summit night starts around midnight from Barafu, a headlamp procession to Uhuru Peak at dawn.',
-    photo: IMG + 'kilimanjaro.jpg', heroPos: 'center 50%',
-    gallery: [
-      { file: IMG + 'expedition-kilimanjaro.jpg', cap: 'Kilimanjaro, Tanzania' }
-    ]
-  }
-};
-
-// ═══ EXPEDITION DATA ═══
-const DATES_LINE = 'Announced to the interest list first';
-const EXPEDITIONS = [
-  { key: 'ebc-2026', slug: 'everest-base-camp', name: 'Everest Base Camp',
-    region: 'Himalaya &middot; Nepal', loc: 'Khumbu Valley &middot; 5,364m',
-    altitude: '5,364 m', duration: '14 days', season: 'Mar–May', group: 'Max 10',
-    desc: 'Sherpa heartland and towering seracs, beneath the highest peak on earth.',
-    intro: 'Fourteen days through Sherpa heartland to the foot of the highest peak on earth.',
-    body: 'We fly into Lukla and walk the Dudh Koshi valley at a pace built around acclimatisation rather than mileage. Namche, Tengboche and Dingboche give the body time while the horizon fills with giants. The final push to Kala Patthar starts in the dark so that sunrise arrives with Everest already in front of you.',
-    photo: IMG + 'expedition-ebc.jpg', heroPos: 'center 44%',
-    gallery: [ { file: IMG + 'expedition-ebc-village.jpg' }, { file: IMG + 'expedition-ebc-basecamp.jpg' } ] },
-
-  { key: 'mera-2026', slug: 'mera-peak', name: 'Mera Peak Summit',
-    region: 'Himalaya &middot; Nepal', loc: 'Hinku Valley &middot; 6,476m',
-    altitude: '6,476 m', duration: '18 days', season: 'Apr–May, Oct–Nov', group: 'Max 8',
-    desc: 'Nepal’s highest trekking peak. Learn glacier travel, then summit.',
-    intro: 'Nepal’s highest trekking peak, approached through the quiet Hinku valley.',
-    body: 'The way into the Hinku is deliberately slow, crossing the Zatrwa La into a valley that sees a fraction of the Khumbu traffic. Days are spent on rope work, crampon technique and glacier travel before the summit push. From the top, five eight-thousanders stand in a single line.',
-    photo: IMG + 'expedition-mera-peak.jpg', heroPos: 'center 45%',
-    gallery: [ { file: IMG + 'mera-peak-view.jpg', cap: 'Mera Peak, Nepal' } ] },
-
-  { key: 'torres-2026', slug: 'torres-del-paine', name: 'Torres del Paine',
-    region: 'Patagonia &middot; Chile', loc: 'O Circuit &middot; 1,200m',
-    altitude: '1,200 m', duration: '10 days', season: 'Nov–Mar', group: 'Max 10',
-    desc: 'The full circuit of the Paine massif. Granite, ice and Patagonian wind.',
-    intro: 'The full O Circuit of the Paine massif, walked in the right direction.',
-    body: 'Ten days around the back of the massif, starting on the quiet eastern side and finishing on the classic W. The John Gardner pass opens onto Grey Glacier in one of the great reveals in trekking. Patagonian weather does as it likes, and this group is built for people who find that funny rather than frightening.',
-    photo: IMG + 'expedition-torres.jpg', heroPos: 'center 62%',
-    gallery: [ { file: IMG + 'torres-del-paine.jpg', cap: 'Torres del Paine, Chile' } ] },
-
-  { key: 'haute-2026', slug: 'haute-route', name: 'Haute Route',
-    region: 'Alps &middot; France &amp; Switzerland', loc: 'Chamonix to Zermatt &middot; 3,650m',
-    altitude: '3,650 m', duration: '14 days', season: 'Jul–Aug', group: 'Max 12',
-    desc: 'The definitive Alpine traverse, from Mont Blanc to the Matterhorn.',
-    intro: 'Chamonix to Zermatt on foot, from Mont Blanc to the Matterhorn.',
-    body: 'Fourteen days of high cols, glacier crossings and mountain huts along the classic line between two great Alpine towns. Some passes need crampons early in the season and we carry them. The Matterhorn appears days before you reach it, and grows until it fills the whole sky.',
-    photo: IMG + 'expedition-haute-route.jpg', heroPos: 'center 55%',
-    gallery: [ { file: IMG + 'haute-route-matterhorn.jpg', cap: 'Matterhorn' } ] },
-
-  { key: 'kili-2026', slug: 'kilimanjaro', name: 'Kilimanjaro Summit',
-    region: 'Africa &middot; Tanzania', loc: 'Uhuru Peak &middot; 5,895m',
-    altitude: '5,895 m', duration: '8 days', season: 'Jan–Mar, Jun–Oct', group: 'Max 10',
-    desc: 'The roof of Africa by the Machame Route, its richest scenic line.',
-    intro: 'The roof of Africa by the Machame Route, the most scenic line on the mountain.',
-    body: 'Eight days from rainforest to glacier, using the climb-high-sleep-low profile of the southern circuit to give the body its best chance. The Barranco Wall is the day everyone remembers, hands on rock with the summit above. Summit night starts near midnight and ends at Uhuru Peak with the plains four kilometres below.',
-    photo: IMG + 'expedition-kilimanjaro.jpg', heroPos: 'center 50%',
-    gallery: [ { file: IMG + 'kilimanjaro.jpg', cap: 'Kilimanjaro, Tanzania' } ] }
-];
-
-// Cards are static markup in the document above, so Trails and Expeditions
-// render with JavaScript disabled and are visible to crawlers. TRAILS below
-// is the source for the modal only.
-
-// ═══ ROUTES ═══
-const TRAIL_SLUGS = {
-  ebc: 'everest-base-camp', annapurna: 'annapurna-circuit',
-  manaslu: 'manaslu-circuit', threepasses: 'everest-three-passes',
-  ladakh: 'ladakh-high-passes', tmb: 'tour-du-mont-blanc',
-  hauteroute: 'haute-route', torres: 'torres-del-paine',
-  huayhuash: 'huayhuash-circuit', kili: 'kilimanjaro-machame'
-};
-const SLUG_TO_TRAIL = {};
-Object.keys(TRAIL_SLUGS).forEach(k => { SLUG_TO_TRAIL[TRAIL_SLUGS[k]] = k; });
-const SLUG_TO_EXP = {};
-EXPEDITIONS.forEach(x => { SLUG_TO_EXP[x.slug] = x; });
-
-// ═══ DETAIL VIEW ═══
-// A trail or expedition gets its own screen at #trail/<slug> or
-// #expedition/<slug>. The hash is the single source of truth, so the browser
-// back button and a directly-pasted URL both behave.
-const detailEl = document.getElementById('detail-view');
-const detailContent = document.getElementById('detail-content');
-const detailBackLabel = document.getElementById('detail-back-label');
-
-function specPanelRows(rows) {
-  return rows.map(([l, v, soft]) => `
-        <div class="spec">
-          <dt class="spec-label">${l}</dt><span class="spec-dots"></span>
-          <dd class="spec-value${soft ? ' spec-value--soft' : ''}">${v}</dd>
-        </div>`).join('');
-}
-
-// Every real photograph for this trail, header first. Drives the lightbox.
-function detailImages(d) {
-  const out = [];
-  if (has(d.photo)) out.push({ file: d.photo, cap: '' });
-  (d.gallery || []).forEach(g => {
-    if (has(g.file)) out.push({ file: g.file, cap: g.cap || '' });
-  });
-  return out;
-}
-
-function galleryStrip(gallery, startIndex) {
-  if (!gallery || !gallery.length) return '';
-  let i = startIndex;
-  const figs = gallery.map(g => {
-    const idx = has(g.file) ? i++ : undefined;
-    return `
-          <figure class="gallery-figure">
-            <div class="gallery-slot">${photoSlot(g.file, { lb: idx, img: true })}</div>
-            ${has(g.file) && g.cap ? `<figcaption class="gallery-caption">${g.cap}</figcaption>` : ''}
-          </figure>`;
-  }).join('');
-  return `
-      <div class="detail-gallery">
-        <p class="detail-gallery-title">Gallery</p>
-        <div class="gallery-strip">${figs}
-        </div>
-      </div>`;
-}
-
-function detailHTML(kind, d) {
-  const isTrail = kind === 'trail';
-  const rows = isTrail
-    ? d.stats.map(([l, v]) => [l, v, false])
-    : [['Max Altitude', d.altitude, false], ['Duration', d.duration, false],
-       ['Season', d.season, false], ['Group Size', d.group, false],
-       ['Dates', DATES_LINE, true]];
-  const badge = isTrail ? `<span class="badge ${d.badge}">${d.difficulty}</span>` : '';
-  const ctaArgs = isTrail
-    ? [d.name, d.name + ' — trail interest', 'Trail interest', d.photo]
-    : [d.name, d.name + ' 2026', d.region, d.photo];
-  const cta = `openInquiry(${ctaArgs.map(a => `'${String(a).replace(/'/g, "\\'")}'`).join(', ')})`;
-
-  return `
-  <div class="detail-hero">
-    ${photoSlot(d.photo, { pos: d.heroPos, lb: 0 })}
-    <div class="detail-hero-info">
-      <div class="detail-hero-inner">
-        <p class="detail-region">${isTrail ? d.fullLoc : d.region + ' &middot; ' + d.loc}</p>
-        <h1 class="detail-title" id="detail-title">${d.name}</h1>
-        ${badge}
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="detail-grid">
-      <div>
-        <p class="detail-lede">${d.intro}</p>
-        <p class="detail-body">${isTrail ? d.desc : d.body}</p>
-      </div>
-      <aside>
-        <div class="spec-panel">
-          <p class="spec-panel-title">${isTrail ? 'Route facts' : 'Expedition facts'}</p>
-          <dl>${specPanelRows(rows)}
-          </dl>
-          <button class="btn btn-primary" type="button" onclick="${cta}">
-            Join the Group <span aria-hidden="true">&rarr;</span>
-          </button>
-        </div>
-      </aside>
-    </div>
-
-    ${galleryStrip(d.gallery, has(d.photo) ? 1 : 0)}
-
-    <div class="detail-foot">
-      <button class="btn btn-outline" type="button" onclick="closeDetail()">
-        <span aria-hidden="true">&larr;</span> ${isTrail ? 'All trails' : 'All expeditions'}
-      </button>
-    </div>
-  </div>`;
-}
-
-function showDetail(kind, slug) {
-  const d = kind === 'trail' ? TRAILS[SLUG_TO_TRAIL[slug]] : SLUG_TO_EXP[slug];
-  if (!d) { hideDetail(); return false; }
-  detailBackLabel.textContent = kind === 'trail' ? 'All trails' : 'All expeditions';
-  _detailImages = detailImages(d);
-  detailContent.innerHTML = detailHTML(kind, d);
-  detailEl.classList.add('open');
-  detailEl.scrollTop = 0;
-  document.body.style.overflow = 'hidden';
-  return true;
-}
-
-function hideDetail() {
-  detailEl.classList.remove('open');
-  detailContent.innerHTML = '';
-  if (!isInquiryOpen()) document.body.style.overflow = '';
-}
-
-function parseHash() {
-  const m = /^#(trail|expedition)\/([a-z0-9-]+)$/.exec(location.hash);
-  return m ? { kind: m[1], slug: m[2] } : null;
-}
-
-let _routeInit = false;
-let _openedFromWithinPage = false;
-
-function applyRoute() {
-  const r = parseHash();
-  if (r) {
-    _openedFromWithinPage = _routeInit;
-    if (!showDetail(r.kind, r.slug)) _openedFromWithinPage = false;
-  } else {
-    hideDetail();
-  }
-  _routeInit = true;
-}
-
-function closeDetail() {
-  if (!parseHash()) { hideDetail(); return; }
-  if (_openedFromWithinPage) {
-    history.back();                       // keeps the back button honest
-  } else {
-    // Arrived straight on the detail URL, so there is nothing to go back to.
-    history.replaceState(null, '', location.pathname + location.search);
-    applyRoute();
-  }
-}
-
-window.addEventListener('hashchange', applyRoute);
-document.getElementById('detail-back').addEventListener('click', closeDetail);
-
-// Whole card is a target; the inner link already carries the href.
-document.addEventListener('click', (e) => {
-  if (e.target.closest('a[href^="#trail/"], a[href^="#expedition/"]')) return;
-  const card = e.target.closest('[data-detail]');
-  if (card) location.hash = card.getAttribute('data-detail');
-});
-
-// ═══ LIGHTBOX ═══
-// Opens over the detail view. It never touches location.hash, so the
-// #trail/ routing and the browser back button are unaffected.
-let _detailImages = [];
-let _lbList = [];
-let _lbIndex = 0;
-
-const lbEl = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-const lbCounter = document.getElementById('lb-counter');
-const lbCaption = document.getElementById('lb-caption');
-const lbPrev = document.getElementById('lb-prev');
-const lbNext = document.getElementById('lb-next');
-
-const isLightboxOpen = () => lbEl.classList.contains('open');
-
-function renderLb() {
-  const it = _lbList[_lbIndex];
-  if (!it) return;
-  lbImg.src = it.file;
-  lbImg.alt = it.cap || '';
-  lbCounter.textContent = `${_lbIndex + 1} / ${_lbList.length}`;
-  lbCaption.textContent = it.cap || '';
-  const multi = _lbList.length > 1;
-  lbPrev.hidden = !multi;
-  lbNext.hidden = !multi;
-}
-
-function openLightbox(list, index) {
-  if (!list || !list.length) return;
-  _lbList = list;
-  _lbIndex = Math.max(0, Math.min(index || 0, list.length - 1));
-  renderLb();
-  lbEl.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('lb-close').focus();
-}
-
-function closeLightbox() {
-  lbEl.classList.remove('open');
-  lbImg.removeAttribute('src');
-  // a detail view or the inquiry panel may still be open underneath
-  if (!detailEl.classList.contains('open') && !isInquiryOpen()) {
-    document.body.style.overflow = '';
-  }
-}
-
-function lbStep(delta) {
-  if (_lbList.length < 2) return;
-  _lbIndex = (_lbIndex + delta + _lbList.length) % _lbList.length;
-  renderLb();
-}
-
-document.getElementById('lb-close').addEventListener('click', closeLightbox);
-lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lbStep(-1); });
-lbNext.addEventListener('click', (e) => { e.stopPropagation(); lbStep(1); });
-lbEl.addEventListener('click', (e) => { if (e.target === lbEl || e.target.closest('.lb-stage') === e.target) closeLightbox(); });
-
-document.addEventListener('keydown', (e) => {
-  if (!isLightboxOpen()) return;
-  if (e.key === 'ArrowLeft') { e.preventDefault(); lbStep(-1); }
-  else if (e.key === 'ArrowRight') { e.preventDefault(); lbStep(1); }
-});
-
-// swipe
-let _tx = 0, _ty = 0;
-lbEl.addEventListener('touchstart', (e) => {
-  _tx = e.changedTouches[0].clientX; _ty = e.changedTouches[0].clientY;
-}, { passive: true });
-lbEl.addEventListener('touchend', (e) => {
-  const dx = e.changedTouches[0].clientX - _tx;
-  const dy = e.changedTouches[0].clientY - _ty;
-  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbStep(dx < 0 ? 1 : -1);
-}, { passive: true });
-
-// open from the detail header or any gallery photograph
-detailContent.addEventListener('click', (e) => {
-  const slot = e.target.closest('[data-lb]');
-  if (slot) openLightbox(_detailImages, Number(slot.getAttribute('data-lb')));
-});
-detailContent.addEventListener('keydown', (e) => {
-  if (e.key !== 'Enter' && e.key !== ' ') return;
-  const slot = e.target.closest('[data-lb]');
-  if (slot) { e.preventDefault(); openLightbox(_detailImages, Number(slot.getAttribute('data-lb'))); }
-});
-
-// ═══ CAROUSEL ARROWS (enhancement) ═══
-// Scroll-snap already works without JavaScript; these only add click targets.
-document.querySelectorAll('.carousel-nav').forEach(nav => {
-  const track = document.getElementById(nav.getAttribute('data-track'));
-  if (!track) return;
-  const btns = nav.querySelectorAll('.carousel-btn');
-  const step = () => {
-    const card = track.querySelector('.tcard');
-    return card ? card.getBoundingClientRect().width + 24 : 320;
-  };
-  const sync = () => {
-    const max = track.scrollWidth - track.clientWidth - 2;
-    btns[0].disabled = track.scrollLeft <= 2;
-    btns[1].disabled = track.scrollLeft >= max;
-  };
-  btns.forEach(b => b.addEventListener('click', () => {
-    track.scrollBy({ left: Number(b.getAttribute('data-dir')) * step(), behavior: 'smooth' });
-  }));
-  track.addEventListener('scroll', sync, { passive: true });
-  window.addEventListener('resize', sync);
-  sync();
-});
 
 // ═══ DISPATCHES ═══
 // The three seed cards are static markup in the document so they survive with
@@ -2676,10 +1613,7 @@ let closeNavMenu = () => {};
 // One listener, most-nested surface first.
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
-  if (isLightboxOpen()) { closeLightbox(); return; }
-  if (closeNavMenu()) return;
-  if (isInquiryOpen()) { closeInquiry(); return; }
-  if (detailEl.classList.contains('open')) closeDetail();
+  closeNavMenu();
 });
 
 // ═══ PHOTO UPLOAD (share form) ═══
@@ -2798,78 +1732,6 @@ function toggleLike(btn) {
   count.textContent = parseInt(count.textContent, 10) + (liked ? -1 : 1);
   btn.classList.toggle('liked');
 }
-
-// ═══ INQUIRY PANEL ═══
-let _currentInquiry = '';
-const isInquiryOpen = () => document.getElementById('inquiry-overlay').classList.contains('open');
-
-function openInquiry(heading, subjectName, eyebrow, photo) {
-  _currentInquiry = subjectName;
-  document.getElementById('inquiry-eyebrow').textContent = eyebrow || 'Express interest';
-  document.getElementById('inquiry-heading').textContent = heading || 'Register your interest';
-  document.getElementById('inquiry-subtext').textContent =
-    'Tell us about yourself and we will reach out as soon as details are set for ' + subjectName + '.';
-
-  const bg = document.getElementById('inquiry-bg');
-  bg.style.backgroundImage = (photo && has(photo)) ? `url('${photo}')` : '';
-
-  document.getElementById('inquiry-form').style.display = 'block';
-  document.getElementById('inquiry-success').classList.remove('is-visible');
-  document.getElementById('inquiry-error').textContent = '';
-  document.getElementById('inquiry-form').reset();
-
-  document.getElementById('inquiry-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeInquiry() {
-  document.getElementById('inquiry-overlay').classList.remove('open');
-  // a detail view may still be open underneath
-  if (!detailEl.classList.contains('open')) document.body.style.overflow = '';
-}
-
-function handleInquiryClick(e) {
-  if (e.target === document.getElementById('inquiry-overlay')) closeInquiry();
-}
-
-const SUBMIT_LABEL = 'Send my interest →';
-
-document.getElementById('inquiry-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  const errEl = document.getElementById('inquiry-error');
-  const btn = this.querySelector('.inquiry-submit');
-
-  errEl.textContent = '';
-  btn.disabled = true;
-  btn.textContent = 'Sending';
-
-  try {
-    await postForm({
-      formType: 'interest',
-      name:       document.getElementById('inq-name').value.trim(),
-      email:      document.getElementById('inq-email').value.trim(),
-      phone:      document.getElementById('inq-phone').value.trim(),
-      experience: document.getElementById('inq-experience').value,
-      expedition: _currentInquiry,
-      message:    document.getElementById('inq-message').value.trim(),
-      _gotcha:    document.getElementById('inq-hp').value
-    });
-    showSuccess();
-  } catch (_) {
-    errEl.textContent = FORM_ERROR;
-    btn.disabled = false;
-    btn.textContent = SUBMIT_LABEL;
-  }
-});
-
-function showSuccess() {
-  document.getElementById('inquiry-success-name').textContent = _currentInquiry;
-  document.getElementById('inquiry-form').style.display = 'none';
-  document.getElementById('inquiry-success').classList.add('is-visible');
-}
-
-// Resolve the URL on first paint (direct links to a detail page).
-applyRoute();
 </script>
 </body>
 </html>
