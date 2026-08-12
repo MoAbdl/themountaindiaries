@@ -1107,6 +1107,112 @@
   }
   .fact-value { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 700; color: var(--ink); margin-top: 3px; }
 
+  /* ─── KNOWLEDGE BASE SECTIONS ─── */
+  .jstatic-title { font-family: var(--font-head); font-size: var(--t-2xl); font-weight: 700; color: var(--ink); }
+  .js .detail-slot .fact-strip:first-child { margin-top: 0; }
+  .detail-body-text { color: var(--ink-2); line-height: 1.7; max-width: 62ch; }
+
+  .know-list { list-style: none; display: grid; gap: var(--s-4); }
+  .know-list li {
+    display: grid; gap: 3px;
+    padding-left: var(--s-5); border-left: 2px solid var(--sienna);
+  }
+  .know-head { font-family: var(--font-head); font-weight: 700; color: var(--ink); }
+  .know-body { color: var(--ink-2); line-height: 1.6; }
+
+  .faq-item { padding: var(--s-4) 0; border-bottom: 1px solid var(--rule); }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-family: var(--font-head); font-weight: 600; color: var(--ink); }
+  .faq-a { color: var(--ink-2); line-height: 1.6; margin-top: 3px; }
+
+  .jcta {
+    margin-top: var(--s-7); padding: var(--s-6);
+    background: var(--surface-alt); border: 1px solid var(--rule);
+    border-radius: var(--radius-lg); text-align: center;
+  }
+  .jcta-line { color: var(--ink-2); margin-bottom: var(--s-4); }
+  .jcta .btn { cursor: pointer; }
+
+  /* ─── ROUTE MAP ───
+     Ink lines on snow, sienna for anything the walker does, Archivo for every
+     label. Both drawings are plain SVG in the markup, so they are there with
+     scripting off and they scale to whatever column they land in. */
+  .routemap { margin: 0; }
+  .rm-caption {
+    font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
+    color: var(--ink); margin-bottom: var(--s-4);
+  }
+  /* the drawing repeats this for a screen reader, so hide it from sight only */
+  .rm-desc {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .rm-frame {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-radius: var(--radius-lg); padding: var(--s-4);
+  }
+  .rm-frame--profile { margin-top: var(--s-4); }
+  .rm-svg { display: block; width: 100%; height: auto; max-height: 78vh; margin: 0 auto; }
+  .rm-profile { display: block; width: 100%; height: auto; }
+
+  .rm-route {
+    fill: none; stroke: var(--ink); stroke-width: 3.2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .rm-route--spur { stroke-width: 2.2; stroke-dasharray: 9 8; }
+  .rm-peak { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; }
+  .rm-peak-name {
+    font-family: var(--font-head); font-size: 22px; font-weight: 700;
+    fill: var(--ink); text-anchor: middle;
+  }
+  .rm-peak-alt { font-family: var(--font-head); font-size: 19px; fill: var(--ink-3); text-anchor: middle; }
+  .rm-stop { fill: var(--sienna); stroke: var(--surface); stroke-width: 3; }
+  .rm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2.6; }
+  .rm-day {
+    font-family: var(--font-head); font-size: 20px; font-weight: 800;
+    fill: #fff; text-anchor: middle; dominant-baseline: central;
+  }
+  .rm-view circle { fill: var(--surface); stroke: var(--sienna); stroke-width: 3; }
+  .rm-view path { fill: none; stroke: var(--sienna); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .rm-place { font-family: var(--font-head); font-size: 25px; font-weight: 700; fill: var(--ink); }
+  .rm-place-alt { font-family: var(--font-head); font-size: 20px; fill: var(--ink-3); }
+
+  .rm-legend {
+    list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
+    margin-top: var(--s-4); font-size: var(--t-sm); color: var(--ink-2);
+  }
+  .rm-legend li { display: inline-flex; align-items: center; gap: 8px; }
+  .rm-key { width: 30px; height: 16px; flex-shrink: 0; overflow: visible; }
+  .rm-key .rm-route { stroke-width: 2; }
+  .rm-key .rm-peak { stroke-width: 1.8; }
+  .rm-max {
+    font-family: var(--font-head); font-weight: 700; color: var(--sienna);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rm-grid { stroke: var(--rule); stroke-width: 1; }
+  .rm-area { fill: var(--sienna); opacity: 0.12; }
+  .rm-line { fill: none; stroke: var(--ink); stroke-width: 2.6; stroke-linejoin: round; }
+  .rm-dot { fill: var(--ink); }
+  .rm-touch { fill: var(--sienna); }
+  .rm-riser { stroke: var(--sienna); stroke-width: 1.6; stroke-dasharray: 4 4; }
+  .rm-axis { font-family: var(--font-head); font-size: 17px; fill: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .rm-axis-title { font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .rm-plabel { font-family: var(--font-head); font-size: 18px; font-weight: 700; fill: var(--ink); }
+
+  /* On a phone the drawing is about a third of its desktop width, so the
+     secondary altitude labels would fall under 8px. Drop them and keep the
+     place names; the altitudes are all in the profile and the description. */
+  @media (max-width: 640px) {
+    .rm-alt { display: none; }
+    .rm-place { font-size: 27px; }
+    .rm-peak-name { font-size: 26px; }
+    .rm-day { font-size: 24px; }
+    .rm-frame { padding: var(--s-3); }
+    .rm-axis { font-size: 21px; }
+    .rm-plabel { font-size: 21px; }
+  }
+
   .detail-section { margin-top: var(--s-7); }
   .detail-section-title {
     font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
@@ -1646,7 +1752,7 @@
           <div class="jcard-media"><div class="photo-slot" data-photo="journey-ebc-trek.jpg"></div></div>
           <div class="jcard-body">
             <h3 class="jcard-name">Everest Base Camp Trek</h3>
-            <p class="jcard-meta"><span class="jcard-where">Everest &middot; Nepal</span></p>
+            <p class="jcard-meta"><span class="jcard-elev">5,545 m</span><span class="jcard-where">Everest &middot; Nepal</span></p>
           </div>
         </a>
         <a class="jcard" href="#journey/three-passes">
@@ -1808,765 +1914,1144 @@
        content and a crawler sees all 52 journeys. -->
     <section class="journey-static" id="journey/everest-8848">
       <div class="jstatic-inner">
-        <h2>Everest</h2>
+        <h2 class="jstatic-title">Everest</h2>
+        <div class="jdetail" data-journey="everest-8848">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,848 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,848 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Everest"
+             data-interest="Everest">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/k2-8611">
       <div class="jstatic-inner">
-        <h2>K2</h2>
+        <h2 class="jstatic-title">K2</h2>
+        <div class="jdetail" data-journey="k2-8611">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,611 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,611 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20K2">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:K2"
+             data-interest="K2">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/kangchenjunga-8586">
       <div class="jstatic-inner">
-        <h2>Kangchenjunga</h2>
+        <h2 class="jstatic-title">Kangchenjunga</h2>
+        <div class="jdetail" data-journey="kangchenjunga-8586">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,586 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Kangchenjunga</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,586 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Kangchenjunga</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Kangchenjunga">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Kangchenjunga"
+             data-interest="Kangchenjunga">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/lhotse-8516">
       <div class="jstatic-inner">
-        <h2>Lhotse</h2>
+        <h2 class="jstatic-title">Lhotse</h2>
+        <div class="jdetail" data-journey="lhotse-8516">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,516 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,516 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lhotse">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Lhotse"
+             data-interest="Lhotse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/makalu-8485">
       <div class="jstatic-inner">
-        <h2>Makalu</h2>
+        <h2 class="jstatic-title">Makalu</h2>
+        <div class="jdetail" data-journey="makalu-8485">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,485 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Makalu Barun</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,485 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Makalu Barun</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Makalu">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Makalu"
+             data-interest="Makalu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/cho-oyu-8188">
       <div class="jstatic-inner">
-        <h2>Cho Oyu</h2>
+        <h2 class="jstatic-title">Cho Oyu</h2>
+        <div class="jdetail" data-journey="cho-oyu-8188">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,188 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,188 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Cho%20Oyu">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Cho%20Oyu"
+             data-interest="Cho Oyu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/dhaulagiri-8167">
       <div class="jstatic-inner">
-        <h2>Dhaulagiri I</h2>
+        <h2 class="jstatic-title">Dhaulagiri I</h2>
+        <div class="jdetail" data-journey="dhaulagiri-8167">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,167 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,167 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Dhaulagiri%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Dhaulagiri%20I"
+             data-interest="Dhaulagiri I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/manaslu-8163">
       <div class="jstatic-inner">
-        <h2>Manaslu</h2>
+        <h2 class="jstatic-title">Manaslu</h2>
+        <div class="jdetail" data-journey="manaslu-8163">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,163 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,163 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Manaslu"
+             data-interest="Manaslu">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/nanga-parbat-8125">
       <div class="jstatic-inner">
-        <h2>Nanga Parbat</h2>
+        <h2 class="jstatic-title">Nanga Parbat</h2>
+        <div class="jdetail" data-journey="nanga-parbat-8125">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,125 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Himalaya</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,125 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Himalaya</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Nanga%20Parbat">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Nanga%20Parbat"
+             data-interest="Nanga Parbat">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/annapurna-i-8091">
       <div class="jstatic-inner">
-        <h2>Annapurna I</h2>
+        <h2 class="jstatic-title">Annapurna I</h2>
+        <div class="jdetail" data-journey="annapurna-i-8091">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,091 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,091 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20I"
+             data-interest="Annapurna I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/gasherbrum-i-8080">
       <div class="jstatic-inner">
-        <h2>Gasherbrum I</h2>
+        <h2 class="jstatic-title">Gasherbrum I</h2>
+        <div class="jdetail" data-journey="gasherbrum-i-8080">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,080 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,080 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gasherbrum%20I">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Gasherbrum%20I"
+             data-interest="Gasherbrum I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/broad-peak-8051">
       <div class="jstatic-inner">
-        <h2>Broad Peak</h2>
+        <h2 class="jstatic-title">Broad Peak</h2>
+        <div class="jdetail" data-journey="broad-peak-8051">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,051 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,051 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Broad%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Broad%20Peak"
+             data-interest="Broad Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/gasherbrum-ii-8034">
       <div class="jstatic-inner">
-        <h2>Gasherbrum II</h2>
+        <h2 class="jstatic-title">Gasherbrum II</h2>
+        <div class="jdetail" data-journey="gasherbrum-ii-8034">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,034 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,034 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Pakistan</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gasherbrum%20II">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Gasherbrum%20II"
+             data-interest="Gasherbrum II">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/shisha-pangma-8027">
       <div class="jstatic-inner">
-        <h2>Shisha Pangma</h2>
+        <h2 class="jstatic-title">Shisha Pangma</h2>
+        <div class="jdetail" data-journey="shisha-pangma-8027">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">8,027 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Tibet</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">China</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">8,027 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Tibet</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">China</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Shisha%20Pangma">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Shisha%20Pangma"
+             data-interest="Shisha Pangma">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/himlung-7126">
       <div class="jstatic-inner">
-        <h2>Himlung Himal</h2>
+        <h2 class="jstatic-title">Himlung Himal</h2>
+        <div class="jdetail" data-journey="himlung-7126">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,126 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,126 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Himlung%20Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Himlung%20Himal"
+             data-interest="Himlung Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/baruntse-7129">
       <div class="jstatic-inner">
-        <h2>Baruntse</h2>
+        <h2 class="jstatic-title">Baruntse</h2>
+        <div class="jdetail" data-journey="baruntse-7129">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Baruntse">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Baruntse"
+             data-interest="Baruntse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/baruntse-mera">
       <div class="jstatic-inner">
-        <h2>Baruntse and Mera Peak</h2>
+        <h2 class="jstatic-title">Baruntse and Mera Peak</h2>
+        <div class="jdetail" data-journey="baruntse-mera">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,129 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Baruntse%20and%20Mera%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Baruntse%20and%20Mera%20Peak"
+             data-interest="Baruntse and Mera Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/putha-hiunchuli-7246">
       <div class="jstatic-inner">
-        <h2>Putha Hiunchuli</h2>
+        <h2 class="jstatic-title">Putha Hiunchuli</h2>
+        <div class="jdetail" data-journey="putha-hiunchuli-7246">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,246 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,246 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Putha%20Hiunchuli">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Putha%20Hiunchuli"
+             data-interest="Putha Hiunchuli">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/pumori-7145">
       <div class="jstatic-inner">
-        <h2>Pumori</h2>
+        <h2 class="jstatic-title">Pumori</h2>
+        <div class="jdetail" data-journey="pumori-7145">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,145 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,145 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Pumori">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Pumori"
+             data-interest="Pumori">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/nuptse-7864">
       <div class="jstatic-inner">
-        <h2>Nuptse</h2>
+        <h2 class="jstatic-title">Nuptse</h2>
+        <div class="jdetail" data-journey="nuptse-7864">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,864 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,864 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Nuptse">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Nuptse"
+             data-interest="Nuptse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/annapurna-iv-7525">
       <div class="jstatic-inner">
-        <h2>Annapurna IV</h2>
+        <h2 class="jstatic-title">Annapurna IV</h2>
+        <div class="jdetail" data-journey="annapurna-iv-7525">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">7,525 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,525 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20IV">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20IV"
+             data-interest="Annapurna IV">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/ama-dablam-6812">
       <div class="jstatic-inner">
-        <h2>Ama Dablam</h2>
+        <h2 class="jstatic-title">Ama Dablam</h2>
+        <div class="jdetail" data-journey="ama-dablam-6812">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam"
+             data-interest="Ama Dablam">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/ama-dablam-lobuche">
       <div class="jstatic-inner">
-        <h2>Ama Dablam and Lobuche East</h2>
+        <h2 class="jstatic-title">Ama Dablam and Lobuche East</h2>
+        <div class="jdetail" data-journey="ama-dablam-lobuche">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam%20and%20Lobuche%20East">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam%20and%20Lobuche%20East"
+             data-interest="Ama Dablam and Lobuche East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/ama-dablam-island">
       <div class="jstatic-inner">
-        <h2>Ama Dablam and Island Peak</h2>
+        <h2 class="jstatic-title">Ama Dablam and Island Peak</h2>
+        <div class="jdetail" data-journey="ama-dablam-island">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,812 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ama%20Dablam%20and%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam%20and%20Island%20Peak"
+             data-interest="Ama Dablam and Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/three-peaks-ebc">
       <div class="jstatic-inner">
-        <h2>Three Peaks and Everest Base Camp</h2>
+        <h2 class="jstatic-title">Three Peaks and Everest Base Camp</h2>
+        <div class="jdetail" data-journey="three-peaks-ebc">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Three%20Peaks%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Three%20Peaks%20and%20Everest%20Base%20Camp"
+             data-interest="Three Peaks and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/two-peaks-lobuche-island-ebc">
       <div class="jstatic-inner">
-        <h2>Lobuche East, Island Peak and Everest Base Camp</h2>
+        <h2 class="jstatic-title">Lobuche East, Island Peak and Everest Base Camp</h2>
+        <div class="jdetail" data-journey="two-peaks-lobuche-island-ebc">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East,%20Island%20Peak%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East,%20Island%20Peak%20and%20Everest%20Base%20Camp"
+             data-interest="Lobuche East, Island Peak and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/lobuche-ebc">
       <div class="jstatic-inner">
-        <h2>Lobuche East and Everest Base Camp</h2>
+        <h2 class="jstatic-title">Lobuche East and Everest Base Camp</h2>
+        <div class="jdetail" data-journey="lobuche-ebc">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East%20and%20Everest%20Base%20Camp"
+             data-interest="Lobuche East and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/lobuche-6119">
       <div class="jstatic-inner">
-        <h2>Lobuche East</h2>
+        <h2 class="jstatic-title">Lobuche East</h2>
+        <div class="jdetail" data-journey="lobuche-6119">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,119 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Lobuche%20East">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East"
+             data-interest="Lobuche East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/island-peak-ebc">
       <div class="jstatic-inner">
-        <h2>Island Peak and Everest Base Camp</h2>
+        <h2 class="jstatic-title">Island Peak and Everest Base Camp</h2>
+        <div class="jdetail" data-journey="island-peak-ebc">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Island%20Peak%20and%20Everest%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Island%20Peak%20and%20Everest%20Base%20Camp"
+             data-interest="Island Peak and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/island-peak-6189">
       <div class="jstatic-inner">
-        <h2>Island Peak</h2>
+        <h2 class="jstatic-title">Island Peak</h2>
+        <div class="jdetail" data-journey="island-peak-6189">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,189 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Island%20Peak"
+             data-interest="Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/mera-peak-6476">
       <div class="jstatic-inner">
-        <h2>Mera Peak</h2>
+        <h2 class="jstatic-title">Mera Peak</h2>
+        <div class="jdetail" data-journey="mera-peak-6476">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mera%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Mera%20Peak"
+             data-interest="Mera Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/two-peaks-mera-island">
       <div class="jstatic-inner">
-        <h2>Mera Peak and Island Peak</h2>
+        <h2 class="jstatic-title">Mera Peak and Island Peak</h2>
+        <div class="jdetail" data-journey="two-peaks-mera-island">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,476 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Hinku</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mera%20Peak%20and%20Island%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Mera%20Peak%20and%20Island%20Peak"
+             data-interest="Mera Peak and Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/cholatse-6440">
       <div class="jstatic-inner">
-        <h2>Cholatse</h2>
+        <h2 class="jstatic-title">Cholatse</h2>
+        <div class="jdetail" data-journey="cholatse-6440">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,440 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,440 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Khumbu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Cholatse">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Cholatse"
+             data-interest="Cholatse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/chulu-west-6419">
       <div class="jstatic-inner">
-        <h2>Chulu West</h2>
+        <h2 class="jstatic-title">Chulu West</h2>
+        <div class="jdetail" data-journey="chulu-west-6419">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,419 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,419 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Chulu%20West">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Chulu%20West"
+             data-interest="Chulu West">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/pharchamo-tashi-lapcha">
       <div class="jstatic-inner">
-        <h2>Pharchamo via Tashi Lapcha</h2>
+        <h2 class="jstatic-title">Pharchamo via Tashi Lapcha</h2>
+        <div class="jdetail" data-journey="pharchamo-tashi-lapcha">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Rolwaling</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Rolwaling</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Pharchamo%20via%20Tashi%20Lapcha">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Pharchamo%20via%20Tashi%20Lapcha"
+             data-interest="Pharchamo via Tashi Lapcha">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/dhampus-6012">
       <div class="jstatic-inner">
-        <h2>Dhampus Peak</h2>
+        <h2 class="jstatic-title">Dhampus Peak</h2>
+        <div class="jdetail" data-journey="dhampus-6012">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">6,012 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,012 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Dhampus%20Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Dhampus%20Peak"
+             data-interest="Dhampus Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/ebc-trek">
       <div class="jstatic-inner">
-        <h2>Everest Base Camp Trek</h2>
+        <h2 class="jstatic-title">Everest Base Camp Trek</h2>
+        <div class="jdetail" data-journey="ebc-trek">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Duration</p><p class="fact-value">15 days</p></div>
+          <div><p class="fact-label">Max altitude</p><p class="fact-value">5,545 m</p></div>
+          <div><p class="fact-label">Difficulty</p><p class="fact-value">Demanding</p></div>
+          <div><p class="fact-label">Best season</p><p class="fact-value">Mar to May, Oct to Nov</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Everest, Nepal</p></div>
         </div>
-        <p class="cat-note">Full route notes are being written. Groups form when demand and
-        partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest%20Base%20Camp%20Trek">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The journey</h3>
+          <p class="detail-lede">Two weeks on the main trail into the Khumbu, from the airstrip at Lukla to the foot of the Khumbu Icefall. The route climbs through Sherpa villages and rhododendron forest to Namche, then out above the treeline into the high valley Everest sits in. The last morning is Kala Patthar before dawn, which is where the mountain finally stands clear of everything in front of it.</p>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-section-title">Know before you dream</h3>
+          <ul class="know-list">
+            <li><span class="know-head">You sleep at 5,164 m</span><span class="know-body">The highest night is Gorak Shep, where the air holds roughly half the oxygen it does at sea level.</span></li>
+            <li><span class="know-head">Altitude is the whole game</span><span class="know-body">Two acclimatisation days are built in, at Namche and again at Dingboche. They are not spare days.</span></li>
+            <li><span class="know-head">It is a walk, not a climb</span><span class="know-body">No ropes, no crampons, no technical ground anywhere on the route.</span></li>
+            <li><span class="know-head">Lukla weather runs the schedule</span><span class="know-body">Flights in and out are cancelled often enough that spare days at either end are part of the plan.</span></li>
+            <li><span class="know-head">Teahouses the whole way</span><span class="know-body">You sleep indoors every night, in villages, not on the glacier.</span></li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+<figure class="routemap" role="group" aria-labelledby="rm-t-ebc-trek" aria-describedby="rm-d-ebc-trek">
+  <figcaption class="rm-caption" id="rm-t-ebc-trek">Route and altitude</figcaption>
+  <p class="rm-desc" id="rm-d-ebc-trek">Route map. The trail runs south to north up the valley: Lukla at 2,860 metres; then Phakding at 2,610 metres (night 2); then Namche at 3,440 metres (night 3 and 4); then Tengboche at 3,860 metres (night 5); then Dingboche at 4,410 metres (night 6 and 7); then Lobuche at 4,940 metres (night 8); then Gorak Shep at 5,164 metres (night 9); then Everest Base Camp at 5,364 metres; then a side trip from Gorak Shep to Kala Patthar at 5,545 metres. Peaks in view: Everest at 8,848 metres, Lhotse at 8,516 metres, Nuptse at 7,861 metres, Pumori at 7,161 metres, Ama Dablam at 6,812 metres. The profile chart below plots the altitude slept at on each of the 15 days, rising to a high point of 5,545 metres.</p>
+  <div class="rm-frame">
+<svg class="rm-svg" viewBox="0 0 860 936" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
+  <path class="rm-peak" d="M 660.9 110.5 L 685.0 81.9 L 691.3 64.5 L 722.9 110.5"/>
+  <text class="rm-peak-name" x="691.9" y="32.5" text-anchor="middle">Everest</text>
+  <text class="rm-peak-alt rm-alt" x="691.9" y="54.5" text-anchor="middle">8,848 m</text>
+  <path class="rm-peak" d="M 684.0 176.8 L 702.1 153.2 L 708.5 138.8 L 736.0 176.8"/>
+  <text class="rm-peak-name" x="730.0" y="196.8" text-anchor="start">Lhotse</text>
+  <text class="rm-peak-alt rm-alt" x="730.0" y="218.8" text-anchor="start">8,516 m</text>
+  <path class="rm-peak" d="M 593.3 164.0 L 613.4 144.2 L 615.4 132.0 L 641.3 164.0"/>
+  <text class="rm-peak-name" x="595.3" y="184.0" text-anchor="end">Nuptse</text>
+  <text class="rm-peak-alt rm-alt" x="595.3" y="206.0" text-anchor="end">7,861 m</text>
+  <path class="rm-peak" d="M 482.1 62.0 L 498.0 43.4 L 505.9 32.0 L 526.1 62.0"/>
+  <text class="rm-peak-name" x="538.1" y="60.0" text-anchor="start">Pumori</text>
+  <text class="rm-peak-alt rm-alt" x="538.1" y="82.0" text-anchor="start">7,161 m</text>
+  <path class="rm-peak" d="M 521.1 431.9 L 539.4 408.3 L 548.9 393.9 L 573.1 431.9"/>
+  <text class="rm-peak-name" x="547.1" y="457.9" text-anchor="middle">Ama Dablam</text>
+  <text class="rm-peak-alt rm-alt" x="547.1" y="479.9" text-anchor="middle">6,812 m</text>
+  <path class="rm-route" d="M 253.0 878.2 Q 246.8 855.0 238.7 832.3 Q 226.9 810.8 224.3 786.4 Q 219.6 762.7 210.0 740.5 Q 214.3 713.8 211.5 686.9 Q 207.7 660.0 213.0 633.4 Q 214.8 606.6 214.5 579.8 Q 233.5 566.4 252.2 552.6 Q 268.1 534.9 289.9 525.4 Q 308.3 511.1 327.7 498.2 Q 350.0 471.7 378.2 451.4 Q 407.6 432.5 428.7 404.6 Q 455.2 382.6 479.3 357.9 Q 466.9 335.6 463.4 310.3 Q 448.9 288.7 447.6 262.7 Q 442.1 238.0 431.7 215.0 Q 443.1 202.7 445.3 186.1 Q 449.7 170.5 458.9 157.2 Q 467.9 143.8 472.5 128.3 Q 485.5 123.4 490.6 110.5 Q 503.1 105.1 508.7 92.6 Q 513.3 79.2 526.8 74.8"/>
+  <path class="rm-route rm-route--spur" d="M 472.5 128.3 Q 469.6 119.2 465.7 110.5 Q 465.4 100.3 458.9 92.6"/>
+  <circle class="rm-node" cx="253.0" cy="878.2" r="8"/>
+  <text class="rm-place" x="227.0" y="877.2" text-anchor="end">Lukla</text>
+  <text class="rm-place-alt rm-alt" x="227.0" y="898.2" text-anchor="end">2,860 m</text>
+  <circle class="rm-stop" cx="210.0" cy="740.5" r="17"/>
+  <text class="rm-day" x="210.0" y="740.5">2</text>
+  <text class="rm-place" x="184.0" y="739.5" text-anchor="end">Phakding</text>
+  <text class="rm-place-alt rm-alt" x="184.0" y="760.5" text-anchor="end">2,610 m</text>
+  <rect class="rm-stop" x="182.0" y="562.8" width="65.0" height="34" rx="17"/>
+  <text class="rm-day" x="214.5" y="579.8">3·4</text>
+  <text class="rm-place" x="188.5" y="578.8" text-anchor="end">Namche</text>
+  <text class="rm-place-alt rm-alt" x="188.5" y="599.8" text-anchor="end">3,440 m</text>
+  <circle class="rm-stop" cx="327.7" cy="498.2" r="17"/>
+  <text class="rm-day" x="327.7" y="498.2">5</text>
+  <text class="rm-place" x="301.7" y="497.2" text-anchor="end">Tengboche</text>
+  <text class="rm-place-alt rm-alt" x="301.7" y="518.2" text-anchor="end">3,860 m</text>
+  <rect class="rm-stop" x="446.8" y="340.9" width="65.0" height="34" rx="17"/>
+  <text class="rm-day" x="479.3" y="357.9">6·7</text>
+  <text class="rm-place" x="505.3" y="356.9" text-anchor="start">Dingboche</text>
+  <text class="rm-place-alt rm-alt" x="505.3" y="377.9" text-anchor="start">4,410 m</text>
+  <circle class="rm-stop" cx="431.7" cy="215.0" r="17"/>
+  <text class="rm-day" x="431.7" y="215.0">8</text>
+  <text class="rm-place" x="405.7" y="214.0" text-anchor="end">Lobuche</text>
+  <text class="rm-place-alt rm-alt" x="405.7" y="235.0" text-anchor="end">4,940 m</text>
+  <circle class="rm-stop" cx="472.5" cy="128.3" r="17"/>
+  <text class="rm-day" x="472.5" y="128.3">9</text>
+  <text class="rm-place" x="446.5" y="141.3" text-anchor="end">Gorak Shep</text>
+  <text class="rm-place-alt rm-alt" x="446.5" y="162.3" text-anchor="end">5,164 m</text>
+  <circle class="rm-node" cx="526.8" cy="74.8" r="8"/>
+  <text class="rm-place" x="552.8" y="123.8" text-anchor="start">Base Camp</text>
+  <text class="rm-place-alt rm-alt" x="552.8" y="144.8" text-anchor="start">5,364 m</text>
+  <g class="rm-view"><circle cx="458.9" cy="92.6" r="15"/><path d="M 449.9 96.6 l 9 -9 l 9 9" /></g>
+  <text class="rm-place" x="432.9" y="61.6" text-anchor="end">Kala Patthar</text>
+  <text class="rm-place-alt rm-alt" x="432.9" y="82.6" text-anchor="end">5,545 m</text>
+</svg>
+  </div>
+  <ul class="rm-legend">
+    <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><path class="rm-route" d="M2 12 Q 9 4 15 9 T 28 5"/></svg>Route</li>
+    <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><circle class="rm-stop" cx="15" cy="8" r="7"/></svg>Overnight stop, with day</li>
+    <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><path class="rm-peak" d="M4 14 L 13 3 L 22 14"/></svg>Peak</li>
+    <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><g class="rm-view"><circle cx="15" cy="8" r="6.5"/><path d="M11 10 l4 -4 l4 4"/></g></svg>Viewpoint</li>
+    <li><span class="rm-max">Highest point 5,545 m</span></li>
+  </ul>
+  <div class="rm-frame rm-frame--profile">
+<svg class="rm-profile" viewBox="0 0 900 330" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
+  <line class="rm-grid" x1="66.0" y1="278.0" x2="870.0" y2="278.0"/>
+  <text class="rm-axis" x="54.0" y="283.0" text-anchor="end">0</text>
+  <line class="rm-grid" x1="66.0" y1="237.3" x2="870.0" y2="237.3"/>
+  <text class="rm-axis" x="54.0" y="242.3" text-anchor="end">1,000</text>
+  <line class="rm-grid" x1="66.0" y1="196.7" x2="870.0" y2="196.7"/>
+  <text class="rm-axis" x="54.0" y="201.7" text-anchor="end">2,000</text>
+  <line class="rm-grid" x1="66.0" y1="156.0" x2="870.0" y2="156.0"/>
+  <text class="rm-axis" x="54.0" y="161.0" text-anchor="end">3,000</text>
+  <line class="rm-grid" x1="66.0" y1="115.3" x2="870.0" y2="115.3"/>
+  <text class="rm-axis" x="54.0" y="120.3" text-anchor="end">4,000</text>
+  <line class="rm-grid" x1="66.0" y1="74.7" x2="870.0" y2="74.7"/>
+  <text class="rm-axis" x="54.0" y="79.7" text-anchor="end">5,000</text>
+  <line class="rm-grid" x1="66.0" y1="34.0" x2="870.0" y2="34.0"/>
+  <text class="rm-axis" x="54.0" y="39.0" text-anchor="end">6,000</text>
+  <path class="rm-area" d="M 66.0 278.0 L 66.0 221.1 L 123.4 171.9 L 180.9 138.1 L 238.3 138.1 L 295.7 121.0 L 353.1 98.7 L 410.6 98.7 L 468.0 77.1 L 525.4 68.0 L 582.9 105.6 L 640.3 138.1 L 697.7 161.7 L 755.1 221.1 L 812.6 221.1 L 870.0 221.1 L 870.0 278.0 Z"/>
+  <path class="rm-line" d="M 66.0 221.1 L 123.4 171.9 L 180.9 138.1 L 238.3 138.1 L 295.7 121.0 L 353.1 98.7 L 410.6 98.7 L 468.0 77.1 L 525.4 68.0 L 582.9 105.6 L 640.3 138.1 L 697.7 161.7 L 755.1 221.1 L 812.6 221.1 L 870.0 221.1"/>
+  <circle class="rm-dot" cx="66.0" cy="221.1" r="4.5"/>
+  <text class="rm-axis" x="66.0" y="304.0" text-anchor="middle">1</text>
+  <circle class="rm-dot" cx="123.4" cy="171.9" r="4.5"/>
+  <text class="rm-axis" x="123.4" y="304.0" text-anchor="middle">2</text>
+  <circle class="rm-dot" cx="180.9" cy="138.1" r="4.5"/>
+  <text class="rm-axis" x="180.9" y="304.0" text-anchor="middle">3</text>
+  <text class="rm-plabel" x="180.9" y="120.1" text-anchor="middle">Namche</text>
+  <circle class="rm-dot" cx="238.3" cy="138.1" r="4.5"/>
+  <text class="rm-axis" x="238.3" y="304.0" text-anchor="middle">4</text>
+  <circle class="rm-dot" cx="295.7" cy="121.0" r="4.5"/>
+  <text class="rm-axis" x="295.7" y="304.0" text-anchor="middle">5</text>
+  <circle class="rm-dot" cx="353.1" cy="98.7" r="4.5"/>
+  <text class="rm-axis" x="353.1" y="304.0" text-anchor="middle">6</text>
+  <text class="rm-plabel" x="353.1" y="80.7" text-anchor="middle">Dingboche</text>
+  <circle class="rm-dot" cx="410.6" cy="98.7" r="4.5"/>
+  <text class="rm-axis" x="410.6" y="304.0" text-anchor="middle">7</text>
+  <circle class="rm-dot" cx="468.0" cy="77.1" r="4.5"/>
+  <text class="rm-axis" x="468.0" y="304.0" text-anchor="middle">8</text>
+  <text class="rm-plabel" x="458.0" y="59.1" text-anchor="end">Lobuche</text>
+  <circle class="rm-dot" cx="525.4" cy="68.0" r="4.5"/>
+  <text class="rm-axis" x="525.4" y="304.0" text-anchor="middle">9</text>
+  <line class="rm-riser" x1="525.4" y1="68.0" x2="525.4" y2="59.9"/>
+  <circle class="rm-touch" cx="525.4" cy="59.9" r="5.5"/>
+  <text class="rm-plabel" x="519.4" y="45.9" text-anchor="end">Base Camp 5,364</text>
+  <circle class="rm-dot" cx="582.9" cy="105.6" r="4.5"/>
+  <text class="rm-axis" x="582.9" y="304.0" text-anchor="middle">10</text>
+  <line class="rm-riser" x1="582.9" y1="105.6" x2="582.9" y2="52.5"/>
+  <circle class="rm-touch" cx="582.9" cy="52.5" r="5.5"/>
+  <text class="rm-plabel" x="582.9" y="34.5" text-anchor="middle">Kala Patthar 5,545</text>
+  <circle class="rm-dot" cx="640.3" cy="138.1" r="4.5"/>
+  <text class="rm-axis" x="640.3" y="304.0" text-anchor="middle">11</text>
+  <circle class="rm-dot" cx="697.7" cy="161.7" r="4.5"/>
+  <text class="rm-axis" x="697.7" y="304.0" text-anchor="middle">12</text>
+  <circle class="rm-dot" cx="755.1" cy="221.1" r="4.5"/>
+  <text class="rm-axis" x="755.1" y="304.0" text-anchor="middle">13</text>
+  <circle class="rm-dot" cx="812.6" cy="221.1" r="4.5"/>
+  <text class="rm-axis" x="812.6" y="304.0" text-anchor="middle">14</text>
+  <circle class="rm-dot" cx="870.0" cy="221.1" r="4.5"/>
+  <text class="rm-axis" x="870.0" y="304.0" text-anchor="middle">15</text>
+  <text class="rm-axis rm-axis-title" x="468.0" y="324.0" text-anchor="middle">Day</text>
+</svg>
+  </div>
+</figure>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-section-title">Highlights</h3>
+          <ul class="hl-list">
+            <li>The first sight of Everest from the hill above Namche</li>
+            <li>Tengboche monastery with Ama Dablam standing behind it</li>
+            <li>The memorial cairns on the rise above Thukla</li>
+            <li>Walking the lateral moraine of the Khumbu Glacier into Base Camp</li>
+            <li>Sunrise on Everest from Kala Patthar at 5,545 m</li>
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-section-title">Gear and preparation</h3>
+          <p class="detail-body-text">Four seasons of clothing in one bag. A down jacket for the evenings above 4,000 m, a sleeping bag rated colder than you think you need, and boots you have already walked in. Train for consecutive days rather than single long ones: the trek asks for five to seven hours of walking a day, for two weeks, with a light pack.</p>
+          <!-- re-target to the Know the Mountain section once it exists -->
+          <p><a class="link-action" href="index.html#community">Kit lists and altitude guidance in Know the Mountain <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+
+        <div class="detail-section">
+          <h3 class="detail-section-title">Questions</h3>
+            <div class="faq-item"><p class="faq-q">Do I need mountaineering experience?</p><p class="faq-a">No. If you can walk uphill for six hours several days running, you can walk this.</p></div>
+            <div class="faq-item"><p class="faq-q">How likely is altitude sickness?</p><p class="faq-a">Mild symptoms are common. The pacing exists to keep them mild.</p></div>
+            <div class="faq-item"><p class="faq-q">When is the best time to go?</p><p class="faq-a">March to May, and late September to November.</p></div>
+            <div class="faq-item"><p class="faq-q">How fit do I need to be?</p><p class="faq-a">Fit enough for back to back hill days carrying a daypack.</p></div>
+        </div>
+
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Everest%20Base%20Camp%20Trek"
+             data-interest="Everest Base Camp Trek">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/three-passes">
       <div class="jstatic-inner">
-        <h2>Everest Three Passes</h2>
+        <h2 class="jstatic-title">Everest Three Passes</h2>
+        <div class="jdetail" data-journey="three-passes">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Everest%20Three%20Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Everest%20Three%20Passes"
+             data-interest="Everest Three Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/gokyo-lakes">
       <div class="jstatic-inner">
-        <h2>Gokyo Lakes</h2>
+        <h2 class="jstatic-title">Gokyo Lakes</h2>
+        <div class="jdetail" data-journey="gokyo-lakes">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Everest</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Gokyo%20Lakes">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Gokyo%20Lakes"
+             data-interest="Gokyo Lakes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/annapurna-circuit">
       <div class="jstatic-inner">
-        <h2>Annapurna Circuit</h2>
+        <h2 class="jstatic-title">Annapurna Circuit</h2>
+        <div class="jdetail" data-journey="annapurna-circuit">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20Circuit"
+             data-interest="Annapurna Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/annapurna-base-camp">
       <div class="jstatic-inner">
-        <h2>Annapurna Base Camp</h2>
+        <h2 class="jstatic-title">Annapurna Base Camp</h2>
+        <div class="jdetail" data-journey="annapurna-base-camp">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Annapurna%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20Base%20Camp"
+             data-interest="Annapurna Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/mardi-himal">
       <div class="jstatic-inner">
-        <h2>Mardi Himal</h2>
+        <h2 class="jstatic-title">Mardi Himal</h2>
+        <div class="jdetail" data-journey="mardi-himal">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Mardi%20Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Mardi%20Himal"
+             data-interest="Mardi Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/upper-mustang">
       <div class="jstatic-inner">
-        <h2>Upper Mustang</h2>
+        <h2 class="jstatic-title">Upper Mustang</h2>
+        <div class="jdetail" data-journey="upper-mustang">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Annapurna</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Upper%20Mustang">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Upper%20Mustang"
+             data-interest="Upper Mustang">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/manaslu-circuit">
       <div class="jstatic-inner">
-        <h2>Manaslu Circuit</h2>
+        <h2 class="jstatic-title">Manaslu Circuit</h2>
+        <div class="jdetail" data-journey="manaslu-circuit">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Manaslu%20Circuit"
+             data-interest="Manaslu Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/manaslu-base-camp">
       <div class="jstatic-inner">
-        <h2>Manaslu Base Camp</h2>
+        <h2 class="jstatic-title">Manaslu Base Camp</h2>
+        <div class="jdetail" data-journey="manaslu-base-camp">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Manaslu</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Manaslu%20Base%20Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Manaslu%20Base%20Camp"
+             data-interest="Manaslu Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/langtang-valley">
       <div class="jstatic-inner">
-        <h2>Langtang Valley</h2>
+        <h2 class="jstatic-title">Langtang Valley</h2>
+        <div class="jdetail" data-journey="langtang-valley">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Langtang</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Langtang</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Nepal</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Langtang%20Valley">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Langtang%20Valley"
+             data-interest="Langtang Valley">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/ladakh-high-passes">
       <div class="jstatic-inner">
-        <h2>Ladakh High Passes</h2>
+        <h2 class="jstatic-title">Ladakh High Passes</h2>
+        <div class="jdetail" data-journey="ladakh-high-passes">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">Ladakh</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">India</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Ladakh</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">India</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Ladakh%20High%20Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Ladakh%20High%20Passes"
+             data-interest="Ladakh High Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/tour-du-mont-blanc">
       <div class="jstatic-inner">
-        <h2>Tour du Mont Blanc</h2>
+        <h2 class="jstatic-title">Tour du Mont Blanc</h2>
+        <div class="jdetail" data-journey="tour-du-mont-blanc">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">France, Italy and Switzerland</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">France, Italy and Switzerland</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Tour%20du%20Mont%20Blanc">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Tour%20du%20Mont%20Blanc"
+             data-interest="Tour du Mont Blanc">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/haute-route-trek">
       <div class="jstatic-inner">
-        <h2>Haute Route, Chamonix to Zermatt</h2>
+        <h2 class="jstatic-title">Haute Route, Chamonix to Zermatt</h2>
+        <div class="jdetail" data-journey="haute-route-trek">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">France and Switzerland</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">The Alps</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">France and Switzerland</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Haute%20Route,%20Chamonix%20to%20Zermatt">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Haute%20Route,%20Chamonix%20to%20Zermatt"
+             data-interest="Haute Route, Chamonix to Zermatt">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/torres-del-paine-trek">
       <div class="jstatic-inner">
-        <h2>Torres del Paine Circuit</h2>
+        <h2 class="jstatic-title">Torres del Paine Circuit</h2>
+        <div class="jdetail" data-journey="torres-del-paine-trek">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Chile</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Chile</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Torres%20del%20Paine%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Torres%20del%20Paine%20Circuit"
+             data-interest="Torres del Paine Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/huayhuash-circuit">
       <div class="jstatic-inner">
-        <h2>Huayhuash Circuit</h2>
+        <h2 class="jstatic-title">Huayhuash Circuit</h2>
+        <div class="jdetail" data-journey="huayhuash-circuit">
         <div class="fact-strip">
-        <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Peru</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">South America</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Peru</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Huayhuash%20Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Huayhuash%20Circuit"
+             data-interest="Huayhuash Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
     <section class="journey-static" id="journey/kilimanjaro-5895">
       <div class="jstatic-inner">
-        <h2>Kilimanjaro</h2>
+        <h2 class="jstatic-title">Kilimanjaro</h2>
+        <div class="jdetail" data-journey="kilimanjaro-5895">
         <div class="fact-strip">
-        <div><p class="fact-label">Elevation</p><p class="fact-value">5,895 m</p></div>
-        <div><p class="fact-label">Region</p><p class="fact-value">Africa</p></div>
-        <div><p class="fact-label">Country</p><p class="fact-value">Tanzania</p></div>
+          <div><p class="fact-label">Elevation</p><p class="fact-value">5,895 m</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Africa</p></div>
+          <div><p class="fact-label">Country</p><p class="fact-value">Tanzania</p></div>
         </div>
         <p class="cat-note">Full route notes are being written. Groups form when demand and
         partnerships align, so join the interest list and you will hear first.</p>
-        <p style="margin-top:var(--s-5)">
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:%20Kilimanjaro">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you will hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Kilimanjaro"
+             data-interest="Kilimanjaro">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
       </div>
     </section>
 
@@ -2697,58 +3182,58 @@ function photoSlot(file, opts) {
 // take the high point of the peaks they name; where no height is stated
 // anywhere the field is null and every view simply omits the line.
 const JOURNEYS = [
-  { slug: 'everest-8848', name: 'Everest', elevation_m: 8848, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'k2-8611', name: 'K2', elevation_m: 8611, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
-  { slug: 'kangchenjunga-8586', name: 'Kangchenjunga', elevation_m: 8586, category: '8000ers', region: 'Kangchenjunga', country: 'Nepal', status: 'catalogue' },
-  { slug: 'lhotse-8516', name: 'Lhotse', elevation_m: 8516, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'makalu-8485', name: 'Makalu', elevation_m: 8485, category: '8000ers', region: 'Makalu Barun', country: 'Nepal', status: 'catalogue' },
-  { slug: 'cho-oyu-8188', name: 'Cho Oyu', elevation_m: 8188, category: '8000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'dhaulagiri-8167', name: 'Dhaulagiri I', elevation_m: 8167, category: '8000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
-  { slug: 'manaslu-8163', name: 'Manaslu', elevation_m: 8163, category: '8000ers', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'nanga-parbat-8125', name: 'Nanga Parbat', elevation_m: 8125, category: '8000ers', region: 'Himalaya', country: 'Pakistan', status: 'catalogue' },
-  { slug: 'annapurna-i-8091', name: 'Annapurna I', elevation_m: 8091, category: '8000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'gasherbrum-i-8080', name: 'Gasherbrum I', elevation_m: 8080, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
-  { slug: 'broad-peak-8051', name: 'Broad Peak', elevation_m: 8051, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
-  { slug: 'gasherbrum-ii-8034', name: 'Gasherbrum II', elevation_m: 8034, category: '8000ers', region: 'Karakoram', country: 'Pakistan', status: 'catalogue' },
-  { slug: 'shisha-pangma-8027', name: 'Shisha Pangma', elevation_m: 8027, category: '8000ers', region: 'Tibet', country: 'China', status: 'catalogue' },
-  { slug: 'himlung-7126', name: 'Himlung Himal', elevation_m: 7126, category: '7000ers', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'baruntse-7129', name: 'Baruntse', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'baruntse-mera', name: 'Baruntse and Mera Peak', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'putha-hiunchuli-7246', name: 'Putha Hiunchuli', elevation_m: 7246, category: '7000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
-  { slug: 'pumori-7145', name: 'Pumori', elevation_m: 7145, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'nuptse-7864', name: 'Nuptse', elevation_m: 7864, category: '7000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'annapurna-iv-7525', name: 'Annapurna IV', elevation_m: 7525, category: '7000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'ama-dablam-6812', name: 'Ama Dablam', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'ama-dablam-lobuche', name: 'Ama Dablam and Lobuche East', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'ama-dablam-island', name: 'Ama Dablam and Island Peak', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'three-peaks-ebc', name: 'Three Peaks and Everest Base Camp', elevation_m: null, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'two-peaks-lobuche-island-ebc', name: 'Lobuche East, Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'lobuche-ebc', name: 'Lobuche East and Everest Base Camp', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'lobuche-6119', name: 'Lobuche East', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'island-peak-ebc', name: 'Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'island-peak-6189', name: 'Island Peak', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'mera-peak-6476', name: 'Mera Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', status: 'catalogue' },
-  { slug: 'two-peaks-mera-island', name: 'Mera Peak and Island Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', status: 'catalogue' },
-  { slug: 'cholatse-6440', name: 'Cholatse', elevation_m: 6440, category: '6000ers', region: 'Khumbu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'chulu-west-6419', name: 'Chulu West', elevation_m: 6419, category: '6000ers', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'pharchamo-tashi-lapcha', name: 'Pharchamo via Tashi Lapcha', elevation_m: null, category: '6000ers', region: 'Rolwaling', country: 'Nepal', status: 'catalogue' },
-  { slug: 'dhampus-6012', name: 'Dhampus Peak', elevation_m: 6012, category: '6000ers', region: 'Dhaulagiri', country: 'Nepal', status: 'catalogue' },
-  { slug: 'ebc-trek', name: 'Everest Base Camp Trek', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
-  { slug: 'three-passes', name: 'Everest Three Passes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
-  { slug: 'gokyo-lakes', name: 'Gokyo Lakes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', status: 'catalogue' },
-  { slug: 'annapurna-circuit', name: 'Annapurna Circuit', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'annapurna-base-camp', name: 'Annapurna Base Camp', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'mardi-himal', name: 'Mardi Himal', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'upper-mustang', name: 'Upper Mustang', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', status: 'catalogue' },
-  { slug: 'manaslu-circuit', name: 'Manaslu Circuit', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'manaslu-base-camp', name: 'Manaslu Base Camp', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', status: 'catalogue' },
-  { slug: 'langtang-valley', name: 'Langtang Valley', elevation_m: null, category: 'trek', region: 'Langtang', country: 'Nepal', status: 'catalogue' },
-  { slug: 'ladakh-high-passes', name: 'Ladakh High Passes', elevation_m: null, category: 'trek', region: 'Ladakh', country: 'India', status: 'catalogue' },
-  { slug: 'tour-du-mont-blanc', name: 'Tour du Mont Blanc', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France, Italy and Switzerland', status: 'catalogue' },
-  { slug: 'haute-route-trek', name: 'Haute Route, Chamonix to Zermatt', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France and Switzerland', status: 'catalogue' },
-  { slug: 'torres-del-paine-trek', name: 'Torres del Paine Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Chile', status: 'catalogue' },
-  { slug: 'huayhuash-circuit', name: 'Huayhuash Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Peru', status: 'catalogue' },
-  { slug: 'kilimanjaro-5895', name: 'Kilimanjaro', elevation_m: 5895, category: 'trek', region: 'Africa', country: 'Tanzania', status: 'catalogue' },
+  { slug: 'everest-8848', name: 'Everest', elevation_m: 8848, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'k2-8611', name: 'K2', elevation_m: 8611, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue' },
+  { slug: 'kangchenjunga-8586', name: 'Kangchenjunga', elevation_m: 8586, category: '8000ers', region: 'Kangchenjunga', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'lhotse-8516', name: 'Lhotse', elevation_m: 8516, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'makalu-8485', name: 'Makalu', elevation_m: 8485, category: '8000ers', region: 'Makalu Barun', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'cho-oyu-8188', name: 'Cho Oyu', elevation_m: 8188, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'dhaulagiri-8167', name: 'Dhaulagiri I', elevation_m: 8167, category: '8000ers', region: 'Dhaulagiri', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'manaslu-8163', name: 'Manaslu', elevation_m: 8163, category: '8000ers', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'nanga-parbat-8125', name: 'Nanga Parbat', elevation_m: 8125, category: '8000ers', region: 'Himalaya', country: 'Pakistan', difficulty: null, status: 'catalogue' },
+  { slug: 'annapurna-i-8091', name: 'Annapurna I', elevation_m: 8091, category: '8000ers', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'gasherbrum-i-8080', name: 'Gasherbrum I', elevation_m: 8080, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue' },
+  { slug: 'broad-peak-8051', name: 'Broad Peak', elevation_m: 8051, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue' },
+  { slug: 'gasherbrum-ii-8034', name: 'Gasherbrum II', elevation_m: 8034, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue' },
+  { slug: 'shisha-pangma-8027', name: 'Shisha Pangma', elevation_m: 8027, category: '8000ers', region: 'Tibet', country: 'China', difficulty: null, status: 'catalogue' },
+  { slug: 'himlung-7126', name: 'Himlung Himal', elevation_m: 7126, category: '7000ers', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'baruntse-7129', name: 'Baruntse', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'baruntse-mera', name: 'Baruntse and Mera Peak', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'putha-hiunchuli-7246', name: 'Putha Hiunchuli', elevation_m: 7246, category: '7000ers', region: 'Dhaulagiri', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'pumori-7145', name: 'Pumori', elevation_m: 7145, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'nuptse-7864', name: 'Nuptse', elevation_m: 7864, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'annapurna-iv-7525', name: 'Annapurna IV', elevation_m: 7525, category: '7000ers', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'ama-dablam-6812', name: 'Ama Dablam', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'ama-dablam-lobuche', name: 'Ama Dablam and Lobuche East', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'ama-dablam-island', name: 'Ama Dablam and Island Peak', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'three-peaks-ebc', name: 'Three Peaks and Everest Base Camp', elevation_m: null, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'two-peaks-lobuche-island-ebc', name: 'Lobuche East, Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'lobuche-ebc', name: 'Lobuche East and Everest Base Camp', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'lobuche-6119', name: 'Lobuche East', elevation_m: 6119, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'island-peak-ebc', name: 'Island Peak and Everest Base Camp', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'island-peak-6189', name: 'Island Peak', elevation_m: 6189, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'mera-peak-6476', name: 'Mera Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'two-peaks-mera-island', name: 'Mera Peak and Island Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'cholatse-6440', name: 'Cholatse', elevation_m: 6440, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'chulu-west-6419', name: 'Chulu West', elevation_m: 6419, category: '6000ers', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'pharchamo-tashi-lapcha', name: 'Pharchamo via Tashi Lapcha', elevation_m: null, category: '6000ers', region: 'Rolwaling', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'dhampus-6012', name: 'Dhampus Peak', elevation_m: 6012, category: '6000ers', region: 'Dhaulagiri', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'ebc-trek', name: 'Everest Base Camp Trek', elevation_m: 5545, category: 'trek', region: 'Everest', country: 'Nepal', difficulty: 'Demanding', status: 'detailed' },
+  { slug: 'three-passes', name: 'Everest Three Passes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'gokyo-lakes', name: 'Gokyo Lakes', elevation_m: null, category: 'trek', region: 'Everest', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'annapurna-circuit', name: 'Annapurna Circuit', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'annapurna-base-camp', name: 'Annapurna Base Camp', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'mardi-himal', name: 'Mardi Himal', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'upper-mustang', name: 'Upper Mustang', elevation_m: null, category: 'trek', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'manaslu-circuit', name: 'Manaslu Circuit', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'manaslu-base-camp', name: 'Manaslu Base Camp', elevation_m: null, category: 'trek', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'langtang-valley', name: 'Langtang Valley', elevation_m: null, category: 'trek', region: 'Langtang', country: 'Nepal', difficulty: null, status: 'catalogue' },
+  { slug: 'ladakh-high-passes', name: 'Ladakh High Passes', elevation_m: null, category: 'trek', region: 'Ladakh', country: 'India', difficulty: null, status: 'catalogue' },
+  { slug: 'tour-du-mont-blanc', name: 'Tour du Mont Blanc', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France, Italy and Switzerland', difficulty: null, status: 'catalogue' },
+  { slug: 'haute-route-trek', name: 'Haute Route, Chamonix to Zermatt', elevation_m: null, category: 'trek', region: 'The Alps', country: 'France and Switzerland', difficulty: null, status: 'catalogue' },
+  { slug: 'torres-del-paine-trek', name: 'Torres del Paine Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Chile', difficulty: null, status: 'catalogue' },
+  { slug: 'huayhuash-circuit', name: 'Huayhuash Circuit', elevation_m: null, category: 'trek', region: 'South America', country: 'Peru', difficulty: null, status: 'catalogue' },
+  { slug: 'kilimanjaro-5895', name: 'Kilimanjaro', elevation_m: 5895, category: 'trek', region: 'Africa', country: 'Tanzania', difficulty: null, status: 'catalogue' },
 ];
 
 const BY_SLUG = {};
@@ -2767,55 +3252,16 @@ const metres = (n) => n ? n.toLocaleString('en-US') + ' m' : null;
 const detailEl = document.getElementById('detail-view');
 const detailContent = document.getElementById('detail-content');
 
-function factStrip(pairs) {
-  const live = pairs.filter(([, v]) => v);
-  if (!live.length) return '';
-  return `<div class="fact-strip">` + live.map(([l, v]) =>
-    `<div><p class="fact-label">${l}</p><p class="fact-value">${v}</p></div>`).join('') + `</div>`;
+// The body of every journey already exists in the document, inside its
+// .journey-static block. The router moves a copy of that into the overlay
+// rather than rebuilding it from the data, so the version a reader without
+// JavaScript sees and the version in the overlay cannot drift apart.
+function journeyBody(slug) {
+  const src = document.querySelector(`.jdetail[data-journey="${CSS.escape(slug)}"]`);
+  return src ? src.cloneNode(true) : null;
 }
 
-function catalogueBody(j) {
-  return `
-    ${factStrip([['Elevation', metres(j.elevation_m)], ['Region', j.region], ['Country', j.country],
-                 ['Category', CATEGORY_LABEL[j.category]]])}
-    <p class="cat-note">Full route notes are being written. Groups form when demand and
-    partnerships align, so join the interest list and you will hear first.</p>`;
-}
-
-function list(cls, items) {
-  return `<ul class="${cls}">` + items.map(i => `<li>${i}</li>`).join('') + `</ul>`;
-}
-
-function detailedBody(j) {
-  const d = j.detail || {};
-  const sec = (title, inner) => inner ? `
-    <div class="detail-section">
-      <h2 class="detail-section-title">${title}</h2>
-      ${inner}
-    </div>` : '';
-  return `
-    ${factStrip([['Duration', d.duration], ['Max altitude', metres(j.elevation_m)],
-                 ['Difficulty', d.difficulty], ['Best season', d.season],
-                 ['Group size', d.groupSize], ['Region', j.region]])}
-    ${d.overview ? `<p class="detail-lede" style="margin-top:var(--s-5)">${d.overview}</p>` : ''}
-    ${sec('Highlights', d.highlights && list('hl-list', d.highlights))}
-    ${sec('Day by day', d.days && d.days.map((t, i) => `
-      <details class="day"><summary><span class="day-n">Day ${i + 1}</span> ${t.title}</summary>
-      <p>${t.body}</p></details>`).join(''))}
-    ${(d.covered || d.arrange) ? `
-    <div class="detail-section">
-      <div class="two-col">
-        <div><h2 class="detail-section-title">What is covered</h2>${d.covered ? list('cov-list', d.covered) : ''}</div>
-        <div><h2 class="detail-section-title">What you arrange</h2>${d.arrange ? list('cov-list', d.arrange) : ''}</div>
-      </div>
-    </div>` : ''}
-    ${sec('Good to know', d.goodToKnow && list('hl-list', d.goodToKnow))}
-    ${sec('Questions', d.faq && d.faq.map(q => `
-      <details class="day"><summary>${q.q}</summary><p>${q.a}</p></details>`).join(''))}`;
-}
-
-function detailHTML(j) {
-  const cta = `openInquiry('${j.name.replace(/'/g, "\\'")}', '${j.name.replace(/'/g, "\\'")}', '${CATEGORY_LABEL[j.category]}', '${journeyPhoto(j)}')`;
+function detailShell(j) {
   return `
   <div class="detail-hero">
     ${photoSlot(journeyPhoto(j), { lb: 0 })}
@@ -2828,14 +3274,7 @@ function detailHTML(j) {
   </div>
 
   <div class="wrap">
-    ${j.status === 'detailed' ? detailedBody(j) : catalogueBody(j)}
-
-    <p style="margin-top:var(--s-6)">
-      <button class="btn btn-primary" type="button" onclick="${cta}">
-        Join the Group <span aria-hidden="true">&rarr;</span>
-      </button>
-    </p>
-
+    <div class="detail-slot"></div>
     <div class="detail-foot">
       <button class="btn btn-outline" type="button" onclick="closeDetail()">
         <span aria-hidden="true">&larr;</span> All journeys
@@ -2848,7 +3287,25 @@ function showDetail(slug) {
   const j = BY_SLUG[slug];
   if (!j) { hideDetail(); return false; }
   _detailImages = has(journeyPhoto(j)) ? [{ file: journeyPhoto(j), cap: '' }] : [];
-  detailContent.innerHTML = detailHTML(j);
+  detailContent.innerHTML = detailShell(j);
+  const body = journeyBody(slug);
+  if (body) {
+    detailContent.querySelector('.detail-slot').appendChild(body);
+    // the mailto is the no-JavaScript path; here the panel is better
+    const cta = detailContent.querySelector('[data-interest]');
+    if (cta) {
+      cta.removeAttribute('href');
+      cta.setAttribute('role', 'button');
+      cta.setAttribute('tabindex', '0');
+      const open = () => openInquiry(cta.getAttribute('data-interest'),
+                                     cta.getAttribute('data-interest'),
+                                     CATEGORY_LABEL[j.category], journeyPhoto(j));
+      cta.addEventListener('click', open);
+      cta.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      });
+    }
+  }
   detailEl.classList.add('open');
   detailEl.scrollTop = 0;
   document.body.style.overflow = 'hidden';
