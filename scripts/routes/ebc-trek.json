@@ -1,0 +1,97 @@
+{
+  "slug": "ebc-trek",
+  "margin": {
+    "w": 0.26,
+    "e": 0.1,
+    "n": 0.09,
+    "s": 0.07
+  },
+  "stops": [
+    {
+      "name": "Lukla",
+      "alt": 2860,
+      "lat": 27.687,
+      "lon": 86.731
+    },
+    {
+      "name": "Phakding",
+      "alt": 2610,
+      "lat": 27.741,
+      "lon": 86.712
+    },
+    {
+      "name": "Namche",
+      "alt": 3440,
+      "lat": 27.804,
+      "lon": 86.714
+    },
+    {
+      "name": "Tengboche",
+      "alt": 3860,
+      "lat": 27.836,
+      "lon": 86.764
+    },
+    {
+      "name": "Dingboche",
+      "alt": 4410,
+      "lat": 27.891,
+      "lon": 86.831
+    },
+    {
+      "name": "Lobuche",
+      "alt": 4940,
+      "lat": 27.947,
+      "lon": 86.81
+    },
+    {
+      "name": "Gorak Shep",
+      "alt": 5164,
+      "lat": 27.981,
+      "lon": 86.828
+    },
+    {
+      "name": "Everest Base Camp",
+      "alt": 5364,
+      "lat": 28.002,
+      "lon": 86.852
+    },
+    {
+      "name": "Kala Patthar",
+      "alt": 5545,
+      "lat": 27.995,
+      "lon": 86.828
+    }
+  ],
+  "peaks": [
+    {
+      "name": "Everest",
+      "alt": 8848,
+      "lat": 27.988,
+      "lon": 86.925
+    },
+    {
+      "name": "Lhotse",
+      "alt": 8516,
+      "lat": 27.962,
+      "lon": 86.933
+    },
+    {
+      "name": "Nuptse",
+      "alt": 7861,
+      "lat": 27.9669,
+      "lon": 86.8889
+    },
+    {
+      "name": "Pumori",
+      "alt": 7161,
+      "lat": 28.0072,
+      "lon": 86.825
+    },
+    {
+      "name": "Ama Dablam",
+      "alt": 6812,
+      "lat": 27.862,
+      "lon": 86.861
+    }
+  ]
+}

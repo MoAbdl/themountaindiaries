@@ -74,9 +74,10 @@ a file that is declared available but missing.
 | `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | no | 1 |
 | `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
 | `journey-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
+| `map-ebc-trek.jpg` | Everest Base Camp Trek | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
 
-61 photographs.
+62 photographs.
 
 ## Honest placeholders
 

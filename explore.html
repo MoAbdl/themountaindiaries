@@ -1147,25 +1147,39 @@
   }
   .rm-frame {
     background: var(--surface); border: 1px solid var(--rule);
-    border-radius: var(--radius-lg); padding: var(--s-4);
+    border-radius: var(--radius-lg); overflow: hidden;
   }
-  .rm-frame--profile { margin-top: var(--s-4); }
+  .rm-frame--profile { margin-top: var(--s-4); padding: var(--s-4); }
   .rm-svg { display: block; width: 100%; height: auto; max-height: 78vh; margin: 0 auto; }
   .rm-profile { display: block; width: 100%; height: auto; }
 
+  /* The base is a real topographic image, so the overlay has to carry more
+     weight than it did on a blank sheet: a heavier line, and a snow halo
+     behind every label so it stays readable over contours and hillshade. */
+  .rm-base { image-rendering: auto; }
   .rm-route {
-    fill: none; stroke: var(--ink); stroke-width: 3.2;
+    fill: none; stroke: var(--ink); stroke-width: 5;
     stroke-linecap: round; stroke-linejoin: round;
+    paint-order: stroke;
   }
-  .rm-route--spur { stroke-width: 2.2; stroke-dasharray: 9 8; }
-  .rm-peak { fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linejoin: round; }
+  .rm-route--spur { stroke-width: 3.6; stroke-dasharray: 11 9; }
+  .rm-halo {
+    paint-order: stroke fill;
+    stroke: var(--surface); stroke-width: 5;
+    stroke-linejoin: round; stroke-linecap: round;
+    opacity: 0.98;
+  }
+  .rm-peak {
+    fill: none; stroke: var(--ink); stroke-width: 3.4; stroke-linejoin: round;
+    paint-order: stroke;
+  }
   .rm-peak-name {
     font-family: var(--font-head); font-size: 22px; font-weight: 700;
     fill: var(--ink); text-anchor: middle;
   }
   .rm-peak-alt { font-family: var(--font-head); font-size: 19px; fill: var(--ink-3); text-anchor: middle; }
   .rm-stop { fill: var(--sienna); stroke: var(--surface); stroke-width: 3; }
-  .rm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2.6; }
+  .rm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 3.4; }
   .rm-day {
     font-family: var(--font-head); font-size: 20px; font-weight: 800;
     fill: #fff; text-anchor: middle; dominant-baseline: central;
@@ -1175,6 +1189,11 @@
   .rm-place { font-family: var(--font-head); font-size: 25px; font-weight: 700; fill: var(--ink); }
   .rm-place-alt { font-family: var(--font-head); font-size: 20px; fill: var(--ink-3); }
 
+  /* a licence condition, not a courtesy: small, but never below legibility */
+  .rm-credit {
+    margin-top: var(--s-2);
+    font-size: 12px; line-height: 1.5; color: var(--ink-3);
+  }
   .rm-legend {
     list-style: none; display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5);
     margin-top: var(--s-4); font-size: var(--t-sm); color: var(--ink-2);
@@ -1203,10 +1222,11 @@
      place names; the altitudes are all in the profile and the description. */
   @media (max-width: 640px) {
     .rm-alt { display: none; }
-    .rm-place { font-size: 27px; }
-    .rm-peak-name { font-size: 26px; }
-    .rm-day { font-size: 24px; }
-    .rm-frame { padding: var(--s-3); }
+    .rm-place { font-size: 30px; }
+    .rm-peak-name { font-size: 28px; }
+    .rm-day { font-size: 26px; }
+    .rm-halo { stroke-width: 6; }
+    .rm-frame--profile { padding: var(--s-3); }
     .rm-axis { font-size: 21px; }
     .rm-plabel { font-size: 21px; }
   }
@@ -2622,61 +2642,63 @@
         <div class="detail-section">
 <figure class="routemap" role="group" aria-labelledby="rm-t-ebc-trek" aria-describedby="rm-d-ebc-trek">
   <figcaption class="rm-caption" id="rm-t-ebc-trek">Route and altitude</figcaption>
-  <p class="rm-desc" id="rm-d-ebc-trek">Route map. The trail runs south to north up the valley: Lukla at 2,860 metres; then Phakding at 2,610 metres (night 2); then Namche at 3,440 metres (night 3 and 4); then Tengboche at 3,860 metres (night 5); then Dingboche at 4,410 metres (night 6 and 7); then Lobuche at 4,940 metres (night 8); then Gorak Shep at 5,164 metres (night 9); then Everest Base Camp at 5,364 metres; then a side trip from Gorak Shep to Kala Patthar at 5,545 metres. Peaks in view: Everest at 8,848 metres, Lhotse at 8,516 metres, Nuptse at 7,861 metres, Pumori at 7,161 metres, Ama Dablam at 6,812 metres. The profile chart below plots the altitude slept at on each of the 15 days, rising to a high point of 5,545 metres.</p>
+  <p class="rm-desc" id="rm-d-ebc-trek">Route map on a topographic base. The trail runs south to north up the valley: Lukla at 2,860 metres; then Phakding at 2,610 metres (night 2); then Namche at 3,440 metres (night 3 and 4); then Tengboche at 3,860 metres (night 5); then Dingboche at 4,410 metres (night 6 and 7); then Lobuche at 4,940 metres (night 8); then Gorak Shep at 5,164 metres (night 9); then Everest Base Camp at 5,364 metres; then a side trip from Gorak Shep to Kala Patthar at 5,545 metres. Peaks in view: Everest at 8,848 metres, Lhotse at 8,516 metres, Nuptse at 7,861 metres, Pumori at 7,161 metres, Ama Dablam at 6,812 metres. The profile chart below plots the altitude slept at on each of the 15 days, rising to a high point of 5,545 metres.</p>
   <div class="rm-frame">
-<svg class="rm-svg" viewBox="0 0 860 936" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
-  <path class="rm-peak" d="M 660.9 110.5 L 685.0 81.9 L 691.3 64.5 L 722.9 110.5"/>
-  <text class="rm-peak-name" x="691.9" y="32.5" text-anchor="middle">Everest</text>
-  <text class="rm-peak-alt rm-alt" x="691.9" y="54.5" text-anchor="middle">8,848 m</text>
-  <path class="rm-peak" d="M 684.0 176.8 L 702.1 153.2 L 708.5 138.8 L 736.0 176.8"/>
-  <text class="rm-peak-name" x="730.0" y="196.8" text-anchor="start">Lhotse</text>
-  <text class="rm-peak-alt rm-alt" x="730.0" y="218.8" text-anchor="start">8,516 m</text>
-  <path class="rm-peak" d="M 593.3 164.0 L 613.4 144.2 L 615.4 132.0 L 641.3 164.0"/>
-  <text class="rm-peak-name" x="595.3" y="184.0" text-anchor="end">Nuptse</text>
-  <text class="rm-peak-alt rm-alt" x="595.3" y="206.0" text-anchor="end">7,861 m</text>
-  <path class="rm-peak" d="M 482.1 62.0 L 498.0 43.4 L 505.9 32.0 L 526.1 62.0"/>
-  <text class="rm-peak-name" x="538.1" y="60.0" text-anchor="start">Pumori</text>
-  <text class="rm-peak-alt rm-alt" x="538.1" y="82.0" text-anchor="start">7,161 m</text>
-  <path class="rm-peak" d="M 521.1 431.9 L 539.4 408.3 L 548.9 393.9 L 573.1 431.9"/>
-  <text class="rm-peak-name" x="547.1" y="457.9" text-anchor="middle">Ama Dablam</text>
-  <text class="rm-peak-alt rm-alt" x="547.1" y="479.9" text-anchor="middle">6,812 m</text>
-  <path class="rm-route" d="M 253.0 878.2 Q 246.8 855.0 238.7 832.3 Q 226.9 810.8 224.3 786.4 Q 219.6 762.7 210.0 740.5 Q 214.3 713.8 211.5 686.9 Q 207.7 660.0 213.0 633.4 Q 214.8 606.6 214.5 579.8 Q 233.5 566.4 252.2 552.6 Q 268.1 534.9 289.9 525.4 Q 308.3 511.1 327.7 498.2 Q 350.0 471.7 378.2 451.4 Q 407.6 432.5 428.7 404.6 Q 455.2 382.6 479.3 357.9 Q 466.9 335.6 463.4 310.3 Q 448.9 288.7 447.6 262.7 Q 442.1 238.0 431.7 215.0 Q 443.1 202.7 445.3 186.1 Q 449.7 170.5 458.9 157.2 Q 467.9 143.8 472.5 128.3 Q 485.5 123.4 490.6 110.5 Q 503.1 105.1 508.7 92.6 Q 513.3 79.2 526.8 74.8"/>
-  <path class="rm-route rm-route--spur" d="M 472.5 128.3 Q 469.6 119.2 465.7 110.5 Q 465.4 100.3 458.9 92.6"/>
-  <circle class="rm-node" cx="253.0" cy="878.2" r="8"/>
-  <text class="rm-place" x="227.0" y="877.2" text-anchor="end">Lukla</text>
-  <text class="rm-place-alt rm-alt" x="227.0" y="898.2" text-anchor="end">2,860 m</text>
-  <circle class="rm-stop" cx="210.0" cy="740.5" r="17"/>
-  <text class="rm-day" x="210.0" y="740.5">2</text>
-  <text class="rm-place" x="184.0" y="739.5" text-anchor="end">Phakding</text>
-  <text class="rm-place-alt rm-alt" x="184.0" y="760.5" text-anchor="end">2,610 m</text>
-  <rect class="rm-stop" x="182.0" y="562.8" width="65.0" height="34" rx="17"/>
-  <text class="rm-day" x="214.5" y="579.8">3·4</text>
-  <text class="rm-place" x="188.5" y="578.8" text-anchor="end">Namche</text>
-  <text class="rm-place-alt rm-alt" x="188.5" y="599.8" text-anchor="end">3,440 m</text>
-  <circle class="rm-stop" cx="327.7" cy="498.2" r="17"/>
-  <text class="rm-day" x="327.7" y="498.2">5</text>
-  <text class="rm-place" x="301.7" y="497.2" text-anchor="end">Tengboche</text>
-  <text class="rm-place-alt rm-alt" x="301.7" y="518.2" text-anchor="end">3,860 m</text>
-  <rect class="rm-stop" x="446.8" y="340.9" width="65.0" height="34" rx="17"/>
-  <text class="rm-day" x="479.3" y="357.9">6·7</text>
-  <text class="rm-place" x="505.3" y="356.9" text-anchor="start">Dingboche</text>
-  <text class="rm-place-alt rm-alt" x="505.3" y="377.9" text-anchor="start">4,410 m</text>
-  <circle class="rm-stop" cx="431.7" cy="215.0" r="17"/>
-  <text class="rm-day" x="431.7" y="215.0">8</text>
-  <text class="rm-place" x="405.7" y="214.0" text-anchor="end">Lobuche</text>
-  <text class="rm-place-alt rm-alt" x="405.7" y="235.0" text-anchor="end">4,940 m</text>
-  <circle class="rm-stop" cx="472.5" cy="128.3" r="17"/>
-  <text class="rm-day" x="472.5" y="128.3">9</text>
-  <text class="rm-place" x="446.5" y="141.3" text-anchor="end">Gorak Shep</text>
-  <text class="rm-place-alt rm-alt" x="446.5" y="162.3" text-anchor="end">5,164 m</text>
-  <circle class="rm-node" cx="526.8" cy="74.8" r="8"/>
-  <text class="rm-place" x="552.8" y="123.8" text-anchor="start">Base Camp</text>
-  <text class="rm-place-alt rm-alt" x="552.8" y="144.8" text-anchor="start">5,364 m</text>
-  <g class="rm-view"><circle cx="458.9" cy="92.6" r="15"/><path d="M 449.9 96.6 l 9 -9 l 9 9" /></g>
-  <text class="rm-place" x="432.9" y="61.6" text-anchor="end">Kala Patthar</text>
-  <text class="rm-place-alt rm-alt" x="432.9" y="82.6" text-anchor="end">5,545 m</text>
+<svg class="rm-svg" viewBox="0 0 1050 1468" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
+  <image class="rm-base" href="assets/images/map-ebc-trek.jpg" x="0" y="0" width="1050" height="1468" preserveAspectRatio="none"/>
+  <path class="rm-peak" d="M 913.8 190.1 L 937.9 161.5 L 944.2 144.1 L 975.8 190.1"/>
+  <text class="rm-peak-name rm-halo" x="944.8" y="112.1" text-anchor="middle">Everest</text>
+  <text class="rm-peak-alt rm-alt rm-halo" x="944.8" y="134.1" text-anchor="middle">8,848 m</text>
+  <path class="rm-peak" d="M 946.8 292.9 L 964.9 269.4 L 971.2 254.9 L 998.8 292.9"/>
+  <text class="rm-peak-name rm-halo" x="950.8" y="332.9" text-anchor="end">Lhotse</text>
+  <text class="rm-peak-alt rm-alt rm-halo" x="950.8" y="354.9" text-anchor="end">8,516 m</text>
+  <path class="rm-peak" d="M 794.7 273.6 L 814.8 253.7 L 816.8 241.6 L 842.7 273.6"/>
+  <text class="rm-peak-name rm-halo" x="796.7" y="295.6" text-anchor="end">Nuptse</text>
+  <text class="rm-peak-alt rm-alt rm-halo" x="796.7" y="317.6" text-anchor="end">7,861 m</text>
+  <path class="rm-peak" d="M 573.5 114.1 L 589.4 95.5 L 597.2 84.1 L 617.5 114.1"/>
+  <text class="rm-peak-name rm-halo" x="571.5" y="80.1" text-anchor="end">Pumori</text>
+  <text class="rm-peak-alt rm-alt rm-halo" x="571.5" y="102.1" text-anchor="end">7,161 m</text>
+  <path class="rm-peak" d="M 695.3 688.4 L 713.6 664.8 L 723.0 650.4 L 747.3 688.4"/>
+  <text class="rm-peak-name rm-halo" x="721.3" y="714.4" text-anchor="middle">Ama Dablam</text>
+  <text class="rm-peak-alt rm-alt rm-halo" x="721.3" y="736.4" text-anchor="middle">6,812 m</text>
+  <path class="rm-route" d="M 267.1 1379.6 Q 257.0 1343.7 245.0 1308.5 Q 229.3 1274.4 222.9 1237.5 Q 214.2 1201.2 200.7 1166.4 Q 205.4 1125.0 203.1 1083.5 Q 199.6 1041.9 205.4 1000.5 Q 207.5 959.1 207.7 917.6 Q 237.0 896.7 265.9 875.4 Q 292.1 850.3 324.2 833.3 Q 352.8 811.6 382.4 791.2 Q 418.5 751.8 460.4 718.7 Q 503.6 687.0 538.4 646.2 Q 578.7 611.3 616.5 573.7 Q 599.8 538.3 592.0 499.9 Q 573.2 465.2 567.6 426.1 Q 557.8 388.4 543.1 352.3 Q 558.2 332.0 564.1 307.4 Q 572.1 283.9 585.0 262.6 Q 597.7 241.2 606.0 217.8 Q 623.9 207.9 633.9 190.1 Q 651.4 179.8 661.9 162.4 Q 671.4 144.0 689.8 134.7"/>
+  <path class="rm-route rm-route--spur" d="M 606.0 217.8 Q 606.5 203.9 606.0 190.1 Q 609.4 176.2 606.0 162.4"/>
+  <circle class="rm-node" cx="267.1" cy="1379.6" r="8"/>
+  <text class="rm-place rm-halo" x="241.1" y="1378.6" text-anchor="end">Lukla</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="241.1" y="1399.6" text-anchor="end">2,860 m</text>
+  <circle class="rm-stop" cx="200.7" cy="1166.4" r="17"/>
+  <text class="rm-day" x="200.7" y="1166.4">2</text>
+  <text class="rm-place rm-halo" x="174.7" y="1165.4" text-anchor="end">Phakding</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="174.7" y="1186.4" text-anchor="end">2,610 m</text>
+  <rect class="rm-stop" x="175.2" y="900.6" width="65.0" height="34" rx="17"/>
+  <text class="rm-day" x="207.7" y="917.6">3·4</text>
+  <text class="rm-place rm-halo" x="181.7" y="916.6" text-anchor="end">Namche</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="181.7" y="937.6" text-anchor="end">3,440 m</text>
+  <circle class="rm-stop" cx="382.4" cy="791.2" r="17"/>
+  <text class="rm-day" x="382.4" y="791.2">5</text>
+  <text class="rm-place rm-halo" x="356.4" y="790.2" text-anchor="end">Tengboche</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="356.4" y="811.2" text-anchor="end">3,860 m</text>
+  <rect class="rm-stop" x="584.0" y="556.7" width="65.0" height="34" rx="17"/>
+  <text class="rm-day" x="616.5" y="573.7">6·7</text>
+  <text class="rm-place rm-halo" x="642.5" y="572.7" text-anchor="start">Dingboche</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="642.5" y="593.7" text-anchor="start">4,410 m</text>
+  <circle class="rm-stop" cx="543.1" cy="352.3" r="17"/>
+  <text class="rm-day" x="543.1" y="352.3">8</text>
+  <text class="rm-place rm-halo" x="517.1" y="351.3" text-anchor="end">Lobuche</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="517.1" y="372.3" text-anchor="end">4,940 m</text>
+  <circle class="rm-stop" cx="606.0" cy="217.8" r="17"/>
+  <text class="rm-day" x="606.0" y="217.8">9</text>
+  <text class="rm-place rm-halo" x="580.0" y="230.8" text-anchor="end">Gorak Shep</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="580.0" y="251.8" text-anchor="end">5,164 m</text>
+  <circle class="rm-node" cx="689.8" cy="134.7" r="8"/>
+  <text class="rm-place rm-halo" x="715.8" y="183.7" text-anchor="start">Base Camp</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="715.8" y="204.7" text-anchor="start">5,364 m</text>
+  <g class="rm-view"><circle cx="606.0" cy="162.4" r="15"/><path d="M 597.0 166.4 l 9 -9 l 9 9" /></g>
+  <text class="rm-place rm-halo" x="580.0" y="157.4" text-anchor="end">Kala Patthar</text>
+  <text class="rm-place-alt rm-alt rm-halo" x="580.0" y="178.4" text-anchor="end">5,545 m</text>
 </svg>
   </div>
+  <p class="rm-credit">Map data © OpenStreetMap contributors, SRTM · Map style © OpenTopoMap (CC-BY-SA)</p>
   <ul class="rm-legend">
     <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><path class="rm-route" d="M2 12 Q 9 4 15 9 T 28 5"/></svg>Route</li>
     <li><svg class="rm-key" viewBox="0 0 30 16" aria-hidden="true"><circle class="rm-stop" cx="15" cy="8" r="7"/></svg>Overnight stop, with day</li>

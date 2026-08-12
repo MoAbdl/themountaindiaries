@@ -1,0 +1,6 @@
+# Raw OpenTopoMap tiles, kept only so re-running scripts/make-route-map.py
+# costs the tile server nothing. The committed artefact is the stitched
+# assets/images/map-<slug>.jpg, not the tiles.
+.tilecache/
+__pycache__/
+*.pyc
