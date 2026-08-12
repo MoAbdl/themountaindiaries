@@ -43,7 +43,6 @@ a file that is declared available but missing.
 | `journey-gasherbrum-ii-8034.jpg` | Gasherbrum II | explore.html | no | 1 |
 | `journey-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
 | `journey-haute-route-trek.jpg` | Haute Route, Chamonix to Zermatt | explore.html | no | 1 |
-| `journey-haute-route.jpg` | Haute Route | explore.html | no | 1 |
 | `journey-himlung-7126.jpg` | Himlung Himal | explore.html | no | 1 |
 | `journey-huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | no | 1 |
 | `journey-island-peak-6189.jpg` | Island Peak | explore.html | no | 1 |
@@ -51,7 +50,6 @@ a file that is declared available but missing.
 | `journey-k2-8611.jpg` | K2 | explore.html | no | 1 |
 | `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | no | 1 |
 | `journey-kilimanjaro-5895.jpg` | Kilimanjaro | explore.html | no | 1 |
-| `journey-kilimanjaro-trek.jpg` | Kilimanjaro Trek | explore.html | no | 1 |
 | `journey-ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | no | 1 |
 | `journey-langtang-valley.jpg` | Langtang Valley | explore.html | no | 1 |
 | `journey-lhotse-8516.jpg` | Lhotse | explore.html | no | 1 |
@@ -72,14 +70,13 @@ a file that is declared available but missing.
 | `journey-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
 | `journey-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | no | 1 |
 | `journey-torres-del-paine-trek.jpg` | Torres del Paine Circuit | explore.html | no | 1 |
-| `journey-torres-del-paine.jpg` | Torres del Paine | explore.html | no | 1 |
 | `journey-tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | no | 1 |
 | `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | no | 1 |
 | `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
 | `journey-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
 
-64 photographs.
+61 photographs.
 
 ## Honest placeholders
 
@@ -108,7 +105,6 @@ naming the file it is waiting for, and claims nothing.
 - `journey-gasherbrum-ii-8034.jpg`
 - `journey-gokyo-lakes.jpg`
 - `journey-haute-route-trek.jpg`
-- `journey-haute-route.jpg`
 - `journey-himlung-7126.jpg`
 - `journey-huayhuash-circuit.jpg`
 - `journey-island-peak-6189.jpg`
@@ -116,7 +112,6 @@ naming the file it is waiting for, and claims nothing.
 - `journey-k2-8611.jpg`
 - `journey-kangchenjunga-8586.jpg`
 - `journey-kilimanjaro-5895.jpg`
-- `journey-kilimanjaro-trek.jpg`
 - `journey-ladakh-high-passes.jpg`
 - `journey-langtang-valley.jpg`
 - `journey-lhotse-8516.jpg`
@@ -137,7 +132,6 @@ naming the file it is waiting for, and claims nothing.
 - `journey-three-passes.jpg`
 - `journey-three-peaks-ebc.jpg`
 - `journey-torres-del-paine-trek.jpg`
-- `journey-torres-del-paine.jpg`
 - `journey-tour-du-mont-blanc.jpg`
 - `journey-two-peaks-lobuche-island-ebc.jpg`
 - `journey-two-peaks-mera-island.jpg`
