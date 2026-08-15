@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# ─────────────────────────────────────────────────────────────────────────
+# PARKED, 13 Aug 2026. The generated topographic maps are out of the live
+# site: the owner is supplying route artwork instead, dropped in as
+# assets/images/route-map-<slug>.jpg.
+#
+# Nothing here is called by the build. It is kept whole, and working, because
+# the geography in scripts/routes/<slug>.json is real and re-deriving it would
+# be wasteful if drawn maps do not work out. To bring it back: re-add the
+# routemap import in explore-build.py, swap route_slot() for routemap.render(),
+# restore the OpenTopoMap attribution line, and re-run this script per slug.
+#
+# The attribution is a licence condition of OpenTopoMap (CC-BY-SA). If this
+# ever ships again, the credit line ships with it.
+# ─────────────────────────────────────────────────────────────────────────
 """Build a self-hosted topographic base image for one journey's route map.
 
     python3 scripts/make-route-map.py <slug> [--zoom 13] [--budget 400]
