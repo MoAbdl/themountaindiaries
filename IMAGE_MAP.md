@@ -72,12 +72,17 @@ a file that is declared available but missing.
 | `kilimanjaro.jpg` | Kilimanjaro | explore.html | yes | 1 |
 | `ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | yes | 1 |
 | `manaslu-circuit.jpg` | Manaslu Circuit | explore.html | yes | 1 |
+| `route-map-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | no | 1 |
+| `route-map-annapurna-circuit.jpg` | Annapurna Circuit | explore.html | no | 1 |
 | `route-map-ebc-trek.jpg` | Everest Base Camp Trek | explore.html | no | 1 |
+| `route-map-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
+| `route-map-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
+| `route-map-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-62 photographs.
+67 photographs.
 
 ## Honest placeholders
 
@@ -126,7 +131,12 @@ naming the file it is waiting for, and claims nothing.
 - `journey-two-peaks-lobuche-island-ebc.jpg`
 - `journey-two-peaks-mera-island.jpg`
 - `journey-upper-mustang.jpg`
+- `route-map-annapurna-base-camp.jpg`
+- `route-map-annapurna-circuit.jpg`
 - `route-map-ebc-trek.jpg`
+- `route-map-gokyo-lakes.jpg`
+- `route-map-mardi-himal.jpg`
+- `route-map-three-passes.jpg`
 
 ## On disk, not placed
 
