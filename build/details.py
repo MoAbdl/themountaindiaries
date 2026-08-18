@@ -927,6 +927,208 @@ AMA_DABLAM = {
     ],
 }
 
+# ═══ BATCH 5, supplied 18 Aug 2026 ═══════════════════════════════════════
+# Owner's copy, verbatim. The combinations, where one acclimatisation curve is
+# spent on more than one objective.
+#
+# three-peaks-ebc had no elevation until now: its peaks were not named in the
+# slug, so nothing could be claimed. The owner has now stated Mera Peak as the
+# high point, and maxAltitude feeds HIGH_POINT, so the card and the fact strip
+# both pick it up without touching journeys.py.
+
+ISLAND_EBC = {
+    'duration': '18 days',
+    'maxAltitude': 6189,
+    'highPoint': 'Island Peak',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The classic combination. Walk to Everest Base Camp and Kala Patthar first, then spend "
+        "that hard-won acclimatisation on the Khumbu’s most famous first summit.",
+    'know': [
+        "The logic is acclimatisation economics: the EBC trail builds the altitude base that "
+        "summit day spends.",
+        "Everything in the Island Peak entry applies: real climbing, fixed-line headwall, "
+        "trained skills.",
+        "The combined itinerary is long; freshness on summit day is managed, not assumed.",
+        "One trip, two graduations: trekker at Base Camp, mountaineer on the ridge.",
+        "Permits stack: national park and municipality for the trek, association climbing "
+        "permit for the peak.",
+    ],
+    'highlights': [
+        "Base Camp and Kala Patthar as the warm-up",
+        "Summit morning on the headwall with the fitness of two weeks at altitude",
+        "Lhotse’s south face from the ridge",
+        "The Imja valley, from trekking it to climbing above it",
+        "The full arc of a Khumbu apprenticeship in one journey",
+    ],
+    'gear':
+        "EBC trekking kit plus the full Island Peak climbing set. Combined list in Know the "
+        "Mountain.",
+    'faq': [
+        ["Why combine?", "Better acclimatised, better odds, one flight in."],
+        ["Harder than Island alone?",
+         "Longer, yes; the summit day itself is safer for the base beneath it."],
+        ["Skip EBC and just climb?", "Possible elsewhere; unwise."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+LOBUCHE_EBC = {
+    'duration': '18 days',
+    'maxAltitude': 6119,
+    'highPoint': 'Lobuche East',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "Base Camp first, then the quiet mountain above it. The EBC pilgrimage builds the base; "
+        "Lobuche East’s fixed lines spend it, with Everest at eye level from the summit.",
+    'know': [
+        "Lobuche’s climbing is more sustained than Island’s; the combination suits "
+        "second-summit climbers or well-prepared, well-trained first-timers.",
+        "High camp sits barely off the EBC trail; the transition from trek to climb happens in "
+        "an afternoon.",
+        "Summit day is 10 to 12 hours; the EBC legs in your body are the entry fee, the reserve "
+        "is the skill.",
+        "Descent discipline decides how this trip is remembered.",
+        "Permit stack as with all Khumbu climbs.",
+    ],
+    'highlights': [
+        "Kala Patthar sunrise, then a real summit three days later",
+        "Everest, Nuptse and Lhotse from a ridge you earned",
+        "Slab climbing above the glacier you walked beside",
+        "The crowds of the trail, then a base camp of one team",
+        "Two Khumbus in one journey: the famous and the quiet",
+    ],
+    'gear':
+        "EBC kit plus the full Lobuche climbing set. Details in Know the Mountain.",
+    'faq': [
+        ["This or Island+EBC?", "This is the steeper, quieter version of the same idea."],
+        ["Fitness bar?", "The trek’s endurance plus a 12-hour climbing day."],
+        ["Best season?", "Both windows work; autumn views, spring warmth."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+TWO_PEAKS_EBC = {
+    'duration': '23 days',
+    'maxAltitude': 6189,
+    'highPoint': 'Island Peak',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The full Khumbu apprenticeship. Base Camp, then Lobuche East, then Island Peak: one "
+        "acclimatisation curve spent on two different kinds of climbing.",
+    'know': [
+        "The order is deliberate: Lobuche’s sustained lines first, Island’s headwall second, "
+        "each summit making the next more likely.",
+        "Three weeks at altitude asks for genuine endurance; recovery days are built in and "
+        "respected.",
+        "Two summits double the weather exposure; flexibility is part of the plan, and one "
+        "summit is a success.",
+        "This is the strongest preparation this valley offers for 7,000 m ambitions.",
+        "Full permit stack; insurance covering repeated climbs to 6,500 m.",
+    ],
+    'highlights': [
+        "Two summit dawns in one journey",
+        "Everest from Kala Patthar, then twice from above",
+        "The skills compounding: what Lobuche teaches, Island confirms",
+        "Three weeks of Khumbu light",
+        "Coming home a different climber than you left",
+    ],
+    'gear':
+        "The complete Khumbu climbing kit, used hard. Full guidance in Know the Mountain.",
+    'faq': [
+        ["Both summits guaranteed?",
+         "Nothing at altitude is; the itinerary gives both an honest chance."],
+        ["Fitness bar?", "The highest of our Khumbu programmes."],
+        ["Why this order?", "Sustained technique first, steep crux second, fatigue managed."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+THREE_PEAKS = {
+    'duration': '28 days',
+    'maxAltitude': 6476,
+    'highPoint': 'Mera Peak',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu & Hinku, Nepal',
+    'journey':
+        "The complete collection. The Hinku’s high glacier summit, a crossing of the Amphu "
+        "Laptsa, then the Khumbu’s two classic peaks and Base Camp: a month that compresses "
+        "years of progression.",
+    'know': [
+        "This is a mountaineering programme, not a holiday: four weeks, three summits, one "
+        "5,845 m technical pass between valleys.",
+        "The Amphu Laptsa crossing is expedition terrain: abseils, load management, no teahouse "
+        "for days.",
+        "Weather will take something from the plan somewhere; the itinerary holds slack and the "
+        "leaders hold judgement.",
+        "Entry requires prior altitude experience; this is a poor place to discover your limits "
+        "for the first time.",
+        "The full permit stack across two valleys; insurance vetted line by line.",
+    ],
+    'highlights': [
+        "Mera’s five-8,000er panorama as the opening act",
+        "The Amphu Laptsa, a wild pass few trekkers ever see",
+        "Island and Lobuche with a month’s acclimatisation behind them",
+        "The Hinku’s emptiness and the Khumbu’s grandeur in one line",
+        "The most complete journey we run below 7,000 m",
+    ],
+    'gear':
+        "Full expedition kit; the pass adds abseil loads and glacier camping. Serious list in "
+        "Know the Mountain.",
+    'faq': [
+        ["Who is this for?", "Climbers building deliberately toward bigger mountains."],
+        ["Hardest moment?", "Usually the pass, not the summits."],
+        ["Can I join for part?",
+         "The line doesn’t split well; the shorter combinations exist for that."],
+        ["Solo joiners?", "The team forms around the objective."],
+    ],
+}
+
+MERA_ISLAND = {
+    'duration': '21 days',
+    'maxAltitude': 6476,
+    'highPoint': 'Mera Peak',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu & Hinku, Nepal',
+    'journey':
+        "Altitude first, technique second. Mera’s high glacier summit out of the wild Hinku, "
+        "over the Amphu Laptsa, then Island Peak’s headwall with three weeks of acclimatisation "
+        "in your blood.",
+    'know': [
+        "The classic pairing because the order teaches: Mera gives altitude on gentle ground, "
+        "Island gives steepness with altitude already banked.",
+        "The Amphu Laptsa between them is the journey’s technical heart: abseils and glacier "
+        "camps at 5,800 m.",
+        "Three weeks door to door; endurance and patience are the real prerequisites.",
+        "Island’s summit-day success rate on this itinerary is the highest we see, and the "
+        "reason is the route order.",
+        "Two-valley permit stack; climbing insurance throughout.",
+    ],
+    'highlights': [
+        "Mera’s summit horizon: Everest to Kangchenjunga in one sweep",
+        "Crossing the Amphu Laptsa, the pass that makes it an expedition",
+        "The headwall at dawn with a body already forged",
+        "The Hinku’s roadless days",
+        "Two summits, one story",
+    ],
+    'gear':
+        "Full climbing kit plus glacier-camping additions for the pass. Details in Know the "
+        "Mountain.",
+    'faq': [
+        ["Why not Island first?",
+         "Altitude tolerance is the scarcer resource; Mera builds it gentler."],
+        ["The pass honestly?",
+         "The committing bit: abseils, exposure, cold camps. Trained for, not walked into."],
+        ["First-timer possible?",
+         "With strong preparation and our training days, yes; it is the upper bound of first "
+         "journeys."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
 DETAILS = {
     'ebc-trek': EBC,
     'three-passes': THREE_PASSES,
@@ -949,6 +1151,11 @@ DETAILS = {
     'lobuche-6119': LOBUCHE,
     'cholatse-6440': CHOLATSE,
     'ama-dablam-6812': AMA_DABLAM,
+    'island-peak-ebc': ISLAND_EBC,
+    'lobuche-ebc': LOBUCHE_EBC,
+    'two-peaks-lobuche-island-ebc': TWO_PEAKS_EBC,
+    'three-peaks-ebc': THREE_PEAKS,
+    'two-peaks-mera-island': MERA_ISLAND,
 }
 
 DIFFICULTY.update({
@@ -976,4 +1183,10 @@ DIFFICULTY.update({
     'lobuche-6119': 'Severe',
     'cholatse-6440': 'Severe',
     'ama-dablam-6812': 'Severe',
+    # batch 5, the Khumbu combinations
+    'island-peak-ebc': 'Severe',
+    'lobuche-ebc': 'Severe',
+    'two-peaks-lobuche-island-ebc': 'Severe',
+    'three-peaks-ebc': 'Severe',
+    'two-peaks-mera-island': 'Severe',
 })

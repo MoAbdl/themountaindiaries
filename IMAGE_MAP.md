@@ -81,23 +81,28 @@ a file that is declared available but missing.
 | `route-map-haute-route-trek.jpg` | Haute Route, Chamonix to Zermatt | explore.html | no | 1 |
 | `route-map-huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | no | 1 |
 | `route-map-island-peak-6189.jpg` | Island Peak | explore.html | no | 1 |
+| `route-map-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | no | 1 |
 | `route-map-kilimanjaro-5895.jpg` | Kilimanjaro | explore.html | no | 1 |
 | `route-map-ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | no | 1 |
 | `route-map-langtang-valley.jpg` | Langtang Valley | explore.html | no | 1 |
 | `route-map-lobuche-6119.jpg` | Lobuche East | explore.html | no | 1 |
+| `route-map-lobuche-ebc.jpg` | Lobuche East and Everest Base Camp | explore.html | no | 1 |
 | `route-map-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | no | 1 |
 | `route-map-manaslu-circuit.jpg` | Manaslu Circuit | explore.html | no | 1 |
 | `route-map-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
 | `route-map-mera-peak-6476.jpg` | Mera Peak | explore.html | no | 1 |
 | `route-map-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
+| `route-map-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | no | 1 |
 | `route-map-torres-del-paine-trek.jpg` | Torres del Paine Circuit | explore.html | no | 1 |
 | `route-map-tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | no | 1 |
+| `route-map-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | no | 1 |
+| `route-map-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
 | `route-map-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-82 photographs.
+87 photographs.
 
 ## Honest placeholders
 
@@ -155,17 +160,22 @@ naming the file it is waiting for, and claims nothing.
 - `route-map-haute-route-trek.jpg`
 - `route-map-huayhuash-circuit.jpg`
 - `route-map-island-peak-6189.jpg`
+- `route-map-island-peak-ebc.jpg`
 - `route-map-kilimanjaro-5895.jpg`
 - `route-map-ladakh-high-passes.jpg`
 - `route-map-langtang-valley.jpg`
 - `route-map-lobuche-6119.jpg`
+- `route-map-lobuche-ebc.jpg`
 - `route-map-manaslu-base-camp.jpg`
 - `route-map-manaslu-circuit.jpg`
 - `route-map-mardi-himal.jpg`
 - `route-map-mera-peak-6476.jpg`
 - `route-map-three-passes.jpg`
+- `route-map-three-peaks-ebc.jpg`
 - `route-map-torres-del-paine-trek.jpg`
 - `route-map-tour-du-mont-blanc.jpg`
+- `route-map-two-peaks-lobuche-island-ebc.jpg`
+- `route-map-two-peaks-mera-island.jpg`
 - `route-map-upper-mustang.jpg`
 
 ## On disk, not placed
