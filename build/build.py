@@ -26,6 +26,7 @@ REPO = os.path.dirname(HERE)
 STEPS = [
     ('explore-build.py', 'index.html + explore.html'),
     ('p3-join.py', 'join.html'),
+    ('know.py', 'know.html'),
     ('mkimagemap.py', 'IMAGE_MAP.md'),
 ]
 

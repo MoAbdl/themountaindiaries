@@ -61,6 +61,20 @@ s = src
 # 1a. nav and hero board re-target
 s = sub(s, '<li><a href="#trails" data-spy="trails">Explore</a></li>',
         '<li><a href="explore.html">Explore</a></li>', 'nav explore')
+s = sub(s, '''      <!-- re-target to the Know the Mountain section once it exists; it points at
+           the community hub meanwhile, and carries no spy so it cannot fight the
+           Community link for the active state -->
+      <li><a href="#community" onclick="switchTab('share')">Know the Mountain</a></li>''',
+        '      <li><a href="know.html">Know the Mountain</a></li>', 'nav know')
+# the footer gains the knowledge base and its news anchor
+s = sub(s, '''          <li><a href="#community">Community</a></li>
+          <!-- re-target to the About Us section once it is written; #story is a stand in -->
+          <li><a href="#story">About Us</a></li>''',
+        '''          <li><a href="#community">Community</a></li>
+          <li><a href="know.html">Know the Mountain</a></li>
+          <li><a href="know.html#news">Mountain news</a></li>
+          <!-- re-target to the About Us section once it is written; #story is a stand in -->
+          <li><a href="#story">About Us</a></li>''', 'footer know + news')
 s = sub(s, '      <!-- re-target to the Explore section once it exists -->\n'
            '      <a class="sign-board" href="#trails" style="--tilt:1.2deg"',
         '      <a class="sign-board" href="explore.html" style="--tilt:1.2deg"', 'hero board')
@@ -119,7 +133,22 @@ TEASER = '''<!-- EXPLORE TEASER -->
 ''' % '\n'.join(jcard(BY_SLUG[k], 'explore.html#journey/' + k) for k in FEATURED)
 
 s, _ = cut(s, '<!-- TRAILS -->', '<!-- BAND 2 -->', 'trails section')
-s = sub(s, '<!-- BAND 2 -->', TEASER + '\n<!-- BAND 2 -->', 'teaser in')
+KNOW_TEASER = '''<!-- KNOW THE MOUNTAIN TEASER -->
+<section class="section" id="know-teaser">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:var(--s-5)">
+      <p class="section-kicker">The knowledge base</p>
+      <h2 class="section-title">Know the Mountain</h2>
+      <p class="section-lede">Altitude, training, gear and judgement: the knowledge base.</p>
+    </div>
+    <p class="teaser-more">
+      <a class="link-action" href="know.html">Read the guides <span aria-hidden="true">&rarr;</span></a>
+    </p>
+  </div>
+</section>
+'''
+
+s = sub(s, '<!-- BAND 2 -->', TEASER + '\n' + KNOW_TEASER + '\n<!-- BAND 2 -->', 'teaser in')
 s, _ = cut(s, '<!-- EXPEDITIONS -->', '<!-- COMMUNITY -->', 'expeditions section')
 
 # 1c. markup that moves to explore
@@ -582,8 +611,7 @@ def detailed_body(r, d):
         <div class="detail-section">
           <h3 class="detail-section-title">Gear and preparation</h3>
           <p class="detail-body-text">%s</p>
-          <!-- re-target to the Know the Mountain section once it exists -->
-          <p><a class="link-action" href="index.html#community">Kit lists and altitude guidance in Know the Mountain <span aria-hidden="true">&rarr;</span></a></p>
+          <p><a class="link-action" href="know.html#gear">Kit lists and altitude guidance in Know the Mountain <span aria-hidden="true">&rarr;</span></a></p>
         </div>
 
         <div class="detail-section">

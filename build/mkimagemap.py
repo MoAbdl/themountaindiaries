@@ -19,7 +19,7 @@ import io, os, re, sys, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 OUT = os.environ.get('MD_OUT') or REPO
-PAGES = ['index.html', 'explore.html', 'join.html']
+PAGES = ['index.html', 'explore.html', 'join.html', 'know.html']
 IMGDIR = os.path.join(REPO, 'assets', 'images')
 
 SECTIONS = [

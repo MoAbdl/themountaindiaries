@@ -75,10 +75,7 @@ page = """<!DOCTYPE html>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="explore.html">Explore</a></li>
       <li><a href="index.html#community" data-spy="community">Community</a></li>
-      <!-- re-target to the Know the Mountain section once it exists; it points at
-           the community hub meanwhile, and carries no spy so it cannot fight the
-           Community link for the active state -->
-      <li><a href="index.html#community">Know the Mountain</a></li>
+      <li><a href="know.html">Know the Mountain</a></li>
       <!-- re-target to the About Us section once it is written; #story is a stand in -->
       <li><a href="index.html#story" data-spy="story">About Us</a></li>
     </ul>
@@ -181,6 +178,8 @@ page = """<!DOCTYPE html>
         <ul class="footer-links">
           <li><a href="explore.html">Expeditions &amp; Trekking</a></li>
           <li><a href="index.html#community">Community</a></li>
+          <li><a href="know.html">Know the Mountain</a></li>
+          <li><a href="know.html#news">Mountain news</a></li>
           <!-- re-target to the About Us section once it is written; #story is a stand in -->
           <li><a href="index.html#story">About Us</a></li>
         </ul>

@@ -23,7 +23,7 @@ a file that is declared available but missing.
 | `everest-three-passes.jpg` | Everest Three Passes | explore.html | yes | 1 |
 | `expedition-mera-peak.jpg` | Mera Peak | explore.html, index.html | yes | 2 |
 | `explore-header.jpg` | Explore header | explore.html | no | 1 |
-| `footer-ridge.jpg` | Footer | explore.html, index.html, join.html | no | 3 |
+| `footer-ridge.jpg` | Footer | explore.html, index.html, join.html, know.html | no | 4 |
 | `haute-route-matterhorn.jpg` | Haute Route, Chamonix to Zermatt | explore.html | yes | 1 |
 | `hero-ebc.jpg` | Hero | index.html | no | 1 |
 | `huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | yes | 1 |
