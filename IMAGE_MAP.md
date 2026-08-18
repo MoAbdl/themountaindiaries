@@ -73,9 +73,13 @@ a file that is declared available but missing.
 | `ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | yes | 1 |
 | `manaslu-circuit.jpg` | Manaslu Circuit | explore.html | yes | 1 |
 | `route-map-ama-dablam-6812.jpg` | Ama Dablam | explore.html | no | 1 |
+| `route-map-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | no | 1 |
+| `route-map-ama-dablam-lobuche.jpg` | Ama Dablam and Lobuche East | explore.html | no | 1 |
 | `route-map-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | no | 1 |
 | `route-map-annapurna-circuit.jpg` | Annapurna Circuit | explore.html | no | 1 |
 | `route-map-cholatse-6440.jpg` | Cholatse | explore.html | no | 1 |
+| `route-map-chulu-west-6419.jpg` | Chulu West | explore.html | no | 1 |
+| `route-map-dhampus-6012.jpg` | Dhampus Peak | explore.html | no | 1 |
 | `route-map-ebc-trek.jpg` | Everest Base Camp Trek | explore.html | no | 1 |
 | `route-map-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
 | `route-map-haute-route-trek.jpg` | Haute Route, Chamonix to Zermatt | explore.html | no | 1 |
@@ -91,6 +95,7 @@ a file that is declared available but missing.
 | `route-map-manaslu-circuit.jpg` | Manaslu Circuit | explore.html | no | 1 |
 | `route-map-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
 | `route-map-mera-peak-6476.jpg` | Mera Peak | explore.html | no | 1 |
+| `route-map-pharchamo-tashi-lapcha.jpg` | Pharchamo via Tashi Lapcha | explore.html | no | 1 |
 | `route-map-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
 | `route-map-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | no | 1 |
 | `route-map-torres-del-paine-trek.jpg` | Torres del Paine Circuit | explore.html | no | 1 |
@@ -102,7 +107,7 @@ a file that is declared available but missing.
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-87 photographs.
+92 photographs.
 
 ## Honest placeholders
 
@@ -152,9 +157,13 @@ naming the file it is waiting for, and claims nothing.
 - `journey-two-peaks-mera-island.jpg`
 - `journey-upper-mustang.jpg`
 - `route-map-ama-dablam-6812.jpg`
+- `route-map-ama-dablam-island.jpg`
+- `route-map-ama-dablam-lobuche.jpg`
 - `route-map-annapurna-base-camp.jpg`
 - `route-map-annapurna-circuit.jpg`
 - `route-map-cholatse-6440.jpg`
+- `route-map-chulu-west-6419.jpg`
+- `route-map-dhampus-6012.jpg`
 - `route-map-ebc-trek.jpg`
 - `route-map-gokyo-lakes.jpg`
 - `route-map-haute-route-trek.jpg`
@@ -170,6 +179,7 @@ naming the file it is waiting for, and claims nothing.
 - `route-map-manaslu-circuit.jpg`
 - `route-map-mardi-himal.jpg`
 - `route-map-mera-peak-6476.jpg`
+- `route-map-pharchamo-tashi-lapcha.jpg`
 - `route-map-three-passes.jpg`
 - `route-map-three-peaks-ebc.jpg`
 - `route-map-torres-del-paine-trek.jpg`

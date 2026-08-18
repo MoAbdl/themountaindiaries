@@ -1129,6 +1129,212 @@ MERA_ISLAND = {
     ],
 }
 
+# ═══ BATCH 6, supplied 18 Aug 2026 ═══════════════════════════════════════
+# Owner's copy, verbatim. Completes the 6000ers rail.
+#
+# Two firsts here. pharchamo-tashi-lapcha gains a stated height, which takes
+# elevation coverage to all 52 cards. And dhampus-6012 is rated Demanding
+# rather than Severe: the first expedition entry that is not Severe, and the
+# grade is the point of the entry, so it renders exactly as given.
+
+AMA_LOBUCHE = {
+    'duration': '28 days',
+    'maxAltitude': 6812,
+    'highPoint': 'Ama Dablam',
+    'season': 'Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The warm-up and the masterpiece. Lobuche East’s fixed lines as an acclimatising "
+        "rehearsal, then the full southwest-ridge expedition on the most beautiful mountain in "
+        "the Khumbu.",
+    'know': [
+        "Lobuche here is not a trophy; it is a shakedown: gear, systems, and altitude tested "
+        "where the consequences are smaller.",
+        "The Ama Dablam prerequisites do not soften because of the pairing: this is for "
+        "climbers already fluent on fixed lines and steep ground.",
+        "Four weeks on one itinerary; expedition patience is the fifth piece of gear.",
+        "Autumn only: this pairing follows Ama Dablam’s classic season.",
+        "Full expedition permit stack; insurance covering technical climbing to 7,000 m.",
+    ],
+    'highlights': [
+        "Everest at eye level from Lobuche, then framed by the Dablam three weeks later",
+        "Systems rehearsed low, executed high",
+        "Camp 2’s granite perch with a rehearsed body",
+        "Two summits with one arc of fitness",
+        "The Khumbu’s complete climbing education in one line",
+    ],
+    'gear':
+        "Full expedition technical kit throughout; the Lobuche leg doubles as its live test. "
+        "Detailed in conversation and Know the Mountain.",
+    'faq': [
+        ["Why pair them?",
+         "The rehearsal effect: teams that warm up on Lobuche move better on the ridge."],
+        ["Could I skip Lobuche?", "The mountain will notice even if the schedule doesn’t."],
+        ["Success factors?", "Weather windows and rope discipline, in that order."],
+        ["Solo joiners?", "Expeditions build the team."],
+    ],
+}
+
+AMA_ISLAND = {
+    'duration': '27 days',
+    'maxAltitude': 6812,
+    'highPoint': 'Ama Dablam',
+    'season': 'Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The same logic, gentler rehearsal: Island Peak’s glacier and headwall to tune altitude "
+        "and systems, then the southwest ridge of Ama Dablam.",
+    'know': [
+        "Island’s headwall rehearses jumar work; Ama Dablam’s ridge demands it for days: the "
+        "pairing is a staircase, not a repetition.",
+        "Prerequisites remain firm: this suits climbers whose technique is proven and whose "
+        "altitude base needs waking, not building.",
+        "Expedition rhythm rules the second half: rotations, waiting, the summit when the "
+        "mountain says so.",
+        "Autumn season, shared fixed lines, a small vertical community on the ridge.",
+        "Expedition permits and technical insurance throughout.",
+    ],
+    'highlights': [
+        "The headwall at dawn as rehearsal, the Yellow Tower as the exam",
+        "Imja valley first, Mingbo valley after",
+        "An acclimatisation curve spent on the Khumbu’s finest line",
+        "Camp 1 nights with the route above catching last light",
+        "Two ridges, one season, one story",
+    ],
+    'gear':
+        "Full expedition technical kit; Island doubles as shakedown. Detailed in conversation "
+        "and Know the Mountain.",
+    'faq': [
+        ["Island or Lobuche as the warm-up?",
+         "Island wakes altitude on gentler ground; Lobuche rehearses steepness harder. Choose "
+         "by your gap."],
+        ["How long on Ama Dablam itself?", "Around three weeks of the itinerary."],
+        ["Realistic first expedition?", "Only with the prerequisites genuinely met."],
+        ["Solo joiners?", "The team forms on the mountain."],
+    ],
+}
+
+CHULU_WEST = {
+    'duration': '17 days',
+    'maxAltitude': 6419,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Annapurna, Nepal',
+    'journey':
+        "The Annapurna Circuit’s hidden summit. A detour from Manang into a high glacier basin, "
+        "a snow ridge to 6,419 m, and the entire Annapurna range as the reward, before "
+        "rejoining the circuit over the Thorong La.",
+    'know': [
+        "The only major climb in our list that lives inside a classic trek: circuit "
+        "acclimatisation, then the mountain.",
+        "Technically moderate by 6,000er standards: glacier travel and a sustained snow ridge, "
+        "fixed lines where the season demands.",
+        "Camps above 5,300 m for several nights; cold management is a core skill here.",
+        "Quieter than any Khumbu peak; some seasons the mountain is yours alone.",
+        "ACAP plus association climbing permit; licensed guide and climbing insurance required.",
+    ],
+    'highlights': [
+        "The Annapurna wall, Dhaulagiri and Manaslu from the summit",
+        "A base camp valley the circuit crowds never see",
+        "Snow-ridge climbing with the Manang desert below",
+        "Finishing over the Thorong La like the circuit intends",
+        "The Annapurna region’s most attainable real summit",
+    ],
+    'gear':
+        "Full climbing kit: double boots, crampons, harness, axe, plus deep-cold camping "
+        "layers. Details in Know the Mountain.",
+    'faq': [
+        ["Versus the Khumbu peaks?",
+         "Similar grade to Mera with more solitude and a built-in circuit."],
+        ["First summit?", "Feasible with strong preparation and training days."],
+        ["Why fewer people?", "No Everest in the view, which suits some of us fine."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+PHARCHAMO = {
+    'duration': '16 days',
+    'maxAltitude': 6187,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Rolwaling, Nepal',
+    'journey':
+        "The wild one. Up the roadless Rolwaling valley beneath Gauri Shankar, over the "
+        "glaciated Tashi Lapcha pass, and up Pharchamo’s snow pyramid, exiting into the Khumbu "
+        "like climbers used to arrive.",
+    'know': [
+        "Rolwaling is Nepal before the lodges: sparse villages, camping nights, genuine "
+        "remoteness. Rescue here is measured in days.",
+        "The Tashi Lapcha at 5,755 m is expedition ground in its own right: crevassed glacier, "
+        "rockfall awareness, cold camps.",
+        "Pharchamo rises straight from the pass: a sustained snow slope where the pass’s "
+        "altitude becomes the summit’s springboard.",
+        "This route asks for self-sufficiency of team and mind; the valley gives silence back.",
+        "Restricted-area logistics for Rolwaling plus climbing permit; experienced guides "
+        "mandatory in every sense.",
+    ],
+    'highlights': [
+        "Gauri Shankar’s double summit over the valley for days",
+        "Tsho Rolpa, the vast glacial lake beneath the pass",
+        "The Tashi Lapcha itself, a door between two worlds",
+        "Pharchamo’s clean snow pyramid from the col",
+        "Descending into Thame as expeditions did for decades",
+    ],
+    'gear':
+        "Full expedition kit with glacier-camping depth; this route carries its own weight. "
+        "Serious list in Know the Mountain.",
+    'faq': [
+        ["How remote honestly?",
+         "The most committing route in our 6,000er list after the technical peaks."],
+        ["Climbing grade?", "Moderate snow; the seriousness is the setting, not the angle."],
+        ["Why Rolwaling?",
+         "Because empty valleys are becoming the rarest terrain in the Himalaya."],
+        ["Solo joiners?", "The team is the safety system; it forms deliberately."],
+    ],
+}
+
+DHAMPUS = {
+    'duration': '12 days',
+    'maxAltitude': 6012,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Dhaulagiri region, Nepal',
+    'journey':
+        "The gentle giant-viewer. A non-technical snow summit above the Kali Gandaki with one "
+        "of the greatest viewpoints in Nepal: thirty named peaks, Dhaulagiri’s mass filling "
+        "half the sky.",
+    'know': [
+        "The most attainable summit in our list: glacier walking and a snow slope, crampons "
+        "and rope more for safety than difficulty.",
+        "Demanding rather than Severe, and the exception among our 6,000ers: a first summit in "
+        "the honest sense.",
+        "Altitude still rules: 6,012 m is earned through the approach’s acclimatisation, not "
+        "talent.",
+        "The Kali Gandaki approach threads the world’s deepest gorge; the journey outshines "
+        "many harder climbs.",
+        "ACAP plus climbing permit; licensed guide and climbing-rated insurance.",
+    ],
+    'highlights': [
+        "Dhaulagiri at arm’s length, all 8,167 m of it",
+        "Thirty summits named from one snow dome",
+        "The Kali Gandaki gorge as the walk-in",
+        "Yak pastures and Thakali villages of the approach",
+        "A 6,000er summit that welcomes rather than tests",
+    ],
+    'gear':
+        "Entry climbing kit: boots, crampons, axe, harness for the rope. The full list in Know "
+        "the Mountain.",
+    'faq': [
+        ["Truly beginner-friendly?",
+         "The most, yes; fitness and acclimatisation still decide it."],
+        ["Why Demanding not Severe?",
+         "No sustained technical ground; the grade tells the truth."],
+        ["Best first 6,000er?",
+         "This or Mera, depending on whether views or altitude lead your ambition."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
 DETAILS = {
     'ebc-trek': EBC,
     'three-passes': THREE_PASSES,
@@ -1156,6 +1362,11 @@ DETAILS = {
     'two-peaks-lobuche-island-ebc': TWO_PEAKS_EBC,
     'three-peaks-ebc': THREE_PEAKS,
     'two-peaks-mera-island': MERA_ISLAND,
+    'ama-dablam-lobuche': AMA_LOBUCHE,
+    'ama-dablam-island': AMA_ISLAND,
+    'chulu-west-6419': CHULU_WEST,
+    'pharchamo-tashi-lapcha': PHARCHAMO,
+    'dhampus-6012': DHAMPUS,
 }
 
 DIFFICULTY.update({
@@ -1189,4 +1400,11 @@ DIFFICULTY.update({
     'two-peaks-lobuche-island-ebc': 'Severe',
     'three-peaks-ebc': 'Severe',
     'two-peaks-mera-island': 'Severe',
+    # batch 6, completing the 6000ers rail. Dhampus is the one Demanding
+    # expedition: no sustained technical ground, and the grade says so.
+    'ama-dablam-lobuche': 'Severe',
+    'ama-dablam-island': 'Severe',
+    'chulu-west-6419': 'Severe',
+    'pharchamo-tashi-lapcha': 'Severe',
+    'dhampus-6012': 'Demanding',
 })
