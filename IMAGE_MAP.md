@@ -72,18 +72,23 @@ a file that is declared available but missing.
 | `kilimanjaro.jpg` | Kilimanjaro | explore.html | yes | 1 |
 | `ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | yes | 1 |
 | `manaslu-circuit.jpg` | Manaslu Circuit | explore.html | yes | 1 |
+| `route-map-ama-dablam-6812.jpg` | Ama Dablam | explore.html | no | 1 |
 | `route-map-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | no | 1 |
 | `route-map-annapurna-circuit.jpg` | Annapurna Circuit | explore.html | no | 1 |
+| `route-map-cholatse-6440.jpg` | Cholatse | explore.html | no | 1 |
 | `route-map-ebc-trek.jpg` | Everest Base Camp Trek | explore.html | no | 1 |
 | `route-map-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
 | `route-map-haute-route-trek.jpg` | Haute Route, Chamonix to Zermatt | explore.html | no | 1 |
 | `route-map-huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | no | 1 |
+| `route-map-island-peak-6189.jpg` | Island Peak | explore.html | no | 1 |
 | `route-map-kilimanjaro-5895.jpg` | Kilimanjaro | explore.html | no | 1 |
 | `route-map-ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | no | 1 |
 | `route-map-langtang-valley.jpg` | Langtang Valley | explore.html | no | 1 |
+| `route-map-lobuche-6119.jpg` | Lobuche East | explore.html | no | 1 |
 | `route-map-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | no | 1 |
 | `route-map-manaslu-circuit.jpg` | Manaslu Circuit | explore.html | no | 1 |
 | `route-map-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
+| `route-map-mera-peak-6476.jpg` | Mera Peak | explore.html | no | 1 |
 | `route-map-three-passes.jpg` | Everest Three Passes | explore.html | no | 1 |
 | `route-map-torres-del-paine-trek.jpg` | Torres del Paine Circuit | explore.html | no | 1 |
 | `route-map-tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | no | 1 |
@@ -92,7 +97,7 @@ a file that is declared available but missing.
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-77 photographs.
+82 photographs.
 
 ## Honest placeholders
 
@@ -141,18 +146,23 @@ naming the file it is waiting for, and claims nothing.
 - `journey-two-peaks-lobuche-island-ebc.jpg`
 - `journey-two-peaks-mera-island.jpg`
 - `journey-upper-mustang.jpg`
+- `route-map-ama-dablam-6812.jpg`
 - `route-map-annapurna-base-camp.jpg`
 - `route-map-annapurna-circuit.jpg`
+- `route-map-cholatse-6440.jpg`
 - `route-map-ebc-trek.jpg`
 - `route-map-gokyo-lakes.jpg`
 - `route-map-haute-route-trek.jpg`
 - `route-map-huayhuash-circuit.jpg`
+- `route-map-island-peak-6189.jpg`
 - `route-map-kilimanjaro-5895.jpg`
 - `route-map-ladakh-high-passes.jpg`
 - `route-map-langtang-valley.jpg`
+- `route-map-lobuche-6119.jpg`
 - `route-map-manaslu-base-camp.jpg`
 - `route-map-manaslu-circuit.jpg`
 - `route-map-mardi-himal.jpg`
+- `route-map-mera-peak-6476.jpg`
 - `route-map-three-passes.jpg`
 - `route-map-torres-del-paine-trek.jpg`
 - `route-map-tour-du-mont-blanc.jpg`

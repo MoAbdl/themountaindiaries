@@ -715,6 +715,218 @@ KILIMANJARO = {
     ],
 }
 
+# ═══ BATCH 4, supplied 18 Aug 2026 ═══════════════════════════════════════
+# Owner's copy, verbatim. The first detailed entries on the Expeditions rail:
+# same template as the treks, so a climb and a walk read the same way and the
+# difference lives in the words, not the furniture.
+
+MERA = {
+    'duration': '15 days',
+    'maxAltitude': 6476,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Hinku Valley, Nepal',
+    'journey':
+        "Nepal’s highest trekking peak, and the honest first 6,000er. A wild approach through "
+        "the roadless Hinku valley, then a long glacier walk to a summit with five 8,000 m "
+        "peaks on the horizon.",
+    'know': [
+        "This is a climb, not a trek: crampons, ice axe, rope work on summit day. The skills "
+        "are learnable at base camp; the altitude is not negotiable.",
+        "Technically the gentlest of the big trekking peaks, but the highest: 6,476 m demands "
+        "respect and real acclimatisation.",
+        "The Hinku approach crosses the Zatrwa La at 4,600 m in the first days; the route "
+        "acclimatises you by design.",
+        "Summit day starts around 2 am: 8 to 10 hours on glacier, one steeper rope-length "
+        "below the summit.",
+        "Climbing permit through the national mountaineering association, arranged by the "
+        "operating agency; insurance must cover climbing to 6,500 m.",
+    ],
+    'highlights': [
+        "Everest, Lhotse, Makalu, Cho Oyu and Kangchenjunga from one summit",
+        "The Hinku valley, days of forest and yak pasture without a road",
+        "High camp at 5,800 m, sunset over an ocean of peaks",
+        "Your first steps on a rope team, done properly",
+        "A summit that converts trekkers into mountaineers",
+    ],
+    'gear':
+        "Full climbing kit over expedition trekking layers: double boots, crampons, harness, "
+        "ice axe, jumar. Skills and kit guidance in Know the Mountain.",
+    'faq': [
+        ["First climb ever?",
+         "Possible with strong trekking fitness and our pre-summit training days."],
+        ["How cold on top?", "−20 °C with wind at dawn is normal."],
+        ["Mera or Island Peak first?",
+         "Mera for altitude with gentler ground, Island for steeper technique lower down."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+ISLAND_PEAK = {
+    'duration': '14 days',
+    'maxAltitude': 6189,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "Imja Tse, the Khumbu’s classic first summit: an EBC-route acclimatisation, a night at "
+        "a glacier base camp, then crevasse ladders and a steep fixed-line headwall to a ridge "
+        "above the Imja valley.",
+    'know': [
+        "The “trekking peak” label is a permit category, not a difficulty rating. Summit day "
+        "is genuine climbing: glacier travel, ladder crossings, 300 m of fixed line at up to "
+        "45 degrees.",
+        "Jumar and abseil technique are required, not optional; we train them at base camp "
+        "before anyone touches the headwall.",
+        "Acclimatisation rides the EBC trail first; the mountain punishes shortcuts.",
+        "The final ridge is narrow and spectacular; a head for exposure helps.",
+        "Permit through the mountaineering association via the agency; insurance to 6,500 m "
+        "including climbing.",
+    ],
+    'highlights': [
+        "The headwall at dawn, a line of headlamps on the rope",
+        "Lhotse’s south face filling the sky above the summit ridge",
+        "Ladder crossings over blue crevasse light",
+        "Imja Tsho glacial lake from above",
+        "The Khumbu’s proudest achievable summit",
+    ],
+    'gear':
+        "Double boots, crampons, harness, ice axe, jumar and abseil device over cold-weather "
+        "layers. Full list in Know the Mountain.",
+    'faq': [
+        ["Harder than Mera?",
+         "Steeper and more technical, though lower; most find the headwall the hardest hour of "
+         "either."],
+        ["Fall risk honestly?",
+         "Managed by fixed lines and training; the rope only works if you learned to use it."],
+        ["Combine with EBC?", "The route does it naturally."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+LOBUCHE = {
+    'duration': '14 days',
+    'maxAltitude': 6119,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The connoisseur’s Khumbu summit. Steeper and quieter than Island Peak, rising directly "
+        "above the EBC trail with a summit-day view that puts Everest at eye level across the "
+        "valley.",
+    'know': [
+        "The most sustained climbing of the classic trekking peaks: long fixed-line sections "
+        "on snow and rock slabs up to 45 degrees.",
+        "Prior crampon time helps here; as a first summit it is a serious choice.",
+        "The route shares the EBC trail’s acclimatisation, then leaves the crowds entirely at "
+        "base camp.",
+        "Summit day runs 10 to 12 hours; the descent on tired legs is where discipline shows.",
+        "Association permit via agency; insurance to 6,500 m including climbing.",
+    ],
+    'highlights': [
+        "Everest, Nuptse and Lhotse straight across the valley from the summit",
+        "The high camp perched at 5,400 m above the Khumbu glacier",
+        "Slab climbing on fixed lines as the sun rises",
+        "A summit most EBC trekkers walk beneath without knowing",
+        "The quietest of the famous Khumbu peaks",
+    ],
+    'gear':
+        "As Island Peak: double boots, full harness kit, jumar, abseil device. Details in Know "
+        "the Mountain.",
+    'faq': [
+        ["Lobuche or Island?",
+         "Lobuche for sustained climbing and solitude, Island for the classic first-summit path."],
+        ["First peak?",
+         "Better as a second; strong first-timers manage it with training days."],
+        ["Why quieter?", "No easy label; the mountain filters its own crowd."],
+        ["Solo joiners?", "Most of the rope team."],
+    ],
+}
+
+CHOLATSE = {
+    'duration': '18 days',
+    'maxAltitude': 6440,
+    'highPoint': 'summit',
+    'season': 'Apr–May & Oct–Nov',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The beautiful problem. One of the Khumbu’s most striking mountains and one of its most "
+        "genuinely technical permitted climbs: sustained ice and mixed ground where trekking "
+        "peaks end and alpinism begins.",
+    'know': [
+        "This is not a first summit and not a second. Cholatse asks for real alpine experience: "
+        "sustained front-point ice, mixed rock sections, long exposure.",
+        "The southwest ridge runs steep camps and technical ground for days, not hours.",
+        "Small teams and honest self-assessment define who belongs here; we will say no, and "
+        "mean it kindly.",
+        "Weather windows shape everything; summit patience is part of the skill set.",
+        "Expedition-class logistics: association permit, base camp infrastructure, insurance to "
+        "6,500 m with technical climbing cover.",
+    ],
+    'highlights': [
+        "The north face profile that stops every trekker on the Cho La",
+        "Ice pitches at 5,800 m with the whole Khumbu below",
+        "A summit measured in hundreds per decade, not per season",
+        "Taboche and Cholatse’s ridgeline against the sunset",
+        "Climbing that earns the word",
+    ],
+    'gear':
+        "Full technical alpine kit: two tools, technical crampons, alpine rack familiarity. "
+        "Serious list in Know the Mountain.",
+    'faq': [
+        ["Minimum experience?",
+         "Multiple 6,000ers with fixed-line fluency, plus genuine ice technique."],
+        ["How technical exactly?",
+         "Sustained sections of steep ice and mixed ground; this is alpinism."],
+        ["Why offer it at all?",
+         "Because some of our community will grow into it, and honesty beats gatekeeping."],
+        ["Small groups?", "Very; ropes of two and three."],
+    ],
+}
+
+AMA_DABLAM = {
+    'duration': '25 days',
+    'maxAltitude': 6812,
+    'highPoint': 'summit',
+    'season': 'Oct–Nov & Apr–May',
+    'regionLabel': 'Khumbu, Nepal',
+    'journey':
+        "The most beautiful mountain in the Khumbu, and one of the world’s great technical "
+        "expedition climbs. Three weeks on the southwest ridge: granite, ice and the famous "
+        "hanging glacier that gives the mountain its name.",
+    'know': [
+        "A full expedition, not a trekking peak: government expedition permit, established "
+        "camps, weeks on the mountain.",
+        "The southwest ridge is sustained technical climbing: rock to 5.7, steep ice, wildly "
+        "exposed ridgeline between Camps 1 and 2.",
+        "Prerequisites are firm: 6,000er summits, fixed-line fluency, real rock and ice "
+        "technique at altitude.",
+        "Camp 2 sits on a granite tower the size of a dinner table row; this mountain’s "
+        "exposure is famous for a reason.",
+        "Autumn is the classic season; the route becomes a small vertical village of teams "
+        "sharing fixed lines.",
+    ],
+    'highlights': [
+        "The Dablam itself, the hanging glacier under the summit ice",
+        "Camp 2 on its granite perch, the most photographed campsite in the Himalaya",
+        "The Yellow Tower, the ridge’s defining rock pitch",
+        "Everest and Lhotse across the valley from the summit",
+        "The mountain every Khumbu trekker photographs, climbed",
+    ],
+    'gear':
+        "Full expedition technical kit; the list is long and specific, covered in Know the "
+        "Mountain and in conversation before anyone commits.",
+    'faq': [
+        ["How hard truly?",
+         "The hardest widely-climbed 6,000er in Nepal; alpine rock and ice at altitude for days."],
+        ["Ready how?",
+         "Mera or Island, then Lobuche, then a technical peak, then this. We help map the path."],
+        ["Duration why?",
+         "Acclimatisation rotations and weather windows; expeditions move at the mountain’s pace."],
+        ["Solo joiners?", "Expeditions build the team; arriving alone is normal."],
+    ],
+}
+
 DETAILS = {
     'ebc-trek': EBC,
     'three-passes': THREE_PASSES,
@@ -732,6 +944,11 @@ DETAILS = {
     'torres-del-paine-trek': TORRES,
     'huayhuash-circuit': HUAYHUASH,
     'kilimanjaro-5895': KILIMANJARO,
+    'mera-peak-6476': MERA,
+    'island-peak-6189': ISLAND_PEAK,
+    'lobuche-6119': LOBUCHE,
+    'cholatse-6440': CHOLATSE,
+    'ama-dablam-6812': AMA_DABLAM,
 }
 
 DIFFICULTY.update({
@@ -753,4 +970,10 @@ DIFFICULTY.update({
     'torres-del-paine-trek': 'Steady',
     'huayhuash-circuit': 'Severe',
     'kilimanjaro-5895': 'Severe',
+    # batch 4, the Khumbu climbing peaks
+    'mera-peak-6476': 'Severe',
+    'island-peak-6189': 'Severe',
+    'lobuche-6119': 'Severe',
+    'cholatse-6440': 'Severe',
+    'ama-dablam-6812': 'Severe',
 })
