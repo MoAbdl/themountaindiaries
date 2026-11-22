@@ -27,6 +27,7 @@ STEPS = [
     ('explore-build.py', 'index.html + explore.html'),
     ('p3-join.py', 'join.html'),
     ('know.py', 'know.html'),
+    ('pages.py', 'about.html + privacy.html + terms.html + credits.html'),
     ('mkimagemap.py', 'IMAGE_MAP.md'),
 ]
 

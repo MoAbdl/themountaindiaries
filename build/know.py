@@ -13,6 +13,9 @@ words.
 import io
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -204,7 +207,7 @@ CHAPTER_NAV = [('altitude', 'Altitude &amp; the Body'), ('training', 'Training &
 
 NEWS_INTRO = ("News from the mountain world: ascents, expeditions, events, and the losses that "
               "mark this pursuit. Curated, linked to source, updated as the mountains make news.")
-NEWS_EMPTY = "First dispatches are on their way. The mountains never stay quiet for long."
+NEWS_EMPTY = "The latest dispatches load here. If you can read this, switch JavaScript on to see them."
 
 
 def chapter_html(cid, title, lede, blocks, feet):
@@ -339,7 +342,7 @@ page = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Know the Mountain &middot; The Mountain Diaries</title>
-<meta name="description" content="The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.">
+""" + seo.meta('Know the Mountain', 'The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.', 'know.html') + """
 """ + head_links + """
 <style>
 """ + style.rstrip('\n') + extra_css + """</style>
@@ -404,6 +407,26 @@ page = """<!DOCTYPE html>
 // Categories carry a badge except In Memoriam, which stays muted on purpose:
 // a death is not a highlight, and colour would make it one.
 const NEWS = [
+  { date: '2026-10-17', category: 'Summit',
+    title: 'Summits Begin on Ama Dablam, Late Fall’s Most Popular Peak',
+    source: 'ExplorersWeb',
+    url: 'https://explorersweb.com/first-summits-on-ama-dablam-late-falls-most-popular-peak/',
+    image: null },
+  { date: '2026-10-08', category: 'Expedition',
+    title: '788 climbers obtain permits to scale 31 peaks this autumn',
+    source: 'Onlinekhabar',
+    url: 'https://english.onlinekhabar.com/788-climbers-obtain-permits-to-scale-31-peaks-this-autumn.html',
+    image: null },
+  { date: '2026-09-22', category: 'Expedition',
+    title: 'The summit will wait: weather closes Manaslu season, Dhaulagiri climbers retreat',
+    source: 'The Himalayan Times',
+    url: 'https://thehimalayantimes.com/nepal/the-summit-will-wait-weather-closes-manaslu-season-dhaulagiri-climbers-retreat',
+    image: null },
+  { date: '2026-03-22', category: 'Event',
+    title: 'Immigration eases rules for solo trekkers in restricted areas',
+    source: 'The Kathmandu Post',
+    url: 'https://kathmandupost.com/national/2026/03/22/immigration-eases-rules-for-solo-trekkers-in-restricted-areas',
+    image: null },
 ];
 
 const NEWS_BADGE = { 'Summit': 'badge-summit', 'Expedition': 'badge-expedition', 'Event': 'badge-event' };

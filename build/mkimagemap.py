@@ -69,6 +69,8 @@ titles = {}
 
 for page in PAGES:
     s = io.open(os.path.join(OUT, page), encoding='utf-8').read()
+    # the link-preview image reuses a page photograph; it is not a placement
+    s = re.sub(r'<meta property="og:image"[^>]*>', '', s)
 
     # slug -> data key, so a card and its own detail resolve to one owner
     m = re.search(r'const TRAIL_SLUGS = \{(.*?)\};', s, re.S)

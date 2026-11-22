@@ -1,6 +1,7 @@
 # build
 
-`index.html`, `explore.html`, `join.html` and `IMAGE_MAP.md` are **generated**.
+`index.html`, `explore.html`, `join.html`, `know.html`, `about.html`, `privacy.html`,
+`terms.html`, `credits.html` and `IMAGE_MAP.md` are **generated**.
 Do not edit them by hand: change the source here and rebuild.
 
 ## Rebuild
@@ -35,6 +36,11 @@ working tree untouched. Drift means either a generated page was hand edited
 | `p3-join.py` | generates `join.html` from the index style block plus its own markup |
 | `mkimagemap.py` | derives `IMAGE_MAP.md` from what the pages actually reference; fails on a duplicate or a missing file |
 | `base/index.base.html` | the pre-surgery index snapshot every build starts from |
+| `pages.py` | generates `about.html`, `privacy.html`, `terms.html` and `credits.html` |
+| `catalogue.py` | the mountain overviews shown on journeys without a full detail entry |
+| `seo.py` | the description and link-preview tags every page carries, and the social profile URLs |
+| `photo-manifest.json` | the Wikimedia Commons journey photographs: file, source, author, licence, alt text |
+| `fetch-photos.py` | downloads the manifest's photographs; run by the `fetch-photos` GitHub Action |
 | `routemap.py` | PARKED. The generated topographic route maps, kept whole for the day drawn maps do not work out |
 
 `MD_OUT` redirects the generated pages to another directory; assets are always
@@ -75,3 +81,14 @@ attribution line ships with them: it is a licence condition, not a courtesy.
 
 Today the Route section renders `assets/images/route-map-<slug>.jpg` when that
 artwork exists, and renders nothing at all when it does not.
+
+## Social icons
+
+The footer shows a social icon only when `seo.SOCIAL` holds a real profile URL
+for that network. Paste the URL in and rebuild.
+
+## Adding a journey photograph
+
+Add an entry to `photo-manifest.json` and push. The `fetch-photos` Action
+downloads it, writes the 800px card derivative, rebuilds and commits. The
+journey picks it up automatically, and `credits.html` lists it.

@@ -11,6 +11,8 @@ import io, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from journeys import rows, EXPEDITION_TABS, TREK_TABS, TK
 from details import DETAILS
+from catalogue import OVERVIEW
+import seo
 
 # Paths are derived from this file's own location, so the build runs from a
 # clone anywhere. MD_OUT lets the integrity check render into a scratch
@@ -52,6 +54,13 @@ _, LIGHTBOX_JS = cut(src, '// ═══ LIGHTBOX ═══', '// ═══ CAROU
 LIGHTBOX_JS = LIGHTBOX_JS.replace('#trail/ routing', '#journey/ routing')
 _, INQUIRY_JS = cut(src, '// ═══ INQUIRY PANEL ═══', '// Resolve the URL on first paint', 'inquiry js')
 _, PHOTO_JS = cut(src, '// ═══ PHOTO AVAILABILITY ═══', '// ═══ TRAIL DATA ═══', 'photo js')
+# every journey hero that is on disk joins the registry, so its detail view
+# shows the photograph instead of the placeholder
+_extra = sorted({'assets/images/' + r['hero'] for r in J
+                 if os.path.exists(os.path.join(REPO, 'assets', 'images', r['hero']))
+                 and ("'assets/images/%s'" % r['hero']) not in PHOTO_JS})
+if _extra:
+    PHOTO_JS = PHOTO_JS.replace("\n]);", ''.join(",\n  '%s'" % f for f in _extra) + "\n]);", 1)
 _, NAV_JS = cut(src, '// ═══ NAV ═══', '// ═══ SINGLE ESCAPE HANDLER ═══', 'nav js')
 _, POSTFORM_JS = cut(src, '// ─── BACKEND ──', "document.getElementById('share-form')", 'postForm js')
 
@@ -82,6 +91,33 @@ s = sub(s, 'aria-label="Explore the trails"', 'aria-label="Explore the journeys"
 s = sub(s, '<li><a href="#trails">Expeditions &amp; Trekking</a></li>',
         '<li><a href="explore.html">Expeditions &amp; Trekking</a></li>', 'footer explore')
 
+# 1a2. About, policy pages, link previews and social icons
+s = sub(s, '<title>The Mountain Diaries</title>',
+        '<title>The Mountain Diaries &middot; Treks and expeditions from the UAE</title>\n' + seo.meta(
+            'The Mountain Diaries',
+            'A UAE trekking and expedition community. Local hikes most months, small groups to '
+            'Everest Base Camp, Mera Peak, Ama Dablam and beyond, and the stories from the trail.'),
+        'index head')
+s = sub(s, '''      <!-- re-target to the About Us section once it is written; #story is a stand in -->
+      <li><a href="#story" data-spy="story">About Us</a></li>''',
+        '      <li><a href="about.html">About Us</a></li>', 'nav about')
+s = sub(s, '''          <!-- re-target to the About Us section once it is written; #story is a stand in -->
+          <li><a href="#story">About Us</a></li>''',
+        '          <li><a href="about.html">About Us</a></li>', 'footer about')
+s = sub(s, '''      <!-- re-target once the policy pages exist -->
+      <span><a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>''',
+        '      <span><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a>'
+        ' &middot; <a href="credits.html">Photo credits</a></span>', 'footer policies')
+# social icons render only for networks with a real profile URL in seo.SOCIAL
+_soc = re.search(r'\n        <div class="footer-social">\n(.*?)        </div>', s, re.S)
+_keep = []
+for _a in re.findall(r'        <a class="fcircle fcircle-outline".*?</a>\n', _soc.group(1), re.S):
+    _net = re.search(r'on (\w+)"', _a).group(1)
+    if seo.SOCIAL.get(_net):
+        _keep.append(_a.replace('href="#"', 'href="%s" target="_blank" rel="noopener"' % seo.SOCIAL[_net]))
+s = s[:_soc.start()] + (('\n        <div class="footer-social">\n' + ''.join(_keep) + '        </div>')
+                         if _keep else '') + s[_soc.end():]
+
 # 1b. retire the two catalogue sections, leaving one teaser in their place
 FEATURED = ['ama-dablam-6812', 'ebc-trek', 'mera-peak-6476']
 BY_SLUG = {r['slug']: r for r in J}
@@ -97,8 +133,8 @@ def jcard(r, href):
     # a verified photograph renders as the lazy 800px derivative; a journey
     # without one keeps the placeholder naming the file it waits for
     if r.get('card'):
-        media = ('<img class="jcard-img" src="assets/images/%s" alt="" loading="lazy" decoding="async">'
-                 % r['card'].replace('.jpg', '-800.jpg'))
+        media = ('<img class="jcard-img" src="assets/images/%s" alt="%s" loading="lazy" decoding="async">'
+                 % (r['card'].replace('.jpg', '-800.jpg'), r['name']))
     else:
         media = '<div class="photo-slot" data-photo="%s"></div>' % r['photo'].split('/')[-1]
     return ('''        <a class="jcard" href="%s">
@@ -117,7 +153,7 @@ TEASER = '''<!-- EXPLORE TEASER -->
       <div class="section-head" style="margin-bottom:var(--s-5)">
         <p class="section-kicker">Expeditions and trekking</p>
         <h2 class="section-title">Explore</h2>
-        <p class="section-lede">Fifty two journeys, from a first 6,000er to the eight thousand metre peaks.</p>
+        <p class="section-lede">52 journeys, from a first 6,000er to the eight thousand metre peaks.</p>
       </div>
     </div>
 
@@ -216,7 +252,9 @@ s, _ = cut(s, '<!-- DISPATCHES -->', '<!-- BAND 1 -->', 'dispatches section')
 s, _ = cut(s, '// ═══ DISPATCHES ═══', '// ═══ COMMUNITY TABS ═══', 'dispatches js')
 
 # 1e. CSS that only the retired catalogue used
-s, _ = cut(s, '  .carousel { position: relative; }', '  /* ─── DISPATCHES ─── */', 'carousel css')
+# stop at the photo bands: their CSS sits between the carousel and the
+# dispatches rules, and the three bands on the homepage still need it
+s, _ = cut(s, '  .carousel { position: relative; }', '  /* ─── FULL-BLEED PHOTO BANDS ─── */', 'carousel css')
 s = sub(s, '''  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--s-5); }''',
         '''  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }''',
         'card grid width')
@@ -643,13 +681,28 @@ def route_slot(slug):
 
 
 def catalogue_body(r):
+    o = OVERVIEW.get(r['slug'], {})
     facts = facts_html([
         ('Elevation', '%s m' % format(r['elevation_m'], ',') if r['elevation_m'] else None),
-        ('Region', r['region']), ('Country', r['country'])])
-    return '''%s
-        <p class="cat-note">Full route notes are being written. Groups form when demand and
-        partnerships align. Join the interest list and you&rsquo;ll hear first.</p>
-%s''' % (facts, cta_html(r['name']))
+        ('Season', o.get('season')),
+        ('Typical length', o.get('length')),
+        ('Region', '%s, %s' % (r['region'], r['country'])),
+    ])
+    about = ''
+    if o:
+        about = '''
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">%s</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> %s</li>
+            <li><strong>First ascent:</strong> %s</li>
+          </ul>
+        </div>''' % (o['about'], o['route'], o['first'])
+    return '''%s%s
+        <p class="cat-note">We have not scheduled a group for this mountain yet. Groups form when
+        demand and partnerships align. Join the interest list and you&rsquo;ll hear first.</p>
+%s''' % (facts, about, cta_html(r['name']))
 
 
 def static_entry(r):
@@ -668,11 +721,15 @@ def static_entry(r):
     </section>''' % (r['slug'], r['name'], r['slug'], body)
 
 
+XHEAD = ('<div class="photo-slot" style="--photo:url(\'assets/images/explore-header.jpg\')"></div>'
+         if os.path.exists(os.path.join(REPO, 'assets', 'images', 'explore-header.jpg'))
+         else '<div class="photo-slot" data-photo="explore-header.jpg"></div>')
+
 BODY = '''<main class="explore-main">
 
   <!-- PAGE HEADER -->
   <section class="xhead">
-    <div class="xhead-media"><div class="photo-slot" data-photo="explore-header.jpg"></div></div>
+    <div class="xhead-media">%s</div>
     <div class="xhead-scrim" aria-hidden="true"></div>
     <div class="xhead-inner">
       <h1 class="xhead-title">Explore</h1>
@@ -717,7 +774,7 @@ BODY = '''<main class="explore-main">
        content and a crawler sees all %d journeys. -->
 %s
 
-</main>''' % (tabstrip(EXP_TABS, exp_pick, 'exp'), panels(EXP_TABS, exp_pick, 'exp'),
+</main>''' % (XHEAD, tabstrip(EXP_TABS, exp_pick, 'exp'), panels(EXP_TABS, exp_pick, 'exp'),
               tabstrip(TRK_TABS, trk_pick, 'trk'), panels(TRK_TABS, trk_pick, 'trk'),
               len(J), '\n'.join(static_entry(r) for r in J))
 
@@ -741,7 +798,7 @@ const CATEGORY_LABEL = {
   '8000ers': '8000ers', '7000ers': '7000ers', '6000ers': '6000ers', trek: 'Trekking'
 };
 
-const journeyPhoto = (j) => IMG + 'journey-' + j.slug + '.jpg';
+const journeyPhoto = (j) => IMG + (j.hero || 'journey-' + j.slug + '.jpg');
 const metres = (n) => n ? n.toLocaleString('en-US') + ' m' : null;
 
 // ═══ DETAIL VIEW ═══
@@ -873,10 +930,10 @@ document.getElementById('detail-back').addEventListener('click', closeDetail);
 })();
 ''' % ('\n'.join(
     "  { slug: '%s', name: '%s', elevation_m: %s, category: '%s', region: '%s', country: '%s',"
-    " difficulty: %s, status: '%s' },"
+    " difficulty: %s, status: '%s', hero: '%s' },"
     % (r['slug'], r['name'].replace("'", "\\'"), r['elevation_m'] if r['elevation_m'] else 'null',
        r['category'], r['region'], r['country'].replace("'", "\\'"),
-       ("'%s'" % r['difficulty']) if r['difficulty'] else 'null', r['status'])
+       ("'%s'" % r['difficulty']) if r['difficulty'] else 'null', r['status'], r['hero'])
     for r in J))
 
 # the interest dropdown, every journey grouped by category
@@ -918,7 +975,7 @@ PAGE = '''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore &middot; The Mountain Diaries</title>
-<meta name="description" content="Every expedition and trekking journey run by The Mountain Diaries, from a first 6,000 metre summit to the eight thousanders.">
+''' + seo.meta('Explore the journeys', 'Every expedition and trek we run or plan to run: 52 journeys from a first 6,000 metre summit to the eight thousanders, plus classic treks in Nepal, the Alps, Patagonia, Peru and Kilimanjaro.', 'explore.html', 'assets/images/explore-header.jpg') + '''
 ''' + HEAD_LINKS + '''
 <style>
 ''' + STYLE.rstrip('\n') + EXPLORE_CSS + '''</style>

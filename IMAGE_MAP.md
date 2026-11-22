@@ -28,47 +28,47 @@ a file that is declared available but missing.
 | `hero-ebc.jpg` | Hero | index.html | no | 1 |
 | `huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | yes | 1 |
 | `join-hero.jpg` | Join page | join.html | no | 1 |
-| `journey-ama-dablam-6812.jpg` | Ama Dablam | explore.html, index.html | no | 2 |
-| `journey-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | no | 1 |
-| `journey-ama-dablam-lobuche.jpg` | Ama Dablam and Lobuche East | explore.html | no | 1 |
-| `journey-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | no | 1 |
-| `journey-annapurna-i-8091.jpg` | Annapurna I | explore.html | no | 1 |
-| `journey-annapurna-iv-7525.jpg` | Annapurna IV | explore.html | no | 1 |
-| `journey-baruntse-7129.jpg` | Baruntse | explore.html | no | 1 |
-| `journey-baruntse-mera.jpg` | Baruntse and Mera Peak | explore.html | no | 1 |
-| `journey-broad-peak-8051.jpg` | Broad Peak | explore.html | no | 1 |
-| `journey-cho-oyu-8188.jpg` | Cho Oyu | explore.html | no | 1 |
-| `journey-cholatse-6440.jpg` | Cholatse | explore.html | no | 1 |
-| `journey-chulu-west-6419.jpg` | Chulu West | explore.html | no | 1 |
-| `journey-dhampus-6012.jpg` | Dhampus Peak | explore.html | no | 1 |
-| `journey-dhaulagiri-8167.jpg` | Dhaulagiri I | explore.html | no | 1 |
-| `journey-everest-8848.jpg` | Everest | explore.html | no | 1 |
-| `journey-gasherbrum-i-8080.jpg` | Gasherbrum I | explore.html | no | 1 |
-| `journey-gasherbrum-ii-8034.jpg` | Gasherbrum II | explore.html | no | 1 |
-| `journey-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | no | 1 |
-| `journey-himlung-7126.jpg` | Himlung Himal | explore.html | no | 1 |
-| `journey-island-peak-6189.jpg` | Island Peak | explore.html | no | 1 |
-| `journey-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | no | 1 |
-| `journey-k2-8611.jpg` | K2 | explore.html | no | 1 |
-| `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | no | 1 |
-| `journey-langtang-valley.jpg` | Langtang Valley | explore.html | no | 1 |
-| `journey-lhotse-8516.jpg` | Lhotse | explore.html | no | 1 |
-| `journey-lobuche-6119.jpg` | Lobuche East | explore.html | no | 1 |
-| `journey-lobuche-ebc.jpg` | Lobuche East and Everest Base Camp | explore.html | no | 1 |
-| `journey-makalu-8485.jpg` | Makalu | explore.html | no | 1 |
-| `journey-manaslu-8163.jpg` | Manaslu | explore.html | no | 1 |
-| `journey-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | no | 1 |
-| `journey-mardi-himal.jpg` | Mardi Himal | explore.html | no | 1 |
-| `journey-nanga-parbat-8125.jpg` | Nanga Parbat | explore.html | no | 1 |
-| `journey-nuptse-7864.jpg` | Nuptse | explore.html | no | 1 |
-| `journey-pharchamo-tashi-lapcha.jpg` | Pharchamo via Tashi Lapcha | explore.html | no | 1 |
-| `journey-pumori-7145.jpg` | Pumori | explore.html | no | 1 |
-| `journey-putha-hiunchuli-7246.jpg` | Putha Hiunchuli | explore.html | no | 1 |
-| `journey-shisha-pangma-8027.jpg` | Shisha Pangma | explore.html | no | 1 |
-| `journey-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | no | 1 |
-| `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | no | 1 |
-| `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
-| `journey-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
+| `journey-ama-dablam-6812.jpg` | Ama Dablam | explore.html, index.html | yes | 2 |
+| `journey-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | yes | 1 |
+| `journey-ama-dablam-lobuche.jpg` | Ama Dablam and Lobuche East | explore.html | yes | 1 |
+| `journey-annapurna-base-camp.jpg` | Annapurna Base Camp | explore.html | yes | 1 |
+| `journey-annapurna-i-8091.jpg` | Annapurna I | explore.html | yes | 1 |
+| `journey-annapurna-iv-7525.jpg` | Annapurna IV | explore.html | yes | 1 |
+| `journey-baruntse-7129.jpg` | Baruntse | explore.html | yes | 1 |
+| `journey-baruntse-mera.jpg` | Baruntse and Mera Peak | explore.html | yes | 1 |
+| `journey-broad-peak-8051.jpg` | Broad Peak | explore.html | yes | 1 |
+| `journey-cho-oyu-8188.jpg` | Cho Oyu | explore.html | yes | 1 |
+| `journey-cholatse-6440.jpg` | Cholatse | explore.html | yes | 1 |
+| `journey-chulu-west-6419.jpg` | Chulu West | explore.html | yes | 1 |
+| `journey-dhampus-6012.jpg` | Dhampus Peak | explore.html | yes | 1 |
+| `journey-dhaulagiri-8167.jpg` | Dhaulagiri I | explore.html | yes | 1 |
+| `journey-everest-8848.jpg` | Everest | explore.html | yes | 1 |
+| `journey-gasherbrum-i-8080.jpg` | Gasherbrum I | explore.html | yes | 1 |
+| `journey-gasherbrum-ii-8034.jpg` | Gasherbrum II | explore.html | yes | 1 |
+| `journey-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | yes | 1 |
+| `journey-himlung-7126.jpg` | Himlung Himal | explore.html | yes | 1 |
+| `journey-island-peak-6189.jpg` | Island Peak | explore.html | yes | 1 |
+| `journey-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | yes | 1 |
+| `journey-k2-8611.jpg` | K2 | explore.html | yes | 1 |
+| `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | yes | 1 |
+| `journey-langtang-valley.jpg` | Langtang Valley | explore.html | yes | 1 |
+| `journey-lhotse-8516.jpg` | Lhotse | explore.html | yes | 1 |
+| `journey-lobuche-6119.jpg` | Lobuche East | explore.html | yes | 1 |
+| `journey-lobuche-ebc.jpg` | Lobuche East and Everest Base Camp | explore.html | yes | 1 |
+| `journey-makalu-8485.jpg` | Makalu | explore.html | yes | 1 |
+| `journey-manaslu-8163.jpg` | Manaslu | explore.html | yes | 1 |
+| `journey-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | yes | 1 |
+| `journey-mardi-himal.jpg` | Mardi Himal | explore.html | yes | 1 |
+| `journey-nanga-parbat-8125.jpg` | Nanga Parbat | explore.html | yes | 1 |
+| `journey-nuptse-7864.jpg` | Nuptse | explore.html | yes | 1 |
+| `journey-pharchamo-tashi-lapcha.jpg` | Pharchamo via Tashi Lapcha | explore.html | yes | 1 |
+| `journey-pumori-7145.jpg` | Pumori | explore.html | yes | 1 |
+| `journey-putha-hiunchuli-7246.jpg` | Putha Hiunchuli | explore.html | yes | 1 |
+| `journey-shisha-pangma-8027.jpg` | Shisha Pangma | explore.html | yes | 1 |
+| `journey-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | yes | 1 |
+| `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | yes | 1 |
+| `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | yes | 1 |
+| `journey-upper-mustang.jpg` | Upper Mustang | explore.html | yes | 1 |
 | `kilimanjaro.jpg` | Kilimanjaro | explore.html | yes | 1 |
 | `ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | yes | 1 |
 | `manaslu-circuit.jpg` | Manaslu Circuit | explore.html | yes | 1 |

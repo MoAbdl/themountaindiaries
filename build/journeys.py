@@ -41,8 +41,8 @@ JOURNEYS = [
     ('baruntse-7129',               'Baruntse',                                          7129,  E7, 'Khumbu',          'Nepal'),
     ('baruntse-mera',               'Baruntse and Mera Peak',                            7129,  E7, 'Khumbu',          'Nepal'),
     ('putha-hiunchuli-7246',        'Putha Hiunchuli',                                   7246,  E7, 'Dhaulagiri',      'Nepal'),
-    ('pumori-7145',                 'Pumori',                                            7145,  E7, 'Khumbu',          'Nepal'),
-    ('nuptse-7864',                 'Nuptse',                                            7864,  E7, 'Khumbu',          'Nepal'),
+    ('pumori-7145',                 'Pumori',                                            7161,  E7, 'Khumbu',          'Nepal'),
+    ('nuptse-7864',                 'Nuptse',                                            7861,  E7, 'Khumbu',          'Nepal'),
     ('annapurna-iv-7525',           'Annapurna IV',                                      7525,  E7, 'Annapurna',       'Nepal'),
 
     # ── 6000ers ───────────────────────────────────────────────────────
@@ -117,6 +117,19 @@ CARD_PHOTO = {
 }
 
 
+# Wikimedia Commons photographs of each journey's own peak or valley, listed
+# with licence and author in photo-manifest.json and credited on credits.html.
+# fetch-photos.py writes them as journey-<slug>.jpg. A journey picks its file
+# up only once it is on disk, so the build never points at a missing image.
+import os as _os
+_IMAGES = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), 'assets', 'images')
+for _slug, *_ in JOURNEYS:
+    _f = 'journey-%s.jpg' % _slug
+    if _slug not in CARD_PHOTO and _os.path.exists(_os.path.join(_IMAGES, _f)) \
+            and _os.path.exists(_os.path.join(_IMAGES, _f.replace('.jpg', '-800.jpg'))):
+        CARD_PHOTO[_slug] = _f
+
+
 def rows():
     for slug, name, elev, cat, region, country in JOURNEYS:
         yield {
@@ -127,6 +140,8 @@ def rows():
             'difficulty': DIFFICULTY.get(slug),
             'photo': 'assets/images/journey-%s.jpg' % slug,
             'card': CARD_PHOTO.get(slug),
+            # the detail hero uses the same verified photograph as the card
+            'hero': CARD_PHOTO.get(slug) or 'journey-%s.jpg' % slug,
             # a surveyed number reads as exact; an approximate one has to say so
             'elev_approx': slug in APPROX_ALT,
         }
