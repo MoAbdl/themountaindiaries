@@ -700,8 +700,8 @@ def catalogue_body(r):
           </ul>
         </div>''' % (o['about'], o['route'], o['first'])
     return '''%s%s
-        <p class="cat-note">We have not scheduled a group for this mountain yet. Groups form when
-        demand and partnerships align. Join the interest list and you&rsquo;ll hear first.</p>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
 %s''' % (facts, about, cta_html(r['name']))
 
 

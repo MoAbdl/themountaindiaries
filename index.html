@@ -671,6 +671,17 @@
     text-shadow: 0 2px 18px rgba(20,24,27,0.35);
   }
 
+  /* ─── CONSENT CHECKBOX ─── */
+  #share-form .check-row { display: flex; align-items: flex-start; gap: var(--s-3); margin-bottom: var(--s-4); }
+  #share-form .check-row input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; accent-color: var(--sienna); }
+  #share-form .check-row label {
+    font-family: var(--font-body); font-size: var(--t-base);
+    letter-spacing: 0; text-transform: none; font-weight: 400;
+    color: var(--ink-2); margin: 0;
+  }
+  #share-form .check-row a, #join-form .check-row a { color: var(--sienna); }
+  #share-form .check-row label { font-size: var(--t-sm); line-height: 1.5; }
+
   /* ─── JOURNEY CARD ───
      Used by the Explore teaser here and by every catalogue grid on
      explore.html. The whole card is one link. */
