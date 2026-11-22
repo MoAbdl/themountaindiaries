@@ -85,6 +85,12 @@ CSS = """
     font-family: var(--font-head); font-weight: 700; font-size: 14px;
     display: flex; align-items: center; justify-content: center;
   }
+  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; max-width: none; }
+  .steps-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--card); }
+  .steps-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .steps-photo figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); color: var(--ink-3); }
+  .steps li { font-size: var(--t-base); line-height: 1.7; color: var(--ink-2); }
+  @media (max-width: 860px) { .steps-row { grid-template-columns: 1fr; } }
   .page-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-7); }
   .credits-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); margin-top: var(--s-4); }
   .credits-table th, .credits-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-2); }
@@ -175,12 +181,20 @@ page('about.html', 'About Us',
     </div>
     <div class="prose">
       <h2>How a group comes together</h2>
+    </div>
+    <div class="steps-row">
       <ol class="steps">
         <li><strong>Join the community.</strong> It takes a minute, and you will hear about hikes and new journeys first.</li>
         <li><strong>Tell us what calls you.</strong> Every journey page has a Join the Group button. It costs nothing and commits you to nothing.</li>
         <li><strong>We line it up.</strong> When enough people want the same route in the same season, we confirm dates, costs and the plan with licensed local guides and operators.</li>
         <li><strong>You decide.</strong> You see the full itinerary, the price and what it asks of you before you say yes.</li>
       </ol>
+      <figure class="steps-photo">
+        <img src="assets/images/expedition-ebc.jpg" alt="Mani stones on the trail to Everest Base Camp, with Lhotse and Nuptse ahead" loading="lazy" decoding="async">
+        <figcaption>On the trail to Everest Base Camp, Lhotse and Nuptse ahead.</figcaption>
+      </figure>
+    </div>
+    <div class="prose">
 
       <h2>What we believe</h2>
       <ul>

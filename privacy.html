@@ -711,6 +711,7 @@
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
 
+  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
   /* ─── PATH TO THE TOP ─── */
   .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
   .rung {
@@ -1133,6 +1134,12 @@
     font-family: var(--font-head); font-weight: 700; font-size: 14px;
     display: flex; align-items: center; justify-content: center;
   }
+  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; max-width: none; }
+  .steps-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--card); }
+  .steps-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .steps-photo figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); color: var(--ink-3); }
+  .steps li { font-size: var(--t-base); line-height: 1.7; color: var(--ink-2); }
+  @media (max-width: 860px) { .steps-row { grid-template-columns: 1fr; } }
   .page-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-7); }
   .credits-table { width: 100%; border-collapse: collapse; font-size: var(--t-sm); margin-top: var(--s-4); }
   .credits-table th, .credits-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; color: var(--ink-2); }

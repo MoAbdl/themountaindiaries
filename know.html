@@ -711,6 +711,7 @@
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
 
+  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
   /* ─── PATH TO THE TOP ─── */
   .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
   .rung {
@@ -1132,6 +1133,25 @@
 
   .know-body { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
   .kchapter { padding: clamp(44px, 6vw, 72px) 0; border-top: 1px solid var(--rule); }
+  .kchapter--aside { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .kchapter--aside .kaside { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--nav-h) + 72px); }
+  .kchapter--aside .kmain { grid-column: 1; grid-row: 1; }
+  .kaside-fig { margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--card); border: 1px solid var(--rule); box-shadow: var(--shadow-card); }
+  .kaside-fig img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .kaside-fig figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .kaside-cta {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg);
+    background: var(--sienna); color: #fff; text-decoration: none;
+    font-family: var(--font-head); font-weight: 700; font-size: var(--t-base); line-height: 1.35;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  .kaside-cta:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  @media (max-width: 900px) {
+    .kchapter--aside { display: block; }
+    .kchapter--aside .kaside { position: static; margin-bottom: var(--s-5); }
+    .kaside-fig img { aspect-ratio: 16 / 9; }
+  }
   .kchapter:first-of-type { border-top: none; }
   /* scroll-margin so an anchored chapter clears both sticky bars */
   .kchapter, .kchapter[id] { scroll-margin-top: calc(var(--nav-h) + 54px); }
@@ -1233,7 +1253,15 @@
 
   <div class="know-body">
 
-  <section class="kchapter" id="altitude">
+  <section class="kchapter kchapter--aside" id="altitude">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/ebc-khumbu-glacier.jpg" alt="The Khumbu Glacier near Gorak Shep, above 5,000 m" loading="lazy" decoding="async">
+        <figcaption>The Khumbu Glacier near Gorak Shep, above 5,000 m: about half the oxygen of sea level.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="explore.html#journey/ebc-trek">See how our Everest Base Camp trek paces the climb <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Altitude &amp; the Body</h2>
     <p class="klede">Why this page exists. Altitude is the one variable on every journey we run that does not care about your fitness, your experience or your schedule. Understanding it is not optional knowledge; it is the difference between a hard day and an emergency. Read this before you commit to anything above 3,000 m.</p>
     <div class="kblock">
@@ -1262,9 +1290,18 @@
     </div>
     <p class="kfoot">Insurance that covers helicopter evacuation at your journey’s altitudes is mandatory on everything we run. Why, and what to check in a policy, lives in <a href="#judgement">Reading the Mountain</a>.</p>
     <p class="kfoot">None of this replaces medical advice. Talk to a travel-medicine professional before any journey above 3,000 m, especially with any heart, lung or blood-pressure history.</p>
+    </div>
   </section>
 
-  <section class="kchapter" id="training">
+  <section class="kchapter kchapter--aside" id="training">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/tmb-trail-runners.jpg" alt="Long days on the Tour du Mont Blanc are earned on training days at home" loading="lazy" decoding="async">
+        <figcaption>Long days on the Tour du Mont Blanc are earned on training days at home.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="join.html">Train with us on local UAE hikes <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Training &amp; Preparation</h2>
     <p class="klede">The honest premise. Nobody fails a trek because they could not run a marathon. People fail because day four feels like day one, and day seven feels like punishment. Mountain fitness is the ability to do it again tomorrow.</p>
     <div class="kblock">
@@ -1283,9 +1320,18 @@
       <h3 class="kblock-title">The part nobody trains</h3>
       <p>Sleep in unfamiliar places, cold mornings, simple food, shared rooms, no shower. Comfort resilience is trainable too: camp before you commit, walk in rain on purpose. The mind quits before the legs more often than the reverse.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="gear">
+  <section class="kchapter kchapter--aside" id="gear">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/annapurna-thorong-la.jpg" alt="Fresh snow on the climb to the Thorong La, 5,416 m" loading="lazy" decoding="async">
+        <figcaption>Fresh snow on the climb to the Thorong La, 5,416 m. Layers, not bulk.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="mailto:hello@themountaindiaries.com?subject=Gear%20question">Questions about kit? Ask us <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Gear, Honestly</h2>
     <p class="klede">The philosophy. Gear does not climb mountains, but bad gear ends journeys. The goal is a system, not a shopping list: layers that work together, boots that are already friends, and nothing carried that fear packed.</p>
     <div class="kblock">
@@ -1300,9 +1346,18 @@
       <h3 class="kblock-title">What not to buy</h3>
       <p>The second warm jacket fear wants. Cotton anything. New boots for an old trek. Gadgets whose batteries die at −10 °C. The heaviest version of everything: on a porter-supported journey your limit protects someone else’s back, and that matters more than your spare options.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="judgement">
+  <section class="kchapter kchapter--aside" id="judgement">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/tmb-chamonix.jpg" alt="Cloud rolling in over the Alps" loading="lazy" decoding="async">
+        <figcaption>Cloud rolling in over the Alps: the moment the turnaround decision gets made.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="index.html#explore-teaser">Not sure you are ready? Start with the path to the top <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Reading the Mountain</h2>
     <p class="klede">The judgement chapter. Skills and fitness get you to the mountain. Judgement gets you home. Most of it can be borrowed from good leaders while yours grows, but knowing what they are weighing makes you a better teammate.</p>
     <div class="kblock">
@@ -1321,13 +1376,23 @@
       <h3 class="kblock-title">Guides, permits and the system</h3>
       <p>Most regions we travel require licensed guides and permits by law, and the law is right: the system funds trails, tracks trekkers and feeds rescue. Where rules are looser, we hold the same standard anyway. The paperwork is part of the mountain.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="respect">
+  <section class="kchapter kchapter--aside" id="respect">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/ladakh-lamayuru.jpg" alt="Lamayuru monastery, Ladakh" loading="lazy" decoding="async">
+        <figcaption>Lamayuru monastery, Ladakh. Every trail runs through someone’s home.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="about.html">Who we are and how we travel <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Respect</h2>
     <p class="klede">The short chapter that outranks the others. The mountains are somebody’s home, workplace and temple before they are anybody’s adventure.</p>
     <div class="kblock">
       <p>Walk clockwise around stupas, mani walls and chortens. Ask before photographing people; a smile and a gesture is a complete sentence. Dress modestly in villages and monasteries. The porter carrying your bag is a professional at the top of a hard trade: fair loads, fair treatment and genuine thanks are minimums, not virtues. Pack out what you pack in; above the treeline, decades pass before litter does. Buy local where you can: the teahouse dal bhat funds the trail more than any permit. And learn ten words of the local language; they are worth more than any tip.</p>
+    </div>
     </div>
   </section>
 

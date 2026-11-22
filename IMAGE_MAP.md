@@ -16,10 +16,12 @@ a file that is declared available but missing.
 | --- | --- | --- | --- | --- |
 | `annapurna-circuit.jpg` | Annapurna Circuit | explore.html | yes | 1 |
 | `annapurna-poon-hill.jpg` | Page | explore.html, index.html, join.html, know.html | no | 4 |
+| `annapurna-thorong-la.jpg` | Footer | know.html | no | 1 |
 | `band-high-valley.jpg` | Photo band | index.html | no | 1 |
 | `band-khumbu.jpg` | Photo band | index.html | no | 1 |
 | `band-ridgeline.jpg` | Photo band | index.html | no | 1 |
 | `community-chorten.jpg` | Community | index.html | no | 1 |
+| `ebc-khumbu-glacier.jpg` | Footer | know.html | no | 1 |
 | `ebc-trekkers.jpg` | Everest Base Camp Trek | explore.html, index.html | yes | 2 |
 | `everest-three-passes.jpg` | Everest Three Passes | explore.html | yes | 1 |
 | `expedition-mera-peak.jpg` | Mera Peak | explore.html | yes | 1 |
@@ -28,6 +30,7 @@ a file that is declared available but missing.
 | `haute-route-matterhorn.jpg` | Haute Route, Chamonix to Zermatt | explore.html | yes | 1 |
 | `hero-ebc.jpg` | Hero | index.html | no | 1 |
 | `huayhuash-circuit.jpg` | Huayhuash Circuit | explore.html | yes | 1 |
+| `huayhuash-lake.jpg` | Page | explore.html, index.html, join.html, know.html | no | 4 |
 | `join-hero.jpg` | Join page | join.html | no | 1 |
 | `journey-ama-dablam-6812.jpg` | Ama Dablam | explore.html, index.html | yes | 2 |
 | `journey-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | yes | 1 |
@@ -72,7 +75,9 @@ a file that is declared available but missing.
 | `journey-upper-mustang.jpg` | Upper Mustang | explore.html | yes | 1 |
 | `kilimanjaro.jpg` | Kilimanjaro | explore.html | yes | 1 |
 | `ladakh-high-passes.jpg` | Ladakh High Passes | explore.html | yes | 1 |
+| `ladakh-lamayuru.jpg` | Footer | know.html | no | 1 |
 | `manaslu-circuit.jpg` | Manaslu Circuit | explore.html | yes | 1 |
+| `manaslu-pung-gyen.jpg` | Join page | join.html | no | 1 |
 | `route-map-ama-dablam-6812.jpg` | Ama Dablam | explore.html | no | 1 |
 | `route-map-ama-dablam-island.jpg` | Ama Dablam and Island Peak | explore.html | no | 1 |
 | `route-map-ama-dablam-lobuche.jpg` | Ama Dablam and Lobuche East | explore.html | no | 1 |
@@ -105,10 +110,12 @@ a file that is declared available but missing.
 | `route-map-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | no | 1 |
 | `route-map-upper-mustang.jpg` | Upper Mustang | explore.html | no | 1 |
 | `story-ama-dablam.jpg` | The Story | index.html | no | 1 |
+| `tmb-chamonix.jpg` | Footer | know.html | no | 1 |
+| `tmb-trail-runners.jpg` | Footer | know.html | no | 1 |
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-93 photographs.
+100 photographs.
 
 ## Honest placeholders
 
@@ -150,10 +157,8 @@ naming the file it is waiting for, and claims nothing.
 ## On disk, not placed
 
 - `annapurna-mustang.jpg`
-- `annapurna-thorong-la.jpg`
 - `annapurna-valley.jpg`
 - `ebc-gorakshep.jpg`
-- `ebc-khumbu-glacier.jpg`
 - `ebc-tengboche-sign.jpg`
 - `ebc-thukla-sign.jpg`
 - `ebc-valley.jpg`
@@ -161,11 +166,6 @@ naming the file it is waiting for, and claims nothing.
 - `expedition-haute-route.jpg`
 - `expedition-kilimanjaro.jpg`
 - `expedition-torres.jpg`
-- `huayhuash-lake.jpg`
-- `ladakh-lamayuru.jpg`
 - `ladakh-nubra.jpg`
-- `manaslu-pung-gyen.jpg`
 - `manaslu-trail.jpg`
 - `mera-peak-view.jpg`
-- `tmb-chamonix.jpg`
-- `tmb-trail-runners.jpg`

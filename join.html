@@ -711,6 +711,7 @@
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
 
+  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
   /* ─── PATH TO THE TOP ─── */
   .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
   .rung {
@@ -1103,6 +1104,15 @@
   .join-points { list-style: none; margin-top: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
   .join-points li { display: flex; gap: var(--s-3); font-size: var(--t-base); color: var(--ink-2); }
   .join-points li::before { content: '\2726'; color: var(--sienna); }
+  .next-steps { margin-top: var(--s-6); padding: var(--s-5); background: var(--glacier-soft); border: 1px solid var(--glacier-line); border-radius: var(--radius-lg); }
+  .next-steps-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); color: var(--ink); margin-bottom: var(--s-3); }
+  .next-steps ol { margin: 0; padding-left: 1.2em; }
+  .next-steps li { color: var(--ink-2); line-height: 1.6; }
+  .next-steps li + li { margin-top: var(--s-2); }
+  .next-steps strong { color: var(--ink); }
+  .join-photo { margin: var(--s-5) 0 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--card); }
+  .join-photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .join-photo figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); color: var(--ink-3); }
   .check-row { display: flex; align-items: flex-start; gap: var(--s-3); margin-bottom: var(--s-4); }
   .check-row input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; accent-color: var(--sienna); }
   .check-row label {
@@ -1160,6 +1170,20 @@
           <li>Expedition groups for Nepal, the Alps, Patagonia and Kilimanjaro</li>
           <li>Shared stories from people who have walked the route before you</li>
         </ul>
+
+        <div class="next-steps">
+          <p class="next-steps-head">What happens next</p>
+          <ol>
+            <li><strong>Straight away.</strong> You get the WhatsApp community invite on the next screen.</li>
+            <li><strong>Within days.</strong> You see the next local hike date and who is going.</li>
+            <li><strong>When you are ready.</strong> Tell us which journey calls you, and we will let you know when a group forms.</li>
+          </ol>
+        </div>
+
+        <figure class="join-photo">
+          <img src="assets/images/manaslu-pung-gyen.jpg" alt="A trekker looking up at the Manaslu massif from Pung Gyen" loading="lazy" decoding="async">
+          <figcaption>Pung Gyen, on the Manaslu Circuit. It starts with a weekend walk.</figcaption>
+        </figure>
       </div>
 
       <div class="join-panel">

@@ -278,7 +278,8 @@ CTA_BAND = '''<!-- CTA BAND -->
 
 '''
 
-HOME_CSS = '''  /* ─── PATH TO THE TOP ─── */
+HOME_CSS = '''  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
+  /* ─── PATH TO THE TOP ─── */
   .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
   .rung {
     display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
@@ -1188,6 +1189,20 @@ PAGE = '''<!DOCTYPE html>
 
 ''' + BODY + '''
 
+
+<!-- CTA BAND -->
+<section class="cta-band cta-band--explore">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner">
+    <p class="section-kicker cta-kicker">Not sure where to start?</p>
+    <h2 class="cta-title">Tell us what you have done, and we will tell you what is next.</h2>
+    <p class="cta-lede">Join the community and mention your experience. We will point you at the right first trek, first summit or next big step, and let you know when a group forms.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="index.html#explore-teaser">See the path to the top</a>
+    </div>
+  </div>
+</section>
 ''' + FOOTER_X + '''
 
 <script>
