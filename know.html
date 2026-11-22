@@ -711,6 +711,89 @@
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
 
+  /* ─── PATH TO THE TOP ─── */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
+  .rung {
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rung:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .rung:nth-child(2) { margin-top: 24px; } .rung:nth-child(3) { margin-top: 48px; } .rung:nth-child(4) { margin-top: 72px; }
+  .rung-media { position: relative; aspect-ratio: 4 / 3; background: var(--placeholder); overflow: hidden; }
+  .rung-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .rung:hover .rung-img { transform: scale(1.05); }
+  .rung-step {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--sienna); color: #fff; border-radius: 999px; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rung-body { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .rung-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 800; letter-spacing: -0.01em; }
+  .rung-name { font-size: var(--t-sm); font-weight: 600; color: var(--sienna); margin-top: 2px; }
+  .rung-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); margin-top: var(--s-2); }
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+    margin-top: calc(var(--s-7) + 24px); padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule-firm); border-bottom: 1px solid var(--rule-firm);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--font-hero); font-weight: 900; font-size: clamp(34px, 4.6vw, 54px); line-height: 1; color: var(--ink); }
+  .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .teaser-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-6); }
+
+  /* ─── KNOW TEASER ─── */
+  .know-tease { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+  .chapter-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .chapter-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: var(--s-5); border-radius: var(--radius-lg);
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line); color: var(--ink);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .chapter-card:hover { transform: translateY(-3px); background: #fff; }
+  .chapter-card svg { width: 30px; height: 30px; fill: none; stroke: var(--sienna); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 4px; }
+  .chapter-card-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); }
+  .chapter-card-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .tease-news { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .tease-news-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); margin-bottom: var(--s-3); }
+  .tease-news-item { display: block; text-decoration: none; padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .tease-news-item:last-of-type { border-bottom: none; margin-bottom: var(--s-3); }
+  .tease-news-meta { display: block; font-size: 12px; color: var(--ink-3); letter-spacing: 0.03em; text-transform: uppercase; }
+  .tease-news-title { display: block; color: var(--ink); font-weight: 600; line-height: 1.4; margin-top: 2px; }
+  .tease-news-item:hover .tease-news-title { color: var(--sienna); }
+
+  /* ─── CLOSING CALL TO ACTION ─── */
+  .cta-band { position: relative; overflow: hidden; background: var(--ink); }
+  .cta-band-media {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,27,0.82) 0%, rgba(20,24,27,0.55) 55%, rgba(20,24,27,0.2) 100%),
+                url('assets/images/annapurna-poon-hill.jpg') center 30% / cover no-repeat;
+  }
+  .cta-band-inner { position: relative; z-index: 2; max-width: var(--wrap); margin: 0 auto; padding: clamp(72px, 10vw, 128px) var(--s-5); }
+  .cta-kicker { color: var(--sienna-lift); }
+  .cta-title { font-family: var(--font-hero); font-weight: 900; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; max-width: 18ch; }
+  .cta-lede { color: var(--footer-text); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.6; max-width: 52ch; margin-top: var(--s-4); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.55); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 960px) {
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+    .rung:nth-child(n) { margin-top: 0; }
+    .know-tease { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ladder, .chapter-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-5); }
+  }
+
   /* ─── DISPATCHES ─── */
 
   .badge-summit     { color: var(--sienna-dark); background: var(--sienna-soft);  border-color: var(--sienna-line); }
@@ -1324,25 +1407,25 @@
 // Categories carry a badge except In Memoriam, which stays muted on purpose:
 // a death is not a highlight, and colour would make it one.
 const NEWS = [
-  { date: '2026-10-17', category: 'Summit',
-    title: 'Summits Begin on Ama Dablam, Late Fall’s Most Popular Peak',
-    source: 'ExplorersWeb',
-    url: 'https://explorersweb.com/first-summits-on-ama-dablam-late-falls-most-popular-peak/',
+  { date: "2026-10-17", category: "Summit",
+    title: "Summits Begin on Ama Dablam, Late Fall’s Most Popular Peak",
+    source: "ExplorersWeb",
+    url: "https://explorersweb.com/first-summits-on-ama-dablam-late-falls-most-popular-peak/",
     image: null },
-  { date: '2026-10-08', category: 'Expedition',
-    title: '788 climbers obtain permits to scale 31 peaks this autumn',
-    source: 'Onlinekhabar',
-    url: 'https://english.onlinekhabar.com/788-climbers-obtain-permits-to-scale-31-peaks-this-autumn.html',
+  { date: "2026-10-08", category: "Expedition",
+    title: "788 climbers obtain permits to scale 31 peaks this autumn",
+    source: "Onlinekhabar",
+    url: "https://english.onlinekhabar.com/788-climbers-obtain-permits-to-scale-31-peaks-this-autumn.html",
     image: null },
-  { date: '2026-09-22', category: 'Expedition',
-    title: 'The summit will wait: weather closes Manaslu season, Dhaulagiri climbers retreat',
-    source: 'The Himalayan Times',
-    url: 'https://thehimalayantimes.com/nepal/the-summit-will-wait-weather-closes-manaslu-season-dhaulagiri-climbers-retreat',
+  { date: "2026-09-22", category: "Expedition",
+    title: "The summit will wait: weather closes Manaslu season, Dhaulagiri climbers retreat",
+    source: "The Himalayan Times",
+    url: "https://thehimalayantimes.com/nepal/the-summit-will-wait-weather-closes-manaslu-season-dhaulagiri-climbers-retreat",
     image: null },
-  { date: '2026-03-22', category: 'Event',
-    title: 'Immigration eases rules for solo trekkers in restricted areas',
-    source: 'The Kathmandu Post',
-    url: 'https://kathmandupost.com/national/2026/03/22/immigration-eases-rules-for-solo-trekkers-in-restricted-areas',
+  { date: "2026-03-22", category: "Event",
+    title: "Immigration eases rules for solo trekkers in restricted areas",
+    source: "The Kathmandu Post",
+    url: "https://kathmandupost.com/national/2026/03/22/immigration-eases-rules-for-solo-trekkers-in-restricted-areas",
     image: null },
 ];
 

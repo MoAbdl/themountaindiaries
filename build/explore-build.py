@@ -119,8 +119,18 @@ s = s[:_soc.start()] + (('\n        <div class="footer-social">\n' + ''.join(_ke
                          if _keep else '') + s[_soc.end():]
 
 # 1b. retire the two catalogue sections, leaving one teaser in their place
-FEATURED = ['ama-dablam-6812', 'ebc-trek', 'mera-peak-6476']
+FEATURED = ['ebc-trek', 'island-peak-6189', 'ama-dablam-6812', 'manaslu-8163']
 BY_SLUG = {r['slug']: r for r in J}
+from news import NEWS
+
+# The path to the top: four rungs, each a real journey, so the homepage
+# answers "where do I start?" before anyone has to ask it.
+LADDER = [
+    ('ebc-trek', 'Step 1', 'Your first big trek', 'Two weeks in the Khumbu, no climbing skills needed.'),
+    ('island-peak-6189', 'Step 2', 'Your first summit', 'Crampons, a fixed line and 6,189 m under your boots.'),
+    ('ama-dablam-6812', 'Step 3', 'Real climbing', 'Rock, ice and exposure on the Himalaya’s most beautiful peak.'),
+    ('manaslu-8163', 'Step 4', 'An eight-thousander', 'The death zone, done patiently, with the right team.'),
+]
 
 
 def jcard(r, href):
@@ -146,42 +156,225 @@ def jcard(r, href):
         </a>''' % (href, media, r['name'], ''.join(bits)))
 
 
+def rung(slug, step, title, line):
+    r = BY_SLUG[slug]
+    img = ('<img class="rung-img" src="assets/images/%s" alt="%s" loading="lazy" decoding="async">'
+           % (r['card'].replace('.jpg', '-800.jpg'), r['name'])) if r.get('card') else ''
+    return '''        <a class="rung" href="explore.html#journey/%s">
+          <div class="rung-media">%s<span class="rung-step">%s</span></div>
+          <div class="rung-body">
+            <p class="rung-title">%s</p>
+            <p class="rung-name">%s &middot; %s m</p>
+            <p class="rung-line">%s</p>
+          </div>
+        </a>''' % (slug, img, step, title, r['name'], format(r['elevation_m'], ','), line)
+
+
+_countries = set()
+for _r in J:
+    for _c in re.split(r',\s*|\s+and\s+', _r['country']):
+        _countries.add(_c)
+STATS = [
+    (str(len(J)), 'journeys'),
+    (str(sum(1 for r in J if r['category'] == '8000ers')), 'eight-thousanders'),
+    (str(len(_countries)), 'countries'),
+    ('4', 'continents'),
+]
+
 TEASER = '''<!-- EXPLORE TEASER -->
 <section class="section section--alt" id="explore-teaser">
   <div class="wrap">
     <div class="section-bar">
       <div class="section-head" style="margin-bottom:var(--s-5)">
         <p class="section-kicker">Expeditions and trekking</p>
-        <h2 class="section-title">Explore</h2>
-        <p class="section-lede">52 journeys, from a first 6,000er to the eight thousand metre peaks.</p>
+        <h2 class="section-title">Your path to the top</h2>
+        <p class="section-lede">Every climber started somewhere. Here is how most of our community moves up, one season at a time.</p>
       </div>
     </div>
 
-    <div class="card-grid">
+    <div class="ladder reveal">
 %s
     </div>
 
-    <p class="teaser-more">
-      <a class="link-action" href="explore.html">View all journeys <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="stats reveal">
+%s
+    </div>
+
+    <div class="teaser-actions">
+      <a class="btn btn-primary" href="explore.html">Explore all %d journeys <span aria-hidden="true">&rarr;</span></a>
+      <a class="link-action" href="know.html#training">How do I know I am ready? <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
-''' % '\n'.join(jcard(BY_SLUG[k], 'explore.html#journey/' + k) for k in FEATURED)
+''' % ('\n'.join(rung(*x) for x in LADDER),
+       '\n'.join('      <div class="stat"><p class="stat-num">%s</p><p class="stat-label">%s</p></div>' % x for x in STATS),
+       len(J))
 
 s, _ = cut(s, '<!-- TRAILS -->', '<!-- BAND 2 -->', 'trails section')
+
+CHAPTERS_TEASE = [
+    ('altitude', 'Altitude &amp; the Body', 'What thin air does, and the three rules that keep you safe.',
+     '<path d="M3 20h18L14 6l-3 5-2-3z"/>'),
+    ('training', 'Training &amp; Preparation', 'Build the legs and lungs for long days with a pack on.',
+     '<path d="M4 12h3m10 0h3M7 8v8M17 8v8M7 12h10"/>'),
+    ('gear', 'Gear, Honestly', 'What you actually need, and what fear makes you pack.',
+     '<path d="M8 4h8l2 5v11H6V9z"/><path d="M9 4v3h6V4"/>'),
+    ('judgement', 'Reading the Mountain', 'Weather, turnaround times and the skill of saying no.',
+     '<path d="M4 15a5 5 0 0 1 4-8 6 6 0 0 1 11 3 4 4 0 0 1-1 8H7a3 3 0 0 1-3-3z"/>'),
+]
+
+
+def news_item(n):
+    import datetime
+    d = datetime.date.fromisoformat(n['date']).strftime('%-d %b %Y')
+    return '''          <a class="tease-news-item" href="%s" target="_blank" rel="noopener">
+            <span class="tease-news-meta">%s &middot; %s</span>
+            <span class="tease-news-title">%s</span>
+          </a>''' % (n['url'], n['source'], d, n['title'])
+
+
 KNOW_TEASER = '''<!-- KNOW THE MOUNTAIN TEASER -->
 <section class="section" id="know-teaser">
   <div class="wrap">
-    <div class="section-head" style="margin-bottom:var(--s-5)">
+    <div class="section-head" style="margin-bottom:var(--s-6)">
       <p class="section-kicker">The knowledge base</p>
       <h2 class="section-title">Know the Mountain</h2>
-      <p class="section-lede">Altitude, training, gear and judgement: the knowledge base.</p>
+      <p class="section-lede">Everything we wish someone had told us before our first night above 4,000 m.</p>
     </div>
-    <p class="teaser-more">
-      <a class="link-action" href="know.html">Read the guides <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="know-tease reveal">
+      <div class="chapter-cards">
+%s
+      </div>
+      <aside class="tease-news">
+        <p class="tease-news-head">Latest from the mountains</p>
+%s
+        <a class="link-action" href="know.html#news">All mountain news <span aria-hidden="true">&rarr;</span></a>
+      </aside>
+    </div>
   </div>
 </section>
+''' % ('\n'.join('''        <a class="chapter-card" href="know.html#%s">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">%s</svg>
+          <span class="chapter-card-title">%s</span>
+          <span class="chapter-card-line">%s</span>
+        </a>''' % (cid, icon, t, line) for cid, t, line, icon in CHAPTERS_TEASE),
+       '\n'.join(news_item(n) for n in NEWS[:3]))
+
+# The closing call to action, before the footer: the one thing every visitor
+# should be offered before they leave.
+CTA_BAND = '''<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner reveal">
+    <p class="section-kicker cta-kicker">Walk with people</p>
+    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
+    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="explore.html">Find your journey</a>
+    </div>
+  </div>
+</section>
+
+'''
+
+HOME_CSS = '''  /* ─── PATH TO THE TOP ─── */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
+  .rung {
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rung:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .rung:nth-child(2) { margin-top: 24px; } .rung:nth-child(3) { margin-top: 48px; } .rung:nth-child(4) { margin-top: 72px; }
+  .rung-media { position: relative; aspect-ratio: 4 / 3; background: var(--placeholder); overflow: hidden; }
+  .rung-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .rung:hover .rung-img { transform: scale(1.05); }
+  .rung-step {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--sienna); color: #fff; border-radius: 999px; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rung-body { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .rung-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 800; letter-spacing: -0.01em; }
+  .rung-name { font-size: var(--t-sm); font-weight: 600; color: var(--sienna); margin-top: 2px; }
+  .rung-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); margin-top: var(--s-2); }
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+    margin-top: calc(var(--s-7) + 24px); padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule-firm); border-bottom: 1px solid var(--rule-firm);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--font-hero); font-weight: 900; font-size: clamp(34px, 4.6vw, 54px); line-height: 1; color: var(--ink); }
+  .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .teaser-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-6); }
+
+  /* ─── KNOW TEASER ─── */
+  .know-tease { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+  .chapter-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .chapter-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: var(--s-5); border-radius: var(--radius-lg);
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line); color: var(--ink);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .chapter-card:hover { transform: translateY(-3px); background: #fff; }
+  .chapter-card svg { width: 30px; height: 30px; fill: none; stroke: var(--sienna); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 4px; }
+  .chapter-card-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); }
+  .chapter-card-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .tease-news { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .tease-news-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); margin-bottom: var(--s-3); }
+  .tease-news-item { display: block; text-decoration: none; padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .tease-news-item:last-of-type { border-bottom: none; margin-bottom: var(--s-3); }
+  .tease-news-meta { display: block; font-size: 12px; color: var(--ink-3); letter-spacing: 0.03em; text-transform: uppercase; }
+  .tease-news-title { display: block; color: var(--ink); font-weight: 600; line-height: 1.4; margin-top: 2px; }
+  .tease-news-item:hover .tease-news-title { color: var(--sienna); }
+
+  /* ─── CLOSING CALL TO ACTION ─── */
+  .cta-band { position: relative; overflow: hidden; background: var(--ink); }
+  .cta-band-media {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,27,0.82) 0%, rgba(20,24,27,0.55) 55%, rgba(20,24,27,0.2) 100%),
+                url('assets/images/annapurna-poon-hill.jpg') center 30% / cover no-repeat;
+  }
+  .cta-band-inner { position: relative; z-index: 2; max-width: var(--wrap); margin: 0 auto; padding: clamp(72px, 10vw, 128px) var(--s-5); }
+  .cta-kicker { color: var(--sienna-lift); }
+  .cta-title { font-family: var(--font-hero); font-weight: 900; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; max-width: 18ch; }
+  .cta-lede { color: var(--footer-text); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.6; max-width: 52ch; margin-top: var(--s-4); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.55); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 960px) {
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+    .rung:nth-child(n) { margin-top: 0; }
+    .know-tease { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ladder, .chapter-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-5); }
+  }
+
+'''
+
+REVEAL_JS = '''
+// ═══ SCROLL REVEAL ═══
+// Fades sections in as they arrive. Without IntersectionObserver, or with
+// reduced motion, everything is simply shown.
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
 '''
 
 s = sub(s, '<!-- BAND 2 -->', TEASER + '\n' + KNOW_TEASER + '\n<!-- BAND 2 -->', 'teaser in')
@@ -291,6 +484,10 @@ JCARD_CSS = '''  /* ─── JOURNEY CARD ───
 
 '''
 s = sub(s, '  /* ─── DISPATCHES ─── */', JCARD_CSS + '  /* ─── DISPATCHES ─── */', 'jcard css')
+s = sub(s, '  /* ─── DISPATCHES ─── */', HOME_CSS + '  /* ─── DISPATCHES ─── */', 'home css')
+s = sub(s, '<footer class="site-footer">', CTA_BAND + '<footer class="site-footer">', 'cta band')
+_i = s.rindex('</script>')
+s = s[:_i] + REVEAL_JS + s[_i:]
 
 # 1g. CSS for components the retired catalogue owned and nothing else uses.
 #     The gallery rules stay: they are the lightbox's partner, and the lightbox

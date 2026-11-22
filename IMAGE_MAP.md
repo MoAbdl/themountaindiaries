@@ -15,13 +15,14 @@ a file that is declared available but missing.
 | File | Slot | Page | 800px derivative | Refs |
 | --- | --- | --- | --- | --- |
 | `annapurna-circuit.jpg` | Annapurna Circuit | explore.html | yes | 1 |
+| `annapurna-poon-hill.jpg` | Page | explore.html, index.html, join.html, know.html | no | 4 |
 | `band-high-valley.jpg` | Photo band | index.html | no | 1 |
 | `band-khumbu.jpg` | Photo band | index.html | no | 1 |
 | `band-ridgeline.jpg` | Photo band | index.html | no | 1 |
 | `community-chorten.jpg` | Community | index.html | no | 1 |
 | `ebc-trekkers.jpg` | Everest Base Camp Trek | explore.html, index.html | yes | 2 |
 | `everest-three-passes.jpg` | Everest Three Passes | explore.html | yes | 1 |
-| `expedition-mera-peak.jpg` | Mera Peak | explore.html, index.html | yes | 2 |
+| `expedition-mera-peak.jpg` | Mera Peak | explore.html | yes | 1 |
 | `explore-header.jpg` | Explore header | explore.html | no | 1 |
 | `footer-ridge.jpg` | Footer | explore.html, index.html, join.html, know.html | no | 4 |
 | `haute-route-matterhorn.jpg` | Haute Route, Chamonix to Zermatt | explore.html | yes | 1 |
@@ -47,7 +48,7 @@ a file that is declared available but missing.
 | `journey-gasherbrum-ii-8034.jpg` | Gasherbrum II | explore.html | yes | 1 |
 | `journey-gokyo-lakes.jpg` | Gokyo Lakes | explore.html | yes | 1 |
 | `journey-himlung-7126.jpg` | Himlung Himal | explore.html | yes | 1 |
-| `journey-island-peak-6189.jpg` | Island Peak | explore.html | yes | 1 |
+| `journey-island-peak-6189.jpg` | Island Peak | explore.html, index.html | yes | 2 |
 | `journey-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | yes | 1 |
 | `journey-k2-8611.jpg` | K2 | explore.html | yes | 1 |
 | `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | yes | 1 |
@@ -56,7 +57,7 @@ a file that is declared available but missing.
 | `journey-lobuche-6119.jpg` | Lobuche East | explore.html | yes | 1 |
 | `journey-lobuche-ebc.jpg` | Lobuche East and Everest Base Camp | explore.html | yes | 1 |
 | `journey-makalu-8485.jpg` | Makalu | explore.html | yes | 1 |
-| `journey-manaslu-8163.jpg` | Manaslu | explore.html | yes | 1 |
+| `journey-manaslu-8163.jpg` | Manaslu | explore.html, index.html | yes | 2 |
 | `journey-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | yes | 1 |
 | `journey-mardi-himal.jpg` | Mardi Himal | explore.html | yes | 1 |
 | `journey-nanga-parbat-8125.jpg` | Nanga Parbat | explore.html | yes | 1 |
@@ -107,7 +108,7 @@ a file that is declared available but missing.
 | `torres-del-paine.jpg` | Torres del Paine Circuit | explore.html | yes | 1 |
 | `tour-du-mont-blanc.jpg` | Tour du Mont Blanc | explore.html | yes | 1 |
 
-92 photographs.
+93 photographs.
 
 ## Honest placeholders
 
@@ -149,7 +150,6 @@ naming the file it is waiting for, and claims nothing.
 ## On disk, not placed
 
 - `annapurna-mustang.jpg`
-- `annapurna-poon-hill.jpg`
 - `annapurna-thorong-la.jpg`
 - `annapurna-valley.jpg`
 - `ebc-gorakshep.jpg`

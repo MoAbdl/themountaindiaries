@@ -46,7 +46,7 @@ SUBJECTS = [
     (re.compile(r"\{ key: '[a-z0-9-]+', slug: '([a-z0-9-]+)'"), 'expedition'),
     # A journey owns its photograph wherever it appears: the Explore teaser on
     # index, its catalogue card, and its static catalogue entry are one subject.
-    (re.compile(r'class="jcard" href="(?:explore\.html)?#journey/([a-z0-9-]+)"'), 'journey'),
+    (re.compile(r'class="(?:jcard|rung)" href="(?:explore\.html)?#journey/([a-z0-9-]+)"'), 'journey'),
     (re.compile(r'<section class="journey-static" id="journey/([a-z0-9-]+)"'), 'journey'),
 ]
 # a subject label is only valid until the data objects end

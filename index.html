@@ -710,6 +710,89 @@
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
 
+  /* ─── PATH TO THE TOP ─── */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
+  .rung {
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rung:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .rung:nth-child(2) { margin-top: 24px; } .rung:nth-child(3) { margin-top: 48px; } .rung:nth-child(4) { margin-top: 72px; }
+  .rung-media { position: relative; aspect-ratio: 4 / 3; background: var(--placeholder); overflow: hidden; }
+  .rung-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .rung:hover .rung-img { transform: scale(1.05); }
+  .rung-step {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--sienna); color: #fff; border-radius: 999px; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rung-body { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .rung-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 800; letter-spacing: -0.01em; }
+  .rung-name { font-size: var(--t-sm); font-weight: 600; color: var(--sienna); margin-top: 2px; }
+  .rung-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); margin-top: var(--s-2); }
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+    margin-top: calc(var(--s-7) + 24px); padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule-firm); border-bottom: 1px solid var(--rule-firm);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--font-hero); font-weight: 900; font-size: clamp(34px, 4.6vw, 54px); line-height: 1; color: var(--ink); }
+  .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .teaser-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-6); }
+
+  /* ─── KNOW TEASER ─── */
+  .know-tease { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+  .chapter-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .chapter-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: var(--s-5); border-radius: var(--radius-lg);
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line); color: var(--ink);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .chapter-card:hover { transform: translateY(-3px); background: #fff; }
+  .chapter-card svg { width: 30px; height: 30px; fill: none; stroke: var(--sienna); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 4px; }
+  .chapter-card-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); }
+  .chapter-card-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .tease-news { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .tease-news-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); margin-bottom: var(--s-3); }
+  .tease-news-item { display: block; text-decoration: none; padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .tease-news-item:last-of-type { border-bottom: none; margin-bottom: var(--s-3); }
+  .tease-news-meta { display: block; font-size: 12px; color: var(--ink-3); letter-spacing: 0.03em; text-transform: uppercase; }
+  .tease-news-title { display: block; color: var(--ink); font-weight: 600; line-height: 1.4; margin-top: 2px; }
+  .tease-news-item:hover .tease-news-title { color: var(--sienna); }
+
+  /* ─── CLOSING CALL TO ACTION ─── */
+  .cta-band { position: relative; overflow: hidden; background: var(--ink); }
+  .cta-band-media {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,27,0.82) 0%, rgba(20,24,27,0.55) 55%, rgba(20,24,27,0.2) 100%),
+                url('assets/images/annapurna-poon-hill.jpg') center 30% / cover no-repeat;
+  }
+  .cta-band-inner { position: relative; z-index: 2; max-width: var(--wrap); margin: 0 auto; padding: clamp(72px, 10vw, 128px) var(--s-5); }
+  .cta-kicker { color: var(--sienna-lift); }
+  .cta-title { font-family: var(--font-hero); font-weight: 900; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; max-width: 18ch; }
+  .cta-lede { color: var(--footer-text); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.6; max-width: 52ch; margin-top: var(--s-4); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.55); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 960px) {
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+    .rung:nth-child(n) { margin-top: 0; }
+    .know-tease { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ladder, .chapter-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-5); }
+  }
+
   /* ─── DISPATCHES ─── */
 
   .badge-summit     { color: var(--sienna-dark); background: var(--sienna-soft);  border-color: var(--sienna-line); }
@@ -1113,52 +1196,108 @@
     <div class="section-bar">
       <div class="section-head" style="margin-bottom:var(--s-5)">
         <p class="section-kicker">Expeditions and trekking</p>
-        <h2 class="section-title">Explore</h2>
-        <p class="section-lede">52 journeys, from a first 6,000er to the eight thousand metre peaks.</p>
+        <h2 class="section-title">Your path to the top</h2>
+        <p class="section-lede">Every climber started somewhere. Here is how most of our community moves up, one season at a time.</p>
       </div>
     </div>
 
-    <div class="card-grid">
-        <a class="jcard" href="explore.html#journey/ama-dablam-6812">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-ama-dablam-6812-800.jpg" alt="Ama Dablam" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Ama Dablam</h3>
-            <p class="jcard-meta"><span class="jcard-elev">6,812 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+    <div class="ladder reveal">
+        <a class="rung" href="explore.html#journey/ebc-trek">
+          <div class="rung-media"><img class="rung-img" src="assets/images/ebc-trekkers-800.jpg" alt="Everest Base Camp Trek" loading="lazy" decoding="async"><span class="rung-step">Step 1</span></div>
+          <div class="rung-body">
+            <p class="rung-title">Your first big trek</p>
+            <p class="rung-name">Everest Base Camp Trek &middot; 5,545 m</p>
+            <p class="rung-line">Two weeks in the Khumbu, no climbing skills needed.</p>
           </div>
         </a>
-        <a class="jcard" href="explore.html#journey/ebc-trek">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/ebc-trekkers-800.jpg" alt="Everest Base Camp Trek" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Everest Base Camp Trek</h3>
-            <p class="jcard-meta"><span class="jcard-elev">5,545 m</span><span class="jcard-where">Everest &middot; Nepal</span></p>
+        <a class="rung" href="explore.html#journey/island-peak-6189">
+          <div class="rung-media"><img class="rung-img" src="assets/images/journey-island-peak-6189-800.jpg" alt="Island Peak" loading="lazy" decoding="async"><span class="rung-step">Step 2</span></div>
+          <div class="rung-body">
+            <p class="rung-title">Your first summit</p>
+            <p class="rung-name">Island Peak &middot; 6,189 m</p>
+            <p class="rung-line">Crampons, a fixed line and 6,189 m under your boots.</p>
           </div>
         </a>
-        <a class="jcard" href="explore.html#journey/mera-peak-6476">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/expedition-mera-peak-800.jpg" alt="Mera Peak" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Mera Peak</h3>
-            <p class="jcard-meta"><span class="jcard-elev">6,476 m</span><span class="jcard-where">Hinku &middot; Nepal</span></p>
+        <a class="rung" href="explore.html#journey/ama-dablam-6812">
+          <div class="rung-media"><img class="rung-img" src="assets/images/journey-ama-dablam-6812-800.jpg" alt="Ama Dablam" loading="lazy" decoding="async"><span class="rung-step">Step 3</span></div>
+          <div class="rung-body">
+            <p class="rung-title">Real climbing</p>
+            <p class="rung-name">Ama Dablam &middot; 6,812 m</p>
+            <p class="rung-line">Rock, ice and exposure on the Himalaya’s most beautiful peak.</p>
+          </div>
+        </a>
+        <a class="rung" href="explore.html#journey/manaslu-8163">
+          <div class="rung-media"><img class="rung-img" src="assets/images/journey-manaslu-8163-800.jpg" alt="Manaslu" loading="lazy" decoding="async"><span class="rung-step">Step 4</span></div>
+          <div class="rung-body">
+            <p class="rung-title">An eight-thousander</p>
+            <p class="rung-name">Manaslu &middot; 8,163 m</p>
+            <p class="rung-line">The death zone, done patiently, with the right team.</p>
           </div>
         </a>
     </div>
 
-    <p class="teaser-more">
-      <a class="link-action" href="explore.html">View all journeys <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="stats reveal">
+      <div class="stat"><p class="stat-num">52</p><p class="stat-label">journeys</p></div>
+      <div class="stat"><p class="stat-num">14</p><p class="stat-label">eight-thousanders</p></div>
+      <div class="stat"><p class="stat-num">10</p><p class="stat-label">countries</p></div>
+      <div class="stat"><p class="stat-num">4</p><p class="stat-label">continents</p></div>
+    </div>
+
+    <div class="teaser-actions">
+      <a class="btn btn-primary" href="explore.html">Explore all 52 journeys <span aria-hidden="true">&rarr;</span></a>
+      <a class="link-action" href="know.html#training">How do I know I am ready? <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
 
 <!-- KNOW THE MOUNTAIN TEASER -->
 <section class="section" id="know-teaser">
   <div class="wrap">
-    <div class="section-head" style="margin-bottom:var(--s-5)">
+    <div class="section-head" style="margin-bottom:var(--s-6)">
       <p class="section-kicker">The knowledge base</p>
       <h2 class="section-title">Know the Mountain</h2>
-      <p class="section-lede">Altitude, training, gear and judgement: the knowledge base.</p>
+      <p class="section-lede">Everything we wish someone had told us before our first night above 4,000 m.</p>
     </div>
-    <p class="teaser-more">
-      <a class="link-action" href="know.html">Read the guides <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="know-tease reveal">
+      <div class="chapter-cards">
+        <a class="chapter-card" href="know.html#altitude">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 20h18L14 6l-3 5-2-3z"/></svg>
+          <span class="chapter-card-title">Altitude &amp; the Body</span>
+          <span class="chapter-card-line">What thin air does, and the three rules that keep you safe.</span>
+        </a>
+        <a class="chapter-card" href="know.html#training">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h3m10 0h3M7 8v8M17 8v8M7 12h10"/></svg>
+          <span class="chapter-card-title">Training &amp; Preparation</span>
+          <span class="chapter-card-line">Build the legs and lungs for long days with a pack on.</span>
+        </a>
+        <a class="chapter-card" href="know.html#gear">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 4h8l2 5v11H6V9z"/><path d="M9 4v3h6V4"/></svg>
+          <span class="chapter-card-title">Gear, Honestly</span>
+          <span class="chapter-card-line">What you actually need, and what fear makes you pack.</span>
+        </a>
+        <a class="chapter-card" href="know.html#judgement">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 15a5 5 0 0 1 4-8 6 6 0 0 1 11 3 4 4 0 0 1-1 8H7a3 3 0 0 1-3-3z"/></svg>
+          <span class="chapter-card-title">Reading the Mountain</span>
+          <span class="chapter-card-line">Weather, turnaround times and the skill of saying no.</span>
+        </a>
+      </div>
+      <aside class="tease-news">
+        <p class="tease-news-head">Latest from the mountains</p>
+          <a class="tease-news-item" href="https://explorersweb.com/first-summits-on-ama-dablam-late-falls-most-popular-peak/" target="_blank" rel="noopener">
+            <span class="tease-news-meta">ExplorersWeb &middot; 17 Oct 2026</span>
+            <span class="tease-news-title">Summits Begin on Ama Dablam, Late Fall’s Most Popular Peak</span>
+          </a>
+          <a class="tease-news-item" href="https://english.onlinekhabar.com/788-climbers-obtain-permits-to-scale-31-peaks-this-autumn.html" target="_blank" rel="noopener">
+            <span class="tease-news-meta">Onlinekhabar &middot; 8 Oct 2026</span>
+            <span class="tease-news-title">788 climbers obtain permits to scale 31 peaks this autumn</span>
+          </a>
+          <a class="tease-news-item" href="https://thehimalayantimes.com/nepal/the-summit-will-wait-weather-closes-manaslu-season-dhaulagiri-climbers-retreat" target="_blank" rel="noopener">
+            <span class="tease-news-meta">The Himalayan Times &middot; 22 Sep 2026</span>
+            <span class="tease-news-title">The summit will wait: weather closes Manaslu season, Dhaulagiri climbers retreat</span>
+          </a>
+        <a class="link-action" href="know.html#news">All mountain news <span aria-hidden="true">&rarr;</span></a>
+      </aside>
+    </div>
   </div>
 </section>
 
@@ -1353,6 +1492,20 @@
 </section>
 
 <!-- FOOTER -->
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner reveal">
+    <p class="section-kicker cta-kicker">Walk with people</p>
+    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
+    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="explore.html">Find your journey</a>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="footer-ridge" aria-hidden="true"></div>
   <div class="footer-veil" aria-hidden="true"></div>
@@ -1643,6 +1796,18 @@ function toggleLike(btn) {
   count.textContent = parseInt(count.textContent, 10) + (liked ? -1 : 1);
   btn.classList.toggle('liked');
 }
+
+// ═══ SCROLL REVEAL ═══
+// Fades sections in as they arrive. Without IntersectionObserver, or with
+// reduced motion, everything is simply shown.
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
 </script>
 </body>
 </html>
