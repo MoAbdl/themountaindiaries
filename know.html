@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Know the Mountain &middot; The Mountain Diaries</title>
 <meta name="description" content="The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.">
+<link rel="canonical" href="https://themountaindiaries.com/know.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Mountain Diaries">
+<meta property="og:title" content="Know the Mountain">
+<meta property="og:description" content="The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.">
+<meta property="og:url" content="https://themountaindiaries.com/know.html">
+<meta property="og:image" content="https://themountaindiaries.com/assets/images/hero-ebc.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2E3438">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -646,6 +655,34 @@
      Scroll-snap does the work, so a swipe or a trackpad drag scrolls the row
      with JavaScript disabled. The arrow buttons are an enhancement and are
      only revealed once the js class is present. */
+  /* ─── FULL-BLEED PHOTO BANDS ─── */
+  .band { position: relative; height: 40vh; min-height: 260px; overflow: hidden; }
+  .band-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--s-5);
+    background: rgba(28,34,38,0.28);
+  }
+  .band-line {
+    font-family: var(--font-head);
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 600; line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #fff; text-align: center; max-width: 24ch;
+    text-shadow: 0 2px 18px rgba(20,24,27,0.35);
+  }
+
+  /* ─── CONSENT CHECKBOX ─── */
+  #share-form .check-row { display: flex; align-items: flex-start; gap: var(--s-3); margin-bottom: var(--s-4); }
+  #share-form .check-row input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; accent-color: var(--sienna); }
+  #share-form .check-row label {
+    font-family: var(--font-body); font-size: var(--t-base);
+    letter-spacing: 0; text-transform: none; font-weight: 400;
+    color: var(--ink-2); margin: 0;
+  }
+  #share-form .check-row a, #join-form .check-row a { color: var(--sienna); }
+  #share-form .check-row label { font-size: var(--t-sm); line-height: 1.5; }
+
   /* ─── JOURNEY CARD ───
      Used by the Explore teaser here and by every catalogue grid on
      explore.html. The whole card is one link. */
@@ -673,6 +710,90 @@
   }
   .jcard-where { font-size: var(--t-sm); color: var(--ink-3); }
   .teaser-more { margin-top: var(--s-6); }
+
+  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
+  /* ─── PATH TO THE TOP ─── */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
+  .rung {
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rung:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .rung:nth-child(2) { margin-top: 24px; } .rung:nth-child(3) { margin-top: 48px; } .rung:nth-child(4) { margin-top: 72px; }
+  .rung-media { position: relative; aspect-ratio: 4 / 3; background: var(--placeholder); overflow: hidden; }
+  .rung-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .rung:hover .rung-img { transform: scale(1.05); }
+  .rung-step {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--sienna); color: #fff; border-radius: 999px; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rung-body { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .rung-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 800; letter-spacing: -0.01em; }
+  .rung-name { font-size: var(--t-sm); font-weight: 600; color: var(--sienna); margin-top: 2px; }
+  .rung-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); margin-top: var(--s-2); }
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+    margin-top: calc(var(--s-7) + 24px); padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule-firm); border-bottom: 1px solid var(--rule-firm);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--font-hero); font-weight: 900; font-size: clamp(34px, 4.6vw, 54px); line-height: 1; color: var(--ink); }
+  .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .teaser-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-6); }
+
+  /* ─── KNOW TEASER ─── */
+  .know-tease { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+  .chapter-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .chapter-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: var(--s-5); border-radius: var(--radius-lg);
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line); color: var(--ink);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .chapter-card:hover { transform: translateY(-3px); background: #fff; }
+  .chapter-card svg { width: 30px; height: 30px; fill: none; stroke: var(--sienna); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 4px; }
+  .chapter-card-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); }
+  .chapter-card-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .tease-news { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .tease-news-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); margin-bottom: var(--s-3); }
+  .tease-news-item { display: block; text-decoration: none; padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .tease-news-item:last-of-type { border-bottom: none; margin-bottom: var(--s-3); }
+  .tease-news-meta { display: block; font-size: 12px; color: var(--ink-3); letter-spacing: 0.03em; text-transform: uppercase; }
+  .tease-news-title { display: block; color: var(--ink); font-weight: 600; line-height: 1.4; margin-top: 2px; }
+  .tease-news-item:hover .tease-news-title { color: var(--sienna); }
+
+  /* ─── CLOSING CALL TO ACTION ─── */
+  .cta-band { position: relative; overflow: hidden; background: var(--ink); }
+  .cta-band-media {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,27,0.82) 0%, rgba(20,24,27,0.55) 55%, rgba(20,24,27,0.2) 100%),
+                url('assets/images/annapurna-poon-hill.jpg') center 30% / cover no-repeat;
+  }
+  .cta-band-inner { position: relative; z-index: 2; max-width: var(--wrap); margin: 0 auto; padding: clamp(72px, 10vw, 128px) var(--s-5); }
+  .cta-kicker { color: var(--sienna-lift); }
+  .cta-title { font-family: var(--font-hero); font-weight: 900; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; max-width: 18ch; }
+  .cta-lede { color: var(--footer-text); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.6; max-width: 52ch; margin-top: var(--s-4); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.55); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 960px) {
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+    .rung:nth-child(n) { margin-top: 0; }
+    .know-tease { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ladder, .chapter-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-5); }
+  }
 
   /* ─── DISPATCHES ─── */
 
@@ -1012,6 +1133,25 @@
 
   .know-body { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
   .kchapter { padding: clamp(44px, 6vw, 72px) 0; border-top: 1px solid var(--rule); }
+  .kchapter--aside { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .kchapter--aside .kaside { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--nav-h) + 72px); }
+  .kchapter--aside .kmain { grid-column: 1; grid-row: 1; }
+  .kaside-fig { margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--card); border: 1px solid var(--rule); box-shadow: var(--shadow-card); }
+  .kaside-fig img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .kaside-fig figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .kaside-cta {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg);
+    background: var(--sienna); color: #fff; text-decoration: none;
+    font-family: var(--font-head); font-weight: 700; font-size: var(--t-base); line-height: 1.35;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  .kaside-cta:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  @media (max-width: 900px) {
+    .kchapter--aside { display: block; }
+    .kchapter--aside .kaside { position: static; margin-bottom: var(--s-5); }
+    .kaside-fig img { aspect-ratio: 16 / 9; }
+  }
   .kchapter:first-of-type { border-top: none; }
   /* scroll-margin so an anchored chapter clears both sticky bars */
   .kchapter, .kchapter[id] { scroll-margin-top: calc(var(--nav-h) + 54px); }
@@ -1086,8 +1226,7 @@
       <li><a href="explore.html">Explore</a></li>
       <li><a href="index.html#community" data-spy="community">Community</a></li>
       <li><a href="know.html" class="is-active" aria-current="page">Know the Mountain</a></li>
-      <!-- re-target to the About Us section once it is written; #story is a stand in -->
-      <li><a href="index.html#story" data-spy="story">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
     </ul>
   </div>
 </nav>
@@ -1114,7 +1253,15 @@
 
   <div class="know-body">
 
-  <section class="kchapter" id="altitude">
+  <section class="kchapter kchapter--aside" id="altitude">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/ebc-khumbu-glacier.jpg" alt="The Khumbu Glacier near Gorak Shep, above 5,000 m" loading="lazy" decoding="async">
+        <figcaption>The Khumbu Glacier near Gorak Shep, above 5,000 m: about half the oxygen of sea level.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="explore.html#journey/ebc-trek">See how our Everest Base Camp trek paces the climb <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Altitude &amp; the Body</h2>
     <p class="klede">Why this page exists. Altitude is the one variable on every journey we run that does not care about your fitness, your experience or your schedule. Understanding it is not optional knowledge; it is the difference between a hard day and an emergency. Read this before you commit to anything above 3,000 m.</p>
     <div class="kblock">
@@ -1143,9 +1290,18 @@
     </div>
     <p class="kfoot">Insurance that covers helicopter evacuation at your journey’s altitudes is mandatory on everything we run. Why, and what to check in a policy, lives in <a href="#judgement">Reading the Mountain</a>.</p>
     <p class="kfoot">None of this replaces medical advice. Talk to a travel-medicine professional before any journey above 3,000 m, especially with any heart, lung or blood-pressure history.</p>
+    </div>
   </section>
 
-  <section class="kchapter" id="training">
+  <section class="kchapter kchapter--aside" id="training">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/tmb-trail-runners.jpg" alt="Long days on the Tour du Mont Blanc are earned on training days at home" loading="lazy" decoding="async">
+        <figcaption>Long days on the Tour du Mont Blanc are earned on training days at home.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="join.html">Train with us on local UAE hikes <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Training &amp; Preparation</h2>
     <p class="klede">The honest premise. Nobody fails a trek because they could not run a marathon. People fail because day four feels like day one, and day seven feels like punishment. Mountain fitness is the ability to do it again tomorrow.</p>
     <div class="kblock">
@@ -1164,9 +1320,18 @@
       <h3 class="kblock-title">The part nobody trains</h3>
       <p>Sleep in unfamiliar places, cold mornings, simple food, shared rooms, no shower. Comfort resilience is trainable too: camp before you commit, walk in rain on purpose. The mind quits before the legs more often than the reverse.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="gear">
+  <section class="kchapter kchapter--aside" id="gear">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/annapurna-thorong-la.jpg" alt="Fresh snow on the climb to the Thorong La, 5,416 m" loading="lazy" decoding="async">
+        <figcaption>Fresh snow on the climb to the Thorong La, 5,416 m. Layers, not bulk.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="mailto:hello@themountaindiaries.com?subject=Gear%20question">Questions about kit? Ask us <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Gear, Honestly</h2>
     <p class="klede">The philosophy. Gear does not climb mountains, but bad gear ends journeys. The goal is a system, not a shopping list: layers that work together, boots that are already friends, and nothing carried that fear packed.</p>
     <div class="kblock">
@@ -1181,9 +1346,18 @@
       <h3 class="kblock-title">What not to buy</h3>
       <p>The second warm jacket fear wants. Cotton anything. New boots for an old trek. Gadgets whose batteries die at −10 °C. The heaviest version of everything: on a porter-supported journey your limit protects someone else’s back, and that matters more than your spare options.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="judgement">
+  <section class="kchapter kchapter--aside" id="judgement">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/tmb-chamonix.jpg" alt="Cloud rolling in over the Alps" loading="lazy" decoding="async">
+        <figcaption>Cloud rolling in over the Alps: the moment the turnaround decision gets made.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="index.html#explore-teaser">Not sure you are ready? Start with the path to the top <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Reading the Mountain</h2>
     <p class="klede">The judgement chapter. Skills and fitness get you to the mountain. Judgement gets you home. Most of it can be borrowed from good leaders while yours grows, but knowing what they are weighing makes you a better teammate.</p>
     <div class="kblock">
@@ -1202,13 +1376,23 @@
       <h3 class="kblock-title">Guides, permits and the system</h3>
       <p>Most regions we travel require licensed guides and permits by law, and the law is right: the system funds trails, tracks trekkers and feeds rescue. Where rules are looser, we hold the same standard anyway. The paperwork is part of the mountain.</p>
     </div>
+    </div>
   </section>
 
-  <section class="kchapter" id="respect">
+  <section class="kchapter kchapter--aside" id="respect">
+    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/ladakh-lamayuru.jpg" alt="Lamayuru monastery, Ladakh" loading="lazy" decoding="async">
+        <figcaption>Lamayuru monastery, Ladakh. Every trail runs through someone’s home.</figcaption>
+      </figure>
+      <a class="kaside-cta" href="about.html">Who we are and how we travel <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+    <div class="kmain">
     <h2 class="kchapter-title">Respect</h2>
     <p class="klede">The short chapter that outranks the others. The mountains are somebody’s home, workplace and temple before they are anybody’s adventure.</p>
     <div class="kblock">
       <p>Walk clockwise around stupas, mani walls and chortens. Ask before photographing people; a smile and a gesture is a complete sentence. Dress modestly in villages and monasteries. The porter carrying your bag is a professional at the top of a hard trade: fair loads, fair treatment and genuine thanks are minimums, not virtues. Pack out what you pack in; above the treeline, decades pass before litter does. Buy local where you can: the teahouse dal bhat funds the trail more than any permit. And learn ten words of the local language; they are worth more than any tip.</p>
+    </div>
     </div>
   </section>
 
@@ -1219,7 +1403,7 @@
       <!-- Static empty state. When NEWS has entries the script below replaces
            this; with JavaScript off, whatever is written here is what shows,
            so this block is kept honest by hand alongside the array. -->
-      <p class="news-empty">First dispatches are on their way. The mountains never stay quiet for long.</p>
+      <p class="news-empty">The latest dispatches load here. If you can read this, switch JavaScript on to see them.</p>
     </div>
   </section>
 
@@ -1233,7 +1417,7 @@
     <div class="footer-grid">
       <div>
         <a class="wordmark wordmark-inverse" href="index.html#hero"><svg class="wordmark-svg" viewBox="0 0 492.44 202.48" role="img" aria-label="The Mountain Diaries"><path d="M8.12 31.6V5.46H0.0V0.0H22.6V5.46H14.5V31.6Z M232.96 31.6V0.0H239.34V12.8H248.92V0.0H255.27V31.6H248.92V18.25H239.34V31.6Z M467.58 31.6V0.0H488.0V5.38H473.96V12.83H486.21V18.19H473.96V26.22H488.24V31.6Z M4.21 132.03V45.34H35.96L40.62 75.96Q41.0 78.48 41.5 82.14Q42.01 85.79 42.57 89.51Q43.14 93.22 43.52 96.12H44.78Q45.16 93.73 45.66 90.2Q46.16 86.67 46.67 82.96Q47.17 79.24 47.55 76.09L51.96 45.34H82.96V132.03H61.16V107.08Q61.16 100.28 61.41 94.61Q61.66 88.94 61.91 84.85Q62.17 80.75 62.17 78.99H61.03Q60.78 80.5 60.4 82.58Q60.02 84.66 59.71 86.55Q59.39 88.44 59.14 89.7L52.34 132.03H34.82L28.02 89.7Q27.89 88.44 27.52 86.55Q27.14 84.66 26.82 82.58Q26.51 80.5 26.26 78.99H25.12Q25.37 82.14 25.56 86.86Q25.75 91.59 25.88 96.88Q26.0 102.17 26.0 107.08V132.03Z M120.9 133.54Q110.31 133.54 103.45 129.01Q96.58 124.47 93.18 114.58Q89.78 104.69 89.78 88.69Q89.78 72.69 93.18 62.8Q96.58 52.9 103.45 48.37Q110.31 43.83 120.9 43.83Q131.48 43.83 138.41 48.37Q145.34 52.9 148.68 62.8Q152.02 72.69 152.02 88.69Q152.02 104.69 148.68 114.58Q145.34 124.47 138.41 129.01Q131.48 133.54 120.9 133.54ZM120.9 113.76Q123.54 113.76 125.06 112.63Q126.57 111.49 127.32 109.42Q128.08 107.34 128.33 104.38Q128.58 101.41 128.58 97.76V79.62Q128.58 75.96 128.33 73.06Q128.08 70.17 127.32 68.02Q126.57 65.88 125.06 64.75Q123.54 63.61 120.9 63.61Q118.25 63.61 116.74 64.75Q115.23 65.88 114.47 68.02Q113.72 70.17 113.46 73.06Q113.21 75.96 113.21 79.62V97.76Q113.21 101.41 113.46 104.38Q113.72 107.34 114.47 109.42Q115.23 111.49 116.74 112.63Q118.25 113.76 120.9 113.76Z M185.55 133.54Q177.11 133.54 170.94 130.71Q164.76 127.87 161.49 121.2Q158.21 114.52 158.21 103.05V45.34H181.27V104.31Q181.27 108.72 181.9 111.31Q182.53 113.89 185.3 113.89Q188.2 113.89 188.95 111.31Q189.71 108.72 189.71 104.31V45.34H212.77V103.05Q212.77 114.52 209.49 121.2Q206.22 127.87 200.17 130.71Q194.12 133.54 185.55 133.54Z M220.22 132.03V45.34H242.39L250.08 71.43Q250.46 72.81 250.9 74.2Q251.34 75.58 251.78 77.16Q252.22 78.73 252.6 80.5H253.23Q253.23 78.23 253.23 75.96Q253.23 73.69 253.23 71.43V45.34H275.41V132.03H253.1L245.54 105.82Q244.79 103.3 244.16 100.66Q243.53 98.01 242.9 95.49H242.27Q242.27 98.01 242.27 100.66Q242.27 103.3 242.27 105.82V132.03Z M296.97 132.03V65.25H280.34V45.34H336.41V65.25H320.03V132.03Z M336.3 132.03 353.56 45.34H385.81L403.08 132.03H378.76L376.99 119.31H361.62L359.98 132.03ZM364.27 100.15H374.47L371.83 80.75Q371.7 79.62 371.51 77.73Q371.32 75.84 371.07 73.51Q370.82 71.17 370.51 68.84Q370.19 66.51 369.94 64.62H368.8Q368.55 67.02 368.24 69.98Q367.92 72.94 367.61 75.77Q367.29 78.61 366.91 80.75Z M406.12 132.03V45.34H429.17V132.03Z M437.25 132.03V45.34H459.43L467.12 71.43Q467.49 72.81 467.94 74.2Q468.38 75.58 468.82 77.16Q469.26 78.73 469.64 80.5H470.27Q470.27 78.23 470.27 75.96Q470.27 73.69 470.27 71.43V45.34H492.44V132.03H470.14L462.58 105.82Q461.82 103.3 461.19 100.66Q460.56 98.01 459.93 95.49H459.3Q459.3 98.01 459.3 100.66Q459.3 103.3 459.3 105.82V132.03Z M2.71 201.54V147.91H19.06Q25.47 147.91 29.15 150.72Q32.82 153.54 34.37 159.4Q35.92 165.27 35.92 174.55Q35.92 183.74 34.31 189.73Q32.7 195.72 28.97 198.63Q25.23 201.54 18.78 201.54ZM14.6 191.28H17.89Q19.56 191.28 20.71 190.69Q21.85 190.09 22.54 188.69Q23.22 187.29 23.53 184.93Q23.84 182.57 23.84 179.09V171.39Q23.84 167.87 23.53 165.37Q23.22 162.87 22.55 161.27Q21.89 159.68 20.72 158.93Q19.56 158.17 17.89 158.17H14.6Z M86.53 201.54V147.91H98.42V201.54Z M146.53 201.54 157.89 147.91H174.12L185.52 201.54H173.03L171.19 191.6H160.42L158.66 201.54ZM161.88 181.66H169.77L167.35 167.34Q167.27 166.74 167.14 165.72Q167.0 164.69 166.83 163.42Q166.65 162.16 166.48 160.89Q166.3 159.63 166.14 158.56H165.55Q165.39 159.87 165.18 161.51Q164.97 163.14 164.75 164.7Q164.54 166.26 164.34 167.34Z M233.66 201.54V147.91H251.62Q257.56 147.91 260.84 150.04Q264.12 152.17 265.45 155.79Q266.78 159.41 266.78 163.87Q266.78 168.55 265.66 172.36Q264.53 176.17 261.7 178.51L268.59 201.54H256.27L251.14 182.53H245.55V201.54ZM245.55 172.82H250.0Q252.8 172.82 253.83 170.62Q254.86 168.41 254.86 165.03Q254.86 162.74 254.41 161.14Q253.96 159.55 252.89 158.69Q251.82 157.83 249.79 157.83H245.55Z M317.09 201.54V147.91H328.98V201.54Z M380.63 201.54V147.91H410.23V158.17H392.52V169.15H407.53V179.45H392.52V191.28H410.59V201.54Z M475.02 202.48Q471.62 202.48 468.7 201.77Q465.78 201.07 463.58 199.26Q461.39 197.44 460.15 194.22Q458.91 191.0 458.91 185.91Q458.91 185.65 458.91 185.15Q458.91 184.66 458.95 184.35H470.32Q470.32 184.74 470.32 185.15Q470.32 185.56 470.32 185.95Q470.32 188.48 470.82 189.86Q471.31 191.25 472.27 191.8Q473.24 192.35 474.66 192.35Q475.52 192.35 476.18 192.14Q476.84 191.93 477.36 191.47Q477.89 191.02 478.23 190.35Q478.56 189.69 478.71 188.78Q478.86 187.87 478.86 186.74Q478.86 184.94 478.05 183.69Q477.23 182.45 475.86 181.54Q474.48 180.64 472.77 179.85Q471.06 179.05 469.22 178.18Q467.37 177.3 465.66 176.11Q463.96 174.92 462.58 173.18Q461.2 171.44 460.39 168.99Q459.57 166.55 459.57 163.12Q459.57 158.72 460.83 155.65Q462.08 152.57 464.28 150.65Q466.48 148.73 469.26 147.83Q472.04 146.93 475.1 146.93Q478.3 146.93 481.01 147.71Q483.73 148.49 485.73 150.21Q487.73 151.93 488.85 154.78Q489.97 157.63 489.97 161.77V163.74H478.76V162.67Q478.76 160.88 478.47 159.66Q478.17 158.44 477.43 157.8Q476.68 157.15 475.21 157.15Q474.07 157.15 473.25 157.65Q472.43 158.14 472.02 159.15Q471.62 160.15 471.62 161.72Q471.62 163.65 472.43 164.98Q473.25 166.31 474.64 167.23Q476.04 168.16 477.75 168.95Q479.46 169.75 481.28 170.61Q483.11 171.46 484.81 172.63Q486.52 173.8 487.92 175.5Q489.32 177.2 490.13 179.62Q490.95 182.04 490.95 185.43Q490.95 191.24 489.01 195.02Q487.08 198.79 483.52 200.63Q479.96 202.48 475.02 202.48Z"/></svg></a>
-        <p class="footer-mission">A community that answers the mountains and treks them together.</p>
+        <p class="footer-mission">A community that answers the call of the mountains, and walks them together.</p>
       </div>
       <div>
         <p class="footer-col-title">Explore</p>
@@ -1242,8 +1426,7 @@
           <li><a href="index.html#community">Community</a></li>
           <li><a href="know.html">Know the Mountain</a></li>
           <li><a href="know.html#news">Mountain news</a></li>
-          <!-- re-target to the About Us section once it is written; #story is a stand in -->
-          <li><a href="index.html#story">About Us</a></li>
+          <li><a href="about.html">About Us</a></li>
         </ul>
       </div>
       <div>
@@ -1257,20 +1440,13 @@
         <p class="footer-col-title">Let&rsquo;s connect</p>
         <div class="footer-primary">
         <a class="fcircle fcircle-solid" href="mailto:hello@themountaindiaries.com" aria-label="Email us"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18v11H3z"/><path d="M3 7l9 6.5L21 7"/></svg></a>
-        <a class="fcircle fcircle-solid" href="https://chat.whatsapp.com/LuY03kcNWuf0dvSUTZ9Vq2" aria-label="Join our WhatsApp group" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.15A8.8 8.8 0 1 0 12 3.2Z"/><path d="M9.1 8.1c.3-.05.5.05.7.45l.6 1.3c.1.25.06.45-.1.65l-.4.5c-.15.2-.15.35 0 .6a6.3 6.3 0 0 0 2.6 2.35c.25.1.4.05.55-.15l.5-.6c.2-.2.4-.25.65-.15l1.35.6c.35.15.45.35.4.7-.15.9-.95 1.5-1.95 1.5-2.9 0-6.05-3.2-6.05-6.1 0-1 .6-1.6 1.15-1.65Z"/></svg></a>
-        </div>
-        <div class="footer-social">
-        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="glyph-fill" d="M10.08 19.5V11.16H8.55V8.73H10.08V7.86Q10.08 6.74 10.46 5.99Q10.84 5.24 11.59 4.87Q12.35 4.5 13.47 4.5Q13.77 4.5 14.14 4.55Q14.51 4.59 14.86 4.67Q15.21 4.75 15.45 4.84V6.93H14.47Q13.9 6.93 13.66 7.18Q13.43 7.42 13.43 7.94V8.73H15.45V11.16H13.43V19.5Z"/></svg></a>
-        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1.15"/></svg></a>
-        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13.8 3.2v10.6a3.4 3.4 0 1 1-2.6-3.3"/><path d="M13.8 5.4c.7 1.7 2.2 2.8 4.2 3"/></svg></a>
-        <a class="fcircle fcircle-outline" href="#" aria-label="The Mountain Diaries on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="3.4"/><path class="glyph-fill" d="M5.96 8.42V6.5H8.45V8.42ZM5.96 17.5V9.49H8.45V17.5Z M10.34 17.5V9.49H12.39L12.57 10.64H12.67Q12.97 10.22 13.37 9.92Q13.77 9.62 14.27 9.47Q14.77 9.31 15.33 9.31Q16.2 9.31 16.8 9.63Q17.4 9.95 17.72 10.59Q18.04 11.23 18.04 12.21V17.5H15.54V12.57Q15.54 12.23 15.46 11.99Q15.38 11.75 15.22 11.59Q15.07 11.43 14.84 11.35Q14.62 11.27 14.32 11.27Q13.89 11.27 13.55 11.47Q13.21 11.68 13.02 12.02Q12.83 12.37 12.83 12.82V17.5Z"/></svg></a>
+        <a class="fcircle fcircle-solid" href="join.html" aria-label="Join our WhatsApp group"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 20.8l4.5-1.15A8.8 8.8 0 1 0 12 3.2Z"/><path d="M9.1 8.1c.3-.05.5.05.7.45l.6 1.3c.1.25.06.45-.1.65l-.4.5c-.15.2-.15.35 0 .6a6.3 6.3 0 0 0 2.6 2.35c.25.1.4.05.55-.15l.5-.6c.2-.2.4-.25.65-.15l1.35.6c.35.15.45.35.4.7-.15.9-.95 1.5-1.95 1.5-2.9 0-6.05-3.2-6.05-6.1 0-1 .6-1.6 1.15-1.65Z"/></svg></a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 The Mountain Diaries. We never share your details.</span>
-      <!-- re-target once the policy pages exist -->
-      <span><a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>
+      <span>&copy; 2026 The Mountain Diaries. We never sell your details.</span>
+      <span><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="credits.html">Photo credits</a></span>
     </div>
   </div>
 </footer>
@@ -1296,6 +1472,26 @@
 // Categories carry a badge except In Memoriam, which stays muted on purpose:
 // a death is not a highlight, and colour would make it one.
 const NEWS = [
+  { date: "2026-10-17", category: "Summit",
+    title: "Summits Begin on Ama Dablam, Late Fall’s Most Popular Peak",
+    source: "ExplorersWeb",
+    url: "https://explorersweb.com/first-summits-on-ama-dablam-late-falls-most-popular-peak/",
+    image: null },
+  { date: "2026-10-08", category: "Expedition",
+    title: "788 climbers obtain permits to scale 31 peaks this autumn",
+    source: "Onlinekhabar",
+    url: "https://english.onlinekhabar.com/788-climbers-obtain-permits-to-scale-31-peaks-this-autumn.html",
+    image: null },
+  { date: "2026-09-22", category: "Expedition",
+    title: "The summit will wait: weather closes Manaslu season, Dhaulagiri climbers retreat",
+    source: "The Himalayan Times",
+    url: "https://thehimalayantimes.com/nepal/the-summit-will-wait-weather-closes-manaslu-season-dhaulagiri-climbers-retreat",
+    image: null },
+  { date: "2026-03-22", category: "Event",
+    title: "Immigration eases rules for solo trekkers in restricted areas",
+    source: "The Kathmandu Post",
+    url: "https://kathmandupost.com/national/2026/03/22/immigration-eases-rules-for-solo-trekkers-in-restricted-areas",
+    image: null },
 ];
 
 const NEWS_BADGE = { 'Summit': 'badge-summit', 'Expedition': 'badge-expedition', 'Event': 'badge-event' };

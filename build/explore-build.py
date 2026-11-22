@@ -11,6 +11,8 @@ import io, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from journeys import rows, EXPEDITION_TABS, TREK_TABS, TK
 from details import DETAILS
+from catalogue import OVERVIEW
+import seo
 
 # Paths are derived from this file's own location, so the build runs from a
 # clone anywhere. MD_OUT lets the integrity check render into a scratch
@@ -52,6 +54,13 @@ _, LIGHTBOX_JS = cut(src, '// ═══ LIGHTBOX ═══', '// ═══ CAROU
 LIGHTBOX_JS = LIGHTBOX_JS.replace('#trail/ routing', '#journey/ routing')
 _, INQUIRY_JS = cut(src, '// ═══ INQUIRY PANEL ═══', '// Resolve the URL on first paint', 'inquiry js')
 _, PHOTO_JS = cut(src, '// ═══ PHOTO AVAILABILITY ═══', '// ═══ TRAIL DATA ═══', 'photo js')
+# every journey hero that is on disk joins the registry, so its detail view
+# shows the photograph instead of the placeholder
+_extra = sorted({'assets/images/' + r['hero'] for r in J
+                 if os.path.exists(os.path.join(REPO, 'assets', 'images', r['hero']))
+                 and ("'assets/images/%s'" % r['hero']) not in PHOTO_JS})
+if _extra:
+    PHOTO_JS = PHOTO_JS.replace("\n]);", ''.join(",\n  '%s'" % f for f in _extra) + "\n]);", 1)
 _, NAV_JS = cut(src, '// ═══ NAV ═══', '// ═══ SINGLE ESCAPE HANDLER ═══', 'nav js')
 _, POSTFORM_JS = cut(src, '// ─── BACKEND ──', "document.getElementById('share-form')", 'postForm js')
 
@@ -82,9 +91,46 @@ s = sub(s, 'aria-label="Explore the trails"', 'aria-label="Explore the journeys"
 s = sub(s, '<li><a href="#trails">Expeditions &amp; Trekking</a></li>',
         '<li><a href="explore.html">Expeditions &amp; Trekking</a></li>', 'footer explore')
 
+# 1a2. About, policy pages, link previews and social icons
+s = sub(s, '<title>The Mountain Diaries</title>',
+        '<title>The Mountain Diaries &middot; Treks and expeditions from the UAE</title>\n' + seo.meta(
+            'The Mountain Diaries',
+            'A UAE trekking and expedition community. Local hikes most months, small groups to '
+            'Everest Base Camp, Mera Peak, Ama Dablam and beyond, and the stories from the trail.'),
+        'index head')
+s = sub(s, '''      <!-- re-target to the About Us section once it is written; #story is a stand in -->
+      <li><a href="#story" data-spy="story">About Us</a></li>''',
+        '      <li><a href="about.html">About Us</a></li>', 'nav about')
+s = sub(s, '''          <!-- re-target to the About Us section once it is written; #story is a stand in -->
+          <li><a href="#story">About Us</a></li>''',
+        '          <li><a href="about.html">About Us</a></li>', 'footer about')
+s = sub(s, '''      <!-- re-target once the policy pages exist -->
+      <span><a href="#">Privacy</a> &middot; <a href="#">Terms</a></span>''',
+        '      <span><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a>'
+        ' &middot; <a href="credits.html">Photo credits</a></span>', 'footer policies')
+# social icons render only for networks with a real profile URL in seo.SOCIAL
+_soc = re.search(r'\n        <div class="footer-social">\n(.*?)        </div>', s, re.S)
+_keep = []
+for _a in re.findall(r'        <a class="fcircle fcircle-outline".*?</a>\n', _soc.group(1), re.S):
+    _net = re.search(r'on (\w+)"', _a).group(1)
+    if seo.SOCIAL.get(_net):
+        _keep.append(_a.replace('href="#"', 'href="%s" target="_blank" rel="noopener"' % seo.SOCIAL[_net]))
+s = s[:_soc.start()] + (('\n        <div class="footer-social">\n' + ''.join(_keep) + '        </div>')
+                         if _keep else '') + s[_soc.end():]
+
 # 1b. retire the two catalogue sections, leaving one teaser in their place
-FEATURED = ['ama-dablam-6812', 'ebc-trek', 'mera-peak-6476']
+FEATURED = ['ebc-trek', 'island-peak-6189', 'ama-dablam-6812', 'manaslu-8163']
 BY_SLUG = {r['slug']: r for r in J}
+from news import NEWS
+
+# The path to the top: four rungs, each a real journey, so the homepage
+# answers "where do I start?" before anyone has to ask it.
+LADDER = [
+    ('ebc-trek', 'Step 1', 'Your first big trek', 'Two weeks in the Khumbu, no climbing skills needed.'),
+    ('island-peak-6189', 'Step 2', 'Your first summit', 'Crampons, a fixed line and 6,189 m under your boots.'),
+    ('ama-dablam-6812', 'Step 3', 'Real climbing', 'Rock, ice and exposure on the Himalaya’s most beautiful peak.'),
+    ('manaslu-8163', 'Step 4', 'An eight-thousander', 'The death zone, done patiently, with the right team.'),
+]
 
 
 def jcard(r, href):
@@ -97,8 +143,8 @@ def jcard(r, href):
     # a verified photograph renders as the lazy 800px derivative; a journey
     # without one keeps the placeholder naming the file it waits for
     if r.get('card'):
-        media = ('<img class="jcard-img" src="assets/images/%s" alt="" loading="lazy" decoding="async">'
-                 % r['card'].replace('.jpg', '-800.jpg'))
+        media = ('<img class="jcard-img" src="assets/images/%s" alt="%s" loading="lazy" decoding="async">'
+                 % (r['card'].replace('.jpg', '-800.jpg'), r['name']))
     else:
         media = '<div class="photo-slot" data-photo="%s"></div>' % r['photo'].split('/')[-1]
     return ('''        <a class="jcard" href="%s">
@@ -110,42 +156,226 @@ def jcard(r, href):
         </a>''' % (href, media, r['name'], ''.join(bits)))
 
 
+def rung(slug, step, title, line):
+    r = BY_SLUG[slug]
+    img = ('<img class="rung-img" src="assets/images/%s" alt="%s" loading="lazy" decoding="async">'
+           % (r['card'].replace('.jpg', '-800.jpg'), r['name'])) if r.get('card') else ''
+    return '''        <a class="rung" href="explore.html#journey/%s">
+          <div class="rung-media">%s<span class="rung-step">%s</span></div>
+          <div class="rung-body">
+            <p class="rung-title">%s</p>
+            <p class="rung-name">%s &middot; %s m</p>
+            <p class="rung-line">%s</p>
+          </div>
+        </a>''' % (slug, img, step, title, r['name'], format(r['elevation_m'], ','), line)
+
+
+_countries = set()
+for _r in J:
+    for _c in re.split(r',\s*|\s+and\s+', _r['country']):
+        _countries.add(_c)
+STATS = [
+    (str(len(J)), 'journeys'),
+    (str(sum(1 for r in J if r['category'] == '8000ers')), 'eight-thousanders'),
+    (str(len(_countries)), 'countries'),
+    ('4', 'continents'),
+]
+
 TEASER = '''<!-- EXPLORE TEASER -->
 <section class="section section--alt" id="explore-teaser">
   <div class="wrap">
     <div class="section-bar">
       <div class="section-head" style="margin-bottom:var(--s-5)">
         <p class="section-kicker">Expeditions and trekking</p>
-        <h2 class="section-title">Explore</h2>
-        <p class="section-lede">Fifty two journeys, from a first 6,000er to the eight thousand metre peaks.</p>
+        <h2 class="section-title">Your path to the top</h2>
+        <p class="section-lede">Every climber started somewhere. Here is how most of our community moves up, one season at a time.</p>
       </div>
     </div>
 
-    <div class="card-grid">
+    <div class="ladder reveal">
 %s
     </div>
 
-    <p class="teaser-more">
-      <a class="link-action" href="explore.html">View all journeys <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="stats reveal">
+%s
+    </div>
+
+    <div class="teaser-actions">
+      <a class="btn btn-primary" href="explore.html">Explore all %d journeys <span aria-hidden="true">&rarr;</span></a>
+      <a class="link-action" href="know.html#training">How do I know I am ready? <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
-''' % '\n'.join(jcard(BY_SLUG[k], 'explore.html#journey/' + k) for k in FEATURED)
+''' % ('\n'.join(rung(*x) for x in LADDER),
+       '\n'.join('      <div class="stat"><p class="stat-num">%s</p><p class="stat-label">%s</p></div>' % x for x in STATS),
+       len(J))
 
 s, _ = cut(s, '<!-- TRAILS -->', '<!-- BAND 2 -->', 'trails section')
+
+CHAPTERS_TEASE = [
+    ('altitude', 'Altitude &amp; the Body', 'What thin air does, and the three rules that keep you safe.',
+     '<path d="M3 20h18L14 6l-3 5-2-3z"/>'),
+    ('training', 'Training &amp; Preparation', 'Build the legs and lungs for long days with a pack on.',
+     '<path d="M4 12h3m10 0h3M7 8v8M17 8v8M7 12h10"/>'),
+    ('gear', 'Gear, Honestly', 'What you actually need, and what fear makes you pack.',
+     '<path d="M8 4h8l2 5v11H6V9z"/><path d="M9 4v3h6V4"/>'),
+    ('judgement', 'Reading the Mountain', 'Weather, turnaround times and the skill of saying no.',
+     '<path d="M4 15a5 5 0 0 1 4-8 6 6 0 0 1 11 3 4 4 0 0 1-1 8H7a3 3 0 0 1-3-3z"/>'),
+]
+
+
+def news_item(n):
+    import datetime
+    d = datetime.date.fromisoformat(n['date']).strftime('%-d %b %Y')
+    return '''          <a class="tease-news-item" href="%s" target="_blank" rel="noopener">
+            <span class="tease-news-meta">%s &middot; %s</span>
+            <span class="tease-news-title">%s</span>
+          </a>''' % (n['url'], n['source'], d, n['title'])
+
+
 KNOW_TEASER = '''<!-- KNOW THE MOUNTAIN TEASER -->
 <section class="section" id="know-teaser">
   <div class="wrap">
-    <div class="section-head" style="margin-bottom:var(--s-5)">
+    <div class="section-head" style="margin-bottom:var(--s-6)">
       <p class="section-kicker">The knowledge base</p>
       <h2 class="section-title">Know the Mountain</h2>
-      <p class="section-lede">Altitude, training, gear and judgement: the knowledge base.</p>
+      <p class="section-lede">Everything we wish someone had told us before our first night above 4,000 m.</p>
     </div>
-    <p class="teaser-more">
-      <a class="link-action" href="know.html">Read the guides <span aria-hidden="true">&rarr;</span></a>
-    </p>
+    <div class="know-tease reveal">
+      <div class="chapter-cards">
+%s
+      </div>
+      <aside class="tease-news">
+        <p class="tease-news-head">Latest from the mountains</p>
+%s
+        <a class="link-action" href="know.html#news">All mountain news <span aria-hidden="true">&rarr;</span></a>
+      </aside>
+    </div>
   </div>
 </section>
+''' % ('\n'.join('''        <a class="chapter-card" href="know.html#%s">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">%s</svg>
+          <span class="chapter-card-title">%s</span>
+          <span class="chapter-card-line">%s</span>
+        </a>''' % (cid, icon, t, line) for cid, t, line, icon in CHAPTERS_TEASE),
+       '\n'.join(news_item(n) for n in NEWS[:3]))
+
+# The closing call to action, before the footer: the one thing every visitor
+# should be offered before they leave.
+CTA_BAND = '''<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner reveal">
+    <p class="section-kicker cta-kicker">Walk with people</p>
+    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
+    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="explore.html">Find your journey</a>
+    </div>
+  </div>
+</section>
+
+'''
+
+HOME_CSS = '''  .cta-band--explore .cta-band-media { background: linear-gradient(90deg, rgba(20,24,27,0.84) 0%, rgba(20,24,27,0.5) 60%, rgba(20,24,27,0.2) 100%), url('assets/images/huayhuash-lake.jpg') center 50% / cover no-repeat; }
+  /* ─── PATH TO THE TOP ─── */
+  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5); position: relative; }
+  .rung {
+    display: flex; flex-direction: column; text-decoration: none; color: var(--ink);
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg);
+    overflow: hidden; box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rung:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .rung:nth-child(2) { margin-top: 24px; } .rung:nth-child(3) { margin-top: 48px; } .rung:nth-child(4) { margin-top: 72px; }
+  .rung-media { position: relative; aspect-ratio: 4 / 3; background: var(--placeholder); overflow: hidden; }
+  .rung-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .rung:hover .rung-img { transform: scale(1.05); }
+  .rung-step {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--sienna); color: #fff; border-radius: 999px; padding: 4px 12px;
+    font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .rung-body { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .rung-title { font-family: var(--font-head); font-size: var(--t-lg); font-weight: 800; letter-spacing: -0.01em; }
+  .rung-name { font-size: var(--t-sm); font-weight: 600; color: var(--sienna); margin-top: 2px; }
+  .rung-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); margin-top: var(--s-2); }
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4);
+    margin-top: calc(var(--s-7) + 24px); padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule-firm); border-bottom: 1px solid var(--rule-firm);
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: var(--font-hero); font-weight: 900; font-size: clamp(34px, 4.6vw, 54px); line-height: 1; color: var(--ink); }
+  .stat-label { font-size: var(--t-sm); color: var(--ink-3); margin-top: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .teaser-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-6); }
+
+  /* ─── KNOW TEASER ─── */
+  .know-tease { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-6); align-items: start; }
+  .chapter-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+  .chapter-card {
+    display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+    padding: var(--s-5); border-radius: var(--radius-lg);
+    background: var(--glacier-soft); border: 1px solid var(--glacier-line); color: var(--ink);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .chapter-card:hover { transform: translateY(-3px); background: #fff; }
+  .chapter-card svg { width: 30px; height: 30px; fill: none; stroke: var(--sienna); stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; margin-bottom: 4px; }
+  .chapter-card-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); }
+  .chapter-card-line { font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .tease-news { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .tease-news-head { font-family: var(--font-head); font-weight: 800; font-size: var(--t-lg); margin-bottom: var(--s-3); }
+  .tease-news-item { display: block; text-decoration: none; padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .tease-news-item:last-of-type { border-bottom: none; margin-bottom: var(--s-3); }
+  .tease-news-meta { display: block; font-size: 12px; color: var(--ink-3); letter-spacing: 0.03em; text-transform: uppercase; }
+  .tease-news-title { display: block; color: var(--ink); font-weight: 600; line-height: 1.4; margin-top: 2px; }
+  .tease-news-item:hover .tease-news-title { color: var(--sienna); }
+
+  /* ─── CLOSING CALL TO ACTION ─── */
+  .cta-band { position: relative; overflow: hidden; background: var(--ink); }
+  .cta-band-media {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(20,24,27,0.82) 0%, rgba(20,24,27,0.55) 55%, rgba(20,24,27,0.2) 100%),
+                url('assets/images/annapurna-poon-hill.jpg') center 30% / cover no-repeat;
+  }
+  .cta-band-inner { position: relative; z-index: 2; max-width: var(--wrap); margin: 0 auto; padding: clamp(72px, 10vw, 128px) var(--s-5); }
+  .cta-kicker { color: var(--sienna-lift); }
+  .cta-title { font-family: var(--font-hero); font-weight: 900; font-size: clamp(30px, 4.4vw, 52px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; max-width: 18ch; }
+  .cta-lede { color: var(--footer-text); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.6; max-width: 52ch; margin-top: var(--s-4); }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-6); }
+  .btn-ghost { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.55); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.18); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } }
+
+  @media (max-width: 960px) {
+    .ladder { grid-template-columns: repeat(2, 1fr); }
+    .rung:nth-child(n) { margin-top: 0; }
+    .know-tease { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ladder, .chapter-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); row-gap: var(--s-5); }
+  }
+
+'''
+
+REVEAL_JS = '''
+// ═══ SCROLL REVEAL ═══
+// Fades sections in as they arrive. Without IntersectionObserver, or with
+// reduced motion, everything is simply shown.
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('is-in')); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
 '''
 
 s = sub(s, '<!-- BAND 2 -->', TEASER + '\n' + KNOW_TEASER + '\n<!-- BAND 2 -->', 'teaser in')
@@ -216,7 +446,9 @@ s, _ = cut(s, '<!-- DISPATCHES -->', '<!-- BAND 1 -->', 'dispatches section')
 s, _ = cut(s, '// ═══ DISPATCHES ═══', '// ═══ COMMUNITY TABS ═══', 'dispatches js')
 
 # 1e. CSS that only the retired catalogue used
-s, _ = cut(s, '  .carousel { position: relative; }', '  /* ─── DISPATCHES ─── */', 'carousel css')
+# stop at the photo bands: their CSS sits between the carousel and the
+# dispatches rules, and the three bands on the homepage still need it
+s, _ = cut(s, '  .carousel { position: relative; }', '  /* ─── FULL-BLEED PHOTO BANDS ─── */', 'carousel css')
 s = sub(s, '''  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--s-5); }''',
         '''  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--s-5); }''',
         'card grid width')
@@ -253,6 +485,10 @@ JCARD_CSS = '''  /* ─── JOURNEY CARD ───
 
 '''
 s = sub(s, '  /* ─── DISPATCHES ─── */', JCARD_CSS + '  /* ─── DISPATCHES ─── */', 'jcard css')
+s = sub(s, '  /* ─── DISPATCHES ─── */', HOME_CSS + '  /* ─── DISPATCHES ─── */', 'home css')
+s = sub(s, '<footer class="site-footer">', CTA_BAND + '<footer class="site-footer">', 'cta band')
+_i = s.rindex('</script>')
+s = s[:_i] + REVEAL_JS + s[_i:]
 
 # 1g. CSS for components the retired catalogue owned and nothing else uses.
 #     The gallery rules stay: they are the lightbox's partner, and the lightbox
@@ -471,6 +707,21 @@ EXPLORE_CSS = '''
   }
 
   .detail-section { margin-top: var(--s-7); }
+  .jlayout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .jaside { position: sticky; top: calc(var(--nav-h) + 24px); margin-top: var(--s-7); }
+  .jaside-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .jaside-kicker { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sienna); font-weight: 700; }
+  .jaside-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-xl, 22px); line-height: 1.2; margin-top: 4px; color: var(--ink); }
+  .jaside-facts { margin: var(--s-4) 0; display: grid; gap: var(--s-2); }
+  .jaside-facts div { display: flex; justify-content: space-between; gap: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+  .jaside-facts dt { font-size: var(--t-sm); color: var(--ink-3); }
+  .jaside-facts dd { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--ink); text-align: right; }
+  .jaside-btn { width: 100%; justify-content: center; }
+  .jaside-note { font-size: 12px; color: var(--ink-3); text-align: center; margin-top: var(--s-2); }
+  .jaside-help { margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg); background: var(--glacier-soft); border: 1px solid var(--glacier-line); display: grid; gap: 6px; }
+  .jaside-help p { font-family: var(--font-head); font-weight: 700; color: var(--ink); }
+  .jaside-help a { color: var(--sienna); font-size: var(--t-sm); font-weight: 600; }
+  @media (max-width: 900px) { .jlayout { grid-template-columns: 1fr; } .jaside { position: static; } }
   .detail-section-title {
     font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
     color: var(--ink); margin-bottom: var(--s-4);
@@ -584,6 +835,8 @@ def detailed_body(r, d):
         '            <div class="faq-item"><p class="faq-q">%s</p><p class="faq-a">%s</p></div>'
         % (q, a) for q, a in d['faq'])
     return '''%s
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">%s</p>
@@ -596,11 +849,7 @@ def detailed_body(r, d):
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
 %s
-        </div>
-
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
           <ul class="hl-list">
@@ -618,9 +867,51 @@ def detailed_body(r, d):
           <h3 class="detail-section-title">Questions</h3>
 %s
         </div>
+        </div>
+%s
+        </div>
 
 %s''' % (facts, d['journey'], know,
-          route_slot(r['slug']), hl, d['gear'], faq, cta_html(r['name']))
+          route_section(r['slug']), hl, d['gear'], faq, side_card(r, d), cta_html(r['name']))
+
+
+def route_section(slug):
+    """The Route section appears only once its artwork exists; an empty
+    heading is worse than no section."""
+    art = 'route-map-%s.jpg' % slug
+    if not os.path.exists(os.path.join(REPO, 'assets', 'images', art)):
+        return route_slot(slug) + '\n'
+    return '''        <div class="detail-section">
+          <h3 class="detail-section-title">Route</h3>
+%s
+        </div>
+''' % route_slot(slug)
+
+
+def side_card(r, d):
+    """The sticky sidebar: the one action this page exists for, always in
+    reach while the reader scrolls the detail."""
+    rows = [(l, v) for l, v in [('Duration', d.get('duration')), ('Difficulty', r.get('difficulty')),
+                                ('Best season', d.get('season'))] if v]
+    subj = r['name'].replace(' ', '%20').replace('&', 'and')
+    return '''        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">%s</p>
+            <dl class="jaside-facts">
+%s
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:%s"
+               data-interest="%s">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:%s">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>''' % (r['name'], '\n'.join('              <div><dt>%s</dt><dd>%s</dd></div>' % (l, esc_amp(v)) for l, v in rows),
+                       subj, esc_attr(r['name']), subj)
 
 
 def route_slot(slug):
@@ -643,13 +934,28 @@ def route_slot(slug):
 
 
 def catalogue_body(r):
+    o = OVERVIEW.get(r['slug'], {})
     facts = facts_html([
         ('Elevation', '%s m' % format(r['elevation_m'], ',') if r['elevation_m'] else None),
-        ('Region', r['region']), ('Country', r['country'])])
-    return '''%s
-        <p class="cat-note">Full route notes are being written. Groups form when demand and
-        partnerships align. Join the interest list and you&rsquo;ll hear first.</p>
-%s''' % (facts, cta_html(r['name']))
+        ('Season', o.get('season')),
+        ('Typical length', o.get('length')),
+        ('Region', '%s, %s' % (r['region'], r['country'])),
+    ])
+    about = ''
+    if o:
+        about = '''
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">%s</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> %s</li>
+            <li><strong>First ascent:</strong> %s</li>
+          </ul>
+        </div>''' % (o['about'], o['route'], o['first'])
+    return '''%s%s
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+%s''' % (facts, about, cta_html(r['name']))
 
 
 def static_entry(r):
@@ -668,11 +974,15 @@ def static_entry(r):
     </section>''' % (r['slug'], r['name'], r['slug'], body)
 
 
+XHEAD = ('<div class="photo-slot" style="--photo:url(\'assets/images/explore-header.jpg\')"></div>'
+         if os.path.exists(os.path.join(REPO, 'assets', 'images', 'explore-header.jpg'))
+         else '<div class="photo-slot" data-photo="explore-header.jpg"></div>')
+
 BODY = '''<main class="explore-main">
 
   <!-- PAGE HEADER -->
   <section class="xhead">
-    <div class="xhead-media"><div class="photo-slot" data-photo="explore-header.jpg"></div></div>
+    <div class="xhead-media">%s</div>
     <div class="xhead-scrim" aria-hidden="true"></div>
     <div class="xhead-inner">
       <h1 class="xhead-title">Explore</h1>
@@ -717,7 +1027,7 @@ BODY = '''<main class="explore-main">
        content and a crawler sees all %d journeys. -->
 %s
 
-</main>''' % (tabstrip(EXP_TABS, exp_pick, 'exp'), panels(EXP_TABS, exp_pick, 'exp'),
+</main>''' % (XHEAD, tabstrip(EXP_TABS, exp_pick, 'exp'), panels(EXP_TABS, exp_pick, 'exp'),
               tabstrip(TRK_TABS, trk_pick, 'trk'), panels(TRK_TABS, trk_pick, 'trk'),
               len(J), '\n'.join(static_entry(r) for r in J))
 
@@ -741,7 +1051,7 @@ const CATEGORY_LABEL = {
   '8000ers': '8000ers', '7000ers': '7000ers', '6000ers': '6000ers', trek: 'Trekking'
 };
 
-const journeyPhoto = (j) => IMG + 'journey-' + j.slug + '.jpg';
+const journeyPhoto = (j) => IMG + (j.hero || 'journey-' + j.slug + '.jpg');
 const metres = (n) => n ? n.toLocaleString('en-US') + ' m' : null;
 
 // ═══ DETAIL VIEW ═══
@@ -790,8 +1100,9 @@ function showDetail(slug) {
   if (body) {
     detailContent.querySelector('.detail-slot').appendChild(body);
     // the mailto is the no-JavaScript path; here the panel is better
-    const cta = detailContent.querySelector('[data-interest]');
-    if (cta) {
+    // every Join the Group button on the page opens the panel: the sidebar
+    // one and the one at the foot of the page
+    detailContent.querySelectorAll('[data-interest]').forEach((cta) => {
       cta.removeAttribute('href');
       cta.setAttribute('role', 'button');
       cta.setAttribute('tabindex', '0');
@@ -802,7 +1113,7 @@ function showDetail(slug) {
       cta.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
-    }
+    });
   }
   detailEl.classList.add('open');
   detailEl.scrollTop = 0;
@@ -873,10 +1184,10 @@ document.getElementById('detail-back').addEventListener('click', closeDetail);
 })();
 ''' % ('\n'.join(
     "  { slug: '%s', name: '%s', elevation_m: %s, category: '%s', region: '%s', country: '%s',"
-    " difficulty: %s, status: '%s' },"
+    " difficulty: %s, status: '%s', hero: '%s' },"
     % (r['slug'], r['name'].replace("'", "\\'"), r['elevation_m'] if r['elevation_m'] else 'null',
        r['category'], r['region'], r['country'].replace("'", "\\'"),
-       ("'%s'" % r['difficulty']) if r['difficulty'] else 'null', r['status'])
+       ("'%s'" % r['difficulty']) if r['difficulty'] else 'null', r['status'], r['hero'])
     for r in J))
 
 # the interest dropdown, every journey grouped by category
@@ -918,7 +1229,7 @@ PAGE = '''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Explore &middot; The Mountain Diaries</title>
-<meta name="description" content="Every expedition and trekking journey run by The Mountain Diaries, from a first 6,000 metre summit to the eight thousanders.">
+''' + seo.meta('Explore the journeys', 'Every expedition and trek we run or plan to run: 52 journeys from a first 6,000 metre summit to the eight thousanders, plus classic treks in Nepal, the Alps, Patagonia, Peru and Kilimanjaro.', 'explore.html', 'assets/images/explore-header.jpg') + '''
 ''' + HEAD_LINKS + '''
 <style>
 ''' + STYLE.rstrip('\n') + EXPLORE_CSS + '''</style>
@@ -934,6 +1245,20 @@ PAGE = '''<!DOCTYPE html>
 
 ''' + BODY + '''
 
+
+<!-- CTA BAND -->
+<section class="cta-band cta-band--explore">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner">
+    <p class="section-kicker cta-kicker">Not sure where to start?</p>
+    <h2 class="cta-title">Tell us what you have done, and we will tell you what is next.</h2>
+    <p class="cta-lede">Join the community and mention your experience. We will point you at the right first trek, first summit or next big step, and let you know when a group forms.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="index.html#explore-teaser">See the path to the top</a>
+    </div>
+  </div>
+</section>
 ''' + FOOTER_X + '''
 
 <script>

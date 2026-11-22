@@ -26,7 +26,8 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
-GENERATED = ['index.html', 'explore.html', 'join.html', 'know.html', 'IMAGE_MAP.md']
+GENERATED = ['index.html', 'explore.html', 'join.html', 'know.html',
+             'about.html', 'privacy.html', 'terms.html', 'credits.html', 'IMAGE_MAP.md']
 
 
 def main():

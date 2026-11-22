@@ -901,8 +901,8 @@ AMA_DABLAM = {
         "exposed ridgeline between Camps 1 and 2.",
         "Prerequisites are firm: 6,000er summits, fixed-line fluency, real rock and ice "
         "technique at altitude.",
-        "Camp 2 sits on a granite tower the size of a dinner table row; this mountain’s "
-        "exposure is famous for a reason.",
+        "Camp 2 is perched on a granite tower barely bigger than a dinner table; this "
+        "mountain’s exposure is famous for a reason.",
         "Autumn is the classic season; the route becomes a small vertical village of teams "
         "sharing fixed lines.",
     ],
@@ -917,11 +917,11 @@ AMA_DABLAM = {
         "Full expedition technical kit; the list is long and specific, covered in Know the "
         "Mountain and in conversation before anyone commits.",
     'faq': [
-        ["How hard truly?",
+        ["How hard is it, really?",
          "The hardest widely-climbed 6,000er in Nepal; alpine rock and ice at altitude for days."],
-        ["Ready how?",
+        ["How do I know I am ready?",
          "Mera or Island, then Lobuche, then a technical peak, then this. We help map the path."],
-        ["Duration why?",
+        ["Why does it take so long?",
          "Acclimatisation rotations and weather windows; expeditions move at the mountain’s pace."],
         ["Solo joiners?", "Expeditions build the team; arriving alone is normal."],
     ],
@@ -1225,7 +1225,7 @@ CHULU_WEST = {
         "a snow ridge to 6,419 m, and the entire Annapurna range as the reward, before "
         "rejoining the circuit over the Thorong La.",
     'know': [
-        "The only major climb in our list that lives inside a classic trek: circuit "
+        "A major climb that lives inside a classic trek: circuit "
         "acclimatisation, then the mountain.",
         "Technically moderate by 6,000er standards: glacier travel and a sustained snow ridge, "
         "fixed lines where the season demands.",
@@ -1300,7 +1300,7 @@ DHAMPUS = {
     'season': 'Apr–May & Oct–Nov',
     'regionLabel': 'Dhaulagiri region, Nepal',
     'journey':
-        "The gentle giant-viewer. A non-technical snow summit above the Kali Gandaki with one "
+        "A gentle summit with giant views. A non-technical snow summit above the Kali Gandaki with one "
         "of the greatest viewpoints in Nepal: thirty named peaks, Dhaulagiri’s mass filling "
         "half the sky.",
     'know': [

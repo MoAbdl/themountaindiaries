@@ -39,3 +39,56 @@ Each location below was verified against the photograph's own Unsplash record
 | `tmb-trail-runners.jpg` | Louis Paulin | Chamonix, France | [X6EVEZdzYHs](https://unsplash.com/photos/X6EVEZdzYHs) |
 | `torres-del-paine.jpg` | Mario La Pergola | Torres del Paine, Chile | [LG3K7bTn-VQ](https://unsplash.com/photos/LG3K7bTn-VQ) |
 | `tour-du-mont-blanc.jpg` | Thomas Bonometti | Mer de Glace depuis le Lac Blanc | [aof33uCMc80](https://unsplash.com/photos/aof33uCMc80) |
+
+
+## Wikimedia Commons
+
+The journey photographs below are from Wikimedia Commons under the Creative Commons
+licence shown. Attribution is a licence condition for these, not a courtesy: they are
+credited on the public page `credits.html`, generated from `build/photo-manifest.json`.
+Each one shows the journey's own peak or valley.
+
+| File | Photographer | Licence | Source |
+| --- | --- | --- | --- |
+| `explore-header.jpg` | Rohit Sharma | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Tengboche_Monastery_with_Views_of_Mount_Everest,_Lhotse_and_Ama_Dablam.jpg) |
+| `journey-everest-8848.jpg` | Luca Galuzzi | CC BY-SA 2.5 | [Commons](https://commons.wikimedia.org/wiki/File:Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg) |
+| `journey-k2-8611.jpg` | Sallahuddin shah | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:K2_from_Concordia_-_3.jpg) |
+| `journey-kangchenjunga-8586.jpg` | Istiakuddin Ahmed | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:The_Kangchenjunga_from_darjeeling.jpg) |
+| `journey-lhotse-8516.jpg` | AceNotorious | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Sunset_on_the_Lhotse_South_Face.JPG) |
+| `journey-makalu-8485.jpg` | Ben Tubby | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Makalu.jpg) |
+| `journey-cho-oyu-8188.jpg` | Steve Hicks | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Cho_Oyu_-_North_face.jpg) |
+| `journey-dhaulagiri-8167.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Dhaulagiri,_Himalaya,_Nepal.jpg) |
+| `journey-manaslu-8163.jpg` | Udhabkc | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Mt_Manaslu_from_Manaslu_basecamp.jpg) |
+| `journey-nanga-parbat-8125.jpg` | Aasim85 | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Nanga_Parbat_2.jpg) |
+| `journey-annapurna-i-8091.jpg` | Josep M. Gracia | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:ABC_-_South_face_of_Annapurna_I_from_Annapurna_Base_Camp,_Nepal,_2016.jpg) |
+| `journey-gasherbrum-i-8080.jpg` | MustafaAldahabi | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Gasherbrum_I_SW.jpg) |
+| `journey-broad-peak-8051.jpg` | Sallahuddin shah | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Broad_Peak_and_K2.jpg) |
+| `journey-gasherbrum-ii-8034.jpg` | Syed Hasan Shabbar | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:View_from_Gasherbrum_II_to_Broad_Peak_and_K2.jpg) |
+| `journey-shisha-pangma-8027.jpg` | Bernard Gagnon | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Shishapangma_in_clouds.jpg) |
+| `journey-himlung-7126.jpg` | Mostafa25 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Himlung_2019.jpg) |
+| `journey-baruntse-7129.jpg` | SummitClimb | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Baruntse_Mountain.jpg) |
+| `journey-baruntse-mera.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Himalayas,_Nepal.jpg) |
+| `journey-putha-hiunchuli-7246.jpg` | Pavel Matoušek | CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Putha_1.jpg) |
+| `journey-pumori-7145.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Pumori,_Nepal,_Asia.jpg) |
+| `journey-nuptse-7864.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Nuptse,_Nepal,_Himalayas.jpg) |
+| `journey-annapurna-iv-7525.jpg` | Dinesh Kazi | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Annapurna_IV.jpg) |
+| `journey-ama-dablam-6812.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Himalayas,_Ama_Dablam,_Nepal.jpg) |
+| `journey-ama-dablam-lobuche.jpg` | Victoria lunyak | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Ama_Dablam_from_upper_Pangboche_village.jpg) |
+| `journey-ama-dablam-island.jpg` | Gerd Eichmann | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Dingboche-82-Ama_Dablam-2007-gje.jpg) |
+| `journey-three-peaks-ebc.jpg` | Goutam1962 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Everest_Base_Camp_from_Kala_Patther.jpg) |
+| `journey-two-peaks-lobuche-island-ebc.jpg` | Gerd Eichmann | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Chhukung_to_Imja_Tse_Camp-24-Nuptse-Imja_Tse-2007-gje.jpg) |
+| `journey-lobuche-ebc.jpg` | Theprotrekker | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Lobuche_East_from_the_southeast.jpg) |
+| `journey-lobuche-6119.jpg` | Theprotrekker | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Lobuche_East_Peak.jpg) |
+| `journey-island-peak-ebc.jpg` | Rohit Sharma | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Island_Peak_(Imja_Tse)_from_Dingboche_Village.jpg) |
+| `journey-island-peak-6189.jpg` | McKay Savage | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Island_Peak_Nepal.jpg) |
+| `journey-two-peaks-mera-island.jpg` | Sangyam adventurer | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Summit_of_Mera_peak.jpg) |
+| `journey-cholatse-6440.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Himalayas,_Cholatse,_Nepal.jpg) |
+| `journey-chulu-west-6419.jpg` | Vyacheslav Argenberg | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Chulu_West.jpg) |
+| `journey-pharchamo-tashi-lapcha.jpg` | Sergey Pashko | CC BY 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Last_meters_ascent_to_the_pass_Tashi_Laptse._-_panoramio.jpg) |
+| `journey-dhampus-6012.jpg` | Vyacheslav Argenberg | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Dhaulagiri_Tukuche_Dhampus.jpg) |
+| `journey-gokyo-lakes.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Gokyo_Lakes,_Dudh_Pokhari,_Nepal,_Himalayas.jpg) |
+| `journey-annapurna-base-camp.jpg` | Stefanos Nikologianis | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Annapurna_Base_Camp_Trek.jpg) |
+| `journey-mardi-himal.jpg` | Regmis680 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Mardi_Himal_Base_Camp_Footprint.jpg) |
+| `journey-upper-mustang.jpg` | Wimbex | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Lo_Mantang.JPG) |
+| `journey-manaslu-base-camp.jpg` | Nabin K. Sapkota | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Samagaun_Village_Manaslu_Circuit_17.jpg) |
+| `journey-langtang-valley.jpg` | Pustam.EGR | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Langtang_Himal_Rasuwa.jpg) |

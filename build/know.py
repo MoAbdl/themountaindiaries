@@ -13,6 +13,10 @@ words.
 import io
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import seo
+import news
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -204,11 +208,43 @@ CHAPTER_NAV = [('altitude', 'Altitude &amp; the Body'), ('training', 'Training &
 
 NEWS_INTRO = ("News from the mountain world: ascents, expeditions, events, and the losses that "
               "mark this pursuit. Curated, linked to source, updated as the mountains make news.")
-NEWS_EMPTY = "First dispatches are on their way. The mountains never stay quiet for long."
+NEWS_EMPTY = "The latest dispatches load here. If you can read this, switch JavaScript on to see them."
+
+
+# A photograph and a next step beside each chapter. The owner's copy is
+# untouched; the aside sits next to it and sticks while the chapter scrolls.
+ASIDES = {
+    'altitude': ('ebc-khumbu-glacier.jpg', 'The Khumbu Glacier near Gorak Shep, above 5,000 m: about half the oxygen of sea level.',
+                 'See how our Everest Base Camp trek paces the climb', 'explore.html#journey/ebc-trek'),
+    'training': ('tmb-trail-runners.jpg', 'Long days on the Tour du Mont Blanc are earned on training days at home.',
+                 'Train with us on local UAE hikes', 'join.html'),
+    'gear': ('annapurna-thorong-la.jpg', 'Fresh snow on the climb to the Thorong La, 5,416 m. Layers, not bulk.',
+             'Questions about kit? Ask us', 'mailto:hello@themountaindiaries.com?subject=Gear%20question'),
+    'judgement': ('tmb-chamonix.jpg', 'Cloud rolling in over the Alps: the moment the turnaround decision gets made.',
+                  'Not sure you are ready? Start with the path to the top', 'index.html#explore-teaser'),
+    'respect': ('ladakh-lamayuru.jpg', 'Lamayuru monastery, Ladakh. Every trail runs through someone’s home.',
+                'Who we are and how we travel', 'about.html'),
+}
+
+
+def aside_html(cid):
+    if cid not in ASIDES:
+        return ''
+    img, cap, cta, href = ASIDES[cid]
+    alt = cap.split(':')[0].split('.')[0]
+    return '''    <aside class="kaside">
+      <figure class="kaside-fig">
+        <img src="assets/images/%s" alt="%s" loading="lazy" decoding="async">
+        <figcaption>%s</figcaption>
+      </figure>
+      <a class="kaside-cta" href="%s">%s <span aria-hidden="true">&rarr;</span></a>
+    </aside>''' % (img, alt, cap, href, cta)
 
 
 def chapter_html(cid, title, lede, blocks, feet):
-    out = ['  <section class="kchapter" id="%s">' % cid,
+    out = ['  <section class="kchapter%s" id="%s">' % (' kchapter--aside' if cid in ASIDES else '', cid),
+           aside_html(cid),
+           '    <div class="kmain">',
            '    <h2 class="kchapter-title">%s</h2>' % title,
            '    <p class="klede">%s</p>' % lede]
     for heading, body in blocks:
@@ -219,6 +255,7 @@ def chapter_html(cid, title, lede, blocks, feet):
         out.append('    </div>')
     for f in feet:
         out.append('    <p class="kfoot">%s</p>' % f)
+    out.append('    </div>')
     out.append('  </section>')
     return '\n'.join(out)
 
@@ -274,6 +311,25 @@ extra_css = """
 
   .know-body { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--s-5); }
   .kchapter { padding: clamp(44px, 6vw, 72px) 0; border-top: 1px solid var(--rule); }
+  .kchapter--aside { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(32px, 5vw, 72px); align-items: start; }
+  .kchapter--aside .kaside { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--nav-h) + 72px); }
+  .kchapter--aside .kmain { grid-column: 1; grid-row: 1; }
+  .kaside-fig { margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: var(--card); border: 1px solid var(--rule); box-shadow: var(--shadow-card); }
+  .kaside-fig img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .kaside-fig figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); line-height: 1.5; color: var(--ink-2); }
+  .kaside-cta {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg);
+    background: var(--sienna); color: #fff; text-decoration: none;
+    font-family: var(--font-head); font-weight: 700; font-size: var(--t-base); line-height: 1.35;
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+  .kaside-cta:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  @media (max-width: 900px) {
+    .kchapter--aside { display: block; }
+    .kchapter--aside .kaside { position: static; margin-bottom: var(--s-5); }
+    .kaside-fig img { aspect-ratio: 16 / 9; }
+  }
   .kchapter:first-of-type { border-top: none; }
   /* scroll-margin so an anchored chapter clears both sticky bars */
   .kchapter, .kchapter[id] { scroll-margin-top: calc(var(--nav-h) + 54px); }
@@ -339,7 +395,7 @@ page = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Know the Mountain &middot; The Mountain Diaries</title>
-<meta name="description" content="The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.">
+""" + seo.meta('Know the Mountain', 'The knowledge behind every journey: altitude and the body, training, gear, judgement and respect, plus news from the mountain world.', 'know.html') + """
 """ + head_links + """
 <style>
 """ + style.rstrip('\n') + extra_css + """</style>
@@ -403,8 +459,7 @@ page = """<!DOCTYPE html>
 //
 // Categories carry a badge except In Memoriam, which stays muted on purpose:
 // a death is not a highlight, and colour would make it one.
-const NEWS = [
-];
+""" + news.js_array() + """
 
 const NEWS_BADGE = { 'Summit': 'badge-summit', 'Expedition': 'badge-expedition', 'Event': 'badge-event' };
 

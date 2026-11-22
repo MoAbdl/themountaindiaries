@@ -1,0 +1,33 @@
+# Downloads the Wikimedia Commons photographs listed in
+# build/photo-manifest.json, rebuilds the site, and commits the result back
+# to the same branch. Runs when the manifest changes, or by hand.
+name: fetch-photos
+
+on:
+  push:
+    paths:
+      - 'build/photo-manifest.json'
+      - 'build/fetch-photos.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow
+      - run: python3 build/fetch-photos.py
+      - run: python3 build/build.py
+      - name: Commit photographs and rebuilt pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898699+github-actions[bot]@users.noreply.github.com'
+          git add -A assets/images *.html IMAGE_MAP.md
+          git diff --cached --quiet || git commit -m 'photos: fetch Wikimedia Commons journey photographs and rebuild'
+          git push
