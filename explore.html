@@ -1242,6 +1242,21 @@
   }
 
   .detail-section { margin-top: var(--s-7); }
+  .jlayout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .jaside { position: sticky; top: calc(var(--nav-h) + 24px); margin-top: var(--s-7); }
+  .jaside-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .jaside-kicker { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sienna); font-weight: 700; }
+  .jaside-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-xl, 22px); line-height: 1.2; margin-top: 4px; color: var(--ink); }
+  .jaside-facts { margin: var(--s-4) 0; display: grid; gap: var(--s-2); }
+  .jaside-facts div { display: flex; justify-content: space-between; gap: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+  .jaside-facts dt { font-size: var(--t-sm); color: var(--ink-3); }
+  .jaside-facts dd { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--ink); text-align: right; }
+  .jaside-btn { width: 100%; justify-content: center; }
+  .jaside-note { font-size: 12px; color: var(--ink-3); text-align: center; margin-top: var(--s-2); }
+  .jaside-help { margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg); background: var(--glacier-soft); border: 1px solid var(--glacier-line); display: grid; gap: 6px; }
+  .jaside-help p { font-family: var(--font-head); font-weight: 700; color: var(--ink); }
+  .jaside-help a { color: var(--sienna); font-size: var(--t-sm); font-weight: 600; }
+  @media (max-width: 900px) { .jlayout { grid-template-columns: 1fr; } .jaside { position: static; } }
   .detail-section-title {
     font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
     color: var(--ink); margin-bottom: var(--s-4);
@@ -2535,6 +2550,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Oct–Nov &amp; Apr–May</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The most beautiful mountain in the Khumbu, and one of the world’s great technical expedition climbs. Three weeks on the southwest ridge: granite, ice and the famous hanging glacier that gives the mountain its name.</p>
@@ -2551,12 +2568,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-ama-dablam-6812.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-ama-dablam-6812.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2582,6 +2596,27 @@
             <div class="faq-item"><p class="faq-q">Why does it take so long?</p><p class="faq-a">Acclimatisation rotations and weather windows; expeditions move at the mountain’s pace.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Expeditions build the team; arriving alone is normal.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Ama Dablam</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>25 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Oct–Nov &amp; Apr–May</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam"
+               data-interest="Ama Dablam">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Ama%20Dablam">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2602,6 +2637,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The warm-up and the masterpiece. Lobuche East’s fixed lines as an acclimatising rehearsal, then the full southwest-ridge expedition on the most beautiful mountain in the Khumbu.</p>
@@ -2618,12 +2655,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-ama-dablam-lobuche.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-ama-dablam-lobuche.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2649,6 +2683,27 @@
             <div class="faq-item"><p class="faq-q">Success factors?</p><p class="faq-a">Weather windows and rope discipline, in that order.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Expeditions build the team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Ama Dablam and Lobuche East</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>28 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam%20and%20Lobuche%20East"
+               data-interest="Ama Dablam and Lobuche East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Ama%20Dablam%20and%20Lobuche%20East">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2669,6 +2724,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The same logic, gentler rehearsal: Island Peak’s glacier and headwall to tune altitude and systems, then the southwest ridge of Ama Dablam.</p>
@@ -2685,12 +2742,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-ama-dablam-island.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-ama-dablam-island.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2716,6 +2770,27 @@
             <div class="faq-item"><p class="faq-q">Realistic first expedition?</p><p class="faq-a">Only with the prerequisites genuinely met.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">The team forms on the mountain.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Ama Dablam and Island Peak</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>27 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Ama%20Dablam%20and%20Island%20Peak"
+               data-interest="Ama Dablam and Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Ama%20Dablam%20and%20Island%20Peak">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2736,6 +2811,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu &amp; Hinku, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The complete collection. The Hinku’s high glacier summit, a crossing of the Amphu Laptsa, then the Khumbu’s two classic peaks and Base Camp: a month that compresses years of progression.</p>
@@ -2752,12 +2829,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-three-peaks-ebc.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-three-peaks-ebc.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2783,6 +2857,27 @@
             <div class="faq-item"><p class="faq-q">Can I join for part?</p><p class="faq-a">The line doesn’t split well; the shorter combinations exist for that.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">The team forms around the objective.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Three Peaks and Everest Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>28 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Three%20Peaks%20and%20Everest%20Base%20Camp"
+               data-interest="Three Peaks and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Three%20Peaks%20and%20Everest%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2803,6 +2898,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The full Khumbu apprenticeship. Base Camp, then Lobuche East, then Island Peak: one acclimatisation curve spent on two different kinds of climbing.</p>
@@ -2819,12 +2916,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-two-peaks-lobuche-island-ebc.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-two-peaks-lobuche-island-ebc.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2850,6 +2944,27 @@
             <div class="faq-item"><p class="faq-q">Why this order?</p><p class="faq-a">Sustained technique first, steep crux second, fatigue managed.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Lobuche East, Island Peak and Everest Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>23 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East,%20Island%20Peak%20and%20Everest%20Base%20Camp"
+               data-interest="Lobuche East, Island Peak and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Lobuche%20East,%20Island%20Peak%20and%20Everest%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2870,6 +2985,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Base Camp first, then the quiet mountain above it. The EBC pilgrimage builds the base; Lobuche East’s fixed lines spend it, with Everest at eye level from the summit.</p>
@@ -2886,12 +3003,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-lobuche-ebc.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-lobuche-ebc.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2917,6 +3031,27 @@
             <div class="faq-item"><p class="faq-q">Best season?</p><p class="faq-a">Both windows work; autumn views, spring warmth.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Lobuche East and Everest Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>18 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East%20and%20Everest%20Base%20Camp"
+               data-interest="Lobuche East and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Lobuche%20East%20and%20Everest%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -2937,6 +3072,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The connoisseur’s Khumbu summit. Steeper and quieter than Island Peak, rising directly above the EBC trail with a summit-day view that puts Everest at eye level across the valley.</p>
@@ -2953,12 +3090,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-lobuche-6119.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-lobuche-6119.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -2984,6 +3118,27 @@
             <div class="faq-item"><p class="faq-q">Why quieter?</p><p class="faq-a">No easy label; the mountain filters its own crowd.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Lobuche East</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>14 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Lobuche%20East"
+               data-interest="Lobuche East">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Lobuche%20East">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3004,6 +3159,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The classic combination. Walk to Everest Base Camp and Kala Patthar first, then spend that hard-won acclimatisation on the Khumbu’s most famous first summit.</p>
@@ -3020,12 +3177,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-island-peak-ebc.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-island-peak-ebc.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3051,6 +3205,27 @@
             <div class="faq-item"><p class="faq-q">Skip EBC and just climb?</p><p class="faq-a">Possible elsewhere; unwise.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Island Peak and Everest Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>18 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Island%20Peak%20and%20Everest%20Base%20Camp"
+               data-interest="Island Peak and Everest Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Island%20Peak%20and%20Everest%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3071,6 +3246,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Imja Tse, the Khumbu’s classic first summit: an EBC-route acclimatisation, a night at a glacier base camp, then crevasse ladders and a steep fixed-line headwall to a ridge above the Imja valley.</p>
@@ -3087,12 +3264,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-island-peak-6189.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-island-peak-6189.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3118,6 +3292,27 @@
             <div class="faq-item"><p class="faq-q">Combine with EBC?</p><p class="faq-a">The route does it naturally.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Island Peak</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>14 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Island%20Peak"
+               data-interest="Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Island%20Peak">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3138,6 +3333,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Hinku Valley, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Nepal’s highest trekking peak, and the honest first 6,000er. A wild approach through the roadless Hinku valley, then a long glacier walk to a summit with five 8,000 m peaks on the horizon.</p>
@@ -3154,12 +3351,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-mera-peak-6476.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-mera-peak-6476.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3185,6 +3379,27 @@
             <div class="faq-item"><p class="faq-q">Mera or Island Peak first?</p><p class="faq-a">Mera for altitude with gentler ground, Island for steeper technique lower down.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Mera Peak</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>15 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Mera%20Peak"
+               data-interest="Mera Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Mera%20Peak">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3205,6 +3420,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu &amp; Hinku, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Altitude first, technique second. Mera’s high glacier summit out of the wild Hinku, over the Amphu Laptsa, then Island Peak’s headwall with three weeks of acclimatisation in your blood.</p>
@@ -3221,12 +3438,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-two-peaks-mera-island.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-two-peaks-mera-island.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3252,6 +3466,27 @@
             <div class="faq-item"><p class="faq-q">First-timer possible?</p><p class="faq-a">With strong preparation and our training days, yes; it is the upper bound of first journeys.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Mera Peak and Island Peak</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>21 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Mera%20Peak%20and%20Island%20Peak"
+               data-interest="Mera Peak and Island Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Mera%20Peak%20and%20Island%20Peak">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3272,6 +3507,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The beautiful problem. One of the Khumbu’s most striking mountains and one of its most genuinely technical permitted climbs: sustained ice and mixed ground where trekking peaks end and alpinism begins.</p>
@@ -3288,12 +3525,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-cholatse-6440.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-cholatse-6440.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3319,6 +3553,27 @@
             <div class="faq-item"><p class="faq-q">Why offer it at all?</p><p class="faq-a">Because some of our community will grow into it, and honesty beats gatekeeping.</p></div>
             <div class="faq-item"><p class="faq-q">Small groups?</p><p class="faq-a">Very; ropes of two and three.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Cholatse</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>18 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Cholatse"
+               data-interest="Cholatse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Cholatse">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3339,6 +3594,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Annapurna, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The Annapurna Circuit’s hidden summit. A detour from Manang into a high glacier basin, a snow ridge to 6,419 m, and the entire Annapurna range as the reward, before rejoining the circuit over the Thorong La.</p>
@@ -3355,12 +3612,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-chulu-west-6419.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-chulu-west-6419.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3386,6 +3640,27 @@
             <div class="faq-item"><p class="faq-q">Why fewer people?</p><p class="faq-a">No Everest in the view, which suits some of us fine.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Chulu West</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>17 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Chulu%20West"
+               data-interest="Chulu West">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Chulu%20West">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3406,6 +3681,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Rolwaling, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The wild one. Up the roadless Rolwaling valley beneath Gauri Shankar, over the glaciated Tashi Lapcha pass, and up Pharchamo’s snow pyramid, exiting into the Khumbu like climbers used to arrive.</p>
@@ -3422,12 +3699,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-pharchamo-tashi-lapcha.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-pharchamo-tashi-lapcha.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3453,6 +3727,27 @@
             <div class="faq-item"><p class="faq-q">Why Rolwaling?</p><p class="faq-a">Because empty valleys are becoming the rarest terrain in the Himalaya.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">The team is the safety system; it forms deliberately.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Pharchamo via Tashi Lapcha</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>16 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Pharchamo%20via%20Tashi%20Lapcha"
+               data-interest="Pharchamo via Tashi Lapcha">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Pharchamo%20via%20Tashi%20Lapcha">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3473,6 +3768,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Apr–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Dhaulagiri region, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">A gentle summit with giant views. A non-technical snow summit above the Kali Gandaki with one of the greatest viewpoints in Nepal: thirty named peaks, Dhaulagiri’s mass filling half the sky.</p>
@@ -3489,12 +3786,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-dhampus-6012.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-dhampus-6012.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3520,6 +3814,27 @@
             <div class="faq-item"><p class="faq-q">Best first 6,000er?</p><p class="faq-a">This or Mera, depending on whether views or altitude lead your ambition.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the rope team.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Dhampus Peak</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>12 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Apr–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Dhampus%20Peak"
+               data-interest="Dhampus Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Dhampus%20Peak">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3540,6 +3855,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar to May, Oct to Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Everest, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The classic walk to the foot of the world’s highest mountain, up the Dudh Koshi valley through Sherpa villages, monasteries, and glacial moraine. No ropes, no technical ground: honest fitness and respect for altitude are the entry requirements.</p>
@@ -3556,12 +3873,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-ebc-trek.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-ebc-trek.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3587,6 +3901,27 @@
             <div class="faq-item"><p class="faq-q">What about altitude sickness?</p><p class="faq-a">We pace to prevent it and stay honest about symptoms. Descending is always the right call.</p></div>
             <div class="faq-item"><p class="faq-q">Can I join alone?</p><p class="faq-a">Most of the group does. That’s the point of a community expedition.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Everest Base Camp Trek</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>15 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Mar to May, Oct to Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Everest%20Base%20Camp%20Trek"
+               data-interest="Everest Base Camp Trek">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Everest%20Base%20Camp%20Trek">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3607,6 +3942,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The complete Khumbu. One long horseshoe over the region’s three great passes, Kongma La, Cho La and Renjo La, linking Base Camp, the Gokyo lakes and valleys most EBC trekkers never see.</p>
@@ -3623,12 +3960,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-three-passes.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-three-passes.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3654,6 +3988,27 @@
             <div class="faq-item"><p class="faq-q">Which direction is better?</p><p class="faq-a">Clockwise for solitude, anticlockwise for gentler acclimatisation.</p></div>
             <div class="faq-item"><p class="faq-q">Can I join alone?</p><p class="faq-a">Most of the group comes alone.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Everest Three Passes</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>18 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Everest%20Three%20Passes"
+               data-interest="Everest Three Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Everest%20Three%20Passes">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3674,6 +4029,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Khumbu, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The Khumbu’s quieter masterpiece. Up the valley west of Everest to a chain of turquoise glacial lakes and a summit viewpoint many rate above Kala Patthar.</p>
@@ -3690,12 +4047,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-gokyo-lakes.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-gokyo-lakes.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3721,6 +4075,27 @@
             <div class="faq-item"><p class="faq-q">Can it extend to EBC?</p><p class="faq-a">Yes, over the Cho La; that becomes the Three Passes’ middle third.</p></div>
             <div class="faq-item"><p class="faq-q">Joining solo?</p><p class="faq-a">Standard here.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Gokyo Lakes</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>12 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Gokyo%20Lakes"
+               data-interest="Gokyo Lakes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Gokyo%20Lakes">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3741,6 +4116,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Annapurna, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Nepal’s great crossing. From subtropical river valleys through Manang’s high desert to the prayer flags of Thorong La, then down into the ancient pilgrimage country of Mustang.</p>
@@ -3757,12 +4134,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-annapurna-circuit.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-annapurna-circuit.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3788,6 +4162,27 @@
             <div class="faq-item"><p class="faq-q">Best month?</p><p class="faq-a">October for clarity, April for warmth.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Annapurna Circuit</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>13 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20Circuit"
+               data-interest="Annapurna Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Annapurna%20Circuit">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3808,6 +4203,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Annapurna, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">A walk into an amphitheatre. Stone staircases through rhododendron forest and Gurung villages, ending inside a ring of 7,000 and 8,000 m walls.</p>
@@ -3824,12 +4221,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-annapurna-base-camp.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-annapurna-base-camp.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3855,6 +4249,27 @@
             <div class="faq-item"><p class="faq-q">Combine with Mardi Himal?</p><p class="faq-a">Yes, they share a trailhead region.</p></div>
             <div class="faq-item"><p class="faq-q">Altitude risk?</p><p class="faq-a">Lower than the big treks, but the last day still climbs fast; we pace it.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Annapurna Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>9 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20Base%20Camp"
+               data-interest="Annapurna Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Annapurna%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3875,6 +4290,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Annapurna, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The short, sharp ridge walk. A forest trail out of Pokhara climbing a single spur to eye-level views of Machhapuchhre, all in under a week.</p>
@@ -3891,12 +4308,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-mardi-himal.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-mardi-himal.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3922,6 +4336,27 @@
             <div class="faq-item"><p class="faq-q">Crowded?</p><p class="faq-a">Busier than it was, still far quieter than ABC.</p></div>
             <div class="faq-item"><p class="faq-q">Extendable?</p><p class="faq-a">Pairs naturally with ABC for a two-week Annapurna immersion.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Mardi Himal</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>6 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Mardi%20Himal"
+               data-interest="Mardi Himal">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Mardi%20Himal">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -3942,6 +4377,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–Nov, including monsoon</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Mustang, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">A walk into a former kingdom. Behind the Annapurna–Dhaulagiri wall lies a high desert of cave monasteries, wind-carved cliffs and the walled city of Lo Manthang, closed to outsiders until 1992.</p>
@@ -3958,12 +4395,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-upper-mustang.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-upper-mustang.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -3989,6 +4423,27 @@
             <div class="faq-item"><p class="faq-q">Best time?</p><p class="faq-a">May for Tiji, or the monsoon window when everywhere else drips.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Now possible under the 2026 rules; most of our group comes alone anyway.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Upper Mustang</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>12 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Mar–Nov, including monsoon</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Upper%20Mustang"
+               data-interest="Upper Mustang">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Upper%20Mustang">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4009,6 +4464,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Gorkha, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The connoisseur’s circuit. Around the world’s eighth-highest mountain through a valley that opened to outsiders only in 1991, ending over the snows of the Larkya La.</p>
@@ -4025,12 +4482,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-manaslu-circuit.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-manaslu-circuit.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4056,6 +4510,27 @@
             <div class="faq-item"><p class="faq-q">Why the permits?</p><p class="faq-a">The region borders Tibet and stayed closed until 1991.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Permitted since 2026, guide required; our groups make it moot.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Manaslu Circuit</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>14 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Manaslu%20Circuit"
+               data-interest="Manaslu Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Manaslu%20Circuit">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4076,6 +4551,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Gorkha, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Up the Budhi Gandaki to Samagaon, then the steep pull to the base camp of the eighth-highest mountain, with the Nubri valley’s monasteries as the slow reward on the way.</p>
@@ -4092,12 +4569,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-manaslu-base-camp.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-manaslu-base-camp.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4123,6 +4597,27 @@
             <div class="faq-item"><p class="faq-q">Can I see climbers?</p><p class="faq-a">In season, yes; Base Camp hums in September and April.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Same 2026 rules as the circuit.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Manaslu Base Camp</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>10 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Manaslu%20Base%20Camp"
+               data-interest="Manaslu Base Camp">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Manaslu%20Base%20Camp">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4143,6 +4638,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Mar–May &amp; Oct–Nov</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Langtang, Nepal</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The valley of glaciers, one long day’s drive from Kathmandu. Through forest and yak pasture to Kyanjin Gompa, ringed by 7,000 m ice, in the region that rebuilt itself after 2015.</p>
@@ -4159,12 +4656,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-langtang-valley.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-langtang-valley.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4190,6 +4684,27 @@
             <div class="faq-item"><p class="faq-q">Why Langtang over Annapurna?</p><p class="faq-a">Proximity, quiet, and the story of a valley that came back.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Langtang Valley</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>8 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Mar–May &amp; Oct–Nov</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Langtang%20Valley"
+               data-interest="Langtang Valley">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Langtang%20Valley">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4210,6 +4725,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Jun–Sep</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Ladakh, India</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The Markha valley crossing in India’s high-altitude desert: Buddhist villages, canyon trails and a finale over the Kongmaru La with Kang Yatse filling the horizon.</p>
@@ -4226,12 +4743,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-ladakh-high-passes.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-ladakh-high-passes.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4257,6 +4771,27 @@
             <div class="faq-item"><p class="faq-q">Homestays really?</p><p class="faq-a">Yes, family homes with mattresses and dal; part of the point.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Ladakh High Passes</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>8 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Jun–Sep</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Ladakh%20High%20Passes"
+               data-interest="Ladakh High Passes">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Ladakh%20High%20Passes">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4277,6 +4812,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Jun–Sep</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">France, Italy, Switzerland</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The Alps’ great circle. Around the Mont Blanc massif through three countries, sleeping in mountain huts and valley villages, with the white summit turning above you the whole way round.</p>
@@ -4293,12 +4830,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-tour-du-mont-blanc.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-tour-du-mont-blanc.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4324,6 +4858,27 @@
             <div class="faq-item"><p class="faq-q">Fitness bar?</p><p class="faq-a">Consecutive full days with 800 to 1,000 m of climb.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Tour du Mont Blanc</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>11 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Jun–Sep</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Tour%20du%20Mont%20Blanc"
+               data-interest="Tour du Mont Blanc">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Tour%20du%20Mont%20Blanc">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4344,6 +4899,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Jul–Sep</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">France, Switzerland</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Chamonix to Zermatt the walker’s way: a high traverse under the Alps’ greatest collection of 4,000 m peaks, from Mont Blanc’s shadow to the Matterhorn’s doorstep.</p>
@@ -4360,12 +4917,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-haute-route-trek.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-haute-route-trek.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4391,6 +4945,27 @@
             <div class="faq-item"><p class="faq-q">Fitness bar?</p><p class="faq-a">Big consecutive days at TMB-plus intensity.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Haute Route, Chamonix to Zermatt</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>13 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Demanding</dd></div>
+              <div><dt>Best season</dt><dd>Jul–Sep</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Haute%20Route,%20Chamonix%20to%20Zermatt"
+               data-interest="Haute Route, Chamonix to Zermatt">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Haute%20Route,%20Chamonix%20to%20Zermatt">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4411,6 +4986,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Oct–Apr</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Patagonia, Chile</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">Patagonia’s W: three valleys stitched along the Paine massif’s southern face, granite towers at one end, the blue chaos of Grey Glacier at the other.</p>
@@ -4427,12 +5004,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-torres-del-paine-trek.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-torres-del-paine-trek.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4458,6 +5032,27 @@
             <div class="faq-item"><p class="faq-q">Fitness bar?</p><p class="faq-a">Long distance days, 15 to 20 km, on good trail.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Torres del Paine Circuit</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>6 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Steady</dd></div>
+              <div><dt>Best season</dt><dd>Oct–Apr</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Torres%20del%20Paine%20Circuit"
+               data-interest="Torres del Paine Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Torres%20del%20Paine%20Circuit">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4478,6 +5073,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">May–Sep</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Cordillera Huayhuash, Peru</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The Andes’ hardest classic. A full circle of a compact, savage range: eight passes above 4,600 m, turquoise lakes under 6,000 m faces, and the mountains of Touching the Void.</p>
@@ -4494,12 +5091,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-huayhuash-circuit.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-huayhuash-circuit.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4525,6 +5119,27 @@
             <div class="faq-item"><p class="faq-q">Why not the shorter mini-circuit?</p><p class="faq-a">It exists and it’s good; the full circle is the masterpiece.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
         </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Huayhuash Circuit</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>11 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>May–Sep</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Huayhuash%20Circuit"
+               data-interest="Huayhuash Circuit">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Huayhuash%20Circuit">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
+        </div>
 
         <div class="jcta">
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
@@ -4545,6 +5160,8 @@
           <div><p class="fact-label">Best season</p><p class="fact-value">Jan–Mar &amp; Jun–Oct</p></div>
           <div><p class="fact-label">Region</p><p class="fact-value">Tanzania</p></div>
         </div>
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">The roof of Africa on foot. Through five climate zones from rainforest to arctic summit ice, ending in the dark hours on the crater rim as the sun rises over the continent.</p>
@@ -4561,12 +5178,9 @@
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
           <!-- Route artwork pending. Drop assets/images/route-map-kilimanjaro-5895.jpg in
                and re-run the build; the slot fills itself. -->
           <figure class="route-fig" data-route-art="route-map-kilimanjaro-5895.jpg" hidden></figure>
-        </div>
 
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
@@ -4591,6 +5205,27 @@
             <div class="faq-item"><p class="faq-q">Coldest moment?</p><p class="faq-a">Summit night, −10 to −20 °C with wind.</p></div>
             <div class="faq-item"><p class="faq-q">Do I need climbing skills?</p><p class="faq-a">None; you need lungs, legs and stubbornness.</p></div>
             <div class="faq-item"><p class="faq-q">Solo joiners?</p><p class="faq-a">Most of the group.</p></div>
+        </div>
+        </div>
+        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">Kilimanjaro</p>
+            <dl class="jaside-facts">
+              <div><dt>Duration</dt><dd>7 days</dd></div>
+              <div><dt>Difficulty</dt><dd>Severe</dd></div>
+              <div><dt>Best season</dt><dd>Jan–Mar &amp; Jun–Oct</dd></div>
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:Kilimanjaro"
+               data-interest="Kilimanjaro">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:Kilimanjaro">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>
         </div>
 
         <div class="jcta">
@@ -4888,8 +5523,9 @@ function showDetail(slug) {
   if (body) {
     detailContent.querySelector('.detail-slot').appendChild(body);
     // the mailto is the no-JavaScript path; here the panel is better
-    const cta = detailContent.querySelector('[data-interest]');
-    if (cta) {
+    // every Join the Group button on the page opens the panel: the sidebar
+    // one and the one at the foot of the page
+    detailContent.querySelectorAll('[data-interest]').forEach((cta) => {
       cta.removeAttribute('href');
       cta.setAttribute('role', 'button');
       cta.setAttribute('tabindex', '0');
@@ -4900,7 +5536,7 @@ function showDetail(slug) {
       cta.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
-    }
+    });
   }
   detailEl.classList.add('open');
   detailEl.scrollTop = 0;

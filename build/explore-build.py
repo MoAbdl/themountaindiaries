@@ -707,6 +707,21 @@ EXPLORE_CSS = '''
   }
 
   .detail-section { margin-top: var(--s-7); }
+  .jlayout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .jaside { position: sticky; top: calc(var(--nav-h) + 24px); margin-top: var(--s-7); }
+  .jaside-card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-lg); padding: var(--s-5); box-shadow: var(--shadow-card); }
+  .jaside-kicker { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sienna); font-weight: 700; }
+  .jaside-title { font-family: var(--font-head); font-weight: 800; font-size: var(--t-xl, 22px); line-height: 1.2; margin-top: 4px; color: var(--ink); }
+  .jaside-facts { margin: var(--s-4) 0; display: grid; gap: var(--s-2); }
+  .jaside-facts div { display: flex; justify-content: space-between; gap: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-2); }
+  .jaside-facts dt { font-size: var(--t-sm); color: var(--ink-3); }
+  .jaside-facts dd { margin: 0; font-size: var(--t-sm); font-weight: 600; color: var(--ink); text-align: right; }
+  .jaside-btn { width: 100%; justify-content: center; }
+  .jaside-note { font-size: 12px; color: var(--ink-3); text-align: center; margin-top: var(--s-2); }
+  .jaside-help { margin-top: var(--s-3); padding: var(--s-4); border-radius: var(--radius-lg); background: var(--glacier-soft); border: 1px solid var(--glacier-line); display: grid; gap: 6px; }
+  .jaside-help p { font-family: var(--font-head); font-weight: 700; color: var(--ink); }
+  .jaside-help a { color: var(--sienna); font-size: var(--t-sm); font-weight: 600; }
+  @media (max-width: 900px) { .jlayout { grid-template-columns: 1fr; } .jaside { position: static; } }
   .detail-section-title {
     font-family: var(--font-head); font-size: var(--t-xl); font-weight: 700;
     color: var(--ink); margin-bottom: var(--s-4);
@@ -820,6 +835,8 @@ def detailed_body(r, d):
         '            <div class="faq-item"><p class="faq-q">%s</p><p class="faq-a">%s</p></div>'
         % (q, a) for q, a in d['faq'])
     return '''%s
+        <div class="jlayout">
+        <div class="jmain">
         <div class="detail-section">
           <h3 class="detail-section-title">The journey</h3>
           <p class="detail-lede">%s</p>
@@ -832,11 +849,7 @@ def detailed_body(r, d):
           </ul>
         </div>
 
-        <div class="detail-section">
-          <h3 class="detail-section-title">Route</h3>
 %s
-        </div>
-
         <div class="detail-section">
           <h3 class="detail-section-title">Highlights</h3>
           <ul class="hl-list">
@@ -854,9 +867,51 @@ def detailed_body(r, d):
           <h3 class="detail-section-title">Questions</h3>
 %s
         </div>
+        </div>
+%s
+        </div>
 
 %s''' % (facts, d['journey'], know,
-          route_slot(r['slug']), hl, d['gear'], faq, cta_html(r['name']))
+          route_section(r['slug']), hl, d['gear'], faq, side_card(r, d), cta_html(r['name']))
+
+
+def route_section(slug):
+    """The Route section appears only once its artwork exists; an empty
+    heading is worse than no section."""
+    art = 'route-map-%s.jpg' % slug
+    if not os.path.exists(os.path.join(REPO, 'assets', 'images', art)):
+        return route_slot(slug) + '\n'
+    return '''        <div class="detail-section">
+          <h3 class="detail-section-title">Route</h3>
+%s
+        </div>
+''' % route_slot(slug)
+
+
+def side_card(r, d):
+    """The sticky sidebar: the one action this page exists for, always in
+    reach while the reader scrolls the detail."""
+    rows = [(l, v) for l, v in [('Duration', d.get('duration')), ('Difficulty', r.get('difficulty')),
+                                ('Best season', d.get('season'))] if v]
+    subj = r['name'].replace(' ', '%20').replace('&', 'and')
+    return '''        <aside class="jaside">
+          <div class="jaside-card">
+            <p class="jaside-kicker">Interested?</p>
+            <p class="jaside-title">%s</p>
+            <dl class="jaside-facts">
+%s
+            </dl>
+            <a class="btn btn-primary jaside-btn" href="mailto:hello@themountaindiaries.com?subject=Interest:%s"
+               data-interest="%s">Join the Group <span aria-hidden="true">&rarr;</span></a>
+            <p class="jaside-note">Free, and no commitment. We tell you when a group forms.</p>
+          </div>
+          <div class="jaside-help">
+            <p>Questions first?</p>
+            <a href="mailto:hello@themountaindiaries.com?subject=Question:%s">Email us</a>
+            <a href="join.html">Join the WhatsApp community</a>
+          </div>
+        </aside>''' % (r['name'], '\n'.join('              <div><dt>%s</dt><dd>%s</dd></div>' % (l, esc_amp(v)) for l, v in rows),
+                       subj, esc_attr(r['name']), subj)
 
 
 def route_slot(slug):
@@ -1045,8 +1100,9 @@ function showDetail(slug) {
   if (body) {
     detailContent.querySelector('.detail-slot').appendChild(body);
     // the mailto is the no-JavaScript path; here the panel is better
-    const cta = detailContent.querySelector('[data-interest]');
-    if (cta) {
+    // every Join the Group button on the page opens the panel: the sidebar
+    // one and the one at the foot of the page
+    detailContent.querySelectorAll('[data-interest]').forEach((cta) => {
       cta.removeAttribute('href');
       cta.setAttribute('role', 'button');
       cta.setAttribute('tabindex', '0');
@@ -1057,7 +1113,7 @@ function showDetail(slug) {
       cta.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
-    }
+    });
   }
   detailEl.classList.add('open');
   detailEl.scrollTop = 0;
