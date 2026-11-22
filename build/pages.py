@@ -85,7 +85,10 @@ CSS = """
     font-family: var(--font-head); font-weight: 700; font-size: 14px;
     display: flex; align-items: center; justify-content: center;
   }
-  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; max-width: none; }
+  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: start; max-width: none; margin-top: var(--s-4); }
+  .steps-row .steps { margin-top: 0; }
+  .steps-row .steps li:first-child { margin-top: 0; }
+  .prose ul + p { margin-top: var(--s-4); }
   .steps-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--card); }
   .steps-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
   .steps-photo figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); color: var(--ink-3); }
@@ -100,7 +103,7 @@ CSS = """
 """
 
 
-def page(filename, title, description, header, body, image=None, active=None):
+def page(filename, title, description, header, body, image=None, active=None, cta=False):
     n = nav
     if active:
         n = n.replace('<li><a href="%s">' % filename, '<li><a href="%s" class="is-active" aria-current="page">' % filename)
@@ -145,9 +148,25 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNavMe
 </body>
 </html>
 ''' % (title, seo.meta(title, description, filename, image or seo.DEFAULT_IMAGE), head_links,
-       style.rstrip('\n'), CSS, n, head_html, body, footer, nav_js)
+       style.rstrip('\n'), CSS, n, head_html, body, (CTA_BAND if cta else '') + footer, nav_js)
     io.open(os.path.join(OUT_DIR, filename), 'w', encoding='utf-8').write(html)
     print('%s written, %d bytes' % (filename, len(html)))
+
+
+CTA_BAND = '''<section class="cta-band">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner">
+    <p class="section-kicker cta-kicker">Walk with people</p>
+    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
+    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="explore.html">Find your journey</a>
+    </div>
+  </div>
+</section>
+
+'''
 
 
 # ═══════════════════════════════ ABOUT ═══════════════════════════════════
@@ -208,7 +227,7 @@ page('about.html', 'About Us',
         <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
         <a class="btn btn-outline" href="explore.html">Explore the journeys</a>
       </div>
-    </div>''', image='assets/images/ebc-valley.jpg', active=True)
+    </div>''', image='assets/images/ebc-valley.jpg', active=True, cta=True)
 
 
 # ═══════════════════════════════ PRIVACY ═════════════════════════════════

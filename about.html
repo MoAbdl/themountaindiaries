@@ -1134,7 +1134,10 @@
     font-family: var(--font-head); font-weight: 700; font-size: 14px;
     display: flex; align-items: center; justify-content: center;
   }
-  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: center; max-width: none; }
+  .steps-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(28px, 5vw, 64px); align-items: start; max-width: none; margin-top: var(--s-4); }
+  .steps-row .steps { margin-top: 0; }
+  .steps-row .steps li:first-child { margin-top: 0; }
+  .prose ul + p { margin-top: var(--s-4); }
   .steps-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card); background: var(--card); }
   .steps-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
   .steps-photo figcaption { padding: var(--s-3) var(--s-4); font-size: var(--t-sm); color: var(--ink-3); }
@@ -1231,6 +1234,19 @@
     </div>
   </div>
 </main>
+
+<section class="cta-band">
+  <div class="cta-band-media" aria-hidden="true"></div>
+  <div class="cta-band-inner">
+    <p class="section-kicker cta-kicker">Walk with people</p>
+    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
+    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn-ghost" href="explore.html">Find your journey</a>
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer">
   <div class="footer-ridge" aria-hidden="true"></div>
