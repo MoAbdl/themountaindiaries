@@ -50,8 +50,8 @@ a file that is declared available but missing.
 | `journey-himlung-7126.jpg` | Himlung Himal | explore.html | yes | 1 |
 | `journey-island-peak-6189.jpg` | Island Peak | explore.html, index.html | yes | 2 |
 | `journey-island-peak-ebc.jpg` | Island Peak and Everest Base Camp | explore.html | yes | 1 |
-| `journey-kamet-7756.jpg` | Kamet | explore.html | no | 1 |
-| `journey-kang-yatse-6250.jpg` | Kang Yatse II | explore.html | no | 1 |
+| `journey-kamet-7756.jpg` | Kamet | explore.html | yes | 1 |
+| `journey-kang-yatse-6250.jpg` | Kang Yatse II | explore.html | yes | 1 |
 | `journey-kangchenjunga-8586.jpg` | Kangchenjunga | explore.html | yes | 1 |
 | `journey-langtang-valley.jpg` | Langtang Valley | explore.html | yes | 1 |
 | `journey-lhotse-8516.jpg` | Lhotse | explore.html | yes | 1 |
@@ -61,15 +61,15 @@ a file that is declared available but missing.
 | `journey-manaslu-8163.jpg` | Manaslu | explore.html, index.html | yes | 2 |
 | `journey-manaslu-base-camp.jpg` | Manaslu Base Camp | explore.html | yes | 1 |
 | `journey-mardi-himal.jpg` | Mardi Himal | explore.html | yes | 1 |
-| `journey-nun-7135.jpg` | Nun | explore.html | no | 1 |
+| `journey-nun-7135.jpg` | Nun | explore.html | yes | 1 |
 | `journey-nuptse-7864.jpg` | Nuptse | explore.html | yes | 1 |
 | `journey-pharchamo-tashi-lapcha.jpg` | Pharchamo via Tashi Lapcha | explore.html | yes | 1 |
 | `journey-pumori-7145.jpg` | Pumori | explore.html | yes | 1 |
 | `journey-putha-hiunchuli-7246.jpg` | Putha Hiunchuli | explore.html | yes | 1 |
-| `journey-satopanth-7075.jpg` | Satopanth | explore.html | no | 1 |
+| `journey-satopanth-7075.jpg` | Satopanth | explore.html | yes | 1 |
 | `journey-shisha-pangma-8027.jpg` | Shisha Pangma | explore.html | yes | 1 |
 | `journey-three-peaks-ebc.jpg` | Three Peaks and Everest Base Camp | explore.html | yes | 1 |
-| `journey-trisul-7120.jpg` | Trisul I | explore.html | no | 1 |
+| `journey-trisul-7120.jpg` | Trisul I | explore.html | yes | 1 |
 | `journey-two-peaks-lobuche-island-ebc.jpg` | Lobuche East, Island Peak and Everest Base Camp | explore.html | yes | 1 |
 | `journey-two-peaks-mera-island.jpg` | Mera Peak and Island Peak | explore.html | yes | 1 |
 | `journey-upper-mustang.jpg` | Upper Mustang | explore.html | yes | 1 |
@@ -122,11 +122,6 @@ a file that is declared available but missing.
 Referenced by name and deliberately absent. Each renders as a flat grey block
 naming the file it is waiting for, and claims nothing.
 
-- `journey-kamet-7756.jpg`
-- `journey-kang-yatse-6250.jpg`
-- `journey-nun-7135.jpg`
-- `journey-satopanth-7075.jpg`
-- `journey-trisul-7120.jpg`
 - `route-map-ama-dablam-6812.jpg`
 - `route-map-ama-dablam-island.jpg`
 - `route-map-ama-dablam-lobuche.jpg`
