@@ -14,8 +14,8 @@ DEFAULT_IMAGE = 'assets/images/hero-ebc.jpg'
 # switch one on, then rebuild.
 SOCIAL = {
     'Facebook': '',
-    'Instagram': '',
-    'TikTok': '',
+    'Instagram': 'https://www.instagram.com/the_mountain_diaries/',
+    'TikTok': 'https://www.tiktok.com/@the_mountain_diaries',
     'LinkedIn': 'https://www.linkedin.com/company/themountaindiaries/',
 }
 
