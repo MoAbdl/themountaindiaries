@@ -93,10 +93,10 @@ s = sub(s, '<li><a href="#trails">Expeditions &amp; Trekking</a></li>',
 
 # 1a2. About, policy pages, link previews and social icons
 s = sub(s, '<title>The Mountain Diaries</title>',
-        '<title>The Mountain Diaries &middot; Treks and expeditions from the UAE</title>\n' + seo.meta(
+        '<title>The Mountain Diaries &middot; Expeditions and travel to the high places</title>\n' + seo.meta(
             'The Mountain Diaries',
-            'A UAE trekking and expedition community. Local hikes most months, small groups to '
-            'Everest Base Camp, Mera Peak, Ama Dablam and beyond, and the stories from the trail.'),
+            'A mountain expedition and trekking community. Small groups to Everest Base Camp, Mera Peak, '
+            'Ama Dablam and beyond, honest knowledge on altitude, and the stories from the trail.'),
         'index head')
 s = sub(s, '''      <!-- re-target to the About Us section once it is written; #story is a stand in -->
       <li><a href="#story" data-spy="story">About Us</a></li>''',
@@ -267,8 +267,8 @@ CTA_BAND = '''<!-- CTA BAND -->
   <div class="cta-band-media" aria-hidden="true"></div>
   <div class="cta-band-inner reveal">
     <p class="section-kicker cta-kicker">Walk with people</p>
-    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
-    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <h2 class="cta-title">The mountains are calling. Find the people to answer with.</h2>
+    <p class="cta-lede">Join the community for first word on new expedition groups, honest guidance before you go, and people who will get you up the mountain and back.</p>
     <div class="cta-actions">
       <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
       <a class="btn btn-ghost" href="explore.html">Find your journey</a>
@@ -948,10 +948,10 @@ def catalogue_body(r):
           <h3 class="detail-section-title">The mountain</h3>
           <p class="detail-lede">%s</p>
           <ul class="know-list">
-            <li><strong>Normal route:</strong> %s</li>
-            <li><strong>First ascent:</strong> %s</li>
+            <li><strong>Normal route:</strong> %s</li>%s
           </ul>
-        </div>''' % (o['about'], o['route'], o['first'])
+        </div>''' % (o['about'], o['route'],
+                     ('\n            <li><strong>First ascent:</strong> %s</li>' % o['first']) if o.get('first') else '')
     return '''%s%s
         <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
         and partnerships align.</p>

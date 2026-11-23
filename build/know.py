@@ -217,7 +217,7 @@ ASIDES = {
     'altitude': ('ebc-khumbu-glacier.jpg', 'The Khumbu Glacier near Gorak Shep, above 5,000 m: about half the oxygen of sea level.',
                  'See how our Everest Base Camp trek paces the climb', 'explore.html#journey/ebc-trek'),
     'training': ('tmb-trail-runners.jpg', 'Long days on the Tour du Mont Blanc are earned on training days at home.',
-                 'Train with us on local UAE hikes', 'join.html'),
+                 'Find training partners in the community', 'join.html'),
     'gear': ('annapurna-thorong-la.jpg', 'Fresh snow on the climb to the Thorong La, 5,416 m. Layers, not bulk.',
              'Questions about kit? Ask us', 'mailto:hello@themountaindiaries.com?subject=Gear%20question'),
     'judgement': ('tmb-chamonix.jpg', 'Cloud rolling in over the Alps: the moment the turnaround decision gets made.',

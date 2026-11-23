@@ -1343,7 +1343,7 @@
         </div>
         <div class="field">
           <label for="inq-phone">Phone / WhatsApp</label>
-          <input type="tel" id="inq-phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" required>
+          <input type="tel" id="inq-phone" name="phone" placeholder="+ country code and number" autocomplete="tel" required>
         </div>
         <div class="field">
           <label for="inq-journey">Which journey</label>
@@ -1351,18 +1351,13 @@
             <option value="">Select a journey</option>
             <optgroup label="8000ers">
               <option>Everest</option>
-              <option>K2</option>
               <option>Kangchenjunga</option>
               <option>Lhotse</option>
               <option>Makalu</option>
               <option>Cho Oyu</option>
               <option>Dhaulagiri I</option>
               <option>Manaslu</option>
-              <option>Nanga Parbat</option>
               <option>Annapurna I</option>
-              <option>Gasherbrum I</option>
-              <option>Broad Peak</option>
-              <option>Gasherbrum II</option>
               <option>Shisha Pangma</option>
             </optgroup>
             <optgroup label="7000ers">
@@ -1373,6 +1368,10 @@
               <option>Pumori</option>
               <option>Nuptse</option>
               <option>Annapurna IV</option>
+              <option>Kamet</option>
+              <option>Nun</option>
+              <option>Trisul I</option>
+              <option>Satopanth</option>
             </optgroup>
             <optgroup label="6000ers">
               <option>Ama Dablam</option>
@@ -1387,6 +1386,7 @@
               <option>Mera Peak</option>
               <option>Mera Peak and Island Peak</option>
               <option>Cholatse</option>
+              <option>Kang Yatse II</option>
               <option>Chulu West</option>
               <option>Pharchamo via Tashi Lapcha</option>
               <option>Dhampus Peak</option>
@@ -1484,11 +1484,11 @@
         <h2 class="rail-heading">Expeditions</h2>
         <div class="cat-tabs" role="tablist" aria-label="Expedition categories">
           <button class="cat-btn" type="button" role="tab" id="tab-exp-0"
-                  aria-controls="panel-exp-0" aria-selected="true" data-rail="exp" data-tab="0">8000ers <span class="cat-count">14</span></button>
+                  aria-controls="panel-exp-0" aria-selected="true" data-rail="exp" data-tab="0">8000ers <span class="cat-count">9</span></button>
           <button class="cat-btn" type="button" role="tab" id="tab-exp-1"
-                  aria-controls="panel-exp-1" aria-selected="false" data-rail="exp" data-tab="1">7000ers <span class="cat-count">7</span></button>
+                  aria-controls="panel-exp-1" aria-selected="false" data-rail="exp" data-tab="1">7000ers <span class="cat-count">11</span></button>
           <button class="cat-btn" type="button" role="tab" id="tab-exp-2"
-                  aria-controls="panel-exp-2" aria-selected="false" data-rail="exp" data-tab="2">6000ers <span class="cat-count">15</span></button>
+                  aria-controls="panel-exp-2" aria-selected="false" data-rail="exp" data-tab="2">6000ers <span class="cat-count">16</span></button>
         </div>
         <div class="catpanel" id="panel-exp-0" role="tabpanel"
              aria-labelledby="tab-exp-0">
@@ -1499,13 +1499,6 @@
           <div class="jcard-body">
             <h3 class="jcard-name">Everest</h3>
             <p class="jcard-meta"><span class="jcard-elev">8,848 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
-          </div>
-        </a>
-        <a class="jcard" href="#journey/k2-8611">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-k2-8611-800.jpg" alt="K2" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">K2</h3>
-            <p class="jcard-meta"><span class="jcard-elev">8,611 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
           </div>
         </a>
         <a class="jcard" href="#journey/kangchenjunga-8586">
@@ -1550,39 +1543,11 @@
             <p class="jcard-meta"><span class="jcard-elev">8,163 m</span><span class="jcard-where">Manaslu &middot; Nepal</span></p>
           </div>
         </a>
-        <a class="jcard" href="#journey/nanga-parbat-8125">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-nanga-parbat-8125-800.jpg" alt="Nanga Parbat" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Nanga Parbat</h3>
-            <p class="jcard-meta"><span class="jcard-elev">8,125 m</span><span class="jcard-where">Himalaya &middot; Pakistan</span></p>
-          </div>
-        </a>
         <a class="jcard" href="#journey/annapurna-i-8091">
           <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-annapurna-i-8091-800.jpg" alt="Annapurna I" loading="lazy" decoding="async"></div>
           <div class="jcard-body">
             <h3 class="jcard-name">Annapurna I</h3>
             <p class="jcard-meta"><span class="jcard-elev">8,091 m</span><span class="jcard-where">Annapurna &middot; Nepal</span></p>
-          </div>
-        </a>
-        <a class="jcard" href="#journey/gasherbrum-i-8080">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-gasherbrum-i-8080-800.jpg" alt="Gasherbrum I" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Gasherbrum I</h3>
-            <p class="jcard-meta"><span class="jcard-elev">8,080 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
-          </div>
-        </a>
-        <a class="jcard" href="#journey/broad-peak-8051">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-broad-peak-8051-800.jpg" alt="Broad Peak" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Broad Peak</h3>
-            <p class="jcard-meta"><span class="jcard-elev">8,051 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
-          </div>
-        </a>
-        <a class="jcard" href="#journey/gasherbrum-ii-8034">
-          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-gasherbrum-ii-8034-800.jpg" alt="Gasherbrum II" loading="lazy" decoding="async"></div>
-          <div class="jcard-body">
-            <h3 class="jcard-name">Gasherbrum II</h3>
-            <p class="jcard-meta"><span class="jcard-elev">8,034 m</span><span class="jcard-where">Karakoram &middot; Pakistan</span></p>
           </div>
         </a>
         <a class="jcard" href="#journey/shisha-pangma-8027">
@@ -1645,6 +1610,34 @@
           <div class="jcard-body">
             <h3 class="jcard-name">Annapurna IV</h3>
             <p class="jcard-meta"><span class="jcard-elev">7,525 m</span><span class="jcard-where">Annapurna &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/kamet-7756">
+          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-kamet-7756-800.jpg" alt="Kamet" loading="lazy" decoding="async"></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Kamet</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,756 m</span><span class="jcard-where">Garhwal &middot; India</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/nun-7135">
+          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-nun-7135-800.jpg" alt="Nun" loading="lazy" decoding="async"></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Nun</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,135 m</span><span class="jcard-where">Ladakh &middot; India</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/trisul-7120">
+          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-trisul-7120-800.jpg" alt="Trisul I" loading="lazy" decoding="async"></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Trisul I</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,120 m</span><span class="jcard-where">Garhwal &middot; India</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/satopanth-7075">
+          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-satopanth-7075-800.jpg" alt="Satopanth" loading="lazy" decoding="async"></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Satopanth</h3>
+            <p class="jcard-meta"><span class="jcard-elev">7,075 m</span><span class="jcard-where">Garhwal &middot; India</span></p>
           </div>
         </a>
           </div>
@@ -1735,6 +1728,13 @@
           <div class="jcard-body">
             <h3 class="jcard-name">Cholatse</h3>
             <p class="jcard-meta"><span class="jcard-elev">6,440 m</span><span class="jcard-where">Khumbu &middot; Nepal</span></p>
+          </div>
+        </a>
+        <a class="jcard" href="#journey/kang-yatse-6250">
+          <div class="jcard-media"><img class="jcard-img" src="assets/images/journey-kang-yatse-6250-800.jpg" alt="Kang Yatse II" loading="lazy" decoding="async"></div>
+          <div class="jcard-body">
+            <h3 class="jcard-name">Kang Yatse II</h3>
+            <p class="jcard-meta"><span class="jcard-elev">6,250 m</span><span class="jcard-where">Ladakh &middot; India</span></p>
           </div>
         </a>
         <a class="jcard" href="#journey/chulu-west-6419">
@@ -1979,34 +1979,6 @@
         </div>
       </div>
     </section>
-    <section class="journey-static" id="journey/k2-8611">
-      <div class="jstatic-inner">
-        <h2 class="jstatic-title">K2</h2>
-        <div class="jdetail" data-journey="k2-8611">
-        <div class="fact-strip">
-          <div><p class="fact-label">Elevation</p><p class="fact-value">8,611 m</p></div>
-          <div><p class="fact-label">Season</p><p class="fact-value">June to August</p></div>
-          <div><p class="fact-label">Typical length</p><p class="fact-value">About 55 to 60 days</p></div>
-          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram, Pakistan</p></div>
-        </div>
-        <div class="detail-section">
-          <h3 class="detail-section-title">The mountain</h3>
-          <p class="detail-lede">The second highest mountain in the world, standing alone at the head of the Baltoro Glacier in Pakistan’s Karakoram. Steeper, colder and more serious than Everest at every stage, with the Bottleneck couloir below the summit the crux of the normal route. The trek in past Concordia is one of the great walks on Earth.</p>
-          <ul class="know-list">
-            <li><strong>Normal route:</strong> Abruzzi Spur</li>
-            <li><strong>First ascent:</strong> 1954, Lino Lacedelli and Achille Compagnoni</li>
-          </ul>
-        </div>
-        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
-        and partnerships align.</p>
-        <div class="jcta">
-          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:K2"
-             data-interest="K2">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        </div>
-      </div>
-    </section>
     <section class="journey-static" id="journey/kangchenjunga-8586">
       <div class="jstatic-inner">
         <h2 class="jstatic-title">Kangchenjunga</h2>
@@ -2175,34 +2147,6 @@
         </div>
       </div>
     </section>
-    <section class="journey-static" id="journey/nanga-parbat-8125">
-      <div class="jstatic-inner">
-        <h2 class="jstatic-title">Nanga Parbat</h2>
-        <div class="jdetail" data-journey="nanga-parbat-8125">
-        <div class="fact-strip">
-          <div><p class="fact-label">Elevation</p><p class="fact-value">8,125 m</p></div>
-          <div><p class="fact-label">Season</p><p class="fact-value">June to July</p></div>
-          <div><p class="fact-label">Typical length</p><p class="fact-value">About 50 days</p></div>
-          <div><p class="fact-label">Region</p><p class="fact-value">Himalaya, Pakistan</p></div>
-        </div>
-        <div class="detail-section">
-          <h3 class="detail-section-title">The mountain</h3>
-          <p class="detail-lede">The western anchor of the Himalaya, in Pakistan. Its Rupal Face is one of the tallest mountain walls in the world. The normal route on the Diamir side is steep and technical, with rock and ice climbing high on the mountain.</p>
-          <ul class="know-list">
-            <li><strong>Normal route:</strong> Kinshofer Route, Diamir Face</li>
-            <li><strong>First ascent:</strong> 1953, Hermann Buhl, alone</li>
-          </ul>
-        </div>
-        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
-        and partnerships align.</p>
-        <div class="jcta">
-          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Nanga%20Parbat"
-             data-interest="Nanga Parbat">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        </div>
-      </div>
-    </section>
     <section class="journey-static" id="journey/annapurna-i-8091">
       <div class="jstatic-inner">
         <h2 class="jstatic-title">Annapurna I</h2>
@@ -2227,90 +2171,6 @@
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
           <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20I"
              data-interest="Annapurna I">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        </div>
-      </div>
-    </section>
-    <section class="journey-static" id="journey/gasherbrum-i-8080">
-      <div class="jstatic-inner">
-        <h2 class="jstatic-title">Gasherbrum I</h2>
-        <div class="jdetail" data-journey="gasherbrum-i-8080">
-        <div class="fact-strip">
-          <div><p class="fact-label">Elevation</p><p class="fact-value">8,080 m</p></div>
-          <div><p class="fact-label">Season</p><p class="fact-value">June to August</p></div>
-          <div><p class="fact-label">Typical length</p><p class="fact-value">About 50 days</p></div>
-          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram, Pakistan</p></div>
-        </div>
-        <div class="detail-section">
-          <h3 class="detail-section-title">The mountain</h3>
-          <p class="detail-lede">Also called Hidden Peak, because it barely shows itself from the Baltoro Glacier. Shares its base camp with Gasherbrum II, and the two are often attempted on one expedition. Steeper and more serious than its neighbour.</p>
-          <ul class="know-list">
-            <li><strong>Normal route:</strong> Japanese Couloir, Northwest Face</li>
-            <li><strong>First ascent:</strong> 1958, Pete Schoening and Andy Kauffman</li>
-          </ul>
-        </div>
-        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
-        and partnerships align.</p>
-        <div class="jcta">
-          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Gasherbrum%20I"
-             data-interest="Gasherbrum I">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        </div>
-      </div>
-    </section>
-    <section class="journey-static" id="journey/broad-peak-8051">
-      <div class="jstatic-inner">
-        <h2 class="jstatic-title">Broad Peak</h2>
-        <div class="jdetail" data-journey="broad-peak-8051">
-        <div class="fact-strip">
-          <div><p class="fact-label">Elevation</p><p class="fact-value">8,051 m</p></div>
-          <div><p class="fact-label">Season</p><p class="fact-value">June to August</p></div>
-          <div><p class="fact-label">Typical length</p><p class="fact-value">About 45 days</p></div>
-          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram, Pakistan</p></div>
-        </div>
-        <div class="detail-section">
-          <h3 class="detail-section-title">The mountain</h3>
-          <p class="detail-lede">A long summit ridge right beside K2, at Concordia in the Karakoram. Often the first Karakoram 8,000 metre peak for climbers on their way to K2. The final ridge from the foresummit to the main summit is longer than it looks.</p>
-          <ul class="know-list">
-            <li><strong>Normal route:</strong> West Spur</li>
-            <li><strong>First ascent:</strong> 1957, Hermann Buhl, Kurt Diemberger, Marcus Schmuck and Fritz Wintersteller</li>
-          </ul>
-        </div>
-        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
-        and partnerships align.</p>
-        <div class="jcta">
-          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Broad%20Peak"
-             data-interest="Broad Peak">Join the Group <span aria-hidden="true">&rarr;</span></a>
-        </div>
-        </div>
-      </div>
-    </section>
-    <section class="journey-static" id="journey/gasherbrum-ii-8034">
-      <div class="jstatic-inner">
-        <h2 class="jstatic-title">Gasherbrum II</h2>
-        <div class="jdetail" data-journey="gasherbrum-ii-8034">
-        <div class="fact-strip">
-          <div><p class="fact-label">Elevation</p><p class="fact-value">8,034 m</p></div>
-          <div><p class="fact-label">Season</p><p class="fact-value">June to August</p></div>
-          <div><p class="fact-label">Typical length</p><p class="fact-value">About 45 days</p></div>
-          <div><p class="fact-label">Region</p><p class="fact-value">Karakoram, Pakistan</p></div>
-        </div>
-        <div class="detail-section">
-          <h3 class="detail-section-title">The mountain</h3>
-          <p class="detail-lede">The most accessible of the Karakoram 8,000 metre peaks, reached from a base camp on the upper Baltoro beyond Concordia. A good first 8,000er in Pakistan, with a glacier approach that rewards careful route finding.</p>
-          <ul class="know-list">
-            <li><strong>Normal route:</strong> Southwest Ridge</li>
-            <li><strong>First ascent:</strong> 1956, Fritz Moravec, Josef Larch and Hans Willenpart</li>
-          </ul>
-        </div>
-        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
-        and partnerships align.</p>
-        <div class="jcta">
-          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
-          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Gasherbrum%20II"
-             data-interest="Gasherbrum II">Join the Group <span aria-hidden="true">&rarr;</span></a>
         </div>
         </div>
       </div>
@@ -2535,6 +2395,118 @@
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
           <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Annapurna%20IV"
              data-interest="Annapurna IV">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/kamet-7756">
+      <div class="jstatic-inner">
+        <h2 class="jstatic-title">Kamet</h2>
+        <div class="jdetail" data-journey="kamet-7756">
+        <div class="fact-strip">
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,756 m</p></div>
+          <div><p class="fact-label">Season</p><p class="fact-value">May to June, or September to October</p></div>
+          <div><p class="fact-label">Typical length</p><p class="fact-value">About 35 to 40 days</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Garhwal, India</p></div>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">The second highest mountain in India, a great pyramid in the Garhwal Himalaya near the Tibetan border. When it was first climbed it was the highest summit anyone had ever reached. The normal route is a long glacier approach up the East Kamet Glacier to Meade’s Col, then the north-east ridge to the top.</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> East Kamet Glacier, Meade’s Col and the north-east ridge</li>
+            <li><strong>First ascent:</strong> 1931, Frank Smythe, Eric Shipton, R. L. Holdsworth and Lewa Sherpa</li>
+          </ul>
+        </div>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Kamet"
+             data-interest="Kamet">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/nun-7135">
+      <div class="jstatic-inner">
+        <h2 class="jstatic-title">Nun</h2>
+        <div class="jdetail" data-journey="nun-7135">
+        <div class="fact-strip">
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,135 m</p></div>
+          <div><p class="fact-label">Season</p><p class="fact-value">July to August</p></div>
+          <div><p class="fact-label">Typical length</p><p class="fact-value">About 25 to 30 days</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Ladakh, India</p></div>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">The highest summit of the Nun Kun massif and the highest peak in Ladakh, rising above the Suru valley. A real 7,000 metre expedition with a moderate snow and ice line, climbed in the dry Ladakh summer when the rest of the Himalaya is under the monsoon.</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> West Ridge, from the Shafat Glacier</li>
+            <li><strong>First ascent:</strong> 1953, Claude Kogan and Pierre Vittoz</li>
+          </ul>
+        </div>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Nun"
+             data-interest="Nun">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/trisul-7120">
+      <div class="jstatic-inner">
+        <h2 class="jstatic-title">Trisul I</h2>
+        <div class="jdetail" data-journey="trisul-7120">
+        <div class="fact-strip">
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,120 m</p></div>
+          <div><p class="fact-label">Season</p><p class="fact-value">May to June, or September to October</p></div>
+          <div><p class="fact-label">Typical length</p><p class="fact-value">About 25 to 30 days</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Garhwal, India</p></div>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">The trident of Shiva, three summits on one long ridge above the Garhwal foothills. Trisul I was the first peak over 7,000 metres ever climbed, and it remained the highest summit reached for more than twenty years. Its normal route is a long, non-technical snow and glacier climb.</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> North-east flank and north ridge</li>
+            <li><strong>First ascent:</strong> 1907, Tom Longstaff, Alexis and Henri Brocherel, and Karbir Burathoki</li>
+          </ul>
+        </div>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Trisul%20I"
+             data-interest="Trisul I">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/satopanth-7075">
+      <div class="jstatic-inner">
+        <h2 class="jstatic-title">Satopanth</h2>
+        <div class="jdetail" data-journey="satopanth-7075">
+        <div class="fact-strip">
+          <div><p class="fact-label">Elevation</p><p class="fact-value">7,075 m</p></div>
+          <div><p class="fact-label">Season</p><p class="fact-value">May to June, or August to September</p></div>
+          <div><p class="fact-label">Typical length</p><p class="fact-value">About 22 to 25 days</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Garhwal, India</p></div>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">The high point of the Gangotri group, at the head of the glacier that feeds the Ganges. A broad, snowy summit above a dramatic glacier approach, and one of the most popular 7,000 metre peaks in India for climbers stepping up from 6,000 metre summits.</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> North-east ridge, from the Sundar and Chaturangi glaciers</li>
+            <li><strong>First ascent:</strong> 1947, André Roch, René Dittert, Alexander Graven and Alfred Sutter</li>
+          </ul>
+        </div>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Satopanth"
+             data-interest="Satopanth">Join the Group <span aria-hidden="true">&rarr;</span></a>
         </div>
         </div>
       </div>
@@ -3579,6 +3551,33 @@
           <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
           <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Cholatse"
              data-interest="Cholatse">Join the Group <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-static" id="journey/kang-yatse-6250">
+      <div class="jstatic-inner">
+        <h2 class="jstatic-title">Kang Yatse II</h2>
+        <div class="jdetail" data-journey="kang-yatse-6250">
+        <div class="fact-strip">
+          <div><p class="fact-label">Elevation</p><p class="fact-value">6,250 m</p></div>
+          <div><p class="fact-label">Season</p><p class="fact-value">Mid-June to September</p></div>
+          <div><p class="fact-label">Typical length</p><p class="fact-value">About 12 to 14 days</p></div>
+          <div><p class="fact-label">Region</p><p class="fact-value">Ladakh, India</p></div>
+        </div>
+        <div class="detail-section">
+          <h3 class="detail-section-title">The mountain</h3>
+          <p class="detail-lede">The throne-shaped peak at the head of the Markha Valley in Ladakh. Kang Yatse II, the western summit, is one of the most accessible 6,000 metre peaks in the Himalaya: no technical climbing, a beautiful trek in through Buddhist villages, and views across the Zanskar and Ladakh ranges from the top.</p>
+          <ul class="know-list">
+            <li><strong>Normal route:</strong> Through the Markha Valley to Nimaling, then the west summit</li>
+          </ul>
+        </div>
+        <p class="cat-note">No group is scheduled for this mountain yet. Groups form when demand
+        and partnerships align.</p>
+        <div class="jcta">
+          <p class="jcta-line">Groups form each season. Join the interest list and you&rsquo;ll hear first.</p>
+          <a class="btn btn-primary" href="mailto:hello@themountaindiaries.com?subject=Interest:Kang%20Yatse%20II"
+             data-interest="Kang Yatse II">Join the Group <span aria-hidden="true">&rarr;</span></a>
         </div>
         </div>
       </div>
@@ -5350,20 +5349,18 @@ const AVAILABLE_PHOTOS = new Set([
   'assets/images/journey-annapurna-iv-7525.jpg',
   'assets/images/journey-baruntse-7129.jpg',
   'assets/images/journey-baruntse-mera.jpg',
-  'assets/images/journey-broad-peak-8051.jpg',
   'assets/images/journey-cho-oyu-8188.jpg',
   'assets/images/journey-cholatse-6440.jpg',
   'assets/images/journey-chulu-west-6419.jpg',
   'assets/images/journey-dhampus-6012.jpg',
   'assets/images/journey-dhaulagiri-8167.jpg',
   'assets/images/journey-everest-8848.jpg',
-  'assets/images/journey-gasherbrum-i-8080.jpg',
-  'assets/images/journey-gasherbrum-ii-8034.jpg',
   'assets/images/journey-gokyo-lakes.jpg',
   'assets/images/journey-himlung-7126.jpg',
   'assets/images/journey-island-peak-6189.jpg',
   'assets/images/journey-island-peak-ebc.jpg',
-  'assets/images/journey-k2-8611.jpg',
+  'assets/images/journey-kamet-7756.jpg',
+  'assets/images/journey-kang-yatse-6250.jpg',
   'assets/images/journey-kangchenjunga-8586.jpg',
   'assets/images/journey-langtang-valley.jpg',
   'assets/images/journey-lhotse-8516.jpg',
@@ -5373,13 +5370,15 @@ const AVAILABLE_PHOTOS = new Set([
   'assets/images/journey-manaslu-8163.jpg',
   'assets/images/journey-manaslu-base-camp.jpg',
   'assets/images/journey-mardi-himal.jpg',
-  'assets/images/journey-nanga-parbat-8125.jpg',
+  'assets/images/journey-nun-7135.jpg',
   'assets/images/journey-nuptse-7864.jpg',
   'assets/images/journey-pharchamo-tashi-lapcha.jpg',
   'assets/images/journey-pumori-7145.jpg',
   'assets/images/journey-putha-hiunchuli-7246.jpg',
+  'assets/images/journey-satopanth-7075.jpg',
   'assets/images/journey-shisha-pangma-8027.jpg',
   'assets/images/journey-three-peaks-ebc.jpg',
+  'assets/images/journey-trisul-7120.jpg',
   'assets/images/journey-two-peaks-lobuche-island-ebc.jpg',
   'assets/images/journey-two-peaks-mera-island.jpg',
   'assets/images/journey-upper-mustang.jpg'
@@ -5417,18 +5416,13 @@ function photoSlot(file, opts) {
 // anywhere the field is null and every view simply omits the line.
 const JOURNEYS = [
   { slug: 'everest-8848', name: 'Everest', elevation_m: 8848, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-everest-8848.jpg' },
-  { slug: 'k2-8611', name: 'K2', elevation_m: 8611, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue', hero: 'journey-k2-8611.jpg' },
   { slug: 'kangchenjunga-8586', name: 'Kangchenjunga', elevation_m: 8586, category: '8000ers', region: 'Kangchenjunga', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-kangchenjunga-8586.jpg' },
   { slug: 'lhotse-8516', name: 'Lhotse', elevation_m: 8516, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-lhotse-8516.jpg' },
   { slug: 'makalu-8485', name: 'Makalu', elevation_m: 8485, category: '8000ers', region: 'Makalu Barun', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-makalu-8485.jpg' },
   { slug: 'cho-oyu-8188', name: 'Cho Oyu', elevation_m: 8188, category: '8000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-cho-oyu-8188.jpg' },
   { slug: 'dhaulagiri-8167', name: 'Dhaulagiri I', elevation_m: 8167, category: '8000ers', region: 'Dhaulagiri', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-dhaulagiri-8167.jpg' },
   { slug: 'manaslu-8163', name: 'Manaslu', elevation_m: 8163, category: '8000ers', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-manaslu-8163.jpg' },
-  { slug: 'nanga-parbat-8125', name: 'Nanga Parbat', elevation_m: 8125, category: '8000ers', region: 'Himalaya', country: 'Pakistan', difficulty: null, status: 'catalogue', hero: 'journey-nanga-parbat-8125.jpg' },
   { slug: 'annapurna-i-8091', name: 'Annapurna I', elevation_m: 8091, category: '8000ers', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-annapurna-i-8091.jpg' },
-  { slug: 'gasherbrum-i-8080', name: 'Gasherbrum I', elevation_m: 8080, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue', hero: 'journey-gasherbrum-i-8080.jpg' },
-  { slug: 'broad-peak-8051', name: 'Broad Peak', elevation_m: 8051, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue', hero: 'journey-broad-peak-8051.jpg' },
-  { slug: 'gasherbrum-ii-8034', name: 'Gasherbrum II', elevation_m: 8034, category: '8000ers', region: 'Karakoram', country: 'Pakistan', difficulty: null, status: 'catalogue', hero: 'journey-gasherbrum-ii-8034.jpg' },
   { slug: 'shisha-pangma-8027', name: 'Shisha Pangma', elevation_m: 8027, category: '8000ers', region: 'Tibet', country: 'China', difficulty: null, status: 'catalogue', hero: 'journey-shisha-pangma-8027.jpg' },
   { slug: 'himlung-7126', name: 'Himlung Himal', elevation_m: 7126, category: '7000ers', region: 'Manaslu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-himlung-7126.jpg' },
   { slug: 'baruntse-7129', name: 'Baruntse', elevation_m: 7129, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-baruntse-7129.jpg' },
@@ -5437,6 +5431,10 @@ const JOURNEYS = [
   { slug: 'pumori-7145', name: 'Pumori', elevation_m: 7161, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-pumori-7145.jpg' },
   { slug: 'nuptse-7864', name: 'Nuptse', elevation_m: 7861, category: '7000ers', region: 'Khumbu', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-nuptse-7864.jpg' },
   { slug: 'annapurna-iv-7525', name: 'Annapurna IV', elevation_m: 7525, category: '7000ers', region: 'Annapurna', country: 'Nepal', difficulty: null, status: 'catalogue', hero: 'journey-annapurna-iv-7525.jpg' },
+  { slug: 'kamet-7756', name: 'Kamet', elevation_m: 7756, category: '7000ers', region: 'Garhwal', country: 'India', difficulty: null, status: 'catalogue', hero: 'journey-kamet-7756.jpg' },
+  { slug: 'nun-7135', name: 'Nun', elevation_m: 7135, category: '7000ers', region: 'Ladakh', country: 'India', difficulty: null, status: 'catalogue', hero: 'journey-nun-7135.jpg' },
+  { slug: 'trisul-7120', name: 'Trisul I', elevation_m: 7120, category: '7000ers', region: 'Garhwal', country: 'India', difficulty: null, status: 'catalogue', hero: 'journey-trisul-7120.jpg' },
+  { slug: 'satopanth-7075', name: 'Satopanth', elevation_m: 7075, category: '7000ers', region: 'Garhwal', country: 'India', difficulty: null, status: 'catalogue', hero: 'journey-satopanth-7075.jpg' },
   { slug: 'ama-dablam-6812', name: 'Ama Dablam', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-ama-dablam-6812.jpg' },
   { slug: 'ama-dablam-lobuche', name: 'Ama Dablam and Lobuche East', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-ama-dablam-lobuche.jpg' },
   { slug: 'ama-dablam-island', name: 'Ama Dablam and Island Peak', elevation_m: 6812, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-ama-dablam-island.jpg' },
@@ -5449,6 +5447,7 @@ const JOURNEYS = [
   { slug: 'mera-peak-6476', name: 'Mera Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'expedition-mera-peak.jpg' },
   { slug: 'two-peaks-mera-island', name: 'Mera Peak and Island Peak', elevation_m: 6476, category: '6000ers', region: 'Hinku', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-two-peaks-mera-island.jpg' },
   { slug: 'cholatse-6440', name: 'Cholatse', elevation_m: 6440, category: '6000ers', region: 'Khumbu', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-cholatse-6440.jpg' },
+  { slug: 'kang-yatse-6250', name: 'Kang Yatse II', elevation_m: 6250, category: '6000ers', region: 'Ladakh', country: 'India', difficulty: null, status: 'catalogue', hero: 'journey-kang-yatse-6250.jpg' },
   { slug: 'chulu-west-6419', name: 'Chulu West', elevation_m: 6419, category: '6000ers', region: 'Annapurna', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-chulu-west-6419.jpg' },
   { slug: 'pharchamo-tashi-lapcha', name: 'Pharchamo via Tashi Lapcha', elevation_m: 6187, category: '6000ers', region: 'Rolwaling', country: 'Nepal', difficulty: 'Severe', status: 'detailed', hero: 'journey-pharchamo-tashi-lapcha.jpg' },
   { slug: 'dhampus-6012', name: 'Dhampus Peak', elevation_m: 6012, category: '6000ers', region: 'Dhaulagiri', country: 'Nepal', difficulty: 'Demanding', status: 'detailed', hero: 'journey-dhampus-6012.jpg' },

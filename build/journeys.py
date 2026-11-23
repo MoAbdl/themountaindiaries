@@ -22,18 +22,13 @@ E8, E7, E6, TK = '8000ers', '7000ers', '6000ers', 'trek'
 JOURNEYS = [
     # ── 8000ers ───────────────────────────────────────────────────────
     ('everest-8848',                'Everest',                                           8848,  E8, 'Khumbu',          'Nepal'),
-    ('k2-8611',                     'K2',                                                8611,  E8, 'Karakoram',       'Pakistan'),
     ('kangchenjunga-8586',          'Kangchenjunga',                                     8586,  E8, 'Kangchenjunga',   'Nepal'),
     ('lhotse-8516',                 'Lhotse',                                            8516,  E8, 'Khumbu',          'Nepal'),
     ('makalu-8485',                 'Makalu',                                            8485,  E8, 'Makalu Barun',    'Nepal'),
     ('cho-oyu-8188',                'Cho Oyu',                                           8188,  E8, 'Khumbu',          'Nepal'),
     ('dhaulagiri-8167',             'Dhaulagiri I',                                      8167,  E8, 'Dhaulagiri',      'Nepal'),
     ('manaslu-8163',                'Manaslu',                                           8163,  E8, 'Manaslu',         'Nepal'),
-    ('nanga-parbat-8125',           'Nanga Parbat',                                      8125,  E8, 'Himalaya',        'Pakistan'),
     ('annapurna-i-8091',            'Annapurna I',                                       8091,  E8, 'Annapurna',       'Nepal'),
-    ('gasherbrum-i-8080',           'Gasherbrum I',                                      8080,  E8, 'Karakoram',       'Pakistan'),
-    ('broad-peak-8051',             'Broad Peak',                                        8051,  E8, 'Karakoram',       'Pakistan'),
-    ('gasherbrum-ii-8034',          'Gasherbrum II',                                     8034,  E8, 'Karakoram',       'Pakistan'),
     ('shisha-pangma-8027',          'Shisha Pangma',                                     8027,  E8, 'Tibet',           'China'),
 
     # ── 7000ers ───────────────────────────────────────────────────────
@@ -44,6 +39,10 @@ JOURNEYS = [
     ('pumori-7145',                 'Pumori',                                            7161,  E7, 'Khumbu',          'Nepal'),
     ('nuptse-7864',                 'Nuptse',                                            7861,  E7, 'Khumbu',          'Nepal'),
     ('annapurna-iv-7525',           'Annapurna IV',                                      7525,  E7, 'Annapurna',       'Nepal'),
+    ('kamet-7756',                  'Kamet',                                              7756,  E7, 'Garhwal',       'India'),
+    ('nun-7135',                    'Nun',                                                7135,  E7, 'Ladakh',        'India'),
+    ('trisul-7120',                 'Trisul I',                                           7120,  E7, 'Garhwal',       'India'),
+    ('satopanth-7075',              'Satopanth',                                          7075,  E7, 'Garhwal',       'India'),
 
     # ── 6000ers ───────────────────────────────────────────────────────
     ('ama-dablam-6812',             'Ama Dablam',                                        6812,  E6, 'Khumbu',          'Nepal'),
@@ -58,6 +57,7 @@ JOURNEYS = [
     ('mera-peak-6476',              'Mera Peak',                                         6476,  E6, 'Hinku',           'Nepal'),
     ('two-peaks-mera-island',       'Mera Peak and Island Peak',                         6476,  E6, 'Hinku',           'Nepal'),
     ('cholatse-6440',               'Cholatse',                                          6440,  E6, 'Khumbu',          'Nepal'),
+    ('kang-yatse-6250',             'Kang Yatse II',                                      6250,  E6, 'Ladakh',        'India'),
     ('chulu-west-6419',             'Chulu West',                                        6419,  E6, 'Annapurna',       'Nepal'),
     ('pharchamo-tashi-lapcha',      'Pharchamo via Tashi Lapcha',                        None,  E6, 'Rolwaling',       'Nepal'),
     ('dhampus-6012',                'Dhampus Peak',                                      6012,  E6, 'Dhaulagiri',      'Nepal'),

@@ -157,8 +157,8 @@ CTA_BAND = '''<section class="cta-band">
   <div class="cta-band-media" aria-hidden="true"></div>
   <div class="cta-band-inner">
     <p class="section-kicker cta-kicker">Walk with people</p>
-    <h2 class="cta-title">Your first summit starts on a Friday morning in Ras Al Khaimah.</h2>
-    <p class="cta-lede">Join the community for local hikes most months, first word on new expedition groups, and people who will get you up the mountain and back.</p>
+    <h2 class="cta-title">The mountains are calling. Find the people to answer with.</h2>
+    <p class="cta-lede">Join the community for first word on new expedition groups, honest guidance before you go, and people who will get you up the mountain and back.</p>
     <div class="cta-actions">
       <a class="btn btn-primary" href="join.html">Join the community <span aria-hidden="true">&rarr;</span></a>
       <a class="btn btn-ghost" href="explore.html">Find your journey</a>
@@ -171,27 +171,27 @@ CTA_BAND = '''<section class="cta-band">
 
 # ═══════════════════════════════ ABOUT ═══════════════════════════════════
 page('about.html', 'About Us',
-     'The Mountain Diaries is a UAE trekking and expedition community: local hikes most months, '
+     'The Mountain Diaries is a mountain expedition and trekking community: small groups to the world’s great ranges, '
      'small groups for the big routes, and honest knowledge about altitude.',
      '''
       <h1 class="phead-title">About Us</h1>
-      <p class="phead-lede">A UAE community for people drawn to the high places, and who want to reach them properly.</p>''',
+      <p class="phead-lede">A community for people drawn to the high places, and who want to reach them properly.</p>''',
      '''
     <div class="prose">
       <h2>Why we exist</h2>
       <p>The Mountain Diaries began with a question that would not leave: what are you actually made of? The mountains answered it the way they always do, slowly, and by taking away everything that was not needed.</p>
-      <p>What came out of it is a community. People across the UAE who walk together on weekends, and who travel together, in small groups, to the ranges they used to only read about.</p>
+      <p>What came out of it is a community. People from many countries who train together, and who travel together, in small groups, to the ranges they used to only read about.</p>
 
       <h2>What we do</h2>
     </div>
     <div class="pillars">
       <div class="pillar">
-        <h3>Local hikes</h3>
-        <p>Most months, from easy wadi walks to long days in the Hajar mountains of Ras Al Khaimah. The best training there is, and the best way to meet the people you will trek with.</p>
+        <h3>Training together</h3>
+        <p>Hikes and meet-ups to build the legs and lungs before the big trip. The best training there is, and the best way to meet the people you will trek with.</p>
       </div>
       <div class="pillar">
         <h3>Expedition groups</h3>
-        <p>Small groups for the big routes: Nepal, the Alps, Patagonia, Peru and Kilimanjaro, from a first trek to a first 6,000 metre summit and beyond.</p>
+        <p>Small groups for the big routes: Nepal, India, the Alps, Patagonia, Peru and Kilimanjaro, from a first trek to a first 6,000 metre summit and beyond.</p>
       </div>
       <div class="pillar">
         <h3>Knowledge and stories</h3>
@@ -241,11 +241,11 @@ page('privacy.html', 'Privacy notice',
       <p class="updated">Last updated 23 November 2026</p>
 
       <h2>Who we are</h2>
-      <p>The Mountain Diaries is a trekking and expedition community based in the United Arab Emirates. You can reach us at <a href="mailto:hello@themountaindiaries.com">hello@themountaindiaries.com</a>. We handle personal data in line with the UAE’s Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data.</p>
+      <p>The Mountain Diaries is a mountain expedition and trekking community. You can reach us at <a href="mailto:hello@themountaindiaries.com">hello@themountaindiaries.com</a>.</p>
 
       <h2>What we collect</h2>
       <ul>
-        <li><strong>When you join the community:</strong> your name, email address, mobile number, experience level and whether you are interested in local UAE hikes.</li>
+        <li><strong>When you join the community:</strong> your name, email address, mobile number, experience level and whether you are interested in training hikes.</li>
         <li><strong>When you register interest in a journey:</strong> your name, email address, phone or WhatsApp number, experience level, the journey and any message you add.</li>
         <li><strong>When you share a story:</strong> the name or trail alias you give, your email address, the trail and your story.</li>
       </ul>
@@ -292,7 +292,7 @@ page('terms.html', 'Terms of use',
       <p class="updated">Last updated 23 November 2026</p>
 
       <h2>About this site</h2>
-      <p>This website is run by The Mountain Diaries, a trekking and expedition community based in the United Arab Emirates. By using it you agree to these terms.</p>
+      <p>This website is run by The Mountain Diaries, a mountain expedition and trekking community. By using it you agree to these terms.</p>
 
       <h2>Information, not advice</h2>
       <p>Everything on this site, including the altitude, training and gear guidance, is general information written in good faith. It is not medical advice and it is not a substitute for a doctor, a qualified guide or your own judgement. Mountain travel carries real risk. Talk to a doctor before any high-altitude journey, and make sure your insurance covers the altitude you are going to and helicopter evacuation.</p>
@@ -308,9 +308,6 @@ page('terms.html', 'Terms of use',
 
       <h2>Links to other sites</h2>
       <p>We link to news, WhatsApp and other services we do not control, and we are not responsible for their content.</p>
-
-      <h2>Law</h2>
-      <p>These terms are governed by the laws of the United Arab Emirates.</p>
 
       <h2>Contact</h2>
       <p>Questions about these terms: <a href="mailto:hello@themountaindiaries.com">hello@themountaindiaries.com</a>.</p>
