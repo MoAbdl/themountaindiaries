@@ -16,7 +16,7 @@ SOCIAL = {
     'Facebook': '',
     'Instagram': '',
     'TikTok': '',
-    'LinkedIn': '',
+    'LinkedIn': 'https://www.linkedin.com/company/themountaindiaries/',
 }
 
 
