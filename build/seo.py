@@ -15,7 +15,7 @@ DEFAULT_IMAGE = 'assets/images/hero-ebc.jpg'
 SOCIAL = {
     'Facebook': '',
     'Instagram': '',
-    'TikTok': '',
+    'TikTok': 'https://www.tiktok.com/@the_mountain_diaries',
     'LinkedIn': 'https://www.linkedin.com/company/themountaindiaries/',
 }
 
