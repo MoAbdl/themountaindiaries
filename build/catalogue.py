@@ -30,16 +30,6 @@ OVERVIEW = {
         'length': 'About 60 days',
         'first': '1953, Edmund Hillary and Tenzing Norgay',
     },
-    'k2-8611': {
-        'about': "The second highest mountain in the world, standing alone at the head of the Baltoro "
-                 "Glacier in Pakistan’s Karakoram. Steeper, colder and more serious than Everest at "
-                 "every stage, with the Bottleneck couloir below the summit the crux of the normal "
-                 "route. The trek in past Concordia is one of the great walks on Earth.",
-        'route': 'Abruzzi Spur',
-        'season': 'June to August',
-        'length': 'About 55 to 60 days',
-        'first': '1954, Lino Lacedelli and Achille Compagnoni',
-    },
     'kangchenjunga-8586': {
         'about': "The third highest mountain, on Nepal’s far eastern border with Sikkim. Remote, "
                  "enormous and climbed far less than its neighbours to the west. The long walk in "
@@ -96,15 +86,6 @@ OVERVIEW = {
         'length': 'About 40 days',
         'first': '1956, Toshio Imanishi and Gyalzen Norbu',
     },
-    'nanga-parbat-8125': {
-        'about': "The western anchor of the Himalaya, in Pakistan. Its Rupal Face is one of the "
-                 "tallest mountain walls in the world. The normal route on the Diamir side is steep "
-                 "and technical, with rock and ice climbing high on the mountain.",
-        'route': 'Kinshofer Route, Diamir Face',
-        'season': 'June to July',
-        'length': 'About 50 days',
-        'first': '1953, Hermann Buhl, alone',
-    },
     'annapurna-i-8091': {
         'about': "The first 8,000 metre peak ever climbed, and statistically one of the most dangerous. "
                  "The north side is exposed to avalanches from the hanging glaciers above; it rewards "
@@ -113,33 +94,6 @@ OVERVIEW = {
         'season': 'April to May',
         'length': 'About 45 days',
         'first': '1950, Maurice Herzog and Louis Lachenal',
-    },
-    'gasherbrum-i-8080': {
-        'about': "Also called Hidden Peak, because it barely shows itself from the Baltoro Glacier. "
-                 "Shares its base camp with Gasherbrum II, and the two are often attempted on one "
-                 "expedition. Steeper and more serious than its neighbour.",
-        'route': 'Japanese Couloir, Northwest Face',
-        'season': 'June to August',
-        'length': 'About 50 days',
-        'first': '1958, Pete Schoening and Andy Kauffman',
-    },
-    'broad-peak-8051': {
-        'about': "A long summit ridge right beside K2, at Concordia in the Karakoram. Often the first "
-                 "Karakoram 8,000 metre peak for climbers on their way to K2. The final ridge from "
-                 "the foresummit to the main summit is longer than it looks.",
-        'route': 'West Spur',
-        'season': 'June to August',
-        'length': 'About 45 days',
-        'first': '1957, Hermann Buhl, Kurt Diemberger, Marcus Schmuck and Fritz Wintersteller',
-    },
-    'gasherbrum-ii-8034': {
-        'about': "The most accessible of the Karakoram 8,000 metre peaks, reached from a base camp on "
-                 "the upper Baltoro beyond Concordia. A good first 8,000er in Pakistan, with a "
-                 "glacier approach that rewards careful route finding.",
-        'route': 'Southwest Ridge',
-        'season': 'June to August',
-        'length': 'About 45 days',
-        'first': '1956, Fritz Moravec, Josef Larch and Hans Willenpart',
     },
     'shisha-pangma-8027': {
         'about': "The lowest of the fourteen 8,000 metre peaks and the only one entirely in Tibet. "
@@ -214,5 +168,56 @@ OVERVIEW = {
         'season': 'April to May, or October',
         'length': 'About 35 days',
         'first': '1955, Heinz Steinmetz, Harald Biller and Jürgen Wellenkamp',
+    },
+    'kamet-7756': {
+        'about': "The second highest mountain in India, a great pyramid in the Garhwal Himalaya near the "
+                 "Tibetan border. When it was first climbed it was the highest summit anyone had ever "
+                 "reached. The normal route is a long glacier approach up the East Kamet Glacier to "
+                 "Meade’s Col, then the north-east ridge to the top.",
+        'route': 'East Kamet Glacier, Meade’s Col and the north-east ridge',
+        'season': 'May to June, or September to October',
+        'length': 'About 35 to 40 days',
+        'first': '1931, Frank Smythe, Eric Shipton, R. L. Holdsworth and Lewa Sherpa',
+    },
+    'nun-7135': {
+        'about': "The highest summit of the Nun Kun massif and the highest peak in Ladakh, rising "
+                 "above the Suru valley. A real 7,000 metre expedition with a moderate snow and ice "
+                 "line, climbed in the dry Ladakh summer when the rest of the Himalaya is under the "
+                 "monsoon.",
+        'route': 'West Ridge, from the Shafat Glacier',
+        'season': 'July to August',
+        'length': 'About 25 to 30 days',
+        'first': '1953, Claude Kogan and Pierre Vittoz',
+    },
+    'trisul-7120': {
+        'about': "The trident of Shiva, three summits on one long ridge above the Garhwal foothills. "
+                 "Trisul I was the first peak over 7,000 metres ever climbed, and it remained the "
+                 "highest summit reached for more than twenty years. Its normal route is a long, "
+                 "non-technical snow and glacier climb.",
+        'route': 'North-east flank and north ridge',
+        'season': 'May to June, or September to October',
+        'length': 'About 25 to 30 days',
+        'first': '1907, Tom Longstaff, Alexis and Henri Brocherel, and Karbir Burathoki',
+    },
+    'satopanth-7075': {
+        'about': "The high point of the Gangotri group, at the head of the glacier that feeds the "
+                 "Ganges. A broad, snowy summit above a dramatic glacier approach, and one of the most "
+                 "popular 7,000 metre peaks in India for climbers stepping up from 6,000 metre summits.",
+        'route': 'North-east ridge, from the Sundar and Chaturangi glaciers',
+        'season': 'May to June, or August to September',
+        'length': 'About 22 to 25 days',
+        'first': '1947, André Roch, René Dittert, Alexander Graven and Alfred Sutter',
+    },
+
+    # ── 6000ers without full route notes ─────────────────────────────
+    'kang-yatse-6250': {
+        'about': "The throne-shaped peak at the head of the Markha Valley in Ladakh. Kang Yatse II, the "
+                 "western summit, is one of the most accessible 6,000 metre peaks in the Himalaya: no "
+                 "technical climbing, a beautiful trek in through Buddhist villages, and views across "
+                 "the Zanskar and Ladakh ranges from the top.",
+        'route': 'Through the Markha Valley to Nimaling, then the west summit',
+        'season': 'Mid-June to September',
+        'length': 'About 12 to 14 days',
+        'first': None,
     },
 }

@@ -63,7 +63,7 @@ page = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join the Community &middot; The Mountain Diaries</title>
-""" + seo.meta('Join The Mountain Diaries', 'Local UAE hikes most months, small expedition groups to Nepal, the Alps, Patagonia and Kilimanjaro, and the stories from people who have walked the route before you.', 'join.html', 'assets/images/join-hero.jpg') + """
+""" + seo.meta('Join The Mountain Diaries', 'Small expedition groups to Nepal, India, the Alps, Patagonia and Kilimanjaro, honest guidance before you go, and the stories from people who have walked the route before you.', 'join.html', 'assets/images/join-hero.jpg') + """
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" href="assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -107,11 +107,11 @@ page = """<!DOCTYPE html>
           <p class="section-kicker">Walk with people</p>
           <h1 class="section-title">Join the Community</h1>
         </div>
-        <p class="section-lede">We run local hikes across the UAE most months, and put together small expedition groups for the bigger routes.</p>
+        <p class="section-lede">We put together small expedition groups for the world’s great ranges, and bring together people who train, trek and climb.</p>
         <p class="section-lede">Join the list and you will hear about dates first, meet the people going, and read the stories that come back.</p>
         <ul class="join-points">
-          <li>Local UAE hikes, from easy wadi walks to long days in Ras Al Khaimah</li>
-          <li>Expedition groups for Nepal, the Alps, Patagonia and Kilimanjaro</li>
+          <li>First word on new expedition groups, before dates are public</li>
+          <li>Expedition groups for Nepal, India, the Alps, Patagonia and Kilimanjaro</li>
           <li>Shared stories from people who have walked the route before you</li>
         </ul>
 
@@ -119,7 +119,7 @@ page = """<!DOCTYPE html>
           <p class="next-steps-head">What happens next</p>
           <ol>
             <li><strong>Straight away.</strong> You get the WhatsApp community invite on the next screen.</li>
-            <li><strong>Within days.</strong> You see the next local hike date and who is going.</li>
+            <li><strong>Within days.</strong> You see which groups are forming and who is going.</li>
             <li><strong>When you are ready.</strong> Tell us which journey calls you, and we will let you know when a group forms.</li>
           </ol>
         </div>
@@ -154,9 +154,9 @@ page = """<!DOCTYPE html>
           </div>
           <div class="field">
             <label for="join-mobile">Mobile number</label>
-            <input type="tel" id="join-mobile" name="mobile" placeholder="+971 50 000 0000"
+            <input type="tel" id="join-mobile" name="mobile" placeholder="+ country code and number"
                    autocomplete="tel" required>
-            <p class="form-note">Include your country code, for example +971.</p>
+            <p class="form-note">Include your country code.</p>
           </div>
           <div class="field">
             <label for="join-experience">Your experience level</label>
@@ -171,7 +171,7 @@ page = """<!DOCTYPE html>
 
           <div class="check-row">
             <input type="checkbox" id="join-local" name="local_hikes" value="yes">
-            <label for="join-local">I am interested in local UAE hikes</label>
+            <label for="join-local">I am interested in training hikes near me</label>
           </div>
 
           <div class="check-row">

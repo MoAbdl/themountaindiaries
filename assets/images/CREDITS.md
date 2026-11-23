@@ -52,18 +52,13 @@ Each one shows the journey's own peak or valley.
 | --- | --- | --- | --- |
 | `explore-header.jpg` | Rohit Sharma | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Tengboche_Monastery_with_Views_of_Mount_Everest,_Lhotse_and_Ama_Dablam.jpg) |
 | `journey-everest-8848.jpg` | Luca Galuzzi | CC BY-SA 2.5 | [Commons](https://commons.wikimedia.org/wiki/File:Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg) |
-| `journey-k2-8611.jpg` | Sallahuddin shah | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:K2_from_Concordia_-_3.jpg) |
 | `journey-kangchenjunga-8586.jpg` | Istiakuddin Ahmed | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:The_Kangchenjunga_from_darjeeling.jpg) |
 | `journey-lhotse-8516.jpg` | AceNotorious | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Sunset_on_the_Lhotse_South_Face.JPG) |
 | `journey-makalu-8485.jpg` | Ben Tubby | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Makalu.jpg) |
 | `journey-cho-oyu-8188.jpg` | Steve Hicks | CC BY 2.0 | [Commons](https://commons.wikimedia.org/wiki/File:Cho_Oyu_-_North_face.jpg) |
 | `journey-dhaulagiri-8167.jpg` | Vyacheslav Argenberg | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Dhaulagiri,_Himalaya,_Nepal.jpg) |
 | `journey-manaslu-8163.jpg` | Udhabkc | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Mt_Manaslu_from_Manaslu_basecamp.jpg) |
-| `journey-nanga-parbat-8125.jpg` | Aasim85 | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Nanga_Parbat_2.jpg) |
 | `journey-annapurna-i-8091.jpg` | Josep M. Gracia | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:ABC_-_South_face_of_Annapurna_I_from_Annapurna_Base_Camp,_Nepal,_2016.jpg) |
-| `journey-gasherbrum-i-8080.jpg` | MustafaAldahabi | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Gasherbrum_I_SW.jpg) |
-| `journey-broad-peak-8051.jpg` | Sallahuddin shah | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Broad_Peak_and_K2.jpg) |
-| `journey-gasherbrum-ii-8034.jpg` | Syed Hasan Shabbar | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:View_from_Gasherbrum_II_to_Broad_Peak_and_K2.jpg) |
 | `journey-shisha-pangma-8027.jpg` | Bernard Gagnon | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Shishapangma_in_clouds.jpg) |
 | `journey-himlung-7126.jpg` | Mostafa25 | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Himlung_2019.jpg) |
 | `journey-baruntse-7129.jpg` | SummitClimb | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Baruntse_Mountain.jpg) |
@@ -92,3 +87,8 @@ Each one shows the journey's own peak or valley.
 | `journey-upper-mustang.jpg` | Wimbex | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Lo_Mantang.JPG) |
 | `journey-manaslu-base-camp.jpg` | Nabin K. Sapkota | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Samagaun_Village_Manaslu_Circuit_17.jpg) |
 | `journey-langtang-valley.jpg` | Pustam.EGR | CC BY 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Langtang_Himal_Rasuwa.jpg) |
+| `journey-kamet-7756.jpg` | Sumodm | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Kamet_with_four_others.jpg) |
+| `journey-nun-7135.jpg` | Wolfgang Ott | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:Nun-Kun-Massiv,_im_Anflug_auf_Srinagar.jpg) |
+| `journey-trisul-7120.jpg` | Harshit SR | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Trishul_Peak_in_the_Golden_Hour.jpg) |
+| `journey-satopanth-7075.jpg` | Vrcholeni | CC BY-SA 4.0 | [Commons](https://commons.wikimedia.org/wiki/File:Satopanth-6000.jpg) |
+| `journey-kang-yatse-6250.jpg` | SlartibErtfass der bertige | CC BY-SA 3.0 | [Commons](https://commons.wikimedia.org/wiki/File:A_lake_near_Kang_Yatze,_Markha_Valley_trek,_Ladakh,_India_(2006).jpg) |
