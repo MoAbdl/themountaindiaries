@@ -17,6 +17,7 @@ SOCIAL = {
     'Instagram': 'https://www.instagram.com/the_mountain_diaries/',
     'TikTok': 'https://www.tiktok.com/@the_mountain_diaries',
     'LinkedIn': 'https://www.linkedin.com/company/themountaindiaries/',
+    'YouTube': 'https://www.youtube.com/@The_Mountain_Diaries',
 }
 
 
